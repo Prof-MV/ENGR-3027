@@ -2,5 +2,5 @@ delete_merged_file: false
 language:
   ui:
     chapter_name: "Chapter "
-book_filename: "index"
+book_filename: "index.html"
 output_dir: "docs"
