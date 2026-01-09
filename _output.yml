@@ -5,8 +5,6 @@ bookdown::gitbook:
       before: |
         <li><a href="./">ENGR-3027</a></li>
         <li class="toc-logo"><a href="./"><img src="images/Fanshawe.png"></a></li>
-      after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
