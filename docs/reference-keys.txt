@@ -1,4 +1,3 @@
-fig:unnamed-chunk-1
 fig:unnamed-chunk-2
 fig:unnamed-chunk-3
 fig:unnamed-chunk-4
@@ -20,8 +19,8 @@ fig:unnamed-chunk-19
 fig:unnamed-chunk-20
 fig:unnamed-chunk-21
 fig:unnamed-chunk-22
-tab:unnamed-chunk-23
-fig:unnamed-chunk-24
+fig:unnamed-chunk-23
+tab:unnamed-chunk-24
 fig:unnamed-chunk-25
 fig:unnamed-chunk-26
 fig:unnamed-chunk-27
@@ -31,7 +30,8 @@ fig:unnamed-chunk-30
 fig:unnamed-chunk-31
 fig:unnamed-chunk-32
 fig:unnamed-chunk-33
-fig:unnamed-chunk-36
+fig:unnamed-chunk-34
+fig:unnamed-chunk-37
 types-of-manufacturing-processes-afzalmanufacturing
 casting
 centrifugal-casting
