@@ -1,0 +1,291 @@
+---
+always_allow_html: true
+---
+
+# Integrated Manufacturing Systems
+
+------------------------------------------------------------------------
+
+
+## Material Handling Methods & Systems
+
+```{r echo=FALSE, message=FALSE}
+# Load the necessary packages
+# dplyr is used for the tibble() function and the pipe operator (%>%)
+library(dplyr) 
+library(knitr)
+library(kableExtra) # Essential for advanced styling
+
+# 1. Create a tibble (data frame) with your table content
+data <- tibble(
+  `Layout Type` = c("Fixed-Position", "Process", "Cellular", "Product"),
+  Features = c("Product is large and heavy, low production rates", 
+               "Medium and hard product variety, low and medium production rates", 
+               "Soft product variety, medium production rates", 
+               "No product variety or soft product variety, high production rates"),
+  `Typical Methods and Equipment` = c("Cranes, hoists, fork lift trucks", 
+                                      "Fork lift trucks, automated guided vehicles, manual loading at workstations", 
+                                      "Conveyors, manual handling for loading and moving between stations", 
+                                      "Conveyors for product flow, fork lift trucks or automated guided vehicles to deliver parts to stations")
+)
+
+# 2. Use kable() and kableExtra to create and style the HTML table
+data %>%
+  # Start with kable: it converts the data into a table structure.
+  # We specify format = "html" for best use of kableExtra features.
+  kable(format = "html", caption = "Material Handling Methods by Plant Layout") %>%
+  
+  # kable_styling: Applies general table settings.
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+    # "striped": alternating row colors
+    # "hover": row highlights when mouse hovers over it
+    # "condensed": makes the table more compact
+    full_width = FALSE, # Prevents the table from stretching to 100% of the page width
+    position = "center" # Centers the table on the page
+  ) %>%
+  
+  # column_spec: Styles specific columns.
+  column_spec(
+    column = 1,  # Target the first column ("Layout Type")
+    bold = TRUE, # Make the text bold
+    width = "10em" # Set a fixed width to prevent wrapping issues
+  ) %>%
+  
+  # row_spec: Styles specific rows.
+  # This highlights the "Fixed-Position" row (row 1) in a light grey.
+  row_spec(
+    row = 1,
+    background = "#f2f2f2" 
+  )
+```
+
+## Fundamentals of a production Line
+
+A **production line** consists of a series of workstations arranged so that the product moves from one station to the next, and at each location a portion of the total work is performed on it.
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Production Line"}
+knitr::include_graphics("images/ProductionLine.jpg")
+```
+
+### Methods of Work Transport
+
+### Manual Methods of Work Transport {-}
+Manual methods involve passing the work units between stations by hand.
+
+##### Types: {-}
+  - Work units moved in batches
+  - Work units moved one at a time
+  
+##### Problems: {-}
+  - Starving of stations
+  - Blocking of stations
+  - No pacing
+
+### Mechanized Methods of Work Transport {-}
+Mechanized methods use powered conveyor or other mechanized apparatus to move work units.
+Three major types of work transfer systems are used on production lines:
+  
+  - continuous transfer
+  - synchronous transfer
+  - asynchronous transfer
+
+##### Categories: {-}
+  - Work units attached to conveyor
+  - Work units are removable from conveyor
+
+##### Problems {-}
+  - Starving of stations
+  - Incomplete units
+
+### Continuous Transport {-}
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Continuous Transport"}
+knitr::include_graphics("images/ContinuousTransport.png")
+```
+Conveyor moves at constant velocity v~c~
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Synchronous Transport"}
+knitr::include_graphics("images/SynchronousTransport.png")
+```
+All work units are moved simultaneously to their respective next workstations with quick, discontinuous motion.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Asynchronous Transport"}
+knitr::include_graphics("images/AsynchronousTransport.png")
+```
+Work units move independently, not simultaneously. A work unit departs a given station when the worker releases it. Small queues of parts can form at each station.
+
+
+### What is Work Cycle?
+##### Manually Operated Machine {-}
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Manually Operated Machine"}
+knitr::include_graphics("images/ManuallyOperatedMachine.png")
+```
+Manually operated machines are controlled or supervised by a human worker. The machine provides the power for the operation and the worker provides the control. The entire work cycle is operator controlled.
+
+##### Semi-Automated Machine {-}
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Semi-Automated Machine"}
+knitr::include_graphics("images/SemiautomatedMachine.png")
+```
+
+A semi-automated machine performs a portion of the work cycle under some form of program control, and a worker tends to the machine for the remainder of the cycle. Typical worker tasks include loading and unloading parts.
+
+##### Fully-Automated Machine {-}
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Fully-Automated Machine"}
+knitr::include_graphics("images/fullyautomatedMachine.png")
+```
+
+Machine operates for extended periods (longer than one work cycle) without worker attention.
+
+### Work Transport Between Stations
+
+Two general categories of work transport in multi-station manufacturing systems:
+
+1. Fixed routing
+  - Work units always flow through the same sequence of workstations
+  - Most production lines exemplify this category
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Fixed Routing"}
+knitr::include_graphics("images/fixedrouting.png")
+```
+2. Variable routing
+  - Work units are moved through a variety of different station sequences
+  - Most job shops exemblify this category
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Variable Routing"}
+knitr::include_graphics("images/variablerouting.png")
+```
+
+
+### ⏰ Explaining Manufacturing Process Times
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Timing Definition"}
+knitr::include_graphics("images/TimingDefinition.jpg")
+```
+The flowchart illustrates three crucial time metrics: **Lead Time**, **Throughput Time**, and **Cycle Time**. These metrics are sequential, with the largest time window encompassing the smaller ones.
+
+#### Lead Time
+
+* **Definition:** **Lead Time** is the total time elapsed from the moment a customer **places an order** until they **receive the finished product**. It represents the customer's total wait time.
+* **What it includes:** It covers every step, from order receipt through manufacturing, testing, and shipping (Delivery at Customer).
+* **Example:** A customer orders a custom-made widget on Monday. If order processing, manufacturing, and shipping take a total of 6 days, the **Total Lead Time = 6 days.**
+
+
+#### Throughput Time
+
+* **Definition:** **Throughput Time** (or Manufacturing Lead Time) is the time required to convert raw materials into a finished product that is ready for dispatch. It starts when the **Raw Material (RM) is Received** and ends when the product is **Dispatched** from the factory.
+* **What it includes:** All activities within the factory walls, including processing (Turning, Drilling, Tapping), movement, inspection, and any queuing/waiting time before dispatch.
+* **Example:** If the total time spent from raw material receipt to final dispatch from the factory is 3 days, the **Total Throughput Time = 3 days.**
+
+#### Cycle Time
+
+Cycle Time is typically broken into two related concepts: **Overall Cycle Time** and **Individual Cycle Time**.
+
+##### Overall Cycle Time (As labeled in the diagram)
+
+* **Definition:** The **Overall Cycle Time** refers to the total time spent actively converting the raw material into a final, ready-to-ship product, beginning with the first value-added operation (like Turning) and ending with the last (like Dispatch).
+* **What it includes:** The sum of all individual process times plus any immediate in-process wait times (e.g., Cycle Time 1 + Cycle Time 2 + ...).
+
+##### Individual Cycle Time (`Cycle Time 1`, `Cycle Time 2`, etc.)
+
+* **Definition:** This refers to the **time it takes to complete a single specific task** or process step (e.g., Turning, Drilling, Tapping) on a single product unit.
+* **Example:** If the individual processing steps take 30 minutes for Turning, 15 minutes for Drilling, and 10 minutes for Tapping, these are the individual cycle times for those specific tasks.
+
+### 🚀 Cycle Time vs. Efficiency in Manufacturing [@Arcera]
+
+Ever wondered how to measure and improve your manufacturing process? Let’s dive into two key metrics that drive efficiency: **Manufacturing Cycle Time (MCT)** and **Manufacturing Cycle Efficiency (MCE)**!
+
+
+#### 🔍 Manufacturing Cycle Time (MCT)
+
+This metric tells us how long it takes to produce each unit.
+
+##### Formula:
+$$
+MCT = \frac{\text{Production Time}}{\text{Units Produced}}
+$$
+
+Understanding MCT allows us to identify delays and improve production speed. Reducing cycle time leads to quicker delivery and increased customer satisfaction!
+
+##### Calculation Example:
+
+Let's assume a production run takes 480 minutes (8 hours) and produces 60 units.
+
+```{r echo=FALSE}
+# Define the variables
+production_time_minutes <- 480 # Total time the process ran
+units_produced <- 60
+
+# Calculate Manufacturing Cycle Time (MCT)
+MCT <- production_time_minutes / units_produced
+
+# Print the result
+cat("Manufacturing Cycle Time (MCT):", MCT, "minutes per unit")
+```
+
+#### 📈 Manufacturing Cycle Efficiency (MCE)
+
+This metric reveals the efficiency of the production process by focusing on the actual "Process Time" (value-added time) within the entire production period.
+
+##### Formula:
+$$
+\text{MCE} = \left(\frac{\text{Process Time}}{\text{Production Time}}\right) \times 100\%
+$$
+
+**Process Time** is the time spent on activities that directly add value to the product. **Production Time** includes process time plus non-value-added time (e.g., inspection, waiting, moving).
+
+Higher MCE means less waste and more value-added time in production. Aiming for a higher MCE drives leaner operations and cost savings.
+
+##### Calculation Example:
+
+
+```{r echo=FALSE}
+# --- Define the range for Production Time (Total Time) ---
+# Let's assume the total production time is between 400 and 600 minutes
+min_production <- 400
+max_production <- 600
+
+# Generate a random total production time
+production_time_minutes <- runif(1, min = min_production, max = max_production)
+
+# --- Define the range for Process Time (Value-Added Work) ---
+# The process time must be less than or equal to the production time.
+# Let's assume the value-added work is between 50 and the generated production time.
+min_process <- 50
+max_process <- production_time_minutes # Upper limit is the randomly generated production time
+
+# Generate a random process time
+process_time_minutes <- runif(1, min = min_process, max = max_process)
+
+# --- Calculate Manufacturing Cycle Efficiency (MCE) ---
+MCE <- (process_time_minutes / production_time_minutes) * 100
+
+# --- Print the results ---
+cat("Total Production Time (minutes):", round(production_time_minutes, 2), "\n")
+cat("Value-Added Process Time (minutes):", round(process_time_minutes, 2), "\n")
+cat("--- \n")
+cat("Manufacturing Cycle Efficiency (MCE):", round(MCE, 2), "%")
+```
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="MCT and MCE"}
+knitr::include_graphics("images/1731060093907.jpg")
+```
+
+---
+
+
+---
+
+
+### Product Variations
+## Manual Assembly Lines
+### Production Rate and Cycle Time
+### Line Balancing and Repositioning Losses
+## Automated Production Lines
+### Types of automated lines
+### Analysis of Automated Production lines
+## Cellular Manufacturing
+### Part families
+### Machine Cells
+## Flexible Manufacturing Systems (FMS) and Cells
+### Integrating the FMS components
+### Applications of flexible manufacturing systems
+### Mass customization
+## Computer Integrated Manufacturing (CIM)
+
