@@ -1,0 +1,960 @@
+---
+always_allow_html: true
+---
+
+
+# Types of Manufacturing Processes [@AfzalManufacturing]
+
+------------------------------------------------------------------------
+
+Manufacturing is defined as the conversion of raw materials into the finished goods on a large scale using man and machine whereas manufacturing processes are defined as the methods used for conversion of raw materials into finished products. Based on the product requirement there different types of manufacturing processes which are used to get the required output.
+
+In this chapter, you are going to learn about the seven types manufacturing processes and their subtypes with examples.
+
+Some websites mention four types of manufacturing processes while some mention five types of manufacturing processes. Although, [Wikipedia](https://en.wikipedia.org/wiki/List_of_manufacturing_processes) lists 7 main types of manufacturing processes which we are going to discuss below.
+
+7 Main types of Manufacturing Processes and their subtypes
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Flowchart illustrating different types of manufacturing processes"}
+knitr::include_graphics("images/1525956868967.jpg")
+```
+
+A good video summarizing 6 of the 7 manufacturing processes is linked below. Coating / Plating is missing.
+
+```{=html}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/Um_g8sQ_p3Y" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
+```
+
+## Casting
+
+Casting is a process of pouring liquid metal into a mold containing the hollow shape of the desired outcome. It uses sprue, gates, and runners to pour the metal. The main types of manufacturing processes under casting are:-
+
+### Centrifugal Casting
+
+Centrifugal casting is a process of pouring molten metal into a spinning die. Spinning die creates high g-forces to the molten metal which gives it the cylindrical shape. Moreover, spinning let the impurities (less dense material) to float at the inner dia from where it is removed later. Spinning can either be on a vertical or horizontal axis depending on the configuration of the desired part such as vertical rotation is used to cast ring and cylinder and horizontal rotation is used to cast tubular shapes.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Centrifugal Casting"}
+knitr::include_graphics("images/1525957143378.png")
+
+```
+
+Example: Some examples of centrifugal casting include jet engine compressor cases, petrochemical furnace tubes, military products, and other high-reliability applications.
+
+### Die Casting
+
+Die casting is a manufacturing process used for producing metal parts where high precision is required. This process is accomplished by forcing molten metal under high pressure into reusable metal dies. High volume production is done using this process.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Die Casting"}
+knitr::include_graphics("images/1525957168838.gif")
+
+```
+
+Process
+
+Steel molds capable of producing several castings at once are produced. Molds are mounted securely in a die casting machine and are arranged so that one is stationary while the other is moveable. The die cavity is injected with molten metal and allowed to solidify and the part is ejected. Example: Die casting process is used for producing precise non-ferrous metal parts. Some examples of die casting include engines, clutch housings, and covers of a four-wheeled vehicle.
+
+### Sand Casting
+
+Sand casting is a metal casting process that uses sand as the mold material. This process has a low production rate as the sand mold must be destroyed in order to remove the part. Although, it is a cheap process when low volume production is required.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Sand Casting"}
+knitr::include_graphics("images/1525957188942.png")
+
+```
+
+Sand Casting Process: \* Materials used include the furnace, metal, pattern, and sand mold. \* The molten metal is poured using a ladle into the cavity of the sand mold, which is created using the pattern. \* The casting is allowed to solidify and then removed by breaking the sand mold.
+
+Example: More than 70% of all metal castings are produced via sand casting process. Some examples of sand casting process include engine blocks, machine tool bases, cylinder heads, pump housings, valves, gears, pulleys, crankshafts, connecting rods, and propellers.
+
+### Permanent Mold Casting
+
+Permanent mold casting is a manufacturing process that offers reusability of metal molds which makes it eligible for high volume production. This process uses gravity or vacuum or gas to fill the mold.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Permanent Mold Casting"}
+knitr::include_graphics("images/1525957226624.jpg")
+
+```
+
+Process
+
+The mold is preheated and a ceramic coating is applied to the mold cavity surfaces to facilitate part removal. The molten metal is poured from a ladle and gravity or vacuum is used to raise the molten metal into the mold assembly. The casting is allowed to solidify and then removed by opening the mold assembly. Example: Some examples of permanent mold casting include gears, pipe fittings, fuel injection housings, splines, wheels, gear housings, engine pistons.
+
+Note the difference: Sand casting uses an expendable mold which is destroyed after each cycle whereas permanent mold casting and die casting uses a metal mold that is reused for several thousand times. Permanent mold casting process is considerably slower, and not as precise as die casting. Also, an external force is used to inject molten metal in die casting as compared to gravity or vacuum in permanent mold casting.
+
+### Investment Casting
+
+Investment casting is metal casting process of pouring molten metal into an expendable ceramic mold. This process is also known as “lost-wax casting” as the wax pattern is melted out of the mold when molten metal is poured. Complex parts are made using this process.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Investment Casting"}
+knitr::include_graphics("images/1525957292681.jpg")
+
+```
+
+Process
+
+The wax pattern is prepared and surrounded/invested by the ceramic slurry that hardens it and converts it into a mold. The mold is preheated to evaporate the wax and the molten metal is poured from a ladle into the mold. The casting is allowed to solidify and then the mold is broken and the casting removed. Example: Some examples of investment casting include turbine blades, airplane parts, firearm components and military equipment.
+
+```{=html}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/QtxVdC7pBQM" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
+```
+
+### Shell Molding
+
+Shell molding is a metal casting process that uses a sand covered with resin to form the mold. This process is similar to sand casting process but has better dimensional accuracy, higher productivity rate, and lower labor requirements. Also, the Shell Molds are reusable and expandable.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Shell Molding"}
+knitr::include_graphics("images/1525957333118.jpg")
+
+```
+
+Process
+
+A two-piece metal pattern is created in the shape of the desired part using iron or steel. These patterns are clamped to a dump box containing the mixture of sand and a resin binder. This is known as shell preparation method. These shells are joined together and clamped to form the complete shell mold and the molten metal is poured from a ladle into the mold cavity. After the casting is solidified, the mold is broken and the casting removed. Example: Shell molding is used for producing high precision parts. Some examples of shell molding include gear housings, cylinder heads, connecting rods, and lever arms.
+
+## Molding
+
+Molding is a manufacturing process that uses a rigid frame to shape hot liquid or a ductile raw material. It is mostly used to manufacture plastic products. The different types of manufacturing processes under molding are:
+
+### Injection Molding
+
+Injection molding is a molding process used for producing parts by injecting molten material into a mold. It is the most commonly used molding process for manufacturing plastic parts. This process requires the use of an injection molding machine, raw plastic pellets, and a mold to get the desired output. The plastic is melted in the injection molding machine with the help of heaters and then a rotating/reciprocating screw injects it into the mold, where it cools and solidifies into the final part.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Injection Molding"}
+knitr::include_graphics("images/1525957354507.png")
+
+```
+
+Example: Some examples of injection molding include automotive parts and components, game toys, chairs, tables, storage containers, housing for household appliances, consumer electronics, buckets.
+
+### Blow Molding
+
+Blow molding is a molding process used to manufacture hollow plastic parts. This process starts with melting down the plastic and forming it into a parison. The parison is then clamped into a mold and air is blown into it. This air pushes the plastic out to match the mold. The plastic is allowed to cool and later the mold opened and the part is ejected. Although the blow molding process is costlier than injection molding, it is still used for manufacturing many plastic products.
+
+Blow molding is divided into three types of manufacturing processes namely extrusion blow molding, injection blow molding, and injection stretch blow molding.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Blow Molding"}
+knitr::include_graphics("images/1525957373575.jpg")
+
+```
+
+Example: Some examples of blow molding include automotive ducts, stadium seating chairs, containers, trays, reservoirs, tanks, coolers, fan housings, panels, doors, toys, sporting goods, watering cans and household products, carrying cases.
+
+### Extrusion Molding
+
+Extrusion Molding is a process used to manufacture long tube-shaped products of a fixed cross-section. This process uses an extrusion machine to force the heated plastic through a die with an opening. The machine uses a reciprocating/rotating screw to feed the plastic into the die. The die then forces the material into the desired shape or the shape of the die. Heaters are used to melting the plastic in the extrusion machine. The material is allowed to cooled and then cut down into the required shape.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Extrusion Molding"}
+knitr::include_graphics("images/1525957392232.gif")
+
+```
+
+Example: Some examples of extrusion molding include pipe, tube, plastic films and sheeting, thermoplastic coatings, and wire insulation.
+
+### Rotational Molding
+
+Rotational Molding is a molding process used for manufacturing hollow parts. This process is accomplished by placing resin into a hollow mold and then rotating that tool bi-axially in an oven. There is no pressure involved in this technique, unlike other plastic manufacturing processes. Thus, making the mold cost cheap and the process economical.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Rotational Molding"}
+knitr::include_graphics("images/1525957410843.jpg")
+
+```
+
+Process
+
+The mold is filled with a polymer resin and heated in an oven until the resin melts inside of the mold cavity. It is then slowly rotated to disperse and stick the soft material inside the mold cavity. A cool tool is used to solidify the part and later the part is removed from the mold. Example: Some examples of rotational molding include water tanks, medical products, consumer’s products, toys, leisure craft, sporting equipment.
+
+### Thermoforming
+
+Thermoforming is a molding process where a plastic sheet is heated to an elastic forming temperature and formed into the desired shape. This method is often used for sample and prototype parts. It is divided into three types of manufacturing processes namely vacuum forming, pressure forming and mechanical forming.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Thermoforming"}
+knitr::include_graphics("images/1525957440479.gif")
+
+```
+
+Process
+
+The thermoplastic sheet is heated using either convection or radiation until it gets soften. This soft sheet is then pressed against the mold using the vacuum or air pressure or mechanical force. The excess material is then trimmed away and the formed part is released. Example: Some examples of thermoforming include switchgear, motor components, thrust washers, ash cups, valve covers, disc brake pistons, knobs, and handles.
+
+### Powder Metallurgy
+
+Powder metallurgy is a molding process used for manufacturing precision metal components from metal powders. The rate of production of parts is quite high in powder metallurgy which makes it economical than the other casting processes.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Powder Metallurgy"}
+knitr::include_graphics("images/1525957542388.png")
+
+```
+
+Process
+
+A homogeneous mixture of metal powders or alloy powders is prepared. The metal powder is then pressed into the desired shape at room temperature. At last, the product is heated that causes the powder particles to fuse together without melting. Example: Some examples of powder metallurgy include self -lubricating bearings, porous metal filters, gears, cams, brackets, sprockets.
+
+## Forming
+
+Forming is a manufacturing process that uses suitable stresses such as compression, tension or shear to deform the material and get the desired shape. This process involves deformation and displacement of material leading to no material removal or loss of material. The different types of manufacturing processes under forming are:
+
+### Forging
+
+Forging is a manufacturing process that uses compressive forces to shape the material. This process is accomplished with the help of a hammer, press or a special forging machine. The forged parts have good strength and toughness without the defects of porosity, inclusion or voids, also they can be used reliably for highly stressed and critical applications.
+
+Forging may be carried out on materials in either hot or cold state and therefore, it is divided into types of manufacturing processes i.e. cold forging and hot forging.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Forging"}
+knitr::include_graphics("images/1525957560571.jpg")
+```
+
+Example: Some examples of forging include hammers, sleds, wrenches, garden tools, sockets, hardware, hand tools, edged weapons, cymbals, jewelry, rivets, bolts.
+
+### Bending
+
+Bending is a manufacturing process used to deform metal into the desired shape by using a die and punch. This process is most commonly used for sheet metal products to get the required U-shape, V-shape or the channel shape. Commonly used bending machines are pan brakes, brake presses, and other specialized machine presses.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Bending"}
+knitr::include_graphics("images/1525957570680.png")
+```
+
+Process
+
+The material is placed on the die and positioned in place with the help of stops. The upper part of the press with appropriately shaped punch attached to it descends and forms the V-shaped bend. The U-punch forms the U-shape with a single punch. Example: Some examples of bending operations include electric enclosures, electrical boxes, brackets, rectangular ductwork.
+
+### Stamping
+
+Stamping or pressing is a manufacturing process in which thin walled metal parts are shaped desirably with the help of punches and dies. This process is accomplished by placing flat sheet metal into a stamping press where a tool and die surface forms the metal into the desired shape. Stamping uses hydraulic or mechanical press to perform the operations which can be done at a single die station or multiple die stations. Also, this process is usually carried out on sheet metal, but can also be used on other materials, such as polystyrene.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Stamping"}
+knitr::include_graphics("images/1525957586363.jpg")
+```
+
+Example: Some examples of stamping include trunks, doors, panels, enclosures, fenders, roof, and hood outer parts.
+
+### Shearing
+
+Shearing is a manufacturing process used to remove a blank of required shape and dimension from a large sheet of metal, paper or plastics. This process includes cutting of sheet without the formation of chips or the use of burning or melting. Shearing is divided into following types of manufacturing processes:
+
+-   Blanking
+-   Piercing
+-   Roll slitting
+-   Trimming
+-   Coining
+
+Process
+
+-   The punch applies pressure to the sheet forming cracks on both the top and bottom edges of the sheet.
+-   The punch goes down further to grow these cracks and eventually separate the slug from the material. Example
+
+Some examples of shearing include industrial machinery, automobile parts, electronic equipment, knives, scissors.
+
+## Machining
+
+Machining is a manufacturing process used to cut a piece of raw material into the desired shape and size with the help of controlled material-removal process. These processes are based on a common theme known as subtractive manufacturing. The machining process is used for all the types of product especially metal products. The different types of manufacturing processes under machining are:
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Machining"}
+knitr::include_graphics("images/1525957720530.jpg")
+```
+
+1.  Milling is a process of removal of material from a workpiece using rotary cutters and getting the desired shape.
+2.  Turning is a process of removal of unwanted material from circular parts using a cutting tool. This process requires a lathe, workpiece, fixture, and a cutting tool.
+3.  Shaping process uses a cutting tool that reciprocates against a stationary workpiece producing a plane or a desired surface.
+4.  Drilling process uses a drill bit to make a hole of circular cross-section into the solid material.
+5.  Honing process produces a precision surface on a metal workpiece by scrubbing an abrasive stone against it.
+6.  Finishing process is used to improve appearance, adhesion, wettability, wear resistance, hardness or to remove burrs and other surface flaws with the help of sanders.
+
+## Joining
+
+Joining or assembling process are part of every production processes where two or more parts are combined together to get the required product. The main types of manufacturing processes under joining are:
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Joining"}
+knitr::include_graphics("images/1525957735284.jpg")
+```
+
+1.  Welding process is used to heat and melt two or more parts and force them together making a single functional part. Arc welding, resistance welding, oxyfuel gas welding are few types of welding operations.
+2.  Soldering process is also used to join two or more metal items by melting and putting a filler metal (solder) into the joint. It differs from welding as it does not involve melting of the workpieces.
+3.  Brazing process is used to join two or more metal items together by melting and flowing a filler metal into the joint. Brazing uses higher temperatures for a similar process as compared to soldering. Also, it requires much more closely fitted parts than in soldering.
+4.  Adhesive bonding is used to hold multiple closely spaced parts together using a filler material called an adhesive. It is mainly used for a non-metallic substance such as a polymer.
+5.  Mechanical Assembly – It is a fastening process which uses nut, bolts, and rivets to join the parts together. It is also a reversible joining process.
+
+## Coating or Plating
+
+This process is defined as a method of covering the part surface with powder or zinc or other chemicals to protect it from corrosion, wear and other defects. It is also done to improve the electrical conductivity or magnetic response of the material. The main types of manufacturing processes under the coating process are powder coating, electroplating, sputter deposition.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Coating or Plating"}
+knitr::include_graphics("images/1525957756629.jpg")
+```
+
+## Additive Manufacturing
+
+Additive manufacturing is the process reversible to subtractive manufacturing i.e. machining. It is a manufacturing process that builds 3D objects by adding layer-upon-layer of material, whether the material is plastic, metal or concrete. Additive manufacturing comprises many technologies such as 3D printing, rapid prototyping, direct digital manufacturing, layered manufacturing and additive fabrication. This technology is growing at a very fast speed due to its high-efficiency and accuracy.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Additive Manufacturing"}
+knitr::include_graphics("images/1525957777852.png")
+```
+
+Example: Some examples of 3D printing include jewelry, toys, decorative items, phone cases.
+
+<!--chapter:end:01-Types-of-Manufacturing.Rmd-->
+
+---
+always_allow_html: true
+---
+
+# Process and Design
+
+------------------------------------------------------------------------
+
+<details>
+
+<summary>What is manufacturing process engineering?</summary>
+
+Process engineering is a specialized branch of engineering that focuses on the optimization of complex production processes, as well as the design, analysis, and implementation of manufacturing systems.
+
+</details>
+
+<details>
+
+<summary>What is the role of automation in various manufacturing processes?</summary>
+
+With the push for Just-In-Time (JIT) manufacturing and the importance of reaching higher productivity and efficiency levels, automation in manufacturing is paramount.
+
+</details>
+
+<details>
+
+<summary>What are advantages of automation in manufacturing?</summary>
+
+-   Lowered Operating Costs
+-   Improved Worker Safety
+-   Reduced Factory Lead Times
+-   Increased Production Output
+-   Smaller Environmental Footprint
+-   Increased Productivity and Efficiency
+-   Increased System Versatility
+
+</details>
+
+<details>
+
+<summary>What are disadvantages of automation in manufacturing?</summary>
+
+-   Higher Start-up cost and the cost of operation.
+-   Higher Cost of Maintenance.
+-   Obsolescence/Depreciation Cost.
+-   Unemployment.
+-   Not economically justifiable for small scale production.
+
+</details>
+
+## Types of automation in various manufacturing processes
+
+-   Fixed automation – *large volume, single part productions*\
+    Fixed automation is a system in which the sequence of processing (or assembly) operations is fixed by the equipment configuration. Each of the operations is the sequence is usually simple, involving perhaps a plain linear or rotational motion or an uncomplicated combination of the two; for example, the feeding of a rotating spindle
+
+-   Programmable automation – *associated with batch production*\
+    In programmable automation, the production equipment is designed with the capability to change the sequence of operations to accommodate different product configuration. The operation sequence is controlled by a program, which is a set of instructions coded so that they can be read and interpreted by the system. New programs can be prepared and entered into the equipment to produce new products
+
+-   Flexible automation – *Real time, on-demand production*\
+    Flexible automation is an extension of programmable automation. A flexible automated system is capable of producing a variety of parts (or products) with virtually no time lost for changeovers from one part style to the next. There is no lost production time while reprogramming the system and altering the physical setup (tooling, fixtures, machine settings). Consequently, the system can produce various combinations and schedules of parts or products instead of requiring that they be made in batches.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Flowchart illustrating different types of manufacturing processes"}
+knitr::include_graphics("images/TypesOfAutomation.png")
+```
+
+<details>
+
+<summary>List in which industries you can find various automated process systems</summary>
+
+- Refineries,
+- Chemical plants
+- Food processing facilities
+- Textile production mills
+- Waste water treatment plants
+- Automated material handling systems
+- Breweries
+- Automotive industries
+- Pharmaceutical industries
+- Defense industries
+- Mining industries
+
+</details>
+
+## Flow of process engineering- design to commissioning 
+
+```{=html}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/BzPTGWKLP7c" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
+```
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Flowchart illustrating different types of manufacturing processes"}
+knitr::include_graphics("images/ProcessEngineeringFlow.jpg")
+```
+
+## FEL/FEED (Front End Engineering Design) 
+```{=html}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/gSkoGFLDxF0" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+  </iframe>
+</div>
+```
+- Project Organization Chart
+- Project Scope
+  - Defined civil, mechanical, and chemical engineering
+  - HAZOP, safety and ergonomic studies
+  - 2D & 3D preliminary models
+  - Equipment layout and installation plan
+  - Engineering design package development
+  - Major equipment list
+  - Automation strategy
+- Process Flow Diagrams (PFD) and Piping and Instrumentation Diagrams (P&ID)
+- Project timeline
+- Fixed-bid quote
+
+
+<details>
+<summary>What are the steps of Process System Design and Engineering </summary>
+
+- Develop PFDs & P&IDs
+- Process simulation
+- 2D & 3D models,
+- Equipment layout and installation plan
+- Skid design
+- Mechanical & structural design
+- Piping design,
+- Lifts & installation planning,
+- Process instrumentation design
+
+</details>
+
+
+<details>
+<summary>Automation and Controls Engineering</summary>
+
+- Automation design
+- Control panel fabrication
+- Controls Integration services
+- SCADA design
+- Safety engineering
+- Programming – PLC, DCS, HMI,...
+
+</details>
+
+<details>
+<summary>Process Equipment Fabrication and Assembly</summary>
+
+- Sheet metal fabrication
+- Skid frame fabrication
+- Mechanical assembly
+- Painting
+- Pressure vessel fabrication
+- Structural fabrication
+- Electrical panel fabrication
+- Electrical wiring
+- Instrumentation installation
+- Insulation
+- Painting
+- Pipe fitting
+- Tooling
+- Tubing
+- Welding
+- ...
+
+</details>
+
+<details>
+<summary>Testing & Commissioning</summary>
+
+- Factory Acceptance Tests
+- Processing plant commissioning/ Site Acceptance Tests
+
+</details>
+
+<!--chapter:end:02-Process-and-Design.Rmd-->
+
+---
+always_allow_html: true
+---
+
+# Integrated Manufacturing Systems
+
+------------------------------------------------------------------------
+
+
+## Material Handling Methods & Systems
+
+```{r echo=FALSE, message=FALSE}
+# Load the necessary packages
+# dplyr is used for the tibble() function and the pipe operator (%>%)
+library(dplyr) 
+library(knitr)
+library(kableExtra) # Essential for advanced styling
+
+# 1. Create a tibble (data frame) with your table content
+data <- tibble(
+  `Layout Type` = c("Fixed-Position", "Process", "Cellular", "Product"),
+  Features = c("Product is large and heavy, low production rates", 
+               "Medium and hard product variety, low and medium production rates", 
+               "Soft product variety, medium production rates", 
+               "No product variety or soft product variety, high production rates"),
+  `Typical Methods and Equipment` = c("Cranes, hoists, fork lift trucks", 
+                                      "Fork lift trucks, automated guided vehicles, manual loading at workstations", 
+                                      "Conveyors, manual handling for loading and moving between stations", 
+                                      "Conveyors for product flow, fork lift trucks or automated guided vehicles to deliver parts to stations")
+)
+
+# 2. Use kable() and kableExtra to create and style the HTML table
+data %>%
+  # Start with kable: it converts the data into a table structure.
+  # We specify format = "html" for best use of kableExtra features.
+  kable(format = "html", caption = "Material Handling Methods by Plant Layout") %>%
+  
+  # kable_styling: Applies general table settings.
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+    # "striped": alternating row colors
+    # "hover": row highlights when mouse hovers over it
+    # "condensed": makes the table more compact
+    full_width = FALSE, # Prevents the table from stretching to 100% of the page width
+    position = "center" # Centers the table on the page
+  ) %>%
+  
+  # column_spec: Styles specific columns.
+  column_spec(
+    column = 1,  # Target the first column ("Layout Type")
+    bold = TRUE, # Make the text bold
+    width = "10em" # Set a fixed width to prevent wrapping issues
+  ) %>%
+  
+  # row_spec: Styles specific rows.
+  # This highlights the "Fixed-Position" row (row 1) in a light grey.
+  row_spec(
+    row = 1,
+    background = "#f2f2f2" 
+  )
+```
+
+## Fundamentals of a production Line
+
+A **production line** consists of a series of workstations arranged so that the product moves from one station to the next, and at each location a portion of the total work is performed on it.
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Production Line"}
+knitr::include_graphics("images/ProductionLine.jpg")
+```
+
+### Methods of Work Transport
+
+### Manual Methods of Work Transport {-}
+Manual methods involve passing the work units between stations by hand.
+
+##### Types: {-}
+  - Work units moved in batches
+  - Work units moved one at a time
+  
+##### Problems: {-}
+  - Starving of stations
+  - Blocking of stations
+  - No pacing
+
+### Mechanized Methods of Work Transport {-}
+Mechanized methods use powered conveyor or other mechanized apparatus to move work units.
+Three major types of work transfer systems are used on production lines:
+  
+  - continuous transfer
+  - synchronous transfer
+  - asynchronous transfer
+
+##### Categories: {-}
+  - Work units attached to conveyor
+  - Work units are removable from conveyor
+
+##### Problems {-}
+  - Starving of stations
+  - Incomplete units
+
+### Continuous Transport {-}
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Continuous Transport"}
+knitr::include_graphics("images/ContinuousTransport.png")
+```
+Conveyor moves at constant velocity v~c~
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Synchronous Transport"}
+knitr::include_graphics("images/SynchronousTransport.png")
+```
+All work units are moved simultaneously to their respective next workstations with quick, discontinuous motion.
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Asynchronous Transport"}
+knitr::include_graphics("images/AsynchronousTransport.png")
+```
+Work units move independently, not simultaneously. A work unit departs a given station when the worker releases it. Small queues of parts can form at each station.
+
+
+### What is Work Cycle?
+##### Manually Operated Machine {-}
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Manually Operated Machine"}
+knitr::include_graphics("images/ManuallyOperatedMachine.png")
+```
+Manually operated machines are controlled or supervised by a human worker. The machine provides the power for the operation and the worker provides the control. The entire work cycle is operator controlled.
+
+##### Semi-Automated Machine {-}
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Semi-Automated Machine"}
+knitr::include_graphics("images/SemiautomatedMachine.png")
+```
+
+A semi-automated machine performs a portion of the work cycle under some form of program control, and a worker tends to the machine for the remainder of the cycle. Typical worker tasks include loading and unloading parts.
+
+##### Fully-Automated Machine {-}
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Fully-Automated Machine"}
+knitr::include_graphics("images/fullyautomatedMachine.png")
+```
+
+Machine operates for extended periods (longer than one work cycle) without worker attention.
+
+### Work Transport Between Stations
+
+Two general categories of work transport in multi-station manufacturing systems:
+
+1. Fixed routing
+  - Work units always flow through the same sequence of workstations
+  - Most production lines exemplify this category
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Fixed Routing"}
+knitr::include_graphics("images/fixedrouting.png")
+```
+2. Variable routing
+  - Work units are moved through a variety of different station sequences
+  - Most job shops exemblify this category
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Variable Routing"}
+knitr::include_graphics("images/variablerouting.png")
+```
+
+
+### ⏰ Explaining Manufacturing Process Times
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Timing Definition"}
+knitr::include_graphics("images/TimingDefinition.jpg")
+```
+The flowchart illustrates three crucial time metrics: **Lead Time**, **Throughput Time**, and **Cycle Time**. These metrics are sequential, with the largest time window encompassing the smaller ones.
+
+#### Lead Time
+
+* **Definition:** **Lead Time** is the total time elapsed from the moment a customer **places an order** until they **receive the finished product**. It represents the customer's total wait time.
+* **What it includes:** It covers every step, from order receipt through manufacturing, testing, and shipping (Delivery at Customer).
+* **Example:** A customer orders a custom-made widget on Monday. If order processing, manufacturing, and shipping take a total of 6 days, the **Total Lead Time = 6 days.**
+
+
+#### Throughput Time
+
+* **Definition:** **Throughput Time** (or Manufacturing Lead Time) is the time required to convert raw materials into a finished product that is ready for dispatch. It starts when the **Raw Material (RM) is Received** and ends when the product is **Dispatched** from the factory.
+* **What it includes:** All activities within the factory walls, including processing (Turning, Drilling, Tapping), movement, inspection, and any queuing/waiting time before dispatch.
+* **Example:** If the total time spent from raw material receipt to final dispatch from the factory is 3 days, the **Total Throughput Time = 3 days.**
+
+#### Cycle Time
+
+Cycle Time is typically broken into two related concepts: **Overall Cycle Time** and **Individual Cycle Time**.
+
+##### Overall Cycle Time (As labeled in the diagram)
+
+* **Definition:** The **Overall Cycle Time** refers to the total time spent actively converting the raw material into a final, ready-to-ship product, beginning with the first value-added operation (like Turning) and ending with the last (like Dispatch).
+* **What it includes:** The sum of all individual process times plus any immediate in-process wait times (e.g., Cycle Time 1 + Cycle Time 2 + ...).
+
+##### Individual Cycle Time (`Cycle Time 1`, `Cycle Time 2`, etc.)
+
+* **Definition:** This refers to the **time it takes to complete a single specific task** or process step (e.g., Turning, Drilling, Tapping) on a single product unit.
+* **Example:** If the individual processing steps take 30 minutes for Turning, 15 minutes for Drilling, and 10 minutes for Tapping, these are the individual cycle times for those specific tasks.
+
+### 🚀 Cycle Time vs. Efficiency in Manufacturing [@Arcera]
+
+Ever wondered how to measure and improve your manufacturing process? Let’s dive into two key metrics that drive efficiency: **Manufacturing Cycle Time (MCT)** and **Manufacturing Cycle Efficiency (MCE)**!
+
+
+#### 🔍 Manufacturing Cycle Time (MCT)
+
+This metric tells us how long it takes to produce each unit.
+
+##### Formula:
+$$
+MCT = \frac{\text{Production Time}}{\text{Units Produced}}
+$$
+
+Understanding MCT allows us to identify delays and improve production speed. Reducing cycle time leads to quicker delivery and increased customer satisfaction!
+
+##### Calculation Example:
+
+Let's assume a production run takes 480 minutes (8 hours) and produces 60 units.
+
+```{r echo=FALSE}
+# Define the variables
+production_time_minutes <- 480 # Total time the process ran
+units_produced <- 60
+
+# Calculate Manufacturing Cycle Time (MCT)
+MCT <- production_time_minutes / units_produced
+
+# Print the result
+cat("Manufacturing Cycle Time (MCT):", MCT, "minutes per unit")
+```
+
+#### 📈 Manufacturing Cycle Efficiency (MCE)
+
+This metric reveals the efficiency of the production process by focusing on the actual "Process Time" (value-added time) within the entire production period.
+
+##### Formula:
+$$
+\text{MCE} = \left(\frac{\text{Process Time}}{\text{Production Time}}\right) \times 100\%
+$$
+
+**Process Time** is the time spent on activities that directly add value to the product. **Production Time** includes process time plus non-value-added time (e.g., inspection, waiting, moving).
+
+Higher MCE means less waste and more value-added time in production. Aiming for a higher MCE drives leaner operations and cost savings.
+
+##### Calculation Example:
+
+
+```{r echo=FALSE}
+# --- Define the range for Production Time (Total Time) ---
+# Let's assume the total production time is between 400 and 600 minutes
+min_production <- 400
+max_production <- 600
+
+# Generate a random total production time
+production_time_minutes <- runif(1, min = min_production, max = max_production)
+
+# --- Define the range for Process Time (Value-Added Work) ---
+# The process time must be less than or equal to the production time.
+# Let's assume the value-added work is between 50 and the generated production time.
+min_process <- 50
+max_process <- production_time_minutes # Upper limit is the randomly generated production time
+
+# Generate a random process time
+process_time_minutes <- runif(1, min = min_process, max = max_process)
+
+# --- Calculate Manufacturing Cycle Efficiency (MCE) ---
+MCE <- (process_time_minutes / production_time_minutes) * 100
+
+# --- Print the results ---
+cat("Total Production Time (minutes):", round(production_time_minutes, 2), "\n")
+cat("Value-Added Process Time (minutes):", round(process_time_minutes, 2), "\n")
+cat("--- \n")
+cat("Manufacturing Cycle Efficiency (MCE):", round(MCE, 2), "%")
+```
+
+```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="MCT and MCE"}
+knitr::include_graphics("images/1731060093907.jpg")
+```
+
+---
+
+
+---
+
+
+### Product Variations
+## Manual Assembly Lines
+### Production Rate and Cycle Time
+### Line Balancing and Repositioning Losses
+## Automated Production Lines
+### Types of automated lines
+### Analysis of Automated Production lines
+## Cellular Manufacturing
+### Part families
+### Machine Cells
+## Flexible Manufacturing Systems (FMS) and Cells
+### Integrating the FMS components
+### Applications of flexible manufacturing systems
+### Mass customization
+## Computer Integrated Manufacturing (CIM)
+
+
+<!--chapter:end:03-Integrated-Manufacturing-Systems.Rmd-->
+
+--- 
+title: "ENGR-3027 Process Engineering"
+author: "Martin Volkening"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [references.bib]
+url: https://prof-mv.github.io/ENGR-3027/
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  Lecture notes accompanying the course.
+link-citations: yes
+github-repo: Prof-MV/ENGR-3027
+---
+
+# Introduction {-}
+
+Why are we studying this?
+
+  *	Defining and identifying manufacturing processes is critical to understanding the role that automation plays and how to program an industrial process line.
+  * What are some examples of a manufacturing process?
+  *	What do we have or use that is manufactured?
+  *	What is the biggest manufacturing change that you have experienced so far?
+
+  *	Processes have changed throughout the centuries and have been driven by the four Industrial Revolutions.
+  
+  *	First Industrial Revolution – Coal in 1765
+    * This transformed society from an agricultural base to an industrial base. Processes became mechanized and rather than hand made, products were manufactured. The discovery of coal and the development of the steam engine and metal forging transformed the way goods were created.
+    
+  * Second Industrial Revolution – Gas in 1870
+    *The discovery of oil and electricity fueled the second industrial revolution. The discovery of oil lead to the invention of the combustion engine and new steel and chemical based products entered the manufacturing streams. Technological advances in communication were driven by the invention of the telegraph and later the telephone. Modes of transportation developed with the invention of the airplane and automobile. These discoveries helped to drive the advent of mass production which forever changed how items were produced.
+    
+  * Third Industrial Revolution – Electronics and Nuclear Energy in 1969
+    *The third industrial revolution is dominated by the development of electronics and the beginning of the age of computers.
+    *Technological developments were centered around four pillars of science: telecommunications, biotechnology, information technology and energy engineering.
+    
+  *	Fourth Industrial Revolution – Internet and AI
+    * The fourth industrial revolution describes the current era of digitalization, automation, and advanced manufacturing technology. It's characterized by the convergence of emerging technologies, such as robotics, the Internet of Things (IoT), and 3D printing.
+    
+Check out these videos:
+    
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kpW9JcWxKq0" frameborder="0" allowfullscreen></iframe>
+    
+and 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/okXk4Bnz2Lc" frameborder="0" allowfullscreen></iframe>
+    
+What is a Fifth Industrial Revolution going to look like? 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sGI2FFm_8tw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+Further Reading
+[Whitepaper 'What is Manufacturing' by Intel](https://www.intel.com/content/www/us/en/newsroom/tech101/manufacturing-101-what-is-manufacturing.html#gs.hgplkf)
+
+| Category                  | Grade Item                  | Type                  | Max. Points | Weight (%) |
+|---------------------------|-----------------------------|-----------------------|-------------|------------|
+| **Lab-Tutorial**          | **Lab-Tutorial**            | **Association**       | **48**      | **40**     |
+| **Labs**                  | Lab-1                       | NumericSubmissions    | 48.33       | 8.33       |
+|                           | Lab-2                       | NumericSubmissions    | 48.33       | 8.33       |
+|                           | Lab-3                       | NumericSubmissions    | 48.33       | 8.33       |
+|                           | Lab-4                       | NumericSubmissions    | 48.33       | 8.33       |
+|                           | Lab-5                       | NumericSubmissions    | 48.33       | 8.33       |
+|                           | Lab-6                       | NumericSubmissions    | 48.33       | 8.33       |
+|                           | Lab-7                       | NumericSubmissions    | 48.33       | 8.33       |
+|                           | Lab-8                       | NumericSubmissions    | 48.33       | 8.33       |
+|                           | Lab-9                       | NumericSubmissions    | 48.33       | 8.33       |
+|                           | Lab-10                      | NumericSubmissions    | 48.33       | 8.33       |
+|                           | Lab-11                      | NumericSubmissions    | 48.33       | 8.33       |
+|                           | Lab-12                      | NumericSubmissions    | 48.33       | 8.33       |
+| **Assignments**           | **Assignments**             |                       | **12**      | **12**     |
+|                           | Assignment-1                | NumericQuizzes        | 2           | 16.67      |
+|                           | Assignment-2                | NumericQuizzes        | 2           | 16.67      |
+|                           | Assignment-3                | NumericQuizzes        | 2           | 16.67      |
+|                           | Assignment-4                | NumericQuizzes        | 2           | 16.67      |
+|                           | Assignment-5                | NumericQuizzes        | 2           | 16.66      |
+|                           | Assignment-6                | NumericQuizzes        | 2           | 16.66      |
+| **Lab Pop-up Quizzes**    | **Lab Quizes**              |                       | **3**       | **3**      |
+|                           | Lab Quiz-1                  | NumericQuizzes        | 0.5         | 16.66      |
+|                           | Lab Quiz-2                  | NumericQuizzes        | 0.5         | 16.66      |
+|                           | Lab Quiz-3                  | NumericQuizzes        | 0.5         | 16.67      |
+|                           | Lab Quiz-4                  | NumericQuizzes        | 0.5         | 16.67      |
+|                           | Lab Quiz-5                  | NumericQuizzes        | 0.5         | 16.67      |
+|                           | Lab Quiz-6                  | NumericQuizzes        | 0.5         | 16.67      |
+| **Lecture Pop-up Quizzes**| **Lecture Quizes**          |                       | **3**       | **3 **     |
+|                           | Lecture Quiz-1              | NumericQuizzes        | 0.5         | 16.66      |
+|                           | Lecture Quiz-2              | NumericQuizzes        | 0.5         | 16.66      |
+|                           | Lecture Quiz-3              | NumericQuizzes        | 0.5         | 16.67      |
+|                           | Lecture Quiz-4              | NumericQuizzes        | 0.5         | 16.67      |
+|                           | Lecture Quiz-5              | NumericQuizzes        | 0.5         | 16.67      |
+|                           | Lecture Quiz-6              | NumericQuizzes        | 0.5         | 16.67      |
+| **Midterm Test**          | **Mid Term Test**           | **NumericQuizzes**    | **40.5**    | **17**     |
+| **Final Test**            | Final Test                  | NumericQuizzes        | 50          | 25         |
+| **Calculated Grades**     | Midterm Grade               | Calculated            | —           | —          |
+|                           | Final Calculated Grade      | —                     | 156.5       | 100        |
+
+## Labs {-}
+* Late penalty is 25% per lab session.
+* Labs 1-5 must be completed before Week 7. 
+* Bring your lab kit and PPE to every lab session.
+
+## Assignments {-}
+* 6 Assignments worth 2% each, for a total of 12%. 
+* All are FOL quizzes, with at least one week open.
+
+## Quizzes {-}
+* 6 Lecture Quizzes and 6 Lab Quizzes.
+* Quizzes are worth 0.5% each, for a total of 6%.
+* Quizzes are given randomly throughout the term as a “pop quiz”.
+* Quizzes are given at the start of the lab session (10 minute log in window) or at the end of the lecture.
+* **You must be in attendance to write the quizzes.**
+
+## Tests {-}
+* During in-person lecture time (90 minutes). One midterm test worth 17%, one final test worth 25%.
+* Both tests are cumulative and online, in-person.
+* Closed-book with handwritten cheat sheet; details will be posted on FOL closer to the date.
+* Kit calculators allowed.
+
+## Other Grade Considerations {-}
+In order to pass, two conditions must be met:
+* Overall passing grade (50%).
+* Attendance and submission of the mandatory labs (labs 1 though 10)
+
+## How to succeed {-}
+* Come to class and lab sessions Participate
+* Complete examples given in class
+* Do the homework and assigned reading 
+* Attend office hours
+
+## Cheating and Plagiarism {-}
+Students must write their reports and assignments in their **own words**. Whenever students take an idea or a passage from another author, they must acknowledge their debt both by using quotation marks where appropriate and by proper referencing such as footnotes or citations. This includes non-published sources, such as work completed in previous years or a classmate’s work. 
+**This includes the use of "AI" Technologies.**
+
+## FOL {-}
+* Lectures will be posted after class, as well as supplementary material.
+* Assignments and lab manuals will be posted ahead of time. You will always have at least one week’s notice.
+* All announcements will be made through the FOL course.
+
+## Accessibility {-}
+Please contact me if you require material in an alternate format or if any other arrangements can make this course more accessible to you.
+
+Consider contacting Accessibility Services for specifics on accommodations that you may be eligible for.
+  M-Fr 8:30-4:30
+  F2010, 519-452-4282, accessibility@fanshawec.ca
+
+## Fanshawe’s Recording Policy {-}
+It is forbidden for students to record without written permission from the instructor (and) as an approved accommodation. Recording without permission or sharing a recording will result in disciplinary action.
+
+If a class is being recorded with permission: it will be announced, and alternate means to participation will be made available to protect students’ privacy.
+
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'dplyr', 'kableExtra', 'webshot2'
+), 'packages.bib')
+```
+
+<!--chapter:end:main.Rmd-->
+
