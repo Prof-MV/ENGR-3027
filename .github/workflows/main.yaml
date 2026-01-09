@@ -21,18 +21,18 @@ jobs:
           R -e 'remotes::install_github("rstudio/bookdown")'
           R -e 'install.packages(c("knitr", "rmarkdown"))'
           # Install any other packages your book requires here:
-          # R -e 'install.packages(c("ggplot2", "dplyr"))'
+          R -e 'install.packages(c("ggplot2", "dplyr", "kableExtra", "webshot2"))'
           
       - name: Build the book
         run: Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::gitbook")'
         
       - name: Disable Jekyll processing
-        run: touch docs/.nojekyll # <--- IMPORTANT: Change 'docs' to your output directory if different (e.g., _book)
+        run: touch docs/.nojekyll 
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs # <--- IMPORTANT: This must match the folder where your book's HTML files are built (default is _book)
+          publish_dir: docs
           publish_branch: gh-pages # The branch where the rendered book lives
           keep_files: false # Ensure ALL existing files are deleted before new files are copied
