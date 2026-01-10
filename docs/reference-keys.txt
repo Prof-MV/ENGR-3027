@@ -59,6 +59,11 @@ additive-manufacturing
 process-and-design
 types-of-automation-in-various-manufacturing-processes
 flow-of-process-engineering--design-to-commissioning
+project-phases-the-timeline
+initial-inputs-and-design-foundation-top-section
+core-engineering-deliverables
+engineering-disciplines-the-disciplines-block
+output-and-final-stages
 felfeed-front-end-engineering-design
 integrated-manufacturing-systems
 material-handling-methods-systems

@@ -1,13 +1,12 @@
----
-always_allow_html: true
----
-
 # Integrated Manufacturing Systems
 
 ------------------------------------------------------------------------
 
 
 ## Material Handling Methods & Systems
+
+There are four common types of production facility layouts, detailing the key **features** that make each layout suitable for specific production needs and the **typical methods and equipment** used within that structure.
+
 
 ```{r echo=FALSE, message=FALSE}
 # Load the necessary packages
