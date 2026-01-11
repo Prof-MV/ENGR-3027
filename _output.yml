@@ -5,7 +5,7 @@ bookdown::gitbook:
       before: |
         <li><a href="./">ENGR-3027</a></li>
         <li class="toc-logo"><a href="./"><img src="images/Fanshawe.png"></a></li>
-    edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
+    edit: https://github.com/Prof-MV/ENGR-3027/blob/master/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:

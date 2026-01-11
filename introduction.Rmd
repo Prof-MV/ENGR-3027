@@ -574,7 +574,7 @@ knitr::include_graphics("images/TypesOfAutomation.png")
 ```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Flowchart illustrating different types of manufacturing processes"}
 knitr::include_graphics("images/ProcessEngineeringFlow.jpg")
 ```
-
+  
 This flowchart provides a detailed, high-level overview of the sequential phases and functional teams involved in a **Process Plant Project**, from the initial detailed design and engineering phase through to final operation. It outlines the inputs, the core engineering disciplines, and the outputs required for construction and start-up.
 
 ### ➡️ Project Phases (The Timeline)
