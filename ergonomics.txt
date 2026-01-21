@@ -1,0 +1,135 @@
+ENGR-3027
+Lecture – 8
+Ergonomics in Automated ManufacturingAgenda
+• What is Ergonomics
+• Common Risk factors
+• Common Musculoskeletal Disorders
+• What can be done to prevent MSDs
+• How can employers protect workers
+• Industry Specific Guidelines and Resources
+• REBA analysis
+• AI tools available in the market
+• Case study of Ergonomics in Automated ManufacturingWhat is Ergonomics
+o Ergonomics is a scientific discipline focused on understanding
+the interactions between humans and other elements of a
+system, with a view to optimize human well-being and overall
+system performance.
+o In industrial settings, ergonomics revolves around designing
+workstations, machinery, and processes that consider human
+capabilities and limitations.
+o This design approach enhances operational efficiency and
+safety while reducing the risk of workplace injuries.Common Risk factors
+Ref: The Seven (7) Ergonomic Risk Factors to be assessed in the Initial Ergonomic Risk Assessment (INERA)Musculoskeletal DisordersWhat can be done to prevent MSDs?
+• Maintain Neutral Posture
+• Prevent excessive repetition
+• Adjust work surfaces
+• Avoid reaching
+• Control environmental factors
+• Reduce eye strain
+• Lift properly
+• Take time to recover
+• Understand risk factors
+• Know the signsHow can employers protect workers
+• Provide management support
+• Involve workers
+• Provide training
+• Identify problems
+• Encourage early reporting of MSDs symptoms
+• Implement solutions to control hazards
+• Evaluate progressIndustry Specific Guidelines and Resources
+eTool : Poultry Processing Industry |Occupational Safety
+and Health AdministrationErgonomics Assessment Tools
+RULA – Rapid Upper Limb Assessment
+REBA – Rapid Entire Body Assessment
+NIOSH – National Institute for Occupational Safety and Health in
+the United States
+OCRA – Occupational Repetitive Action
+EAWS - Ergonomic Assessment WorksheetRapid
+Entire
+Body
+Assessment
+Photo ref: www.Tuemeke.io
+See video for more detailsErgonomic Assessment Service Providers
+• Ergo Works,
+• Humanscale,
+• Marsh,
+• ERGO Inc,
+• Work-Fit,
+• ATI Worksite Solutions,
+• DORN,
+• Occupli Consultanc,
+• Myphyzio,
+• Aon,
+• Aon,
+• Apex Companies,
+• United States Ergonomics,
+• Antea Group,
+• Flow Ergonomics,
+• Faentia Consulting,
+• Bay Area Ergonomics,
+• Advanced Ergonomics,
+• Humanetics Digital Europe
+GmbHAutomatic Ergonomic Assessment Tools
+• TuMeke Ergonomics
+• VelocityEHS
+• Inseer
+• Protex AI
+• ErgoEdge
+• ErgoPlus Platform
+• Surveily AI
+• Viso.ai
+• SoterTask
+• Many more
+Inseer - AI-Powered Ergonomics Assessment SoftwareThe Intersection of Ergonomics and
+Industrial Automation
+o Industrial automation inherently involves the mechanization of
+processes traditionally carried out by human operators. In the
+automation design phase, engineers must strike a balance
+between mechanization and the necessary human interaction
+with these systems.
+o This is where ergonomics plays an integral role. By
+incorporating ergonomic principles, designers can ensure that
+the interaction between humans and automated systems is
+seamless, effective, and safe.Ergonomic Design Principles
+• Ergonomic design principles are based on the idea of making the human body more comfortable and
+productive by reducing strain and fatigue.
+• Neutral posture: Promote natural, balanced positions to reduce strain on the body
+• Accommodate People’s different dimensions: Different people working on the same tasks may need
+different work conditions. Engineering Design should accommodate the need of different people’s different
+dimensionality needs. Example –right hand vs. left hand person.
+• Reduce excessive force: Reduce the forces, frequencies, and durations of movements required to complete
+a task
+• Reduce excess motions: Reduce extreme joint motion, excessive force magnitudes, and highly repetitive
+movements
+• Optimize work area height: Optimize the heights of countertops, work surfaces, and appliances to reduce
+bending, reaching, and straining
+• Reduce static load: Minimize fatigue caused by static load, which occurs when workers have to hold the
+same position for a long period
+• Provide good environmental conditions: Create a comfortable and supportive workspaceProduction Ergonomics
+Five Steps For Ergonomic Workstation Design
+• Reference - Production Ergonomics - Designing work systems to support optimal human performance - Cecilia
+Berlin, PhD & Caroline Adams, MEng.
+1) Design for the human body
+2) Design of hand tools
+3) Design for Anthropometry (the scientific study
+of the measurements and proportions of the
+human body)
+4) Design for cognitive support
+5) Design for psychosocial health and worker
+involvement
+6) Design for materials handling
+7) Design for thermal climate
+8) Design for good vision
+9) Design for healthy sound environments
+10) Design to minimize whole-body vibration risk
+11) Design to minimize hand-arm vibration risk
+12) Design for social sustainabilityQuestions?Fall 2025
+Upcoming
+Lab 6: Ergonomics
+Prelab: Watch the three videos linked in the Lab Manual, in Procedure steps 1
+and 2 (one, two, and three)
+Homework:
+* Watch this review video on how to use REBA (9:35)
+* Read “Unit 5 – Part 1 – Ergonomics in Automated Manufacturing” and “Unit 5
+– Part 2 – Ergonomics Design Principles” on FOL
+Unit 5 17
