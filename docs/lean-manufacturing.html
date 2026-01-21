@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Lean Manufacturing | ENGR-3027 Process Engineering</title>
+  <meta name="description" content="Lecture notes accompanying the course." />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Lean Manufacturing | ENGR-3027 Process Engineering" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Lecture notes accompanying the course." />
+  <meta name="github-repo" content="Prof-MV/ENGR-3027" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Lean Manufacturing | ENGR-3027 Process Engineering" />
+  
+  <meta name="twitter:description" content="Lecture notes accompanying the course." />
+  
+
+<meta name="author" content="Martin Volkening" />
+
+
+<meta name="date" content="2026-01-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="plant-layout-and-facility-design.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ENGR-3027</a></li>
+<li class="toc-logo"><a href="./"><img src="images/Fanshawe.png"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#labs"><i class="fa fa-check"></i>Labs</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assignments"><i class="fa fa-check"></i>Assignments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#quizzes"><i class="fa fa-check"></i>Quizzes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tests"><i class="fa fa-check"></i>Tests</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#other-grade-considerations"><i class="fa fa-check"></i>Other Grade Considerations</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-succeed"><i class="fa fa-check"></i>How to succeed</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cheating-and-plagiarism"><i class="fa fa-check"></i>Cheating and Plagiarism</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#fol"><i class="fa fa-check"></i>FOL</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#accessibility"><i class="fa fa-check"></i>Accessibility</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#fanshawes-recording-policy"><i class="fa fa-check"></i>Fanshawe’s Recording Policy</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html"><i class="fa fa-check"></i><b>1</b> Types of Manufacturing Processes <span class="citation">(Afzal 2018)</span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#casting"><i class="fa fa-check"></i><b>1.1</b> Casting</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#centrifugal-casting"><i class="fa fa-check"></i><b>1.1.1</b> Centrifugal Casting</a></li>
+<li class="chapter" data-level="1.1.2" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#die-casting"><i class="fa fa-check"></i><b>1.1.2</b> Die Casting</a></li>
+<li class="chapter" data-level="1.1.3" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#sand-casting"><i class="fa fa-check"></i><b>1.1.3</b> Sand Casting</a></li>
+<li class="chapter" data-level="1.1.4" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#permanent-mold-casting"><i class="fa fa-check"></i><b>1.1.4</b> Permanent Mold Casting</a></li>
+<li class="chapter" data-level="1.1.5" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#investment-casting"><i class="fa fa-check"></i><b>1.1.5</b> Investment Casting</a></li>
+<li class="chapter" data-level="1.1.6" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#shell-molding"><i class="fa fa-check"></i><b>1.1.6</b> Shell Molding</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#molding"><i class="fa fa-check"></i><b>1.2</b> Molding</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#injection-molding"><i class="fa fa-check"></i><b>1.2.1</b> Injection Molding</a></li>
+<li class="chapter" data-level="1.2.2" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#blow-molding"><i class="fa fa-check"></i><b>1.2.2</b> Blow Molding</a></li>
+<li class="chapter" data-level="1.2.3" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#extrusion-molding"><i class="fa fa-check"></i><b>1.2.3</b> Extrusion Molding</a></li>
+<li class="chapter" data-level="1.2.4" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#rotational-molding"><i class="fa fa-check"></i><b>1.2.4</b> Rotational Molding</a></li>
+<li class="chapter" data-level="1.2.5" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#thermoforming"><i class="fa fa-check"></i><b>1.2.5</b> Thermoforming</a></li>
+<li class="chapter" data-level="1.2.6" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#powder-metallurgy"><i class="fa fa-check"></i><b>1.2.6</b> Powder Metallurgy</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#forming"><i class="fa fa-check"></i><b>1.3</b> Forming</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#forging"><i class="fa fa-check"></i><b>1.3.1</b> Forging</a></li>
+<li class="chapter" data-level="1.3.2" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#bending"><i class="fa fa-check"></i><b>1.3.2</b> Bending</a></li>
+<li class="chapter" data-level="1.3.3" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#stamping"><i class="fa fa-check"></i><b>1.3.3</b> Stamping</a></li>
+<li class="chapter" data-level="1.3.4" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#shearing"><i class="fa fa-check"></i><b>1.3.4</b> Shearing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#machining"><i class="fa fa-check"></i><b>1.4</b> Machining</a></li>
+<li class="chapter" data-level="1.5" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#joining"><i class="fa fa-check"></i><b>1.5</b> Joining</a></li>
+<li class="chapter" data-level="1.6" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#coating-or-plating"><i class="fa fa-check"></i><b>1.6</b> Coating or Plating</a></li>
+<li class="chapter" data-level="1.7" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#additive-manufacturing"><i class="fa fa-check"></i><b>1.7</b> Additive Manufacturing</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="process-and-design.html"><a href="process-and-design.html"><i class="fa fa-check"></i><b>2</b> Process and Design</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="process-and-design.html"><a href="process-and-design.html#types-of-automation-in-various-manufacturing-processes"><i class="fa fa-check"></i><b>2.1</b> Types of automation in various manufacturing processes</a></li>
+<li class="chapter" data-level="2.2" data-path="process-and-design.html"><a href="process-and-design.html#flow-of-process-engineering--design-to-commissioning"><i class="fa fa-check"></i><b>2.2</b> Flow of process engineering- design to commissioning</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="process-and-design.html"><a href="process-and-design.html#project-phases-the-timeline"><i class="fa fa-check"></i><b>2.2.1</b> ➡️ Project Phases (The Timeline)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="process-and-design.html"><a href="process-and-design.html#initial-inputs-and-design-foundation-top-section"><i class="fa fa-check"></i><b>2.2.2</b> 📝 Initial Inputs and Design Foundation (Top Section)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="process-and-design.html"><a href="process-and-design.html#core-engineering-deliverables"><i class="fa fa-check"></i><b>2.2.3</b> 📑 Core Engineering Deliverables</a></li>
+<li class="chapter" data-level="2.2.4" data-path="process-and-design.html"><a href="process-and-design.html#engineering-disciplines-the-disciplines-block"><i class="fa fa-check"></i><b>2.2.4</b> 👷 Engineering Disciplines (The Disciplines Block)</a></li>
+<li class="chapter" data-level="2.2.5" data-path="process-and-design.html"><a href="process-and-design.html#output-and-final-stages"><i class="fa fa-check"></i><b>2.2.5</b> 📦 Output and Final Stages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="process-and-design.html"><a href="process-and-design.html#felfeed-front-end-engineering-design"><i class="fa fa-check"></i><b>2.3</b> FEL/FEED (Front End Engineering Design)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html"><i class="fa fa-check"></i><b>3</b> Integrated Manufacturing Systems</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#material-handling-methods-systems"><i class="fa fa-check"></i><b>3.1</b> Material Handling Methods &amp; Systems</a></li>
+<li class="chapter" data-level="3.2" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#fundamentals-of-a-production-line"><i class="fa fa-check"></i><b>3.2</b> Fundamentals of a production Line</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#methods-of-work-transport"><i class="fa fa-check"></i><b>3.2.1</b> Methods of Work Transport</a></li>
+<li class="chapter" data-level="" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#manual-methods-of-work-transport"><i class="fa fa-check"></i>Manual Methods of Work Transport</a></li>
+<li class="chapter" data-level="" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#mechanized-methods-of-work-transport"><i class="fa fa-check"></i>Mechanized Methods of Work Transport</a></li>
+<li class="chapter" data-level="" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#continuous-transport"><i class="fa fa-check"></i>Continuous Transport</a></li>
+<li class="chapter" data-level="3.2.2" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#what-is-work-cycle"><i class="fa fa-check"></i><b>3.2.2</b> What is Work Cycle?</a></li>
+<li class="chapter" data-level="3.2.3" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#work-transport-between-stations"><i class="fa fa-check"></i><b>3.2.3</b> Work Transport Between Stations</a></li>
+<li class="chapter" data-level="3.2.4" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#explaining-manufacturing-process-times"><i class="fa fa-check"></i><b>3.2.4</b> ⏰ Explaining Manufacturing Process Times</a></li>
+<li class="chapter" data-level="3.2.5" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#cycle-time-vs.-efficiency-in-manufacturing-arcera"><i class="fa fa-check"></i><b>3.2.5</b> 🚀 Cycle Time vs. Efficiency in Manufacturing <span class="citation">(Adel Nabil 2025)</span></a></li>
+<li class="chapter" data-level="3.2.6" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#product-variations"><i class="fa fa-check"></i><b>3.2.6</b> Product Variations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#manual-assembly-lines"><i class="fa fa-check"></i><b>3.3</b> Manual Assembly Lines</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#production-rate-and-cycle-time"><i class="fa fa-check"></i><b>3.3.1</b> Production Rate and Cycle Time</a></li>
+<li class="chapter" data-level="3.3.2" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#line-balancing-and-repositioning-losses"><i class="fa fa-check"></i><b>3.3.2</b> Line Balancing and Repositioning Losses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#automated-lines"><i class="fa fa-check"></i><b>3.4</b> Automated Production Lines</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#types-of-automated-lines"><i class="fa fa-check"></i><b>3.4.1</b> Types of Automated Lines</a></li>
+<li class="chapter" data-level="3.4.2" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#analysis-of-automated-production-lines"><i class="fa fa-check"></i><b>3.4.2</b> Analysis of Automated Production Lines</a></li>
+<li class="chapter" data-level="3.4.3" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#analysis-of-automated-production-lines-1"><i class="fa fa-check"></i><b>3.4.3</b> Analysis of Automated Production Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#cellular-manufacturing"><i class="fa fa-check"></i><b>3.5</b> Cellular Manufacturing</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#part-families"><i class="fa fa-check"></i><b>3.5.1</b> Part Families</a></li>
+<li class="chapter" data-level="3.5.2" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#machine-cells"><i class="fa fa-check"></i><b>3.5.2</b> Machine Cells</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#fms-section"><i class="fa fa-check"></i><b>3.6</b> Flexible Manufacturing Systems (FMS) and Cells</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#integrating-the-fms-components"><i class="fa fa-check"></i><b>3.6.1</b> Integrating the FMS Components</a></li>
+<li class="chapter" data-level="3.6.2" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#applications-of-flexible-manufacturing-systems"><i class="fa fa-check"></i><b>3.6.2</b> Applications of Flexible Manufacturing Systems</a></li>
+<li class="chapter" data-level="3.6.3" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#mass-customization"><i class="fa fa-check"></i><b>3.6.3</b> Mass Customization</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#cim-section"><i class="fa fa-check"></i><b>3.7</b> Computer Integrated Manufacturing (CIM)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html"><i class="fa fa-check"></i><b>4</b> Plant Layout and Facility Design</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#learning-objectives"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#types-of-facility-layouts"><i class="fa fa-check"></i><b>4.2</b> Types of Facility Layouts</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#visualizing-the-layout-spectrum"><i class="fa fa-check"></i><b>4.2.1</b> Visualizing the Layout Spectrum</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#process-layout-functional-layout"><i class="fa fa-check"></i><b>4.3</b> Process Layout (Functional Layout)</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#characteristics-of-process-layouts"><i class="fa fa-check"></i><b>4.3.1</b> Characteristics of Process Layouts</a></li>
+<li class="chapter" data-level="4.3.2" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#real-world-examples"><i class="fa fa-check"></i><b>4.3.2</b> Real-World Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#product-layout-assembly-line"><i class="fa fa-check"></i><b>4.4</b> Product Layout (Assembly Line)</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#characteristics-of-product-layouts"><i class="fa fa-check"></i><b>4.4.1</b> Characteristics of Product Layouts</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#hybrid-layout-cellular-manufacturing"><i class="fa fa-check"></i><b>4.5</b> Hybrid Layout (Cellular Manufacturing)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#group-technology-concept"><i class="fa fa-check"></i><b>4.5.1</b> Group Technology Concept</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#fixed-position-layout"><i class="fa fa-check"></i><b>4.6</b> Fixed-Position Layout</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#examples-of-fixed-position-layouts"><i class="fa fa-check"></i><b>4.6.1</b> Examples of Fixed-Position Layouts</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#designing-process-layouts"><i class="fa fa-check"></i><b>4.7</b> Designing Process Layouts</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#step-1-gather-information"><i class="fa fa-check"></i><b>4.7.1</b> Step 1: Gather Information</a></li>
+<li class="chapter" data-level="4.7.2" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#step-2-develop-block-plans"><i class="fa fa-check"></i><b>4.7.2</b> Step 2: Develop Block Plans</a></li>
+<li class="chapter" data-level="4.7.3" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#interactive-example-comparing-two-layouts"><i class="fa fa-check"></i><b>4.7.3</b> Interactive Example: Comparing Two Layouts</a></li>
+<li class="chapter" data-level="4.7.4" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#step-3-develop-detailed-layout"><i class="fa fa-check"></i><b>4.7.4</b> Step 3: Develop Detailed Layout</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#designing-product-layouts-line-balancing"><i class="fa fa-check"></i><b>4.8</b> Designing Product Layouts (Line Balancing)</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#line-balancing-steps"><i class="fa fa-check"></i><b>4.8.1</b> Line Balancing Steps</a></li>
+<li class="chapter" data-level="4.8.2" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#key-formulas"><i class="fa fa-check"></i><b>4.8.2</b> Key Formulas</a></li>
+<li class="chapter" data-level="4.8.3" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#interactive-example-pizza-assembly-line"><i class="fa fa-check"></i><b>4.8.3</b> Interactive Example: Pizza Assembly Line</a></li>
+<li class="chapter" data-level="4.8.4" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#line-balancing-calculation"><i class="fa fa-check"></i><b>4.8.4</b> Line Balancing Calculation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#warehouse-layout-design"><i class="fa fa-check"></i><b>4.9</b> Warehouse Layout Design</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#key-principles"><i class="fa fa-check"></i><b>4.9.1</b> Key Principles</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#office-layout-design"><i class="fa fa-check"></i><b>4.10</b> Office Layout Design</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#two-main-approaches"><i class="fa fa-check"></i><b>4.10.1</b> Two Main Approaches</a></li>
+<li class="chapter" data-level="4.10.2" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#office-ergonomics-checklist"><i class="fa fa-check"></i><b>4.10.2</b> Office Ergonomics Checklist</a></li>
+<li class="chapter" data-level="4.10.3" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#the-future-of-office-design"><i class="fa fa-check"></i><b>4.10.3</b> The Future of Office Design</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#summary-choosing-the-right-layout"><i class="fa fa-check"></i><b>4.11</b> Summary: Choosing the Right Layout</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#key-takeaways"><i class="fa fa-check"></i><b>4.11.1</b> Key Takeaways</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#practice-problems"><i class="fa fa-check"></i><b>4.12</b> Practice Problems</a></li>
+<li class="chapter" data-level="4.13" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#references"><i class="fa fa-check"></i><b>4.13</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html"><i class="fa fa-check"></i><b>5</b> Lean Manufacturing</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#learning-objectives-1"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#introduction-to-lean-manufacturing"><i class="fa fa-check"></i><b>5.2</b> Introduction to Lean Manufacturing</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#definition-of-lean"><i class="fa fa-check"></i><b>5.2.1</b> Definition of Lean</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#evolution-of-manufacturing-systems"><i class="fa fa-check"></i><b>5.3</b> Evolution of Manufacturing Systems</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#comparison-of-manufacturing-systems"><i class="fa fa-check"></i><b>5.3.1</b> Comparison of Manufacturing Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#the-toyota-production-system-tps"><i class="fa fa-check"></i><b>5.4</b> The Toyota Production System (TPS)</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#historical-context"><i class="fa fa-check"></i><b>5.4.1</b> Historical Context</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#two-pillars-of-tps"><i class="fa fa-check"></i><b>5.4.2</b> Two Pillars of TPS</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#the-3-ms-of-lean"><i class="fa fa-check"></i><b>5.5</b> The 3 M’s of Lean</a></li>
+<li class="chapter" data-level="5.6" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#the-seven-types-of-waste-muda"><i class="fa fa-check"></i><b>5.6</b> The Seven Types of Waste (MUDA)</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#detailed-breakdown-of-the-seven-wastes"><i class="fa fa-check"></i><b>5.6.1</b> Detailed Breakdown of the Seven Wastes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#the-5s-methodology"><i class="fa fa-check"></i><b>5.7</b> The 5S Methodology</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#visual-factory"><i class="fa fa-check"></i><b>5.7.1</b> Visual Factory</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#just-in-time-jit-production"><i class="fa fa-check"></i><b>5.8</b> Just-in-Time (JIT) Production</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#the-jit-philosophy"><i class="fa fa-check"></i><b>5.8.1</b> The JIT Philosophy</a></li>
+<li class="chapter" data-level="5.8.2" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#push-vs.-pull-systems"><i class="fa fa-check"></i><b>5.8.2</b> Push vs. Pull Systems</a></li>
+<li class="chapter" data-level="5.8.3" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#kanban-system"><i class="fa fa-check"></i><b>5.8.3</b> Kanban System</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#key-time-metrics"><i class="fa fa-check"></i><b>5.9</b> Key Time Metrics</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#definitions"><i class="fa fa-check"></i><b>5.9.1</b> Definitions</a></li>
+<li class="chapter" data-level="5.9.2" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#formulas-and-calculations"><i class="fa fa-check"></i><b>5.9.2</b> Formulas and Calculations</a></li>
+<li class="chapter" data-level="5.9.3" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#interactive-example-calculating-takt-time"><i class="fa fa-check"></i><b>5.9.3</b> Interactive Example: Calculating Takt Time</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#setup-reduction-smed"><i class="fa fa-check"></i><b>5.10</b> Setup Reduction (SMED)</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#the-smed-concept"><i class="fa fa-check"></i><b>5.10.1</b> The SMED Concept</a></li>
+<li class="chapter" data-level="5.10.2" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#smed-methodology"><i class="fa fa-check"></i><b>5.10.2</b> SMED Methodology</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#kaizen-continuous-improvement"><i class="fa fa-check"></i><b>5.11</b> Kaizen: Continuous Improvement</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#kaizen-principles"><i class="fa fa-check"></i><b>5.11.1</b> Kaizen Principles</a></li>
+<li class="chapter" data-level="5.11.2" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#key-kaizen-concepts"><i class="fa fa-check"></i><b>5.11.2</b> Key Kaizen Concepts</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#value-stream-mapping-vsm"><i class="fa fa-check"></i><b>5.12</b> Value Stream Mapping (VSM)</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#vsm-symbols"><i class="fa fa-check"></i><b>5.12.1</b> VSM Symbols</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#summary"><i class="fa fa-check"></i><b>5.13</b> Summary</a></li>
+<li class="chapter" data-level="5.14" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#review-questions"><i class="fa fa-check"></i><b>5.14</b> Review Questions</a></li>
+<li class="chapter" data-level="5.15" data-path="lean-manufacturing.html"><a href="lean-manufacturing.html#references-1"><i class="fa fa-check"></i><b>5.15</b> References</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ENGR-3027 Process Engineering</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lean-manufacturing" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Lean Manufacturing<a href="lean-manufacturing.html#lean-manufacturing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<hr />
+<div id="learning-objectives-1" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Learning Objectives<a href="lean-manufacturing.html#learning-objectives-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>By the end of this chapter, you will be able to:</p>
+<ul>
+<li>Define Lean Manufacturing and explain its origins</li>
+<li>Identify and describe the 3 M’s of Lean (Muda, Mura, Muri)</li>
+<li>Recognize and eliminate the seven types of waste</li>
+<li>Apply the 5S methodology to workplace organization</li>
+<li>Understand Just-in-Time (JIT) principles and Kanban systems</li>
+<li>Calculate Takt time and apply line balancing concepts</li>
+<li>Implement setup reduction techniques (SMED)</li>
+</ul>
+<blockquote>
+<p>“Perfection is not attainable. But if we chase perfection, we can catch excellence.”
+— Vince Lombardi</p>
+</blockquote>
+<hr />
+</div>
+<div id="introduction-to-lean-manufacturing" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Introduction to Lean Manufacturing<a href="lean-manufacturing.html#introduction-to-lean-manufacturing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Lean Manufacturing</strong> is the systematic elimination of waste. The term can be traced to Jim Womack, Daniel Jones, and Daniel Roos’ book <em>The Machine that Changed the World</em> (1991), which examined the Toyota Production System.</p>
+<details>
+<summary>
+What does “Lean” actually mean?
+</summary>
+<p>The term “Lean” refers to cutting “fat” from production activities — eliminating anything that doesn’t add value to the customer. Think of it like a lean athlete: no excess weight, maximum efficiency, peak performance.</p>
+</details>
+<div id="definition-of-lean" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Definition of Lean<a href="lean-manufacturing.html#definition-of-lean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:lean-definition">Table 5.1: </span>Lean Manufacturing Targets (Womack, Jones, Roos 1990)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(46, 125, 50, 255) !important;">
+Metric
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(46, 125, 50, 255) !important;">
+Lean Target
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 15em; font-weight: bold;">
+Human effort in factory
+</td>
+<td style="text-align:left;width: 12em; background-color: rgba(232, 245, 233, 255) !important;">
+Half the hours
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 15em; font-weight: bold;">
+Defects in finished product
+</td>
+<td style="text-align:left;width: 12em; background-color: rgba(232, 245, 233, 255) !important;">
+Half the defects
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 15em; font-weight: bold;">
+Engineering effort
+</td>
+<td style="text-align:left;width: 12em; background-color: rgba(232, 245, 233, 255) !important;">
+One-third the hours
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 15em; font-weight: bold;">
+Factory space for same output
+</td>
+<td style="text-align:left;width: 12em; background-color: rgba(232, 245, 233, 255) !important;">
+Half the space
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 15em; font-weight: bold;">
+In-process inventories
+</td>
+<td style="text-align:left;width: 12em; background-color: rgba(232, 245, 233, 255) !important;">
+A tenth or less
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="evolution-of-manufacturing-systems" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Evolution of Manufacturing Systems<a href="lean-manufacturing.html#evolution-of-manufacturing-systems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Manufacturing has evolved through three major paradigms. Understanding this evolution helps us appreciate why Lean emerged as the dominant philosophy.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:manufacturing-evolution"></span>
+<img src="introduction_files/figure-html/manufacturing-evolution-1.png" alt="Evolution of Manufacturing Systems" width="960" />
+<p class="caption">
+Figure 5.1: Evolution of Manufacturing Systems
+</p>
+</div>
+<div id="comparison-of-manufacturing-systems" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Comparison of Manufacturing Systems<a href="lean-manufacturing.html#comparison-of-manufacturing-systems" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover table-bordered table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:mfg-comparison-table">Table 5.2: </span>Evolution of Manufacturing Systems
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(52, 73, 94, 255) !important;">
+Characteristic
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(52, 73, 94, 255) !important;">
+Craft Manufacturing
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(52, 73, 94, 255) !important;">
+Mass Manufacturing
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(52, 73, 94, 255) !important;">
+Lean Manufacturing
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
+Time Period
+</td>
+<td style="text-align:left;">
+Late 1800s
+</td>
+<td style="text-align:left;">
+1920s (Ford)
+</td>
+<td style="text-align:left;">
+1970s - Present
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
+Process
+</td>
+<td style="text-align:left;">
+Built on blocks, workers walk around
+</td>
+<td style="text-align:left;">
+Assembly line
+</td>
+<td style="text-align:left;">
+Cells or flexible lines
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
+Workforce
+</td>
+<td style="text-align:left;">
+Craftsmen with pride
+</td>
+<td style="text-align:left;">
+Low skilled, simplistic jobs
+</td>
+<td style="text-align:left;">
+Highly skilled, proud of product
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
+Components
+</td>
+<td style="text-align:left;">
+Hand-crafted, hand-fitted
+</td>
+<td style="text-align:left;">
+Interchangeable parts
+</td>
+<td style="text-align:left;">
+Interchangeable, high variety
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
+Quality
+</td>
+<td style="text-align:left;">
+Excellent
+</td>
+<td style="text-align:left;">
+Lower
+</td>
+<td style="text-align:left;">
+Excellent (mandatory)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
+Cost
+</td>
+<td style="text-align:left;">
+Very expensive
+</td>
+<td style="text-align:left;">
+Affordable
+</td>
+<td style="text-align:left;">
+Continuously decreasing
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
+Volume
+</td>
+<td style="text-align:left;">
+Few produced
+</td>
+<td style="text-align:left;">
+Billions - identical
+</td>
+<td style="text-align:left;">
+High volume, high variety
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
+Flexibility
+</td>
+<td style="text-align:left;">
+Very high
+</td>
+<td style="text-align:left;">
+Very low
+</td>
+<td style="text-align:left;">
+High
+</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>
+Discussion: Why did Mass Manufacturing dominate for so long?
+</summary>
+<p>Mass manufacturing dominated because:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Economies of scale</strong> - Higher volume = lower unit cost</li>
+<li><strong>Predictable demand</strong> - Post-war boom created stable markets</li>
+<li><strong>Limited competition</strong> - Few global competitors</li>
+<li><strong>Consumer acceptance</strong> - “Any color as long as it’s black” (Henry Ford)</li>
+</ol>
+<p><strong>What changed?</strong>
+- Global competition (especially from Japan)
+- Customers demanded variety and quality
+- Product lifecycles shortened
+- Technology enabled flexibility</p>
+</details>
+<hr />
+</div>
+</div>
+<div id="the-toyota-production-system-tps" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> The Toyota Production System (TPS)<a href="lean-manufacturing.html#the-toyota-production-system-tps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The most influential lean manufacturing model is the <strong>Toyota Production System (TPS)</strong>, developed by Taiichi Ohno and Shigeo Shingo at Toyota.</p>
+<div id="historical-context" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Historical Context<a href="lean-manufacturing.html#historical-context" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tps-timeline"></span>
+<img src="introduction_files/figure-html/tps-timeline-1.png" alt="Toyota's Journey to Lean Excellence" width="960" />
+<p class="caption">
+Figure 5.2: Toyota’s Journey to Lean Excellence
+</p>
+</div>
+<p><strong>In 1949</strong>, Toyota was on the brink of bankruptcy. Ford’s car production was at least <strong>8 times more efficient</strong> than Toyota’s.</p>
+<blockquote>
+<p><strong>Kiichiro Toyoda’s Challenge:</strong> “To achieve the same rate of production as the United States in three years.”</p>
+</blockquote>
+<p><strong>Taiichi Ohno</strong> accepted this challenge. Inspired by American supermarkets, he developed the Just-in-Time method.</p>
+</div>
+<div id="two-pillars-of-tps" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Two Pillars of TPS<a href="lean-manufacturing.html#two-pillars-of-tps" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tps-pillars"></span>
+<img src="introduction_files/figure-html/tps-pillars-1.png" alt="The Two Pillars of Toyota Production System" width="768" />
+<p class="caption">
+Figure 5.3: The Two Pillars of Toyota Production System
+</p>
+</div>
+<p><strong>1. Just-in-Time (JIT):</strong> Produce only what is needed, when it is needed, in the amount needed.</p>
+<p><strong>2. Jidoka (Built-in Quality):</strong> Automation with a human touch — stop production immediately when a defect is detected.</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/F5vtCRFRAK0"
+    title="Lean Manufacturing - A Pursuit of Perfection"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
+<hr />
+</div>
+</div>
+<div id="the-3-ms-of-lean" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> The 3 M’s of Lean<a href="lean-manufacturing.html#the-3-ms-of-lean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Lean manufacturing focuses on eliminating three types of inefficiency, known as the <strong>3 M’s</strong>:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:three-ms"></span>
+<img src="introduction_files/figure-html/three-ms-1.png" alt="The 3 M's of Lean Manufacturing" width="864" />
+<p class="caption">
+Figure 5.4: The 3 M’s of Lean Manufacturing
+</p>
+</div>
+<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:three-ms-table">Table 5.3: </span>The 3 M’s Explained
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(142, 68, 173, 255) !important;">
+Japanese
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(142, 68, 173, 255) !important;">
+English
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(142, 68, 173, 255) !important;">
+Description
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(142, 68, 173, 255) !important;">
+Example
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 10em; ">
+<strong>Muda</strong> (無駄)
+</td>
+<td style="text-align:left;">
+Waste
+</td>
+<td style="text-align:left;">
+Activities that consume resources without adding value
+</td>
+<td style="text-align:left;">
+Excess inventory, waiting, defects
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; ">
+<strong>Mura</strong> (斑)
+</td>
+<td style="text-align:left;">
+Inconsistency/Unevenness
+</td>
+<td style="text-align:left;">
+Variation and lack of uniformity in processes
+</td>
+<td style="text-align:left;">
+Uneven production schedules, variable quality
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; ">
+<strong>Muri</strong> (無理)
+</td>
+<td style="text-align:left;">
+Overburden/Unreasonableness
+</td>
+<td style="text-align:left;">
+Overburdening people or equipment beyond capacity
+</td>
+<td style="text-align:left;">
+Unrealistic deadlines, overworked employees
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="the-seven-types-of-waste-muda" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> The Seven Types of Waste (MUDA)<a href="lean-manufacturing.html#the-seven-types-of-waste-muda" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Shigeo Shingo</strong> identified seven categories of waste common to manufacturing. These are activities that add cost without adding value.</p>
+<blockquote>
+<p>“Waste is everything that is not absolutely essential.”
+— Hiroyuki Hirano</p>
+</blockquote>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:seven-wastes-viz"></span>
+<img src="introduction_files/figure-html/seven-wastes-viz-1.png" alt="The Seven Types of Waste (TIMWOOD)" width="960" />
+<p class="caption">
+Figure 5.5: The Seven Types of Waste (TIMWOOD)
+</p>
+</div>
+<div id="detailed-breakdown-of-the-seven-wastes" class="section level3 hasAnchor" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> Detailed Breakdown of the Seven Wastes<a href="lean-manufacturing.html#detailed-breakdown-of-the-seven-wastes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover table-bordered table-responsive" style="font-size: 11px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:seven-wastes-table">Table 5.4: </span>The Seven Wastes: Detailed Analysis
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
+#
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
+Waste Type
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
+Description
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
+Examples
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
+Solution
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;background-color: rgba(250, 219, 216, 255) !important;width: 3em; font-weight: bold;">
+1
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+<strong>Overproduction</strong>
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Producing more than needed, earlier than needed
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Building to forecast, large batch sizes
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Pull systems, smaller batches
+</td>
+</tr>
+<tr>
+<td style="text-align:right;background-color: rgba(250, 219, 216, 255) !important;width: 3em; font-weight: bold;">
+2
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+<strong>Inventory</strong>
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Excess raw materials, WIP, or finished goods
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Safety stock, buffer inventory, obsolete stock
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+JIT delivery, kanban systems
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 3em; font-weight: bold;">
+3
+</td>
+<td style="text-align:left;">
+<strong>Waiting</strong>
+</td>
+<td style="text-align:left;">
+Idle time waiting for materials, information, or equipment
+</td>
+<td style="text-align:left;">
+Machine downtime, waiting for approvals
+</td>
+<td style="text-align:left;">
+TPM, better scheduling
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 3em; font-weight: bold;">
+4
+</td>
+<td style="text-align:left;">
+<strong>Transportation</strong>
+</td>
+<td style="text-align:left;">
+Unnecessary movement of materials between processes
+</td>
+<td style="text-align:left;">
+Long distances between operations, poor layout
+</td>
+<td style="text-align:left;">
+Cellular layout, co-location
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 3em; font-weight: bold;">
+5
+</td>
+<td style="text-align:left;">
+<strong>Over-processing</strong>
+</td>
+<td style="text-align:left;">
+Doing more work than the customer requires
+</td>
+<td style="text-align:left;">
+Tighter tolerances than needed, redundant inspections
+</td>
+<td style="text-align:left;">
+Value engineering, standardization
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 3em; font-weight: bold;">
+6
+</td>
+<td style="text-align:left;">
+<strong>Motion</strong>
+</td>
+<td style="text-align:left;">
+Unnecessary movement of people
+</td>
+<td style="text-align:left;">
+Reaching, bending, walking to get tools
+</td>
+<td style="text-align:left;">
+5S, ergonomic workstations
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 3em; font-weight: bold;">
+7
+</td>
+<td style="text-align:left;">
+<strong>Defects</strong>
+</td>
+<td style="text-align:left;">
+Products that don’t meet specifications
+</td>
+<td style="text-align:left;">
+Scrap, rework, warranty claims
+</td>
+<td style="text-align:left;">
+Poka-yoke, root cause analysis
+</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>
+Memory Aid: TIMWOOD
+</summary>
+<p>Use <strong>TIMWOOD</strong> to remember the seven wastes:</p>
+<ul>
+<li><strong>T</strong>ransportation</li>
+<li><strong>I</strong>nventory</li>
+<li><strong>M</strong>otion</li>
+<li><strong>W</strong>aiting</li>
+<li><strong>O</strong>verproduction</li>
+<li><strong>O</strong>ver-processing</li>
+<li><strong>D</strong>efects</li>
+</ul>
+<p>Some people also use <strong>DOWNTIME</strong> (adding “Non-utilized talent” as an 8th waste).</p>
+</details>
+<details>
+<summary>
+Interactive Exercise: Identify the Waste
+</summary>
+<p><strong>Scenario 1:</strong> A worker walks 50 feet to get a tool, uses it for 30 seconds, then walks back.</p>
+<p><strong>Answer:</strong> This is <strong>Motion</strong> waste. The solution would be to place tools at the point of use (5S).</p>
+<p><strong>Scenario 2:</strong> A machine produces 1000 parts, but only 800 are needed this week.</p>
+<p><strong>Answer:</strong> This is <strong>Overproduction</strong> waste. The solution would be to implement pull production based on actual demand.</p>
+<p><strong>Scenario 3:</strong> Parts sit in a queue for 3 days before being processed at the next station.</p>
+<p><strong>Answer:</strong> This is both <strong>Inventory</strong> and <strong>Waiting</strong> waste. The solution would be to balance the line and implement one-piece flow.</p>
+</details>
+<hr />
+</div>
+</div>
+<div id="the-5s-methodology" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> The 5S Methodology<a href="lean-manufacturing.html#the-5s-methodology" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>5S</strong> is a workplace organization methodology that creates a clean, efficient, and safe working environment.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:five-s-viz"></span>
+<img src="introduction_files/figure-html/five-s-viz-1.png" alt="The 5S Methodology" width="960" />
+<p class="caption">
+Figure 5.6: The 5S Methodology
+</p>
+</div>
+<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:five-s-table">Table 5.5: </span>The 5S Steps Explained
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(39, 174, 96, 255) !important;">
+Step
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(39, 174, 96, 255) !important;">
+Japanese
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(39, 174, 96, 255) !important;">
+English
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(39, 174, 96, 255) !important;">
+Action
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(39, 174, 96, 255) !important;">
+Key Question
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+1S
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+<strong>Seiri</strong>
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Sort
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Remove unnecessary items from the workplace
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Do we need this?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: rgba(254, 249, 231, 255) !important;">
+2S
+</td>
+<td style="text-align:left;background-color: rgba(254, 249, 231, 255) !important;">
+<strong>Seiton</strong>
+</td>
+<td style="text-align:left;background-color: rgba(254, 249, 231, 255) !important;">
+Set in Order
+</td>
+<td style="text-align:left;background-color: rgba(254, 249, 231, 255) !important;">
+Organize items so they are easy to find and use
+</td>
+<td style="text-align:left;background-color: rgba(254, 249, 231, 255) !important;">
+Where does this belong?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
+3S
+</td>
+<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
+<strong>Seiso</strong>
+</td>
+<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
+Shine
+</td>
+<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
+Clean the workplace regularly
+</td>
+<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
+Is everything clean?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: rgba(214, 234, 248, 255) !important;">
+4S
+</td>
+<td style="text-align:left;background-color: rgba(214, 234, 248, 255) !important;">
+<strong>Seiketsu</strong>
+</td>
+<td style="text-align:left;background-color: rgba(214, 234, 248, 255) !important;">
+Standardize
+</td>
+<td style="text-align:left;background-color: rgba(214, 234, 248, 255) !important;">
+Create standards for maintaining 1S-3S
+</td>
+<td style="text-align:left;background-color: rgba(214, 234, 248, 255) !important;">
+How do we keep it this way?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: rgba(232, 218, 239, 255) !important;">
+5S
+</td>
+<td style="text-align:left;background-color: rgba(232, 218, 239, 255) !important;">
+<strong>Shitsuke</strong>
+</td>
+<td style="text-align:left;background-color: rgba(232, 218, 239, 255) !important;">
+Sustain
+</td>
+<td style="text-align:left;background-color: rgba(232, 218, 239, 255) !important;">
+Build discipline to maintain standards
+</td>
+<td style="text-align:left;background-color: rgba(232, 218, 239, 255) !important;">
+Are we following our standards?
+</td>
+</tr>
+</tbody>
+</table>
+<div id="visual-factory" class="section level3 hasAnchor" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> Visual Factory<a href="lean-manufacturing.html#visual-factory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>“The ability to understand the status of a production area in <strong>5 minutes or less</strong> by simple observation without use of computers or speaking to anyone.”</p>
+</blockquote>
+<p>A well-implemented 5S creates a <strong>visual factory</strong> where problems are immediately apparent.</p>
+<hr />
+</div>
+</div>
+<div id="just-in-time-jit-production" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Just-in-Time (JIT) Production<a href="lean-manufacturing.html#just-in-time-jit-production" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-jit-philosophy" class="section level3 hasAnchor" number="5.8.1">
+<h3><span class="header-section-number">5.8.1</span> The JIT Philosophy<a href="lean-manufacturing.html#the-jit-philosophy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>“Deliver the right material, in the exact quantity, with perfect quality, in the right place, just before it is needed.”
+— Ohno and Shingo</p>
+</blockquote>
+<pre><code>## Warning in geom_segment(aes(x = 5.4, xend = 5.9, y = 1, yend = 1), arrow = arrow(length = unit(0.3, : All aesthetics have length 1, but the data has 5
+## rows.
+## ℹ Please consider using `annotate()` or provide
+##   this layer with data containing a single row.</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:jit-concept"></span>
+<img src="introduction_files/figure-html/jit-concept-1.png" alt="Just-in-Time: The Right Everything" width="864" />
+<p class="caption">
+Figure 5.7: Just-in-Time: The Right Everything
+</p>
+</div>
+</div>
+<div id="push-vs.-pull-systems" class="section level3 hasAnchor" number="5.8.2">
+<h3><span class="header-section-number">5.8.2</span> Push vs. Pull Systems<a href="lean-manufacturing.html#push-vs.-pull-systems" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:push-pull-viz"></span>
+<img src="introduction_files/figure-html/push-pull-viz-1.png" alt="Push vs. Pull Production Systems" width="960" />
+<p class="caption">
+Figure 5.8: Push vs. Pull Production Systems
+</p>
+</div>
+<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:push-pull-table">Table 5.6: </span>Push vs. Pull System Comparison
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
+Aspect
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
+Push System
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
+Pull System
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 12em; font-weight: bold;">
+Production trigger
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Forecast/Schedule
+</td>
+<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
+Actual demand/Kanban signal
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; font-weight: bold;">
+Information flow
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Forward (upstream to downstream)
+</td>
+<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
+Backward (downstream to upstream)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; font-weight: bold;">
+Inventory levels
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+High (buffers at each station)
+</td>
+<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
+Low (minimal buffers)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; font-weight: bold;">
+Flexibility
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Low
+</td>
+<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
+High
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; font-weight: bold;">
+Problem visibility
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Problems hidden by inventory
+</td>
+<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
+Problems immediately visible
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; font-weight: bold;">
+Customer responsiveness
+</td>
+<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
+Slow
+</td>
+<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
+Fast
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="kanban-system" class="section level3 hasAnchor" number="5.8.3">
+<h3><span class="header-section-number">5.8.3</span> Kanban System<a href="lean-manufacturing.html#kanban-system" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Kanban</strong> (看板) is Japanese for “signboard” or “billboard.” It’s a scheduling system for lean and JIT production.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:kanban-example"></span>
+<img src="introduction_files/figure-html/kanban-example-1.png" alt="Example Kanban Card" width="672" />
+<p class="caption">
+Figure 5.9: Example Kanban Card
+</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="key-time-metrics" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> Key Time Metrics<a href="lean-manufacturing.html#key-time-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Understanding time metrics is essential for lean manufacturing analysis and improvement.</p>
+<div id="definitions" class="section level3 hasAnchor" number="5.9.1">
+<h3><span class="header-section-number">5.9.1</span> Definitions<a href="lean-manufacturing.html#definitions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:time-metrics-viz"></span>
+<img src="introduction_files/figure-html/time-metrics-viz-1.png" alt="Relationship Between Time Metrics" width="960" />
+<p class="caption">
+Figure 5.10: Relationship Between Time Metrics
+</p>
+</div>
+</div>
+<div id="formulas-and-calculations" class="section level3 hasAnchor" number="5.9.2">
+<h3><span class="header-section-number">5.9.2</span> Formulas and Calculations<a href="lean-manufacturing.html#formulas-and-calculations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Takt Time</strong> — The pace of production to meet customer demand:</p>
+<p><span class="math display">\[\text{Takt Time} = \frac{\text{Available Production Time}}{\text{Customer Demand}}\]</span></p>
+<p><strong>Cycle Time</strong> — Time to complete one unit at a workstation:</p>
+<p><span class="math display">\[\text{Cycle Time} = \frac{\text{Net Operating Time}}{\text{Units Produced}}\]</span></p>
+<p><strong>Throughput Time</strong> — Total time from start to finish:</p>
+<p><span class="math display">\[\text{Throughput Time} = \text{Processing} + \text{Inspection} + \text{Queue} + \text{Move Time}\]</span></p>
+</div>
+<div id="interactive-example-calculating-takt-time" class="section level3 hasAnchor" number="5.9.3">
+<h3><span class="header-section-number">5.9.3</span> Interactive Example: Calculating Takt Time<a href="lean-manufacturing.html#interactive-example-calculating-takt-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="lean-manufacturing.html#cb45-1" tabindex="-1"></a><span class="co"># Given data</span></span>
+<span id="cb45-2"><a href="lean-manufacturing.html#cb45-2" tabindex="-1"></a>available_time_per_day <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">*</span> <span class="dv">60</span>  <span class="co"># 8 hours = 480 minutes</span></span>
+<span id="cb45-3"><a href="lean-manufacturing.html#cb45-3" tabindex="-1"></a>breaks_and_meetings <span class="ot">&lt;-</span> <span class="dv">60</span>         <span class="co"># 60 minutes for breaks/meetings</span></span>
+<span id="cb45-4"><a href="lean-manufacturing.html#cb45-4" tabindex="-1"></a>customer_demand <span class="ot">&lt;-</span> <span class="dv">240</span>            <span class="co"># 240 units per day</span></span>
+<span id="cb45-5"><a href="lean-manufacturing.html#cb45-5" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="lean-manufacturing.html#cb45-6" tabindex="-1"></a><span class="co"># Calculate net available time</span></span>
+<span id="cb45-7"><a href="lean-manufacturing.html#cb45-7" tabindex="-1"></a>net_available_time <span class="ot">&lt;-</span> available_time_per_day <span class="sc">-</span> breaks_and_meetings</span>
+<span id="cb45-8"><a href="lean-manufacturing.html#cb45-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Net Available Time:&quot;</span>, net_available_time, <span class="st">&quot;minutes/day</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Net Available Time: 420 minutes/day</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="lean-manufacturing.html#cb47-1" tabindex="-1"></a><span class="co"># Calculate Takt Time</span></span>
+<span id="cb47-2"><a href="lean-manufacturing.html#cb47-2" tabindex="-1"></a>takt_time <span class="ot">&lt;-</span> net_available_time <span class="sc">/</span> customer_demand</span>
+<span id="cb47-3"><a href="lean-manufacturing.html#cb47-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Takt Time:&quot;</span>, takt_time, <span class="st">&quot;minutes per unit</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Takt Time: 1.75 minutes per unit</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="lean-manufacturing.html#cb49-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Takt Time:&quot;</span>, takt_time <span class="sc">*</span> <span class="dv">60</span>, <span class="st">&quot;seconds per unit</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Takt Time: 105 seconds per unit</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="lean-manufacturing.html#cb51-1" tabindex="-1"></a><span class="co"># Interpretation</span></span>
+<span id="cb51-2"><a href="lean-manufacturing.html#cb51-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">--- Interpretation ---</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## --- Interpretation ---</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="lean-manufacturing.html#cb53-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;To meet customer demand, we must produce 1 unit every&quot;</span>,</span>
+<span id="cb53-2"><a href="lean-manufacturing.html#cb53-2" tabindex="-1"></a>    takt_time, <span class="st">&quot;minutes (&quot;</span>, takt_time <span class="sc">*</span> <span class="dv">60</span>, <span class="st">&quot;seconds).</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## To meet customer demand, we must produce 1 unit every 1.75 minutes ( 105 seconds).</code></pre>
+<details>
+<summary>
+Practice Problem: Calculate Your Takt Time
+</summary>
+<p><strong>Given:</strong>
+- Shift length: 10 hours
+- Two 15-minute breaks and one 30-minute lunch
+- Customer requires 300 units per shift</p>
+<p><strong>Calculate:</strong>
+1. Net available production time
+2. Takt time in minutes
+3. Takt time in seconds</p>
+<p><strong>Solution:</strong></p>
+<pre><code>Net time = (10 × 60) - (15 + 15 + 30) = 600 - 60 = 540 minutes
+Takt time = 540 / 300 = 1.8 minutes = 108 seconds per unit</code></pre>
+</details>
+<hr />
+</div>
+</div>
+<div id="setup-reduction-smed" class="section level2 hasAnchor" number="5.10">
+<h2><span class="header-section-number">5.10</span> Setup Reduction (SMED)<a href="lean-manufacturing.html#setup-reduction-smed" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>SMED</strong> (Single Minute Exchange of Dies) is a methodology developed by Shigeo Shingo to dramatically reduce changeover time.</p>
+<div id="the-smed-concept" class="section level3 hasAnchor" number="5.10.1">
+<h3><span class="header-section-number">5.10.1</span> The SMED Concept<a href="lean-manufacturing.html#the-smed-concept" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:smed-viz"></span>
+<img src="introduction_files/figure-html/smed-viz-1.png" alt="SMED: Internal vs External Setup" width="960" />
+<p class="caption">
+Figure 5.11: SMED: Internal vs External Setup
+</p>
+</div>
+</div>
+<div id="smed-methodology" class="section level3 hasAnchor" number="5.10.2">
+<h3><span class="header-section-number">5.10.2</span> SMED Methodology<a href="lean-manufacturing.html#smed-methodology" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:smed-steps">Table 5.7: </span>The Four Steps of SMED
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(142, 68, 173, 255) !important;">
+Step
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(142, 68, 173, 255) !important;">
+Action
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(142, 68, 173, 255) !important;">
+Description
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(142, 68, 173, 255) !important;">
+Example
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 5em; font-weight: bold;">
+1
+</td>
+<td style="text-align:left;">
+<strong>Document current process</strong>
+</td>
+<td style="text-align:left;">
+Video the entire changeover, identify all steps
+</td>
+<td style="text-align:left;">
+Time each step of die change
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; font-weight: bold;">
+2
+</td>
+<td style="text-align:left;">
+<strong>Separate internal and external</strong>
+</td>
+<td style="text-align:left;">
+Internal = machine must be stopped; External = can be done while running
+</td>
+<td style="text-align:left;">
+Getting tools = external; Removing die = internal
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; font-weight: bold;">
+3
+</td>
+<td style="text-align:left;">
+<strong>Convert internal to external</strong>
+</td>
+<td style="text-align:left;">
+Find ways to perform ‘internal’ tasks while machine is running
+</td>
+<td style="text-align:left;">
+Pre-stage next die, pre-heat tools
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; font-weight: bold;">
+4
+</td>
+<td style="text-align:left;">
+<strong>Streamline all operations</strong>
+</td>
+<td style="text-align:left;">
+Reduce time for remaining internal tasks through better methods
+</td>
+<td style="text-align:left;">
+Use quick-release clamps instead of bolts
+</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>
+Case Study: Press Setup Reduction
+</summary>
+<p><strong>Problem:</strong> Presses were idle more than 50% of the time due to setup.
+- Average production run: 1-2 days
+- Setup time: 1-2 days</p>
+<p><strong>Root Cause Analysis:</strong>
+- Using standard bolt fasteners with open-end wrenches
+- No pre-staging of tools or dies
+- Sequential operations that could be parallel</p>
+<p><strong>Solutions Implemented:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Change</th>
+<th>Time Saved</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Socket sets + power tools</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>Quick-release clamps</td>
+<td>50%</td>
+</tr>
+<tr class="odd">
+<td>Pre-staging materials</td>
+<td>20%</td>
+</tr>
+<tr class="even">
+<td>Parallel operations</td>
+<td>20%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Result:</strong> Setup time reduced from 1-2 days to 4-6 hours, with a target of under 1 hour.</p>
+</details>
+<hr />
+</div>
+</div>
+<div id="kaizen-continuous-improvement" class="section level2 hasAnchor" number="5.11">
+<h2><span class="header-section-number">5.11</span> Kaizen: Continuous Improvement<a href="lean-manufacturing.html#kaizen-continuous-improvement" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Kaizen</strong> (改善) means “change for the better” — the philosophy of continuous, incremental improvement.</p>
+<div id="kaizen-principles" class="section level3 hasAnchor" number="5.11.1">
+<h3><span class="header-section-number">5.11.1</span> Kaizen Principles<a href="lean-manufacturing.html#kaizen-principles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:kaizen-cycle"></span>
+<img src="introduction_files/figure-html/kaizen-cycle-1.png" alt="The Kaizen Continuous Improvement Cycle" width="768" />
+<p class="caption">
+Figure 5.12: The Kaizen Continuous Improvement Cycle
+</p>
+</div>
+</div>
+<div id="key-kaizen-concepts" class="section level3 hasAnchor" number="5.11.2">
+<h3><span class="header-section-number">5.11.2</span> Key Kaizen Concepts<a href="lean-manufacturing.html#key-kaizen-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Everyone participates</strong> — from CEO to frontline workers</li>
+<li><strong>Small, incremental changes</strong> — not major overhauls</li>
+<li><strong>Focus on process</strong> — blame the process, not the person</li>
+<li><strong>Data-driven decisions</strong> — measure before and after</li>
+<li><strong>Standardize improvements</strong> — lock in gains</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="value-stream-mapping-vsm" class="section level2 hasAnchor" number="5.12">
+<h2><span class="header-section-number">5.12</span> Value Stream Mapping (VSM)<a href="lean-manufacturing.html#value-stream-mapping-vsm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Value Stream Mapping</strong> is a lean tool for analyzing the flow of materials and information required to bring a product to the customer.</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/rlSwuxKDJkc"
+    title="Value Stream Mapping"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
+<div id="vsm-symbols" class="section level3 hasAnchor" number="5.12.1">
+<h3><span class="header-section-number">5.12.1</span> VSM Symbols<a href="lean-manufacturing.html#vsm-symbols" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:vsm-metrics">Table 5.8: </span>Key Metrics in Value Stream Maps
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(22, 160, 133, 255) !important;">
+Metric
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(22, 160, 133, 255) !important;">
+Description
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(22, 160, 133, 255) !important;">
+Typical Location
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<strong>Process Time (PT)</strong>
+</td>
+<td style="text-align:left;">
+Time to actually process one unit
+</td>
+<td style="text-align:left;">
+In process box
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<strong>Lead Time (LT)</strong>
+</td>
+<td style="text-align:left;">
+Total time from raw material to finished good
+</td>
+<td style="text-align:left;">
+Timeline at bottom
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<strong>Changeover Time (C/O)</strong>
+</td>
+<td style="text-align:left;">
+Time to switch between products
+</td>
+<td style="text-align:left;">
+In process box
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<strong>Uptime</strong>
+</td>
+<td style="text-align:left;">
+Percentage of time equipment is available
+</td>
+<td style="text-align:left;">
+In process box
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<strong>Takt Time</strong>
+</td>
+<td style="text-align:left;">
+Required pace to meet demand
+</td>
+<td style="text-align:left;">
+Noted on map
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<strong>WIP Inventory</strong>
+</td>
+<td style="text-align:left;">
+Units waiting between processes
+</td>
+<td style="text-align:left;">
+Triangle symbol between processes
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="summary" class="section level2 hasAnchor" number="5.13">
+<h2><span class="header-section-number">5.13</span> Summary<a href="lean-manufacturing.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:summary-table">Table 5.9: </span>Lean Manufacturing: Key Concepts Summary
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
+Concept
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
+Definition
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
+Key Benefit
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 12em; ">
+<strong>Lean Manufacturing</strong>
+</td>
+<td style="text-align:left;">
+Systematic elimination of waste
+</td>
+<td style="text-align:left;">
+Reduced cost, improved quality
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; ">
+<strong>3 M’s</strong>
+</td>
+<td style="text-align:left;">
+Muda (waste), Mura (inconsistency), Muri (overburden)
+</td>
+<td style="text-align:left;">
+Framework for identifying improvement opportunities
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; ">
+<strong>7 Wastes</strong>
+</td>
+<td style="text-align:left;">
+TIMWOOD: Transport, Inventory, Motion, Waiting, Overproduction, Over-processing, Defects
+</td>
+<td style="text-align:left;">
+Systematic waste identification
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; ">
+<strong>5S</strong>
+</td>
+<td style="text-align:left;">
+Sort, Set in Order, Shine, Standardize, Sustain
+</td>
+<td style="text-align:left;">
+Organized, efficient workplace
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; ">
+<strong>JIT</strong>
+</td>
+<td style="text-align:left;">
+Right part, right quantity, right quality, right place, right time
+</td>
+<td style="text-align:left;">
+Minimal inventory, fast response
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; ">
+<strong>Kanban</strong>
+</td>
+<td style="text-align:left;">
+Visual signal system for pull production
+</td>
+<td style="text-align:left;">
+Controlled WIP, smooth flow
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; ">
+<strong>SMED</strong>
+</td>
+<td style="text-align:left;">
+Single Minute Exchange of Dies - rapid changeover
+</td>
+<td style="text-align:left;">
+Flexibility, reduced batch sizes
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; ">
+<strong>Kaizen</strong>
+</td>
+<td style="text-align:left;">
+Continuous incremental improvement
+</td>
+<td style="text-align:left;">
+Engaged workforce, sustained improvement
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="review-questions" class="section level2 hasAnchor" number="5.14">
+<h2><span class="header-section-number">5.14</span> Review Questions<a href="lean-manufacturing.html#review-questions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details>
+<summary>
+Question 1: What are the seven types of waste, and which is often considered the most impactful?
+</summary>
+<p>The seven types of waste (TIMWOOD) are:
+1. <strong>T</strong>ransportation
+2. <strong>I</strong>nventory
+3. <strong>M</strong>otion
+4. <strong>W</strong>aiting
+5. <strong>O</strong>verproduction
+6. <strong>O</strong>ver-processing
+7. <strong>D</strong>efects</p>
+<p><strong>Inventory</strong> is often considered the most impactful because it hides other problems, ties up capital, and can become obsolete.</p>
+</details>
+<details>
+<summary>
+Question 2: Explain the difference between Push and Pull production systems.
+</summary>
+<p><strong>Push System:</strong>
+- Production based on forecasts
+- Materials pushed through the system
+- Results in high inventory
+- Problems hidden by buffer stock</p>
+<p><strong>Pull System:</strong>
+- Production triggered by actual demand
+- Materials pulled by downstream operations
+- Minimal inventory
+- Problems immediately visible</p>
+</details>
+<details>
+<summary>
+Question 3: Calculate the Takt time for a facility with 450 minutes of available time and demand of 150 units.
+</summary>
+<p><span class="math display">\[\text{Takt Time} = \frac{450 \text{ minutes}}{150 \text{ units}} = 3 \text{ minutes per unit}\]</span></p>
+<p>This means we need to produce one unit every 3 minutes (180 seconds) to meet customer demand.</p>
+</details>
+<details>
+<summary>
+Question 4: What is the difference between internal and external setup in SMED?
+</summary>
+<p><strong>Internal Setup:</strong> Activities that can ONLY be performed when the machine is stopped (e.g., physically removing the old die).</p>
+<p><strong>External Setup:</strong> Activities that CAN be performed while the machine is still running (e.g., getting tools, pre-staging the next die, preparing materials).</p>
+<p>The key to SMED is converting as many internal activities to external as possible.</p>
+</details>
+<hr />
+</div>
+<div id="references-1" class="section level2 hasAnchor" number="5.15">
+<h2><span class="header-section-number">5.15</span> References<a href="lean-manufacturing.html#references-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Womack, J., Jones, D., &amp; Roos, D. (1990). <em>The Machine that Changed the World</em>.</li>
+<li>Ohno, T. (1988). <em>Toyota Production System: Beyond Large-Scale Production</em>.</li>
+<li>Shingo, S. (1985). <em>A Revolution in Manufacturing: The SMED System</em>.</li>
+<li>Liker, J. (2004). <em>The Toyota Way</em>.</li>
+<li>Wang, H.P., Chang, T.C., &amp; Wysk, R.A. (2007). <em>Computer Aided Manufacturing</em>, Chapter 18.</li>
+</ul>
+
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div class="csl-entry">
+Adel Nabil. 2025. <span>“Cycle Time Vs. Efficiency.”</span> 2025. <a href="https://www.linkedin.com/posts/adel-nabil-333b7120_cycle-time-vs-efficiency-ever-wondered-activity-7260592283681505281-1yRF%0A">https://www.linkedin.com/posts/adel-nabil-333b7120_cycle-time-vs-efficiency-ever-wondered-activity-7260592283681505281-1yRF
+</a>.
+</div>
+<div class="csl-entry">
+Afzal, Sayeed. 2018. <span>“Different Types of Manufacturing Processes: All in One Guide.”</span> LinkedIn Pulse. 2018. <a href="https://www.linkedin.com/pulse/different-types-manufacturing-processes-all-one-guide-sayeed-afzal">https://www.linkedin.com/pulse/different-types-manufacturing-processes-all-one-guide-sayeed-afzal</a>.
+</div>
+<div class="csl-entry">
+Groover, Mikell P. 2016. <em>Automation, Production Systems, and Computer-Integrated Manufacturing</em>. Pearson.
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="plant-layout-and-facility-design.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/Prof-MV/ENGR-3027/blob/master/05-Lean-Manufacturing.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["introduction.pdf", "introduction.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
