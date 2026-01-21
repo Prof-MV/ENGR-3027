@@ -1,0 +1,100 @@
+Suggested Chapter Structure
+Introduction (2-3 pages)
+
+Brief history and evolution of FMEA from design to process applications
+Why PFMEA matters in modern manufacturing and process industries
+When to conduct PFMEA in the product/process lifecycle
+Distinction between DFMEA (Design) and PFMEA (Process)
+
+PFMEA Fundamentals (4-5 pages)
+
+Core objectives: preventing defects rather than detecting them
+The PFMEA team composition and roles
+Key terminology: severity, occurrence, detection, RPN (Risk Priority Number)
+The PFMEA form/template walkthrough with explanation of each column
+
+The PFMEA Methodology (6-8 pages)
+
+Step 1: Define scope and process boundaries
+Step 2: Process mapping and identifying process functions
+Step 3: Identifying potential failure modes
+Step 4: Analyzing failure effects and their consequences
+Step 5: Determining severity ratings (1-10 scale)
+Step 6: Identifying potential causes and occurrence ratings
+Step 7: Current process controls and detection ratings
+Step 8: Calculating RPN and prioritization
+Step 9: Recommended actions and responsibility assignment
+Step 10: Follow-up and RPN recalculation
+
+Rating Scales and Criteria (3-4 pages)
+
+Detailed severity rating criteria with examples
+Occurrence rating criteria linked to process capability
+Detection rating criteria for various control methods
+Discussion of RPN thresholds and action priorities
+Alternative approaches: criticality matrix, action priority (AP)
+
+Practical Examples (8-10 pages)
+
+Example 1: Chemical batch mixing process (showing complete PFMEA table)
+Example 2: Injection molding operation
+Example 3: Heat treatment process
+Example 4: Assembly process with multiple stations
+Walk through one example in complete detail, showing before/after improvements
+
+Integration with Other Tools (3-4 pages)
+
+Process flow diagrams and PFMEA
+Control plans derived from PFMEA
+Link to statistical process control (SPC)
+Relationship to Six Sigma DMAIC methodology
+Connection to ISO standards and industry requirements
+
+Common Pitfalls and Best Practices (3-4 pages)
+
+Treating PFMEA as a paperwork exercise
+Inadequate team participation
+Being too optimistic about current controls
+Failure to update after process changes
+Tips for effective facilitation
+Documentation and living document approach
+
+Advanced Topics (2-3 pages)
+
+PFMEA for service processes
+Software and automation tools
+AI and predictive analytics integration
+PFMEA in agile/iterative development environments
+
+Case Study (4-5 pages)
+
+Real-world scenario showing PFMEA preventing a major quality issue
+Documented cost savings and quality improvements
+Lessons learned from implementation
+
+Specific Examples to Include
+
+Welding process failure: showing how inadequate heat control leads to weak joints
+Pharmaceutical tablet compression: contamination and dosage variation risks
+Automotive paint line: defects like orange peel, runs, and adhesion failures
+Food processing pasteurization: under-processing leading to safety concerns
+
+End-of-Chapter Questions
+Conceptual Questions:
+
+Explain why detection ratings are often harder to reduce than occurrence ratings
+What is the difference between a failure mode and a failure effect?
+Why should PFMEA be conducted by a cross-functional team rather than an individual engineer?
+At what point in process development should PFMEA ideally be conducted, and why?
+
+Calculation Questions:
+5. Given severity = 8, occurrence = 6, detection = 4, calculate the RPN. If improved controls reduce detection to 2, what is the new RPN?
+6. Two failure modes have RPNs of 120 and 150. Should the higher RPN always be addressed first? Explain your reasoning.
+Application Questions:
+7. Create a simple PFMEA for a coffee brewing process in a commercial setting (3-4 failure modes)
+8. For a metal stamping operation, identify at least five potential failure modes and their likely effects
+9. A process has an RPN of 240 (S=8, O=6, D=5). Propose three different improvement strategies and show the resulting RPN for each
+Critical Thinking Questions:
+10. Discuss the limitations of using RPN as the sole prioritization method
+11. How would you handle a situation where team members disagree on severity ratings?
+12. What role should PFMEA play in continuous improvement programs?
