@@ -266,7 +266,6 @@ cat("Manufacturing Cycle Efficiency (MCE):", round(MCE, 2), "%")
 knitr::include_graphics("images/1731060093907.jpg")
 ```
 
----
 ### Product Variations
 In modern manufacturing, systems must handle different levels of product variety. We distinguish between **Hard Product Variety** (significant differences between products) and **Soft Product Variety** (small differences, such as color or minor features). As shown in Figure \@ref(fig:prod-variety-plot2), the complexity of the system increases as we move toward mass customization.
 
@@ -436,24 +435,4 @@ CIM includes not just the shop floor hardware (FMS, Robots), but also:
 
 * **CAD/CAM:** Computer-Aided Design and Manufacturing.
 * **ERP:** Enterprise Resource Planning for resource management.
-* **CAPP
-
----
-
-
-### Product Variations
-## Manual Assembly Lines
-### Production Rate and Cycle Time
-### Line Balancing and Repositioning Losses
-## Automated Production Lines
-### Types of automated lines
-### Analysis of Automated Production lines
-## Cellular Manufacturing
-### Part families
-### Machine Cells
-## Flexible Manufacturing Systems (FMS) and Cells
-### Integrating the FMS components
-### Applications of flexible manufacturing systems
-### Mass customization
-## Computer Integrated Manufacturing (CIM)
-
+* **CAPP:** Computer-Aided Process Planning.

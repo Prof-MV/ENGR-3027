@@ -32,6 +32,8 @@ fig:unnamed-chunk-32
 fig:unnamed-chunk-33
 fig:unnamed-chunk-34
 fig:unnamed-chunk-37
+fig:prod-variety-plot2
+fig:downtime-sim
 types-of-manufacturing-processes-afzalmanufacturing
 casting
 centrifugal-casting
@@ -88,14 +90,15 @@ product-variations
 manual-assembly-lines
 production-rate-and-cycle-time
 line-balancing-and-repositioning-losses
-automated-production-lines
+automated-lines
 types-of-automated-lines
 analysis-of-automated-production-lines
+analysis-of-automated-production-lines-1
 cellular-manufacturing
 part-families
 machine-cells
-flexible-manufacturing-systems-fms-and-cells
+fms-section
 integrating-the-fms-components
 applications-of-flexible-manufacturing-systems
 mass-customization
-computer-integrated-manufacturing-cim
+cim-section

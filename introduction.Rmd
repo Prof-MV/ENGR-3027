@@ -1,3 +1,4 @@
+
 --- 
 title: "ENGR-3027 Process Engineering"
 author: "Martin Volkening"
@@ -469,10 +470,6 @@ knitr::include_graphics("images/1525957777852.png")
 Example: Some examples of 3D printing include jewelry, toys, decorative items, phone cases.
 
 <!--chapter:end:01-Types-of-Manufacturing.Rmd-->
-
----
-always_allow_html: true
----
 
 # Process and Design
 
@@ -993,28 +990,176 @@ cat("Manufacturing Cycle Efficiency (MCE):", round(MCE, 2), "%")
 knitr::include_graphics("images/1731060093907.jpg")
 ```
 
----
-
-
----
-
-
 ### Product Variations
-## Manual Assembly Lines
-### Production Rate and Cycle Time
-### Line Balancing and Repositioning Losses
-## Automated Production Lines
-### Types of automated lines
-### Analysis of Automated Production lines
-## Cellular Manufacturing
-### Part families
-### Machine Cells
-## Flexible Manufacturing Systems (FMS) and Cells
-### Integrating the FMS components
-### Applications of flexible manufacturing systems
-### Mass customization
-## Computer Integrated Manufacturing (CIM)
+In modern manufacturing, systems must handle different levels of product variety. We distinguish between **Hard Product Variety** (significant differences between products) and **Soft Product Variety** (small differences, such as color or minor features). As shown in Figure \@ref(fig:prod-variety-plot2), the complexity of the system increases as we move toward mass customization.
 
+## Manual Assembly Lines
+Manual assembly lines consist of multiple workstations where human workers perform repetitive tasks. The efficiency of these lines is governed by the relationship between production rate and cycle time.
+
+### Production Rate and Cycle Time
+The production rate ($R_p$) is the number of units produced per hour. The cycle time ($T_c$) is the time interval between units coming off the end of the line.
+
+The mathematical relationship is defined as:
+$$T_c = \frac{60}{R_p}$$
+where $T_c$ is in minutes and $R_p$ is in units/hour.
+
+### Line Balancing and Repositioning Losses
+One of the greatest challenges in manual lines is **Line Balancing**. This involves assigning tasks to workstations so that the total work content time ($T_{wc}$) is distributed evenly. The efficiency of the balance ($E_b$) is calculated as:
+
+$$E_b = \frac{T_{wc}}{n T_c}$$
+
+where $n$ is the number of workstations.
+
+```{r prod-variety-plot2, echo=TRUE, message=FALSE, fig.cap="Relationship between Production Volume and Product Variety.", label= prod-variety-plot2}
+library(ggplot2)
+
+# Simulating data for manufacturing system types
+df <- data.frame(
+  Variety = c("Low", "Medium", "High"),
+  Volume = c(1000, 500, 50),
+  Type = c("Transfer Line", "FMS", "Job Shop")
+)
+
+ggplot(df, aes(x = Variety, y = Volume, fill = Type)) +
+  geom_bar(stat = "identity", width = 0.6) +
+  theme_minimal() +
+  labs(title = "Volume vs. Variety Trade-off",
+       x = "Product Variety",
+       y = "Annual Production Volume") +
+  scale_fill_brewer(palette = "Set2")
+```
+## Automated Production Lines {#automated-lines}
+
+Automated lines reduce human intervention by using mechanized transfer systems and automated workstations. These systems are typically used for high-volume production where the work content is well-defined.
+
+### Types of Automated Lines
+There are two primary configurations for these systems:
+
+* **In-line configuration:** A straight line of workstations where the part moves sequentially from one station to the next.
+* **Rotary configuration:** Workstations are arranged around a circular table, often called an indexing table.
+
+
+
+### Analysis of Automated Production Lines
+The performance of an automated line is often degraded by station failures. If $p$ is the probability of a station failure and $T$ is the average downtime, the actual production rate ($R_p$) is significantly lower than the ideal rate ($R_c$) due to downtime. The actual cycle time ($T_p$) is calculated as:
+
+$$T_p = T_c + pT$$
+
+Where:
+* $T_p$ = Average production time per unit.
+* $T_c$ = Ideal cycle time.
+* $p$ = Probability of station failure.
+* $T$ = Average downtime to repair and restart.
+
+### Analysis of Automated Production Lines
+The performance of an automated line is rarely ideal; it is degraded by station failures (e.g., tool breakage, jams).
+
+If we define:
+* $T_c$: Ideal cycle time (minutes/cycle).
+* $p$: Probability of a station failure per cycle.
+* $T$: Average downtime per failure (minutes) to repair and restart.
+
+The **Actual Cycle Time ($T_p$)** increases significantly:
+$$T_p = T_c + p \times T$$
+
+Consequently, the **Actual Production Rate ($R_p$)** (units per hour) drops below the ideal rate ($R_c = 60/T_c$):
+$$R_p = \frac{60}{T_p} = \frac{60}{T_c + pT}$$
+
+To visualize the severe impact of even small failure probabilities on high-speed lines, we can simulate different downtime scenarios. Figure \@ref(fig:downtime-sim) illustrates how quickly production capacity is lost as reliability decreases.
+
+```{r downtime-sim, echo=TRUE, message=FALSE, warning=FALSE, fig.cap="Simulation: Impact of Failure Probability (p) and Average Downtime (T) on Hourly Production Rate."}
+library(ggplot2)
+library(dplyr)
+library(scales)
+
+#--- Simulation Parameters ---
+Ideal_Tc <- 1.0  # Ideal cycle time is 1 minute per part
+Ideal_Rp <- 60 / Ideal_Tc # Ideal rate is 60 units/hour
+
+# 1. Create a range of failure probabilities (p) from 0% to 20%
+p_range <- seq(0, 0.20, by = 0.005)
+
+# 2. Define different repair time scenarios (T)
+downtime_scenarios <- data.frame(
+  Scenario = c("Quick Fix (T=5 min)", "Major Repair (T=30 min)"),
+  T_val = c(5, 30)
+)
+
+# 3. Generate simulation data grid
+sim_data <- expand.grid(p = p_range, Scenario = downtime_scenarios$Scenario) %>%
+  left_join(downtime_scenarios, by = "Scenario") %>%
+  mutate(
+    # Calculate Actual Cycle Time: Tp = Tc + p*T
+    Tp = Ideal_Tc + (p * T_val),
+    # Calculate Actual Production Rate: Rp = 60 / Tp
+    Rp = 60 / Tp
+  )
+
+#--- Visualization ---
+ggplot(sim_data, aes(x = p, y = Rp, color = Scenario)) +
+  # Add the simulation lines
+  geom_line(size = 1.2) +
+  # Add a reference line for the Ideal Rate
+  geom_hline(yintercept = Ideal_Rp, linetype = "dashed", color = "grey50") +
+  annotate("text", x = 0.01, y = Ideal_Rp + 2, label = "Ideal Rate (Zero Failures)", color = "grey50", hjust = 0) +
+  # Styling and Labels
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_color_brewer(palette = "Set1") +
+  labs(title = "Production Rate Degradation Analysis",
+       subtitle = paste0("Base Ideal Cycle Time (Tc) = ", Ideal_Tc, " min/unit"),
+       x = "Probability of Station Failure per Cycle (p)",
+       y = "Actual Production Rate (Rp) [units/hour]",
+       color = "Downtime Scenario (T)") +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank()
+  )
+```
+
+As demonstrated in Figure @ref(fig:downtime-sim), even a seemingly low failure probability of 5% ($p=0.05$) can cripple production if the average repair time is long. In the "Major Repair" scenario at 5% failure, production drops from an ideal 60 units/hr to roughly 24 units/hr—a 60% loss in capacity. This highlights why preventive maintenance and rapid repair protocols are critical in automated systems.
+
+## Cellular Manufacturing {#cellular-manufacturing}
+
+Cellular manufacturing applies **Group Technology (GT)** to organize production into cells that specialize in "families" of parts.
+
+### Part Families
+A part family is a collection of parts that share similar geometric shapes or manufacturing process steps. By grouping these together, we significantly reduce setup times and simplify tooling requirements.
+
+### Machine Cells
+Machine cells are designed to process one or more part families. The arrangement usually follows a **U-shape**, which allows a single operator to move between multiple machines efficiently, facilitating better communication and line balancing.
+
+
+
+## Flexible Manufacturing Systems (FMS) and Cells {#fms-section}
+
+An FMS is a highly automated GT cell, consisting of a group of processing stations (usually CNC machines) interconnected by an automated handling system.
+
+### Integrating the FMS Components
+Integration is achieved through a central computer system that coordinates:
+
+1.  **Workstation operations:** Sending CNC programs to individual machines.
+2.  **Material handling system:** Controlling AGVs (Automated Guided Vehicles) or conveyors.
+3.  **Loading and unloading:** Managing the entry and exit of parts from the system.
+
+### Applications of Flexible Manufacturing Systems
+FMS is best suited for mid-volume, mid-variety production where the cost of a fully dedicated transfer line is too high, but the manual job shop is too slow and inefficient.
+
+### Mass Customization
+Mass customization is the logic of providing products tailored to individual customer needs at a cost near that of mass-produced items [@groover2016]. As seen in Figure \@ref(fig:prod-variety-plot2), FMS is the primary technological enabler of this strategy.
+
+## Computer Integrated Manufacturing (CIM) {#cim-section}
+
+CIM represents the total integration of all aspects of the manufacturing enterprise through computers. It creates a seamless flow of information from the design phase to the shipping dock.
+
+
+
+CIM includes not just the shop floor hardware (FMS, Robots), but also:
+
+* **CAD/CAM:** Computer-Aided Design and Manufacturing.
+* **ERP:** Enterprise Resource Planning for resource management.
+* **CAPP:** Computer-Aided Process Planning.
 
 <!--chapter:end:03-Integrated-Manufacturing-Systems.Rmd-->
 
