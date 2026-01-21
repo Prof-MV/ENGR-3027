@@ -1163,3 +1163,826 @@ CIM includes not just the shop floor hardware (FMS, Robots), but also:
 
 <!--chapter:end:03-Integrated-Manufacturing-Systems.Rmd-->
 
+# Plant Layout and Facility Design
+
+------------------------------------------------------------------------
+
+```{r setup-ch4, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+```
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Identify and describe the four basic types of facility layouts
+- Compare the advantages and disadvantages of each layout type
+- Apply the steps involved in designing a process layout
+- Calculate cycle time, theoretical minimum stations, and line efficiency for product layouts
+- Understand the principles of warehouse and office layout design
+
+<details>
+<summary>Why is Plant Layout Important?</summary>
+
+Plant layout directly impacts:
+
+- **Productivity:** Efficient layouts minimize wasted movement and time
+- **Cost:** Poor layouts increase material handling costs by 20-50%
+- **Safety:** Well-designed layouts reduce accidents and injuries
+- **Flexibility:** The right layout allows adaptation to changing demands
+- **Employee Morale:** Good layouts improve working conditions
+
+</details>
+
+------------------------------------------------------------------------
+
+## Types of Facility Layouts
+
+There are **four basic layout types**, each suited to different production requirements:
+
+```{r layout-types-table, echo=FALSE}
+layout_data <- tibble(
+  `Layout Type` = c("Process Layout", "Product Layout", "Hybrid/Cellular Layout", "Fixed-Position Layout"),
+  `Also Known As` = c("Functional Layout, Job Shop", "Flow Line, Assembly Line", "Group Technology, Cell Layout", "Project Layout"),
+  `Best For` = c("High variety, low volume", "Low variety, high volume", "Medium variety, medium volume", "Very large or immobile products"),
+  `Example Industries` = c("Hospitals, Machine Shops, Universities", "Automotive Assembly, Food Processing", "Electronics Manufacturing, Furniture", "Shipbuilding, Aircraft, Construction")
+)
+
+layout_data %>%
+  kable(format = "html", caption = "Overview of Facility Layout Types") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = TRUE,
+    position = "center"
+  ) %>%
+  column_spec(1, bold = TRUE, width = "12em") %>%
+  row_spec(0, bold = TRUE, background = "#4472C4", color = "white")
+```
+
+### Visualizing the Layout Spectrum
+
+```{r layout-spectrum, echo=FALSE, fig.align="center", fig.cap="Product Variety vs. Production Volume for Different Layouts", fig.width=8, fig.height=5}
+# Create a visualization of layout types based on variety and volume
+layout_viz <- data.frame(
+  Layout = c("Fixed-Position", "Process", "Cellular", "Product"),
+  Volume = c(1, 2, 3, 4),
+  Variety = c(4, 3.5, 2.5, 1),
+  Size = c(15, 20, 20, 25)
+)
+
+ggplot(layout_viz, aes(x = Volume, y = Variety, label = Layout)) +
+  geom_point(aes(size = Size, color = Layout), alpha = 0.7) +
+  geom_text(vjust = -1.5, fontface = "bold", size = 4) +
+  scale_x_continuous(limits = c(0, 5), breaks = 1:4,
+                     labels = c("Very Low", "Low", "Medium", "High")) +
+  scale_y_continuous(limits = c(0, 5), breaks = 1:4,
+                     labels = c("Standardized", "Low", "Medium", "High")) +
+  scale_size_continuous(range = c(10, 25), guide = "none") +
+  scale_color_manual(values = c("#E74C3C", "#3498DB", "#2ECC71", "#9B59B6"), guide = "none") +
+  labs(x = "Production Volume", y = "Product Variety",
+       title = "Facility Layout Selection Guide") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    axis.title = element_text(size = 12, face = "bold"),
+    axis.text = element_text(size = 10),
+    panel.grid.minor = element_blank()
+  ) +
+  annotate("segment", x = 0.5, xend = 4.5, y = 0.5, yend = 4.5,
+           arrow = arrow(length = unit(0.3, "cm")), color = "gray50", linetype = "dashed")
+```
+
+------------------------------------------------------------------------
+
+## Process Layout (Functional Layout)
+
+In a **process layout**, similar resources (machines, equipment, workers with similar skills) are grouped together. Work flows between departments based on the specific requirements of each job.
+
+```{r process-layout-diagram, echo=FALSE, fig.align="center", fig.cap="Example Process Layout - Machine Shop", fig.width=9, fig.height=6}
+# Create a simple process layout visualization
+library(ggplot2)
+
+departments <- data.frame(
+  name = c("Receiving", "Lathes", "Milling", "Drilling", "Grinding", "Assembly", "Painting", "Shipping"),
+  x = c(1, 2, 4, 2, 4, 3, 5, 6),
+  y = c(3, 4, 4, 2, 2, 3, 3, 3),
+  color = c("#95A5A6", "#3498DB", "#3498DB", "#3498DB", "#3498DB", "#2ECC71", "#9B59B6", "#95A5A6")
+)
+
+# Flow paths for different products
+flow_A <- data.frame(
+  x = c(1, 2, 4, 4, 3, 5, 6),
+  y = c(3, 4, 4, 2, 3, 3, 3),
+  product = "Product A"
+)
+
+flow_B <- data.frame(
+  x = c(1, 2, 2, 4, 3, 6),
+  y = c(3, 4, 2, 2, 3, 3),
+  product = "Product B"
+)
+
+ggplot() +
+  # Department boxes
+  geom_tile(data = departments, aes(x = x, y = y, fill = color),
+            width = 0.8, height = 0.6, alpha = 0.8, color = "black") +
+  geom_text(data = departments, aes(x = x, y = y, label = name),
+            fontface = "bold", size = 3.5) +
+  # Flow paths
+  geom_path(data = flow_A, aes(x = x, y = y + 0.05),
+            color = "#E74C3C", size = 1.2, arrow = arrow(length = unit(0.2, "cm")),
+            linetype = "solid") +
+  geom_path(data = flow_B, aes(x = x, y = y - 0.05),
+            color = "#F39C12", size = 1.2, arrow = arrow(length = unit(0.2, "cm")),
+            linetype = "dashed") +
+  scale_fill_identity() +
+  labs(title = "Process Layout: Machine Shop Example",
+       subtitle = "Different products follow different paths through the facility") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        plot.subtitle = element_text(hjust = 0.5, size = 10)) +
+  annotate("text", x = 6.5, y = 4, label = "Product A", color = "#E74C3C", fontface = "bold") +
+  annotate("text", x = 6.5, y = 3.7, label = "Product B", color = "#F39C12", fontface = "bold") +
+  coord_fixed(ratio = 1)
+```
+
+### Characteristics of Process Layouts
+
+```{r process-characteristics, echo=FALSE}
+process_chars <- tibble(
+  Characteristic = c("Equipment", "Labor", "Flexibility", "Processing Speed",
+                     "Material Handling", "Scheduling", "Space Requirements"),
+  Description = c("General-purpose machines", "Skilled workers required",
+                  "High - can handle variety", "Slower due to varied routing",
+                  "Higher costs (complex paths)", "Complex - different routes",
+                  "Higher - WIP inventory storage")
+)
+
+process_chars %>%
+  kable(format = "html", caption = "Process Layout Characteristics") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE, position = "center") %>%
+  column_spec(1, bold = TRUE, width = "10em", background = "#EBF5FB")
+```
+
+<details>
+<summary>Discussion Question: Can you identify a process layout in your daily life?</summary>
+
+**Think about:**
+- A hospital emergency room (patients routed based on their needs)
+- A university campus (students move between buildings for different classes)
+- A grocery store (customers choose their own path)
+- A machine shop (parts routed based on required operations)
+
+**What makes these process layouts?** Similar functions are grouped together, and "products" (patients, students, customers) follow different paths based on their individual needs.
+
+</details>
+
+### Real-World Examples
+
+```{=html}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/rR4ndSGDXSI"
+    title="Process Layout Example"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+```
+
+------------------------------------------------------------------------
+
+## Product Layout (Assembly Line)
+
+In a **product layout**, equipment and workstations are arranged in a line according to the sequence of operations needed to produce the product. Every unit follows the same path.
+
+```{r product-layout-diagram, echo=FALSE, fig.align="center", fig.cap="Product Layout - Assembly Line", fig.width=10, fig.height=4}
+stations <- data.frame(
+  name = c("Station 1\nFrame", "Station 2\nEngine", "Station 3\nBody",
+           "Station 4\nInterior", "Station 5\nWheels", "Station 6\nQuality"),
+  x = c(1, 2, 3, 4, 5, 6),
+  y = rep(1, 6)
+)
+
+ggplot(stations, aes(x = x, y = y)) +
+  geom_tile(fill = "#3498DB", width = 0.7, height = 0.5, color = "black") +
+  geom_text(aes(label = name), color = "white", fontface = "bold", size = 3) +
+  geom_segment(aes(x = x + 0.4, xend = x + 0.6, y = y, yend = y),
+               data = stations[1:5,],
+               arrow = arrow(length = unit(0.2, "cm")), color = "#2C3E50", size = 1.5) +
+  labs(title = "Product Layout: Automotive Assembly Line",
+       subtitle = "All products follow the same sequential path") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        plot.subtitle = element_text(hjust = 0.5, size = 10)) +
+  xlim(0.3, 6.7)
+```
+
+### Characteristics of Product Layouts
+
+```{r product-characteristics, echo=FALSE}
+product_chars <- tibble(
+  Advantage = c("High production rate", "Low unit cost", "Low material handling",
+                "Simple scheduling", "Less WIP inventory"),
+  Disadvantage = c("High initial investment", "Low flexibility", "Line stops affect all",
+                   "Monotonous work", "Requires balanced workloads")
+)
+
+product_chars %>%
+  kable(format = "html", caption = "Product Layout: Advantages vs. Disadvantages") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE, position = "center") %>%
+  column_spec(1, background = "#D5F5E3", width = "15em") %>%
+  column_spec(2, background = "#FADBD8", width = "15em") %>%
+  row_spec(0, bold = TRUE, background = "#4472C4", color = "white")
+```
+
+<details>
+<summary>Quick Quiz: Product Layout</summary>
+
+**Question:** A car wash where vehicles move through a series of cleaning stations is an example of which layout type?
+
+**Answer:** Product Layout - all cars follow the same path through the same sequence of operations.
+
+</details>
+
+------------------------------------------------------------------------
+
+## Hybrid Layout (Cellular Manufacturing)
+
+**Hybrid layouts** combine the flexibility of process layouts with the efficiency of product layouts. The most common type is the **cellular layout** using Group Technology.
+
+### Group Technology Concept
+
+Group Technology (GT) identifies parts with similar characteristics and groups them into **part families**. Machines are then arranged into **cells** to process these families.
+
+```{r cellular-layout, echo=FALSE, fig.align="center", fig.cap="Cellular Layout with Manufacturing Cells", fig.width=10, fig.height=6}
+# Create cells visualization
+cell_data <- data.frame(
+  cell = c(rep("Cell A\nShaft Family", 4), rep("Cell B\nGear Family", 4), rep("Cell C\nHousing Family", 4)),
+  machine = c("Lathe", "Mill", "Drill", "Grind",
+              "Mill", "Drill", "Gear Cut", "Inspect",
+              "Mill", "Drill", "Bore", "Inspect"),
+  x = c(1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4),
+  y = c(3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1),
+  cell_color = c(rep("#E74C3C", 4), rep("#3498DB", 4), rep("#2ECC71", 4))
+)
+
+ggplot(cell_data, aes(x = x, y = y)) +
+  # Cell backgrounds
+  annotate("rect", xmin = 0.5, xmax = 4.5, ymin = 2.6, ymax = 3.4,
+           fill = "#E74C3C", alpha = 0.2) +
+  annotate("rect", xmin = 0.5, xmax = 4.5, ymin = 1.6, ymax = 2.4,
+           fill = "#3498DB", alpha = 0.2) +
+  annotate("rect", xmin = 0.5, xmax = 4.5, ymin = 0.6, ymax = 1.4,
+           fill = "#2ECC71", alpha = 0.2) +
+  # Machines
+  geom_tile(aes(fill = cell_color), width = 0.6, height = 0.4, color = "black") +
+  geom_text(aes(label = machine), size = 3, fontface = "bold") +
+  # Flow arrows within cells
+  geom_segment(data = cell_data[c(1:3, 5:7, 9:11),],
+               aes(x = x + 0.35, xend = x + 0.65, y = y, yend = y),
+               arrow = arrow(length = unit(0.15, "cm")), color = "black") +
+  # Cell labels
+  annotate("text", x = 0, y = 3, label = "Cell A\nShafts", hjust = 1, fontface = "bold", color = "#E74C3C") +
+  annotate("text", x = 0, y = 2, label = "Cell B\nGears", hjust = 1, fontface = "bold", color = "#3498DB") +
+  annotate("text", x = 0, y = 1, label = "Cell C\nHousings", hjust = 1, fontface = "bold", color = "#2ECC71") +
+  scale_fill_identity() +
+  labs(title = "Cellular Layout: Group Technology",
+       subtitle = "Parts grouped into families, each processed in dedicated cells") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        plot.subtitle = element_text(hjust = 0.5, size = 10)) +
+  xlim(-0.5, 5)
+```
+
+<details>
+<summary>Discussion Question: Benefits of Cellular Manufacturing</summary>
+
+**What are the main benefits of cellular manufacturing over traditional process layouts?**
+
+1. **Reduced material handling** - Parts stay within the cell
+2. **Shorter lead times** - No waiting between departments
+3. **Less WIP inventory** - Smaller batches, faster flow
+4. **Improved quality** - Workers responsible for complete part
+5. **Team accountability** - Cell teams own their output
+
+</details>
+
+------------------------------------------------------------------------
+
+## Fixed-Position Layout
+
+In a **fixed-position layout**, the product remains stationary while workers, equipment, and materials are brought to it. This is used when the product is too large or heavy to move.
+
+### Examples of Fixed-Position Layouts
+
+- **Shipbuilding** - Ships built in dry docks
+- **Aircraft manufacturing** - Large aircraft assembled in hangars
+- **Construction** - Buildings, bridges, dams
+- **Surgery** - Patient remains stationary
+
+<details>
+<summary>Challenge Question: Managing a Fixed-Position Layout</summary>
+
+**What are the unique challenges of managing a fixed-position layout?**
+
+Think about:
+- Scheduling deliveries of materials and equipment
+- Coordinating multiple contractors/teams
+- Limited space around the product
+- Weather and environmental factors (outdoor projects)
+- Ensuring safety with many workers in one area
+
+</details>
+
+------------------------------------------------------------------------
+
+## Designing Process Layouts
+
+Designing an effective process layout involves **three main steps**:
+
+### Step 1: Gather Information
+
+You need to determine:
+- **Space requirements** for each department
+- **Available space** in the facility
+- **Closeness relationships** between departments
+
+#### From-To Matrix (Load Matrix)
+
+A From-To matrix shows the number of trips or loads between departments:
+
+```{r from-to-matrix, echo=FALSE}
+# Create a From-To matrix example
+from_to <- matrix(c(
+  "-", 100, 50, 0, 0,
+  0, "-", 200, 50, 0,
+  0, 0, "-", 100, 60,
+  0, 0, 0, "-", 150,
+  0, 0, 0, 0, "-"
+), nrow = 5, byrow = TRUE)
+
+colnames(from_to) <- c("Receiving", "Machining", "Assembly", "Painting", "Shipping")
+rownames(from_to) <- c("Receiving", "Machining", "Assembly", "Painting", "Shipping")
+
+from_to %>%
+  kable(format = "html", caption = "From-To Matrix: Loads per Day Between Departments") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "bordered"),
+                full_width = FALSE, position = "center") %>%
+  row_spec(0, bold = TRUE, background = "#4472C4", color = "white") %>%
+  column_spec(1, bold = TRUE, background = "#D6EAF8")
+```
+
+### Step 2: Develop Block Plans
+
+Use the **Load-Distance Model** to evaluate layout alternatives:
+
+$$\text{Total Cost} = \sum_{i=1}^{n} \sum_{j=1}^{n} L_{ij} \times D_{ij} \times C$$
+
+Where:
+- $L_{ij}$ = Number of loads between departments $i$ and $j$
+- $D_{ij}$ = Distance between departments $i$ and $j$
+- $C$ = Cost per unit distance
+
+### Interactive Example: Comparing Two Layouts
+
+```{r layout-comparison, echo=FALSE, fig.align="center", fig.width=10, fig.height=5, fig.cap="Comparing Two Process Layout Alternatives"}
+# Layout A
+layout_A <- data.frame(
+  dept = c("Receiving", "Machining", "Assembly", "Painting", "Shipping"),
+  x = c(1, 2, 3, 4, 5),
+  y = rep(1, 5)
+)
+
+# Layout B (different arrangement)
+layout_B <- data.frame(
+  dept = c("Receiving", "Machining", "Assembly", "Painting", "Shipping"),
+  x = c(1, 2, 2, 3, 3),
+  y = c(1.5, 2, 1, 2, 1)
+)
+
+p1 <- ggplot(layout_A, aes(x = x, y = y)) +
+  geom_tile(fill = "#3498DB", width = 0.8, height = 0.4, color = "black") +
+  geom_text(aes(label = dept), color = "white", size = 3, fontface = "bold") +
+  labs(title = "Layout A: Linear") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
+  xlim(0.5, 5.5) + ylim(0.5, 1.5)
+
+p2 <- ggplot(layout_B, aes(x = x, y = y)) +
+  geom_tile(fill = "#E74C3C", width = 0.8, height = 0.4, color = "black") +
+  geom_text(aes(label = dept), color = "white", size = 3, fontface = "bold") +
+  labs(title = "Layout B: Compact") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
+  xlim(0.5, 3.5) + ylim(0.5, 2.5)
+
+gridExtra::grid.arrange(p1, p2, ncol = 2)
+```
+
+```{r load-distance-calc, echo=TRUE}
+# Calculate Load-Distance scores for both layouts
+# From-To data: Receiving->Machining=100, Machining->Assembly=200,
+#               Assembly->Painting=100, Painting->Shipping=150
+
+# Layout A distances (linear): all adjacent = 1 unit
+layout_A_score <- 100*1 + 200*1 + 100*1 + 150*1
+cat("Layout A Total Load-Distance:", layout_A_score, "\n")
+
+# Layout B distances (compact): most departments closer together
+# Receiving to Machining = 1.12 (diagonal)
+# Machining to Assembly = 1
+# Assembly to Painting = 1.12 (diagonal)
+# Painting to Shipping = 1
+layout_B_score <- 100*1.12 + 200*1 + 100*1.12 + 150*1
+cat("Layout B Total Load-Distance:", round(layout_B_score, 1), "\n")
+
+cat("\nLayout A is better by:", round(layout_B_score - layout_A_score, 1), "units")
+```
+
+<details>
+<summary>Why does the linear layout win in this case?</summary>
+
+In this example, the linear layout (A) wins because the process flow is essentially sequential (Receiving → Machining → Assembly → Painting → Shipping).
+
+When flow is **sequential**, a **product layout** (linear arrangement) is more efficient. Process layouts are better when there's **varied routing** between departments.
+
+</details>
+
+### Step 3: Develop Detailed Layout
+
+Once the block plan is selected:
+- Determine exact sizes and shapes of departments
+- Plan aisle locations and widths
+- Consider utilities, safety exits, and accessibility
+- Use CAD software or 3D modeling for visualization
+
+------------------------------------------------------------------------
+
+## Designing Product Layouts (Line Balancing)
+
+The key challenge in product layout design is **line balancing** - assigning tasks to workstations to minimize idle time while meeting production requirements.
+
+### Line Balancing Steps
+
+1. **Identify tasks and precedence relationships**
+2. **Calculate required cycle time**
+3. **Calculate theoretical minimum number of stations**
+4. **Assign tasks to stations**
+5. **Calculate efficiency**
+
+### Key Formulas
+
+**Cycle Time:**
+$$C = \frac{\text{Available Production Time}}{\text{Desired Output}}$$
+
+**Theoretical Minimum Stations:**
+$$TM = \frac{\sum t_i}{C}$$
+
+**Line Efficiency:**
+$$\text{Efficiency} = \frac{\sum t_i}{n \times C} \times 100\%$$
+
+Where:
+- $C$ = Cycle time
+- $\sum t_i$ = Total task time
+- $n$ = Number of workstations
+
+### Interactive Example: Pizza Assembly Line
+
+```{r pizza-example, echo=FALSE, message=FALSE, warning=FALSE}
+# Pizza assembly tasks
+pizza_tasks <- tibble(
+  Task = c("A", "B", "C", "D", "E", "F"),
+  Description = c("Roll dough", "Spread sauce", "Add cheese", "Add toppings", "Season", "Box pizza"),
+  `Time (sec)` = c(40, 25, 20, 35, 15, 30),
+  Predecessors = c("-", "A", "B", "B", "C, D", "E")
+)
+
+pizza_tasks %>%
+  kable(format = "html", caption = "Pizza Assembly Tasks") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "bordered"),
+                full_width = FALSE, position = "center") %>%
+  row_spec(0, bold = TRUE, background = "#4472C4", color = "white") %>%
+  column_spec(1, bold = TRUE, background = "#FEF9E7", width = "5em")
+```
+
+```{r pizza-precedence, echo=FALSE, fig.align="center", fig.cap="Precedence Diagram for Pizza Assembly", fig.width=9, fig.height=4}
+# Create precedence diagram
+nodes <- data.frame(
+  task = c("A", "B", "C", "D", "E", "F"),
+  x = c(1, 2, 3, 3, 4, 5),
+  y = c(1.5, 1.5, 2, 1, 1.5, 1.5),
+  time = c(40, 25, 20, 35, 15, 30)
+)
+
+edges <- data.frame(
+  x = c(1, 2, 2, 3, 3, 4),
+  y = c(1.5, 1.5, 1.5, 2, 1, 1.5),
+  xend = c(2, 3, 3, 4, 4, 5),
+  yend = c(1.5, 2, 1, 1.5, 1.5, 1.5)
+)
+
+ggplot() +
+  geom_segment(data = edges, aes(x = x + 0.15, y = y, xend = xend - 0.15, yend = yend),
+               arrow = arrow(length = unit(0.2, "cm")), color = "#2C3E50", size = 1) +
+  geom_point(data = nodes, aes(x = x, y = y), size = 18, color = "#3498DB") +
+  geom_text(data = nodes, aes(x = x, y = y, label = paste0(task, "\n", time, "s")),
+            color = "white", fontface = "bold", size = 3.5) +
+  theme_void() +
+  labs(title = "Precedence Diagram: Pizza Assembly",
+       subtitle = "Arrows show required sequence of operations") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        plot.subtitle = element_text(hjust = 0.5, size = 10)) +
+  xlim(0.5, 5.5) + ylim(0.5, 2.5)
+```
+
+### Line Balancing Calculation
+
+```{r line-balance-calc, echo=TRUE}
+# Given data
+total_task_time <- 40 + 25 + 20 + 35 + 15 + 30  # seconds
+desired_output <- 60  # pizzas per hour
+available_time <- 3600  # seconds per hour
+
+# Step 1: Calculate Cycle Time
+cycle_time <- available_time / desired_output
+cat("Cycle Time:", cycle_time, "seconds per pizza\n")
+
+# Step 2: Calculate Theoretical Minimum Stations
+TM <- total_task_time / cycle_time
+cat("Theoretical Minimum Stations:", TM, "=", ceiling(TM), "stations\n")
+
+# Step 3: Assign tasks to stations (one possible solution)
+cat("\n--- Workstation Assignments ---\n")
+cat("Station 1: A (40s) + B (25s) = 65s > 60s ... EXCEEDS!\n")
+cat("Let's try again:\n")
+cat("Station 1: A (40s) = 40s [Idle: 20s]\n")
+cat("Station 2: B (25s) + D (35s) = 60s [Idle: 0s]\n")
+cat("Station 3: C (20s) + E (15s) + F (30s) = 65s > 60s... EXCEEDS!\n")
+cat("Revised:\n")
+cat("Station 3: C (20s) + E (15s) = 35s [Idle: 25s]\n")
+cat("Station 4: F (30s) = 30s [Idle: 30s]\n")
+
+# With 4 stations
+n_stations <- 4
+efficiency <- (total_task_time / (n_stations * cycle_time)) * 100
+cat("\n--- Results ---\n")
+cat("Number of Stations:", n_stations, "\n")
+cat("Line Efficiency:", round(efficiency, 1), "%\n")
+cat("Balance Delay (Idle Time):", round(100 - efficiency, 1), "%\n")
+```
+
+<details>
+<summary>Try It Yourself: Can you find a better balance?</summary>
+
+**Challenge:** Can you assign tasks to only 3 stations while respecting the precedence constraints?
+
+**Hint:** Consider these assignments:
+- Station 1: A (40s) + ?
+- Station 2: B (25s) + ? + ?
+- Station 3: ? + ?
+
+Remember: Total time per station cannot exceed 60 seconds!
+
+**Solution:** It's actually possible with careful planning:
+- Station 1: A (40s) = 40s
+- Station 2: B (25s) + C (20s) + E (15s) = 60s (but E needs C AND D complete!)
+
+So 3 stations is NOT feasible due to precedence constraints. The minimum is 4 stations for this problem.
+
+</details>
+
+------------------------------------------------------------------------
+
+## Warehouse Layout Design
+
+Warehouse layouts are a special case of process layouts focused on **minimizing material handling**.
+
+### Key Principles
+
+1. **Place high-volume items near the dock**
+2. **Group items that are often picked together**
+3. **Use ABC analysis** for storage assignment:
+   - **A items** (20% of SKUs, 80% of picks): Prime locations
+   - **B items** (30% of SKUs, 15% of picks): Secondary locations
+   - **C items** (50% of SKUs, 5% of picks): Remote locations
+
+```{r warehouse-viz, echo=FALSE, fig.align="center", fig.cap="Warehouse Layout: ABC Storage Strategy", fig.width=9, fig.height=5}
+warehouse <- data.frame(
+  zone = c(rep("A Items", 4), rep("B Items", 6), rep("C Items", 10)),
+  x = c(1:4, 1:6, 1:10),
+  y = c(rep(1, 4), rep(2, 6), rep(3, 10)),
+  fill = c(rep("#E74C3C", 4), rep("#F39C12", 6), rep("#3498DB", 10))
+)
+
+ggplot(warehouse, aes(x = x, y = y)) +
+  geom_tile(aes(fill = fill), width = 0.9, height = 0.8, color = "black") +
+  scale_fill_identity() +
+  annotate("rect", xmin = 0, xmax = 11, ymin = -0.2, ymax = 0.3, fill = "#95A5A6") +
+  annotate("text", x = 5.5, y = 0.05, label = "SHIPPING/RECEIVING DOCK", fontface = "bold") +
+  annotate("text", x = 2.5, y = 1, label = "A Items\n(Fast Moving)", color = "white", fontface = "bold") +
+  annotate("text", x = 3.5, y = 2, label = "B Items (Medium)", color = "white", fontface = "bold") +
+  annotate("text", x = 5.5, y = 3, label = "C Items (Slow Moving)", color = "white", fontface = "bold") +
+  labs(title = "Warehouse Layout: ABC Storage Strategy",
+       subtitle = "High-frequency items placed closest to the dock") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        plot.subtitle = element_text(hjust = 0.5, size = 10)) +
+  coord_fixed(ratio = 0.8)
+```
+
+------------------------------------------------------------------------
+
+## Office Layout Design
+
+Office layouts balance **communication needs** with **privacy requirements**.
+
+### Two Main Approaches
+
+```{r office-comparison, echo=FALSE}
+office_types <- tibble(
+  Aspect = c("Space", "Walls", "Flexibility", "Communication", "Privacy", "Cost"),
+  `Open Plan` = c("Shared workspaces", "Partitions/dividers", "High - easy to reconfigure",
+                  "Excellent", "Low", "Lower"),
+  `Traditional/Closed` = c("Private offices", "Permanent walls", "Low - expensive to change",
+                           "Limited", "High", "Higher")
+)
+
+office_types %>%
+  kable(format = "html", caption = "Office Layout Comparison") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "bordered"),
+                full_width = FALSE, position = "center") %>%
+  row_spec(0, bold = TRUE, background = "#4472C4", color = "white") %>%
+  column_spec(1, bold = TRUE, background = "#D6EAF8")
+```
+
+### Office Ergonomics Checklist
+
+<details>
+<summary>Click to expand: Office Ergonomics Best Practices</summary>
+
+**Posture:**
+- Support the small of the back
+- Keep shoulders relaxed
+- Maintain neutral wrist position
+- Feet flat on floor or footrest
+
+**Lighting:**
+- Position monitor to reduce glare
+- Adjust brightness for screen vs. paper work
+- Use task lighting when needed
+
+**Workstation:**
+- Monitor at arm's length
+- Top of screen at or below eye level
+- Keyboard and mouse at elbow height
+
+**Work Habits:**
+- Take breaks every 30-60 minutes
+- Vary tasks to prevent repetitive strain
+- Use keyboard shortcuts to reduce mouse use
+
+</details>
+
+### The Future of Office Design
+
+```{=html}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/0X_tKMhxNXA"
+    title="Office of Today, Workplace of Tomorrow"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+```
+
+------------------------------------------------------------------------
+
+## Summary: Choosing the Right Layout
+
+```{r decision-flowchart, echo=FALSE, fig.align="center", fig.cap="Layout Selection Decision Guide", fig.width=10, fig.height=6}
+# Simple decision tree visualization
+decisions <- data.frame(
+  label = c("Start:\nWhat are you\nproducing?",
+            "Can the\nproduct move?",
+            "FIXED-POSITION\nLAYOUT",
+            "High variety\nor high volume?",
+            "PROCESS\nLAYOUT",
+            "PRODUCT\nLAYOUT",
+            "Consider\nHYBRID/CELLULAR"),
+  x = c(1, 2.5, 2.5, 4, 4, 5.5, 4),
+  y = c(2, 2, 0.8, 2, 0.8, 2, 3.2),
+  fill = c("#95A5A6", "#F39C12", "#E74C3C", "#F39C12", "#3498DB", "#2ECC71", "#9B59B6")
+)
+
+ggplot(decisions, aes(x = x, y = y)) +
+  geom_tile(aes(fill = fill), width = 1.3, height = 0.7, color = "black") +
+  geom_text(aes(label = label), size = 2.8, fontface = "bold") +
+  # Arrows
+  annotate("segment", x = 1.65, xend = 1.85, y = 2, yend = 2,
+           arrow = arrow(length = unit(0.2, "cm"))) +
+  annotate("segment", x = 2.5, xend = 2.5, y = 1.65, yend = 1.15,
+           arrow = arrow(length = unit(0.2, "cm"))) +
+  annotate("text", x = 2.7, y = 1.4, label = "No", size = 3) +
+  annotate("segment", x = 3.15, xend = 3.35, y = 2, yend = 2,
+           arrow = arrow(length = unit(0.2, "cm"))) +
+  annotate("text", x = 3.25, y = 2.15, label = "Yes", size = 3) +
+  annotate("segment", x = 4, xend = 4, y = 1.65, yend = 1.15,
+           arrow = arrow(length = unit(0.2, "cm"))) +
+  annotate("text", x = 4.2, y = 1.4, label = "Variety", size = 3) +
+  annotate("segment", x = 4.65, xend = 4.85, y = 2, yend = 2,
+           arrow = arrow(length = unit(0.2, "cm"))) +
+  annotate("text", x = 4.75, y = 2.15, label = "Volume", size = 3) +
+  annotate("segment", x = 4, xend = 4, y = 2.35, yend = 2.85,
+           arrow = arrow(length = unit(0.2, "cm"))) +
+  annotate("text", x = 4.2, y = 2.6, label = "Medium", size = 3) +
+  scale_fill_identity() +
+  theme_void() +
+  labs(title = "Layout Selection Decision Guide") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14))
+```
+
+### Key Takeaways
+
+1. **Process layouts** offer flexibility for varied products but have higher material handling costs
+2. **Product layouts** are efficient for high-volume, standardized products
+3. **Cellular layouts** provide a middle ground with benefits of both
+4. **Fixed-position layouts** are necessary when products cannot be moved
+5. **Line balancing** is critical for efficient product layouts
+6. **Warehouse layouts** should minimize travel distance for high-frequency items
+
+------------------------------------------------------------------------
+
+## Practice Problems
+
+<details>
+<summary>Problem 1: Layout Selection</summary>
+
+**Scenario:** A company manufactures custom kitchen cabinets. Each order is unique, with different dimensions, materials, and finishes. Production volume is about 50 units per month.
+
+**Question:** Which layout type would you recommend and why?
+
+**Answer:** A **process layout** would be most appropriate because:
+- High product variety (custom orders)
+- Low production volume
+- Different operations needed for each order
+- Flexibility is more important than efficiency
+
+</details>
+
+<details>
+<summary>Problem 2: Line Balancing</summary>
+
+**Given:**
+- Total task time: 240 seconds
+- Desired output: 30 units per hour
+- Available time: 3600 seconds per hour
+
+**Calculate:**
+1. Cycle time
+2. Theoretical minimum number of stations
+3. If you use 3 stations, what is the efficiency?
+
+**Solution:**
+1. Cycle time = 3600 / 30 = **120 seconds**
+2. TM = 240 / 120 = **2 stations**
+3. Efficiency = (240 / (3 × 120)) × 100 = **66.7%**
+
+</details>
+
+<details>
+<summary>Problem 3: Warehouse Layout</summary>
+
+**Scenario:** A warehouse has the following items:
+- Item X: 500 picks/day
+- Item Y: 100 picks/day
+- Item Z: 50 picks/day
+
+**Question:** How should these items be positioned relative to the shipping dock?
+
+**Answer:** Using ABC analysis:
+- Item X (high frequency): **Closest to dock** (A zone)
+- Item Y (medium frequency): **Middle distance** (B zone)
+- Item Z (low frequency): **Farthest from dock** (C zone)
+
+</details>
+
+------------------------------------------------------------------------
+
+## References
+
+- Reid, R. D., & Sanders, N. R. (2019). *Operations Management: An Integrated Approach* (7th ed.). Wiley. Chapter 10.
+- Groover, M. P. (2020). *Automation, Production Systems, and Computer-Integrated Manufacturing* (5th ed.). Pearson.
+
+<!--chapter:end:04-Plant-Layout.Rmd-->
+

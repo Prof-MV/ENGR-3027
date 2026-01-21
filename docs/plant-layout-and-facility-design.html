@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Plant Layout and Facility Design | ENGR-3027 Process Engineering</title>
+  <meta name="description" content="Lecture notes accompanying the course." />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Plant Layout and Facility Design | ENGR-3027 Process Engineering" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Lecture notes accompanying the course." />
+  <meta name="github-repo" content="Prof-MV/ENGR-3027" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Plant Layout and Facility Design | ENGR-3027 Process Engineering" />
+  
+  <meta name="twitter:description" content="Lecture notes accompanying the course." />
+  
+
+<meta name="author" content="Martin Volkening" />
+
+
+<meta name="date" content="2026-01-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="integrated-manufacturing-systems.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ENGR-3027</a></li>
+<li class="toc-logo"><a href="./"><img src="images/Fanshawe.png"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#labs"><i class="fa fa-check"></i>Labs</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assignments"><i class="fa fa-check"></i>Assignments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#quizzes"><i class="fa fa-check"></i>Quizzes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tests"><i class="fa fa-check"></i>Tests</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#other-grade-considerations"><i class="fa fa-check"></i>Other Grade Considerations</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-succeed"><i class="fa fa-check"></i>How to succeed</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cheating-and-plagiarism"><i class="fa fa-check"></i>Cheating and Plagiarism</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#fol"><i class="fa fa-check"></i>FOL</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#accessibility"><i class="fa fa-check"></i>Accessibility</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#fanshawes-recording-policy"><i class="fa fa-check"></i>Fanshawe’s Recording Policy</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html"><i class="fa fa-check"></i><b>1</b> Types of Manufacturing Processes <span class="citation">(Afzal 2018)</span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#casting"><i class="fa fa-check"></i><b>1.1</b> Casting</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#centrifugal-casting"><i class="fa fa-check"></i><b>1.1.1</b> Centrifugal Casting</a></li>
+<li class="chapter" data-level="1.1.2" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#die-casting"><i class="fa fa-check"></i><b>1.1.2</b> Die Casting</a></li>
+<li class="chapter" data-level="1.1.3" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#sand-casting"><i class="fa fa-check"></i><b>1.1.3</b> Sand Casting</a></li>
+<li class="chapter" data-level="1.1.4" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#permanent-mold-casting"><i class="fa fa-check"></i><b>1.1.4</b> Permanent Mold Casting</a></li>
+<li class="chapter" data-level="1.1.5" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#investment-casting"><i class="fa fa-check"></i><b>1.1.5</b> Investment Casting</a></li>
+<li class="chapter" data-level="1.1.6" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#shell-molding"><i class="fa fa-check"></i><b>1.1.6</b> Shell Molding</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#molding"><i class="fa fa-check"></i><b>1.2</b> Molding</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#injection-molding"><i class="fa fa-check"></i><b>1.2.1</b> Injection Molding</a></li>
+<li class="chapter" data-level="1.2.2" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#blow-molding"><i class="fa fa-check"></i><b>1.2.2</b> Blow Molding</a></li>
+<li class="chapter" data-level="1.2.3" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#extrusion-molding"><i class="fa fa-check"></i><b>1.2.3</b> Extrusion Molding</a></li>
+<li class="chapter" data-level="1.2.4" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#rotational-molding"><i class="fa fa-check"></i><b>1.2.4</b> Rotational Molding</a></li>
+<li class="chapter" data-level="1.2.5" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#thermoforming"><i class="fa fa-check"></i><b>1.2.5</b> Thermoforming</a></li>
+<li class="chapter" data-level="1.2.6" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#powder-metallurgy"><i class="fa fa-check"></i><b>1.2.6</b> Powder Metallurgy</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#forming"><i class="fa fa-check"></i><b>1.3</b> Forming</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#forging"><i class="fa fa-check"></i><b>1.3.1</b> Forging</a></li>
+<li class="chapter" data-level="1.3.2" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#bending"><i class="fa fa-check"></i><b>1.3.2</b> Bending</a></li>
+<li class="chapter" data-level="1.3.3" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#stamping"><i class="fa fa-check"></i><b>1.3.3</b> Stamping</a></li>
+<li class="chapter" data-level="1.3.4" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#shearing"><i class="fa fa-check"></i><b>1.3.4</b> Shearing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#machining"><i class="fa fa-check"></i><b>1.4</b> Machining</a></li>
+<li class="chapter" data-level="1.5" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#joining"><i class="fa fa-check"></i><b>1.5</b> Joining</a></li>
+<li class="chapter" data-level="1.6" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#coating-or-plating"><i class="fa fa-check"></i><b>1.6</b> Coating or Plating</a></li>
+<li class="chapter" data-level="1.7" data-path="types-of-manufacturing-processes-afzalmanufacturing.html"><a href="types-of-manufacturing-processes-afzalmanufacturing.html#additive-manufacturing"><i class="fa fa-check"></i><b>1.7</b> Additive Manufacturing</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="process-and-design.html"><a href="process-and-design.html"><i class="fa fa-check"></i><b>2</b> Process and Design</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="process-and-design.html"><a href="process-and-design.html#types-of-automation-in-various-manufacturing-processes"><i class="fa fa-check"></i><b>2.1</b> Types of automation in various manufacturing processes</a></li>
+<li class="chapter" data-level="2.2" data-path="process-and-design.html"><a href="process-and-design.html#flow-of-process-engineering--design-to-commissioning"><i class="fa fa-check"></i><b>2.2</b> Flow of process engineering- design to commissioning</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="process-and-design.html"><a href="process-and-design.html#project-phases-the-timeline"><i class="fa fa-check"></i><b>2.2.1</b> ➡️ Project Phases (The Timeline)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="process-and-design.html"><a href="process-and-design.html#initial-inputs-and-design-foundation-top-section"><i class="fa fa-check"></i><b>2.2.2</b> 📝 Initial Inputs and Design Foundation (Top Section)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="process-and-design.html"><a href="process-and-design.html#core-engineering-deliverables"><i class="fa fa-check"></i><b>2.2.3</b> 📑 Core Engineering Deliverables</a></li>
+<li class="chapter" data-level="2.2.4" data-path="process-and-design.html"><a href="process-and-design.html#engineering-disciplines-the-disciplines-block"><i class="fa fa-check"></i><b>2.2.4</b> 👷 Engineering Disciplines (The Disciplines Block)</a></li>
+<li class="chapter" data-level="2.2.5" data-path="process-and-design.html"><a href="process-and-design.html#output-and-final-stages"><i class="fa fa-check"></i><b>2.2.5</b> 📦 Output and Final Stages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="process-and-design.html"><a href="process-and-design.html#felfeed-front-end-engineering-design"><i class="fa fa-check"></i><b>2.3</b> FEL/FEED (Front End Engineering Design)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html"><i class="fa fa-check"></i><b>3</b> Integrated Manufacturing Systems</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#material-handling-methods-systems"><i class="fa fa-check"></i><b>3.1</b> Material Handling Methods &amp; Systems</a></li>
+<li class="chapter" data-level="3.2" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#fundamentals-of-a-production-line"><i class="fa fa-check"></i><b>3.2</b> Fundamentals of a production Line</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#methods-of-work-transport"><i class="fa fa-check"></i><b>3.2.1</b> Methods of Work Transport</a></li>
+<li class="chapter" data-level="" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#manual-methods-of-work-transport"><i class="fa fa-check"></i>Manual Methods of Work Transport</a></li>
+<li class="chapter" data-level="" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#mechanized-methods-of-work-transport"><i class="fa fa-check"></i>Mechanized Methods of Work Transport</a></li>
+<li class="chapter" data-level="" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#continuous-transport"><i class="fa fa-check"></i>Continuous Transport</a></li>
+<li class="chapter" data-level="3.2.2" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#what-is-work-cycle"><i class="fa fa-check"></i><b>3.2.2</b> What is Work Cycle?</a></li>
+<li class="chapter" data-level="3.2.3" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#work-transport-between-stations"><i class="fa fa-check"></i><b>3.2.3</b> Work Transport Between Stations</a></li>
+<li class="chapter" data-level="3.2.4" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#explaining-manufacturing-process-times"><i class="fa fa-check"></i><b>3.2.4</b> ⏰ Explaining Manufacturing Process Times</a></li>
+<li class="chapter" data-level="3.2.5" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#cycle-time-vs.-efficiency-in-manufacturing-arcera"><i class="fa fa-check"></i><b>3.2.5</b> 🚀 Cycle Time vs. Efficiency in Manufacturing <span class="citation">(Adel Nabil 2025)</span></a></li>
+<li class="chapter" data-level="3.2.6" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#product-variations"><i class="fa fa-check"></i><b>3.2.6</b> Product Variations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#manual-assembly-lines"><i class="fa fa-check"></i><b>3.3</b> Manual Assembly Lines</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#production-rate-and-cycle-time"><i class="fa fa-check"></i><b>3.3.1</b> Production Rate and Cycle Time</a></li>
+<li class="chapter" data-level="3.3.2" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#line-balancing-and-repositioning-losses"><i class="fa fa-check"></i><b>3.3.2</b> Line Balancing and Repositioning Losses</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#automated-lines"><i class="fa fa-check"></i><b>3.4</b> Automated Production Lines</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#types-of-automated-lines"><i class="fa fa-check"></i><b>3.4.1</b> Types of Automated Lines</a></li>
+<li class="chapter" data-level="3.4.2" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#analysis-of-automated-production-lines"><i class="fa fa-check"></i><b>3.4.2</b> Analysis of Automated Production Lines</a></li>
+<li class="chapter" data-level="3.4.3" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#analysis-of-automated-production-lines-1"><i class="fa fa-check"></i><b>3.4.3</b> Analysis of Automated Production Lines</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#cellular-manufacturing"><i class="fa fa-check"></i><b>3.5</b> Cellular Manufacturing</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#part-families"><i class="fa fa-check"></i><b>3.5.1</b> Part Families</a></li>
+<li class="chapter" data-level="3.5.2" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#machine-cells"><i class="fa fa-check"></i><b>3.5.2</b> Machine Cells</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#fms-section"><i class="fa fa-check"></i><b>3.6</b> Flexible Manufacturing Systems (FMS) and Cells</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#integrating-the-fms-components"><i class="fa fa-check"></i><b>3.6.1</b> Integrating the FMS Components</a></li>
+<li class="chapter" data-level="3.6.2" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#applications-of-flexible-manufacturing-systems"><i class="fa fa-check"></i><b>3.6.2</b> Applications of Flexible Manufacturing Systems</a></li>
+<li class="chapter" data-level="3.6.3" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#mass-customization"><i class="fa fa-check"></i><b>3.6.3</b> Mass Customization</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="integrated-manufacturing-systems.html"><a href="integrated-manufacturing-systems.html#cim-section"><i class="fa fa-check"></i><b>3.7</b> Computer Integrated Manufacturing (CIM)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html"><i class="fa fa-check"></i><b>4</b> Plant Layout and Facility Design</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#learning-objectives"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#types-of-facility-layouts"><i class="fa fa-check"></i><b>4.2</b> Types of Facility Layouts</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#visualizing-the-layout-spectrum"><i class="fa fa-check"></i><b>4.2.1</b> Visualizing the Layout Spectrum</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#process-layout-functional-layout"><i class="fa fa-check"></i><b>4.3</b> Process Layout (Functional Layout)</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#characteristics-of-process-layouts"><i class="fa fa-check"></i><b>4.3.1</b> Characteristics of Process Layouts</a></li>
+<li class="chapter" data-level="4.3.2" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#real-world-examples"><i class="fa fa-check"></i><b>4.3.2</b> Real-World Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#product-layout-assembly-line"><i class="fa fa-check"></i><b>4.4</b> Product Layout (Assembly Line)</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#characteristics-of-product-layouts"><i class="fa fa-check"></i><b>4.4.1</b> Characteristics of Product Layouts</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#hybrid-layout-cellular-manufacturing"><i class="fa fa-check"></i><b>4.5</b> Hybrid Layout (Cellular Manufacturing)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#group-technology-concept"><i class="fa fa-check"></i><b>4.5.1</b> Group Technology Concept</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#fixed-position-layout"><i class="fa fa-check"></i><b>4.6</b> Fixed-Position Layout</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#examples-of-fixed-position-layouts"><i class="fa fa-check"></i><b>4.6.1</b> Examples of Fixed-Position Layouts</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#designing-process-layouts"><i class="fa fa-check"></i><b>4.7</b> Designing Process Layouts</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#step-1-gather-information"><i class="fa fa-check"></i><b>4.7.1</b> Step 1: Gather Information</a></li>
+<li class="chapter" data-level="4.7.2" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#step-2-develop-block-plans"><i class="fa fa-check"></i><b>4.7.2</b> Step 2: Develop Block Plans</a></li>
+<li class="chapter" data-level="4.7.3" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#interactive-example-comparing-two-layouts"><i class="fa fa-check"></i><b>4.7.3</b> Interactive Example: Comparing Two Layouts</a></li>
+<li class="chapter" data-level="4.7.4" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#step-3-develop-detailed-layout"><i class="fa fa-check"></i><b>4.7.4</b> Step 3: Develop Detailed Layout</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#designing-product-layouts-line-balancing"><i class="fa fa-check"></i><b>4.8</b> Designing Product Layouts (Line Balancing)</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#line-balancing-steps"><i class="fa fa-check"></i><b>4.8.1</b> Line Balancing Steps</a></li>
+<li class="chapter" data-level="4.8.2" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#key-formulas"><i class="fa fa-check"></i><b>4.8.2</b> Key Formulas</a></li>
+<li class="chapter" data-level="4.8.3" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#interactive-example-pizza-assembly-line"><i class="fa fa-check"></i><b>4.8.3</b> Interactive Example: Pizza Assembly Line</a></li>
+<li class="chapter" data-level="4.8.4" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#line-balancing-calculation"><i class="fa fa-check"></i><b>4.8.4</b> Line Balancing Calculation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#warehouse-layout-design"><i class="fa fa-check"></i><b>4.9</b> Warehouse Layout Design</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#key-principles"><i class="fa fa-check"></i><b>4.9.1</b> Key Principles</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#office-layout-design"><i class="fa fa-check"></i><b>4.10</b> Office Layout Design</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#two-main-approaches"><i class="fa fa-check"></i><b>4.10.1</b> Two Main Approaches</a></li>
+<li class="chapter" data-level="4.10.2" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#office-ergonomics-checklist"><i class="fa fa-check"></i><b>4.10.2</b> Office Ergonomics Checklist</a></li>
+<li class="chapter" data-level="4.10.3" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#the-future-of-office-design"><i class="fa fa-check"></i><b>4.10.3</b> The Future of Office Design</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#summary-choosing-the-right-layout"><i class="fa fa-check"></i><b>4.11</b> Summary: Choosing the Right Layout</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#key-takeaways"><i class="fa fa-check"></i><b>4.11.1</b> Key Takeaways</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#practice-problems"><i class="fa fa-check"></i><b>4.12</b> Practice Problems</a></li>
+<li class="chapter" data-level="4.13" data-path="plant-layout-and-facility-design.html"><a href="plant-layout-and-facility-design.html#references"><i class="fa fa-check"></i><b>4.13</b> References</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ENGR-3027 Process Engineering</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="plant-layout-and-facility-design" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Plant Layout and Facility Design<a href="plant-layout-and-facility-design.html#plant-layout-and-facility-design" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<hr />
+<div id="learning-objectives" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Learning Objectives<a href="plant-layout-and-facility-design.html#learning-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>By the end of this chapter, you will be able to:</p>
+<ul>
+<li>Identify and describe the four basic types of facility layouts</li>
+<li>Compare the advantages and disadvantages of each layout type</li>
+<li>Apply the steps involved in designing a process layout</li>
+<li>Calculate cycle time, theoretical minimum stations, and line efficiency for product layouts</li>
+<li>Understand the principles of warehouse and office layout design</li>
+</ul>
+<details>
+<summary>
+Why is Plant Layout Important?
+</summary>
+<p>Plant layout directly impacts:</p>
+<ul>
+<li><strong>Productivity:</strong> Efficient layouts minimize wasted movement and time</li>
+<li><strong>Cost:</strong> Poor layouts increase material handling costs by 20-50%</li>
+<li><strong>Safety:</strong> Well-designed layouts reduce accidents and injuries</li>
+<li><strong>Flexibility:</strong> The right layout allows adaptation to changing demands</li>
+<li><strong>Employee Morale:</strong> Good layouts improve working conditions</li>
+</ul>
+</details>
+<hr />
+</div>
+<div id="types-of-facility-layouts" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Types of Facility Layouts<a href="plant-layout-and-facility-design.html#types-of-facility-layouts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are <strong>four basic layout types</strong>, each suited to different production requirements:</p>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:layout-types-table">Table 4.1: </span>Overview of Facility Layout Types
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Layout Type
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Also Known As
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Best For
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Example Industries
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 12em; font-weight: bold;">
+Process Layout
+</td>
+<td style="text-align:left;">
+Functional Layout, Job Shop
+</td>
+<td style="text-align:left;">
+High variety, low volume
+</td>
+<td style="text-align:left;">
+Hospitals, Machine Shops, Universities
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; font-weight: bold;">
+Product Layout
+</td>
+<td style="text-align:left;">
+Flow Line, Assembly Line
+</td>
+<td style="text-align:left;">
+Low variety, high volume
+</td>
+<td style="text-align:left;">
+Automotive Assembly, Food Processing
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; font-weight: bold;">
+Hybrid/Cellular Layout
+</td>
+<td style="text-align:left;">
+Group Technology, Cell Layout
+</td>
+<td style="text-align:left;">
+Medium variety, medium volume
+</td>
+<td style="text-align:left;">
+Electronics Manufacturing, Furniture
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 12em; font-weight: bold;">
+Fixed-Position Layout
+</td>
+<td style="text-align:left;">
+Project Layout
+</td>
+<td style="text-align:left;">
+Very large or immobile products
+</td>
+<td style="text-align:left;">
+Shipbuilding, Aircraft, Construction
+</td>
+</tr>
+</tbody>
+</table>
+<div id="visualizing-the-layout-spectrum" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Visualizing the Layout Spectrum<a href="plant-layout-and-facility-design.html#visualizing-the-layout-spectrum" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:layout-spectrum"></span>
+<img src="introduction_files/figure-html/layout-spectrum-1.png" alt="Product Variety vs. Production Volume for Different Layouts" width="768" />
+<p class="caption">
+Figure 4.1: Product Variety vs. Production Volume for Different Layouts
+</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="process-layout-functional-layout" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Process Layout (Functional Layout)<a href="plant-layout-and-facility-design.html#process-layout-functional-layout" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In a <strong>process layout</strong>, similar resources (machines, equipment, workers with similar skills) are grouped together. Work flows between departments based on the specific requirements of each job.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:process-layout-diagram"></span>
+<img src="introduction_files/figure-html/process-layout-diagram-1.png" alt="Example Process Layout - Machine Shop" width="864" />
+<p class="caption">
+Figure 4.2: Example Process Layout - Machine Shop
+</p>
+</div>
+<div id="characteristics-of-process-layouts" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Characteristics of Process Layouts<a href="plant-layout-and-facility-design.html#characteristics-of-process-layouts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:process-characteristics">Table 4.2: </span>Process Layout Characteristics
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Characteristic
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(235, 245, 251, 255) !important;">
+Equipment
+</td>
+<td style="text-align:left;">
+General-purpose machines
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(235, 245, 251, 255) !important;">
+Labor
+</td>
+<td style="text-align:left;">
+Skilled workers required
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(235, 245, 251, 255) !important;">
+Flexibility
+</td>
+<td style="text-align:left;">
+High - can handle variety
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(235, 245, 251, 255) !important;">
+Processing Speed
+</td>
+<td style="text-align:left;">
+Slower due to varied routing
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(235, 245, 251, 255) !important;">
+Material Handling
+</td>
+<td style="text-align:left;">
+Higher costs (complex paths)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(235, 245, 251, 255) !important;">
+Scheduling
+</td>
+<td style="text-align:left;">
+Complex - different routes
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(235, 245, 251, 255) !important;">
+Space Requirements
+</td>
+<td style="text-align:left;">
+Higher - WIP inventory storage
+</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>
+Discussion Question: Can you identify a process layout in your daily life?
+</summary>
+<p><strong>Think about:</strong>
+- A hospital emergency room (patients routed based on their needs)
+- A university campus (students move between buildings for different classes)
+- A grocery store (customers choose their own path)
+- A machine shop (parts routed based on required operations)</p>
+<p><strong>What makes these process layouts?</strong> Similar functions are grouped together, and “products” (patients, students, customers) follow different paths based on their individual needs.</p>
+</details>
+</div>
+<div id="real-world-examples" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Real-World Examples<a href="plant-layout-and-facility-design.html#real-world-examples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/rR4ndSGDXSI"
+    title="Process Layout Example"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+<hr />
+</div>
+</div>
+<div id="product-layout-assembly-line" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Product Layout (Assembly Line)<a href="plant-layout-and-facility-design.html#product-layout-assembly-line" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In a <strong>product layout</strong>, equipment and workstations are arranged in a line according to the sequence of operations needed to produce the product. Every unit follows the same path.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:product-layout-diagram"></span>
+<img src="introduction_files/figure-html/product-layout-diagram-1.png" alt="Product Layout - Assembly Line" width="960" />
+<p class="caption">
+Figure 4.3: Product Layout - Assembly Line
+</p>
+</div>
+<div id="characteristics-of-product-layouts" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Characteristics of Product Layouts<a href="plant-layout-and-facility-design.html#characteristics-of-product-layouts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:product-characteristics">Table 4.3: </span>Product Layout: Advantages vs. Disadvantages
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Advantage
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Disadvantage
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 15em; background-color: rgba(213, 245, 227, 255) !important;">
+High production rate
+</td>
+<td style="text-align:left;width: 15em; background-color: rgba(250, 219, 216, 255) !important;">
+High initial investment
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 15em; background-color: rgba(213, 245, 227, 255) !important;">
+Low unit cost
+</td>
+<td style="text-align:left;width: 15em; background-color: rgba(250, 219, 216, 255) !important;">
+Low flexibility
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 15em; background-color: rgba(213, 245, 227, 255) !important;">
+Low material handling
+</td>
+<td style="text-align:left;width: 15em; background-color: rgba(250, 219, 216, 255) !important;">
+Line stops affect all
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 15em; background-color: rgba(213, 245, 227, 255) !important;">
+Simple scheduling
+</td>
+<td style="text-align:left;width: 15em; background-color: rgba(250, 219, 216, 255) !important;">
+Monotonous work
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 15em; background-color: rgba(213, 245, 227, 255) !important;">
+Less WIP inventory
+</td>
+<td style="text-align:left;width: 15em; background-color: rgba(250, 219, 216, 255) !important;">
+Requires balanced workloads
+</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>
+Quick Quiz: Product Layout
+</summary>
+<p><strong>Question:</strong> A car wash where vehicles move through a series of cleaning stations is an example of which layout type?</p>
+<p><strong>Answer:</strong> Product Layout - all cars follow the same path through the same sequence of operations.</p>
+</details>
+<hr />
+</div>
+</div>
+<div id="hybrid-layout-cellular-manufacturing" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Hybrid Layout (Cellular Manufacturing)<a href="plant-layout-and-facility-design.html#hybrid-layout-cellular-manufacturing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Hybrid layouts</strong> combine the flexibility of process layouts with the efficiency of product layouts. The most common type is the <strong>cellular layout</strong> using Group Technology.</p>
+<div id="group-technology-concept" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Group Technology Concept<a href="plant-layout-and-facility-design.html#group-technology-concept" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Group Technology (GT) identifies parts with similar characteristics and groups them into <strong>part families</strong>. Machines are then arranged into <strong>cells</strong> to process these families.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cellular-layout"></span>
+<img src="introduction_files/figure-html/cellular-layout-1.png" alt="Cellular Layout with Manufacturing Cells" width="960" />
+<p class="caption">
+Figure 4.4: Cellular Layout with Manufacturing Cells
+</p>
+</div>
+<details>
+<summary>
+Discussion Question: Benefits of Cellular Manufacturing
+</summary>
+<p><strong>What are the main benefits of cellular manufacturing over traditional process layouts?</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Reduced material handling</strong> - Parts stay within the cell</li>
+<li><strong>Shorter lead times</strong> - No waiting between departments</li>
+<li><strong>Less WIP inventory</strong> - Smaller batches, faster flow</li>
+<li><strong>Improved quality</strong> - Workers responsible for complete part</li>
+<li><strong>Team accountability</strong> - Cell teams own their output</li>
+</ol>
+</details>
+<hr />
+</div>
+</div>
+<div id="fixed-position-layout" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Fixed-Position Layout<a href="plant-layout-and-facility-design.html#fixed-position-layout" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In a <strong>fixed-position layout</strong>, the product remains stationary while workers, equipment, and materials are brought to it. This is used when the product is too large or heavy to move.</p>
+<div id="examples-of-fixed-position-layouts" class="section level3 hasAnchor" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> Examples of Fixed-Position Layouts<a href="plant-layout-and-facility-design.html#examples-of-fixed-position-layouts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Shipbuilding</strong> - Ships built in dry docks</li>
+<li><strong>Aircraft manufacturing</strong> - Large aircraft assembled in hangars</li>
+<li><strong>Construction</strong> - Buildings, bridges, dams</li>
+<li><strong>Surgery</strong> - Patient remains stationary</li>
+</ul>
+<details>
+<summary>
+Challenge Question: Managing a Fixed-Position Layout
+</summary>
+<p><strong>What are the unique challenges of managing a fixed-position layout?</strong></p>
+<p>Think about:
+- Scheduling deliveries of materials and equipment
+- Coordinating multiple contractors/teams
+- Limited space around the product
+- Weather and environmental factors (outdoor projects)
+- Ensuring safety with many workers in one area</p>
+</details>
+<hr />
+</div>
+</div>
+<div id="designing-process-layouts" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Designing Process Layouts<a href="plant-layout-and-facility-design.html#designing-process-layouts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Designing an effective process layout involves <strong>three main steps</strong>:</p>
+<div id="step-1-gather-information" class="section level3 hasAnchor" number="4.7.1">
+<h3><span class="header-section-number">4.7.1</span> Step 1: Gather Information<a href="plant-layout-and-facility-design.html#step-1-gather-information" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You need to determine:
+- <strong>Space requirements</strong> for each department
+- <strong>Available space</strong> in the facility
+- <strong>Closeness relationships</strong> between departments</p>
+<div id="from-to-matrix-load-matrix" class="section level4 hasAnchor" number="4.7.1.1">
+<h4><span class="header-section-number">4.7.1.1</span> From-To Matrix (Load Matrix)<a href="plant-layout-and-facility-design.html#from-to-matrix-load-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A From-To matrix shows the number of trips or loads between departments:</p>
+<table class="table table-striped table-hover table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:from-to-matrix">Table 4.4: </span>From-To Matrix: Loads per Day Between Departments
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Receiving
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Machining
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Assembly
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Painting
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Shipping
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: rgba(214, 234, 248, 255) !important;">
+Receiving
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+100
+</td>
+<td style="text-align:left;">
+50
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: rgba(214, 234, 248, 255) !important;">
+Machining
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+200
+</td>
+<td style="text-align:left;">
+50
+</td>
+<td style="text-align:left;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: rgba(214, 234, 248, 255) !important;">
+Assembly
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+100
+</td>
+<td style="text-align:left;">
+60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: rgba(214, 234, 248, 255) !important;">
+Painting
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+150
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: rgba(214, 234, 248, 255) !important;">
+Shipping
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="step-2-develop-block-plans" class="section level3 hasAnchor" number="4.7.2">
+<h3><span class="header-section-number">4.7.2</span> Step 2: Develop Block Plans<a href="plant-layout-and-facility-design.html#step-2-develop-block-plans" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the <strong>Load-Distance Model</strong> to evaluate layout alternatives:</p>
+<p><span class="math display">\[\text{Total Cost} = \sum_{i=1}^{n} \sum_{j=1}^{n} L_{ij} \times D_{ij} \times C\]</span></p>
+<p>Where:
+- <span class="math inline">\(L_{ij}\)</span> = Number of loads between departments <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>
+- <span class="math inline">\(D_{ij}\)</span> = Distance between departments <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>
+- <span class="math inline">\(C\)</span> = Cost per unit distance</p>
+</div>
+<div id="interactive-example-comparing-two-layouts" class="section level3 hasAnchor" number="4.7.3">
+<h3><span class="header-section-number">4.7.3</span> Interactive Example: Comparing Two Layouts<a href="plant-layout-and-facility-design.html#interactive-example-comparing-two-layouts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:layout-comparison"></span>
+<img src="introduction_files/figure-html/layout-comparison-1.png" alt="Comparing Two Process Layout Alternatives" width="960" />
+<p class="caption">
+Figure 4.5: Comparing Two Process Layout Alternatives
+</p>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="plant-layout-and-facility-design.html#cb8-1" tabindex="-1"></a><span class="co"># Calculate Load-Distance scores for both layouts</span></span>
+<span id="cb8-2"><a href="plant-layout-and-facility-design.html#cb8-2" tabindex="-1"></a><span class="co"># From-To data: Receiving-&gt;Machining=100, Machining-&gt;Assembly=200,</span></span>
+<span id="cb8-3"><a href="plant-layout-and-facility-design.html#cb8-3" tabindex="-1"></a><span class="co">#               Assembly-&gt;Painting=100, Painting-&gt;Shipping=150</span></span>
+<span id="cb8-4"><a href="plant-layout-and-facility-design.html#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="plant-layout-and-facility-design.html#cb8-5" tabindex="-1"></a><span class="co"># Layout A distances (linear): all adjacent = 1 unit</span></span>
+<span id="cb8-6"><a href="plant-layout-and-facility-design.html#cb8-6" tabindex="-1"></a>layout_A_score <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> <span class="dv">200</span><span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> <span class="dv">100</span><span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> <span class="dv">150</span><span class="sc">*</span><span class="dv">1</span></span>
+<span id="cb8-7"><a href="plant-layout-and-facility-design.html#cb8-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Layout A Total Load-Distance:&quot;</span>, layout_A_score, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Layout A Total Load-Distance: 550</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="plant-layout-and-facility-design.html#cb10-1" tabindex="-1"></a><span class="co"># Layout B distances (compact): most departments closer together</span></span>
+<span id="cb10-2"><a href="plant-layout-and-facility-design.html#cb10-2" tabindex="-1"></a><span class="co"># Receiving to Machining = 1.12 (diagonal)</span></span>
+<span id="cb10-3"><a href="plant-layout-and-facility-design.html#cb10-3" tabindex="-1"></a><span class="co"># Machining to Assembly = 1</span></span>
+<span id="cb10-4"><a href="plant-layout-and-facility-design.html#cb10-4" tabindex="-1"></a><span class="co"># Assembly to Painting = 1.12 (diagonal)</span></span>
+<span id="cb10-5"><a href="plant-layout-and-facility-design.html#cb10-5" tabindex="-1"></a><span class="co"># Painting to Shipping = 1</span></span>
+<span id="cb10-6"><a href="plant-layout-and-facility-design.html#cb10-6" tabindex="-1"></a>layout_B_score <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span><span class="fl">1.12</span> <span class="sc">+</span> <span class="dv">200</span><span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> <span class="dv">100</span><span class="sc">*</span><span class="fl">1.12</span> <span class="sc">+</span> <span class="dv">150</span><span class="sc">*</span><span class="dv">1</span></span>
+<span id="cb10-7"><a href="plant-layout-and-facility-design.html#cb10-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Layout B Total Load-Distance:&quot;</span>, <span class="fu">round</span>(layout_B_score, <span class="dv">1</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Layout B Total Load-Distance: 574</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="plant-layout-and-facility-design.html#cb12-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Layout A is better by:&quot;</span>, <span class="fu">round</span>(layout_B_score <span class="sc">-</span> layout_A_score, <span class="dv">1</span>), <span class="st">&quot;units&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## Layout A is better by: 24 units</code></pre>
+<details>
+<summary>
+Why does the linear layout win in this case?
+</summary>
+<p>In this example, the linear layout (A) wins because the process flow is essentially sequential (Receiving → Machining → Assembly → Painting → Shipping).</p>
+<p>When flow is <strong>sequential</strong>, a <strong>product layout</strong> (linear arrangement) is more efficient. Process layouts are better when there’s <strong>varied routing</strong> between departments.</p>
+</details>
+</div>
+<div id="step-3-develop-detailed-layout" class="section level3 hasAnchor" number="4.7.4">
+<h3><span class="header-section-number">4.7.4</span> Step 3: Develop Detailed Layout<a href="plant-layout-and-facility-design.html#step-3-develop-detailed-layout" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Once the block plan is selected:
+- Determine exact sizes and shapes of departments
+- Plan aisle locations and widths
+- Consider utilities, safety exits, and accessibility
+- Use CAD software or 3D modeling for visualization</p>
+<hr />
+</div>
+</div>
+<div id="designing-product-layouts-line-balancing" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Designing Product Layouts (Line Balancing)<a href="plant-layout-and-facility-design.html#designing-product-layouts-line-balancing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The key challenge in product layout design is <strong>line balancing</strong> - assigning tasks to workstations to minimize idle time while meeting production requirements.</p>
+<div id="line-balancing-steps" class="section level3 hasAnchor" number="4.8.1">
+<h3><span class="header-section-number">4.8.1</span> Line Balancing Steps<a href="plant-layout-and-facility-design.html#line-balancing-steps" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Identify tasks and precedence relationships</strong></li>
+<li><strong>Calculate required cycle time</strong></li>
+<li><strong>Calculate theoretical minimum number of stations</strong></li>
+<li><strong>Assign tasks to stations</strong></li>
+<li><strong>Calculate efficiency</strong></li>
+</ol>
+</div>
+<div id="key-formulas" class="section level3 hasAnchor" number="4.8.2">
+<h3><span class="header-section-number">4.8.2</span> Key Formulas<a href="plant-layout-and-facility-design.html#key-formulas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Cycle Time:</strong>
+<span class="math display">\[C = \frac{\text{Available Production Time}}{\text{Desired Output}}\]</span></p>
+<p><strong>Theoretical Minimum Stations:</strong>
+<span class="math display">\[TM = \frac{\sum t_i}{C}\]</span></p>
+<p><strong>Line Efficiency:</strong>
+<span class="math display">\[\text{Efficiency} = \frac{\sum t_i}{n \times C} \times 100\%\]</span></p>
+<p>Where:
+- <span class="math inline">\(C\)</span> = Cycle time
+- <span class="math inline">\(\sum t_i\)</span> = Total task time
+- <span class="math inline">\(n\)</span> = Number of workstations</p>
+</div>
+<div id="interactive-example-pizza-assembly-line" class="section level3 hasAnchor" number="4.8.3">
+<h3><span class="header-section-number">4.8.3</span> Interactive Example: Pizza Assembly Line<a href="plant-layout-and-facility-design.html#interactive-example-pizza-assembly-line" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:pizza-example">Table 4.5: </span>Pizza Assembly Tasks
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Task
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Description
+</th>
+<th style="text-align:right;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Time (sec)
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Predecessors
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 5em; font-weight: bold;background-color: rgba(254, 249, 231, 255) !important;">
+A
+</td>
+<td style="text-align:left;">
+Roll dough
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; font-weight: bold;background-color: rgba(254, 249, 231, 255) !important;">
+B
+</td>
+<td style="text-align:left;">
+Spread sauce
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; font-weight: bold;background-color: rgba(254, 249, 231, 255) !important;">
+C
+</td>
+<td style="text-align:left;">
+Add cheese
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; font-weight: bold;background-color: rgba(254, 249, 231, 255) !important;">
+D
+</td>
+<td style="text-align:left;">
+Add toppings
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; font-weight: bold;background-color: rgba(254, 249, 231, 255) !important;">
+E
+</td>
+<td style="text-align:left;">
+Season
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+C, D
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 5em; font-weight: bold;background-color: rgba(254, 249, 231, 255) !important;">
+F
+</td>
+<td style="text-align:left;">
+Box pizza
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+E
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pizza-precedence"></span>
+<img src="introduction_files/figure-html/pizza-precedence-1.png" alt="Precedence Diagram for Pizza Assembly" width="864" />
+<p class="caption">
+Figure 4.6: Precedence Diagram for Pizza Assembly
+</p>
+</div>
+</div>
+<div id="line-balancing-calculation" class="section level3 hasAnchor" number="4.8.4">
+<h3><span class="header-section-number">4.8.4</span> Line Balancing Calculation<a href="plant-layout-and-facility-design.html#line-balancing-calculation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="plant-layout-and-facility-design.html#cb14-1" tabindex="-1"></a><span class="co"># Given data</span></span>
+<span id="cb14-2"><a href="plant-layout-and-facility-design.html#cb14-2" tabindex="-1"></a>total_task_time <span class="ot">&lt;-</span> <span class="dv">40</span> <span class="sc">+</span> <span class="dv">25</span> <span class="sc">+</span> <span class="dv">20</span> <span class="sc">+</span> <span class="dv">35</span> <span class="sc">+</span> <span class="dv">15</span> <span class="sc">+</span> <span class="dv">30</span>  <span class="co"># seconds</span></span>
+<span id="cb14-3"><a href="plant-layout-and-facility-design.html#cb14-3" tabindex="-1"></a>desired_output <span class="ot">&lt;-</span> <span class="dv">60</span>  <span class="co"># pizzas per hour</span></span>
+<span id="cb14-4"><a href="plant-layout-and-facility-design.html#cb14-4" tabindex="-1"></a>available_time <span class="ot">&lt;-</span> <span class="dv">3600</span>  <span class="co"># seconds per hour</span></span>
+<span id="cb14-5"><a href="plant-layout-and-facility-design.html#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="plant-layout-and-facility-design.html#cb14-6" tabindex="-1"></a><span class="co"># Step 1: Calculate Cycle Time</span></span>
+<span id="cb14-7"><a href="plant-layout-and-facility-design.html#cb14-7" tabindex="-1"></a>cycle_time <span class="ot">&lt;-</span> available_time <span class="sc">/</span> desired_output</span>
+<span id="cb14-8"><a href="plant-layout-and-facility-design.html#cb14-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Cycle Time:&quot;</span>, cycle_time, <span class="st">&quot;seconds per pizza</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Cycle Time: 60 seconds per pizza</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="plant-layout-and-facility-design.html#cb16-1" tabindex="-1"></a><span class="co"># Step 2: Calculate Theoretical Minimum Stations</span></span>
+<span id="cb16-2"><a href="plant-layout-and-facility-design.html#cb16-2" tabindex="-1"></a>TM <span class="ot">&lt;-</span> total_task_time <span class="sc">/</span> cycle_time</span>
+<span id="cb16-3"><a href="plant-layout-and-facility-design.html#cb16-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Theoretical Minimum Stations:&quot;</span>, TM, <span class="st">&quot;=&quot;</span>, <span class="fu">ceiling</span>(TM), <span class="st">&quot;stations</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Theoretical Minimum Stations: 2.75 = 3 stations</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="plant-layout-and-facility-design.html#cb18-1" tabindex="-1"></a><span class="co"># Step 3: Assign tasks to stations (one possible solution)</span></span>
+<span id="cb18-2"><a href="plant-layout-and-facility-design.html#cb18-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">--- Workstation Assignments ---</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## --- Workstation Assignments ---</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="plant-layout-and-facility-design.html#cb20-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Station 1: A (40s) + B (25s) = 65s &gt; 60s ... EXCEEDS!</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Station 1: A (40s) + B (25s) = 65s &gt; 60s ... EXCEEDS!</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="plant-layout-and-facility-design.html#cb22-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Let&#39;s try again:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Let&#39;s try again:</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="plant-layout-and-facility-design.html#cb24-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Station 1: A (40s) = 40s [Idle: 20s]</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Station 1: A (40s) = 40s [Idle: 20s]</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="plant-layout-and-facility-design.html#cb26-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Station 2: B (25s) + D (35s) = 60s [Idle: 0s]</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Station 2: B (25s) + D (35s) = 60s [Idle: 0s]</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="plant-layout-and-facility-design.html#cb28-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Station 3: C (20s) + E (15s) + F (30s) = 65s &gt; 60s... EXCEEDS!</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Station 3: C (20s) + E (15s) + F (30s) = 65s &gt; 60s... EXCEEDS!</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="plant-layout-and-facility-design.html#cb30-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Revised:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Revised:</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="plant-layout-and-facility-design.html#cb32-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Station 3: C (20s) + E (15s) = 35s [Idle: 25s]</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Station 3: C (20s) + E (15s) = 35s [Idle: 25s]</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="plant-layout-and-facility-design.html#cb34-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Station 4: F (30s) = 30s [Idle: 30s]</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Station 4: F (30s) = 30s [Idle: 30s]</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="plant-layout-and-facility-design.html#cb36-1" tabindex="-1"></a><span class="co"># With 4 stations</span></span>
+<span id="cb36-2"><a href="plant-layout-and-facility-design.html#cb36-2" tabindex="-1"></a>n_stations <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb36-3"><a href="plant-layout-and-facility-design.html#cb36-3" tabindex="-1"></a>efficiency <span class="ot">&lt;-</span> (total_task_time <span class="sc">/</span> (n_stations <span class="sc">*</span> cycle_time)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb36-4"><a href="plant-layout-and-facility-design.html#cb36-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">--- Results ---</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## --- Results ---</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="plant-layout-and-facility-design.html#cb38-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Number of Stations:&quot;</span>, n_stations, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Number of Stations: 4</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="plant-layout-and-facility-design.html#cb40-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Line Efficiency:&quot;</span>, <span class="fu">round</span>(efficiency, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Line Efficiency: 68.8 %</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="plant-layout-and-facility-design.html#cb42-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Balance Delay (Idle Time):&quot;</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">-</span> efficiency, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Balance Delay (Idle Time): 31.2 %</code></pre>
+<details>
+<summary>
+Try It Yourself: Can you find a better balance?
+</summary>
+<p><strong>Challenge:</strong> Can you assign tasks to only 3 stations while respecting the precedence constraints?</p>
+<p><strong>Hint:</strong> Consider these assignments:
+- Station 1: A (40s) + ?
+- Station 2: B (25s) + ? + ?
+- Station 3: ? + ?</p>
+<p>Remember: Total time per station cannot exceed 60 seconds!</p>
+<p><strong>Solution:</strong> It’s actually possible with careful planning:
+- Station 1: A (40s) = 40s
+- Station 2: B (25s) + C (20s) + E (15s) = 60s (but E needs C AND D complete!)</p>
+<p>So 3 stations is NOT feasible due to precedence constraints. The minimum is 4 stations for this problem.</p>
+</details>
+<hr />
+</div>
+</div>
+<div id="warehouse-layout-design" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> Warehouse Layout Design<a href="plant-layout-and-facility-design.html#warehouse-layout-design" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Warehouse layouts are a special case of process layouts focused on <strong>minimizing material handling</strong>.</p>
+<div id="key-principles" class="section level3 hasAnchor" number="4.9.1">
+<h3><span class="header-section-number">4.9.1</span> Key Principles<a href="plant-layout-and-facility-design.html#key-principles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Place high-volume items near the dock</strong></li>
+<li><strong>Group items that are often picked together</strong></li>
+<li><strong>Use ABC analysis</strong> for storage assignment:
+<ul>
+<li><strong>A items</strong> (20% of SKUs, 80% of picks): Prime locations</li>
+<li><strong>B items</strong> (30% of SKUs, 15% of picks): Secondary locations</li>
+<li><strong>C items</strong> (50% of SKUs, 5% of picks): Remote locations</li>
+</ul></li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:warehouse-viz"></span>
+<img src="introduction_files/figure-html/warehouse-viz-1.png" alt="Warehouse Layout: ABC Storage Strategy" width="864" />
+<p class="caption">
+Figure 4.7: Warehouse Layout: ABC Storage Strategy
+</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="office-layout-design" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> Office Layout Design<a href="plant-layout-and-facility-design.html#office-layout-design" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Office layouts balance <strong>communication needs</strong> with <strong>privacy requirements</strong>.</p>
+<div id="two-main-approaches" class="section level3 hasAnchor" number="4.10.1">
+<h3><span class="header-section-number">4.10.1</span> Two Main Approaches<a href="plant-layout-and-facility-design.html#two-main-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:office-comparison">Table 4.6: </span>Office Layout Comparison
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Aspect
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Open Plan
+</th>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(68, 114, 196, 255) !important;">
+Traditional/Closed
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: rgba(214, 234, 248, 255) !important;">
+Space
+</td>
+<td style="text-align:left;">
+Shared workspaces
+</td>
+<td style="text-align:left;">
+Private offices
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: rgba(214, 234, 248, 255) !important;">
+Walls
+</td>
+<td style="text-align:left;">
+Partitions/dividers
+</td>
+<td style="text-align:left;">
+Permanent walls
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: rgba(214, 234, 248, 255) !important;">
+Flexibility
+</td>
+<td style="text-align:left;">
+High - easy to reconfigure
+</td>
+<td style="text-align:left;">
+Low - expensive to change
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: rgba(214, 234, 248, 255) !important;">
+Communication
+</td>
+<td style="text-align:left;">
+Excellent
+</td>
+<td style="text-align:left;">
+Limited
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: rgba(214, 234, 248, 255) !important;">
+Privacy
+</td>
+<td style="text-align:left;">
+Low
+</td>
+<td style="text-align:left;">
+High
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: rgba(214, 234, 248, 255) !important;">
+Cost
+</td>
+<td style="text-align:left;">
+Lower
+</td>
+<td style="text-align:left;">
+Higher
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="office-ergonomics-checklist" class="section level3 hasAnchor" number="4.10.2">
+<h3><span class="header-section-number">4.10.2</span> Office Ergonomics Checklist<a href="plant-layout-and-facility-design.html#office-ergonomics-checklist" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<details>
+<summary>
+Click to expand: Office Ergonomics Best Practices
+</summary>
+<p><strong>Posture:</strong>
+- Support the small of the back
+- Keep shoulders relaxed
+- Maintain neutral wrist position
+- Feet flat on floor or footrest</p>
+<p><strong>Lighting:</strong>
+- Position monitor to reduce glare
+- Adjust brightness for screen vs. paper work
+- Use task lighting when needed</p>
+<p><strong>Workstation:</strong>
+- Monitor at arm’s length
+- Top of screen at or below eye level
+- Keyboard and mouse at elbow height</p>
+<p><strong>Work Habits:</strong>
+- Take breaks every 30-60 minutes
+- Vary tasks to prevent repetitive strain
+- Use keyboard shortcuts to reduce mouse use</p>
+</details>
+</div>
+<div id="the-future-of-office-design" class="section level3 hasAnchor" number="4.10.3">
+<h3><span class="header-section-number">4.10.3</span> The Future of Office Design<a href="plant-layout-and-facility-design.html#the-future-of-office-design" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/0X_tKMhxNXA"
+    title="Office of Today, Workplace of Tomorrow"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+<hr />
+</div>
+</div>
+<div id="summary-choosing-the-right-layout" class="section level2 hasAnchor" number="4.11">
+<h2><span class="header-section-number">4.11</span> Summary: Choosing the Right Layout<a href="plant-layout-and-facility-design.html#summary-choosing-the-right-layout" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:decision-flowchart"></span>
+<img src="introduction_files/figure-html/decision-flowchart-1.png" alt="Layout Selection Decision Guide" width="960" />
+<p class="caption">
+Figure 4.8: Layout Selection Decision Guide
+</p>
+</div>
+<div id="key-takeaways" class="section level3 hasAnchor" number="4.11.1">
+<h3><span class="header-section-number">4.11.1</span> Key Takeaways<a href="plant-layout-and-facility-design.html#key-takeaways" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Process layouts</strong> offer flexibility for varied products but have higher material handling costs</li>
+<li><strong>Product layouts</strong> are efficient for high-volume, standardized products</li>
+<li><strong>Cellular layouts</strong> provide a middle ground with benefits of both</li>
+<li><strong>Fixed-position layouts</strong> are necessary when products cannot be moved</li>
+<li><strong>Line balancing</strong> is critical for efficient product layouts</li>
+<li><strong>Warehouse layouts</strong> should minimize travel distance for high-frequency items</li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="practice-problems" class="section level2 hasAnchor" number="4.12">
+<h2><span class="header-section-number">4.12</span> Practice Problems<a href="plant-layout-and-facility-design.html#practice-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details>
+<summary>
+Problem 1: Layout Selection
+</summary>
+<p><strong>Scenario:</strong> A company manufactures custom kitchen cabinets. Each order is unique, with different dimensions, materials, and finishes. Production volume is about 50 units per month.</p>
+<p><strong>Question:</strong> Which layout type would you recommend and why?</p>
+<p><strong>Answer:</strong> A <strong>process layout</strong> would be most appropriate because:
+- High product variety (custom orders)
+- Low production volume
+- Different operations needed for each order
+- Flexibility is more important than efficiency</p>
+</details>
+<details>
+<summary>
+Problem 2: Line Balancing
+</summary>
+<p><strong>Given:</strong>
+- Total task time: 240 seconds
+- Desired output: 30 units per hour
+- Available time: 3600 seconds per hour</p>
+<p><strong>Calculate:</strong>
+1. Cycle time
+2. Theoretical minimum number of stations
+3. If you use 3 stations, what is the efficiency?</p>
+<p><strong>Solution:</strong>
+1. Cycle time = 3600 / 30 = <strong>120 seconds</strong>
+2. TM = 240 / 120 = <strong>2 stations</strong>
+3. Efficiency = (240 / (3 × 120)) × 100 = <strong>66.7%</strong></p>
+</details>
+<details>
+<summary>
+Problem 3: Warehouse Layout
+</summary>
+<p><strong>Scenario:</strong> A warehouse has the following items:
+- Item X: 500 picks/day
+- Item Y: 100 picks/day
+- Item Z: 50 picks/day</p>
+<p><strong>Question:</strong> How should these items be positioned relative to the shipping dock?</p>
+<p><strong>Answer:</strong> Using ABC analysis:
+- Item X (high frequency): <strong>Closest to dock</strong> (A zone)
+- Item Y (medium frequency): <strong>Middle distance</strong> (B zone)
+- Item Z (low frequency): <strong>Farthest from dock</strong> (C zone)</p>
+</details>
+<hr />
+</div>
+<div id="references" class="section level2 hasAnchor" number="4.13">
+<h2><span class="header-section-number">4.13</span> References<a href="plant-layout-and-facility-design.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Reid, R. D., &amp; Sanders, N. R. (2019). <em>Operations Management: An Integrated Approach</em> (7th ed.). Wiley. Chapter 10.</li>
+<li>Groover, M. P. (2020). <em>Automation, Production Systems, and Computer-Integrated Manufacturing</em> (5th ed.). Pearson.</li>
+</ul>
+
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div class="csl-entry">
+Adel Nabil. 2025. <span>“Cycle Time Vs. Efficiency.”</span> 2025. <a href="https://www.linkedin.com/posts/adel-nabil-333b7120_cycle-time-vs-efficiency-ever-wondered-activity-7260592283681505281-1yRF%0A">https://www.linkedin.com/posts/adel-nabil-333b7120_cycle-time-vs-efficiency-ever-wondered-activity-7260592283681505281-1yRF
+</a>.
+</div>
+<div class="csl-entry">
+Afzal, Sayeed. 2018. <span>“Different Types of Manufacturing Processes: All in One Guide.”</span> LinkedIn Pulse. 2018. <a href="https://www.linkedin.com/pulse/different-types-manufacturing-processes-all-one-guide-sayeed-afzal">https://www.linkedin.com/pulse/different-types-manufacturing-processes-all-one-guide-sayeed-afzal</a>.
+</div>
+<div class="csl-entry">
+Groover, Mikell P. 2016. <em>Automation, Production Systems, and Computer-Integrated Manufacturing</em>. Pearson.
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="integrated-manufacturing-systems.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/Prof-MV/ENGR-3027/blob/master/04-Plant-Layout.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["introduction.pdf", "introduction.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
