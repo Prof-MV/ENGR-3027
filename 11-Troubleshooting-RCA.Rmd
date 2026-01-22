@@ -1478,7 +1478,7 @@ kable(tool_guide,
 
 ### 8D Problem Solving
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rJWPzlNi3Cg" title="8D Problem Solving Methodology" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-9MUBLT0DjI" title="8D Problem Solving Methodology" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 

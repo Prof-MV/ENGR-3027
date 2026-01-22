@@ -1285,11 +1285,11 @@ kable(audit_types, col.names = c("Audit Type", "Purpose", "Focus Areas", "Durati
 
 ### ISO 9001:2015 Overview
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/G3-czT27qbQ" title="ISO 9001:2015 Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/O5T4H8K_rwQ" title="ISO 9001:2015 Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Internal Auditing Best Practices
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uOcQSvYsLzY" title="Internal Auditing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/deRqslBeMrE" title="Internal Auditing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 

@@ -385,7 +385,7 @@ Die casting is used for producing metal parts where high precision is required. 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/frdBP_zSGj0"
+    src="https://www.youtube.com/embed/0oibUY8KUQM"
     title="Die Casting Process"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -646,7 +646,7 @@ Forging uses compressive forces from hammers or presses to shape heated metal. F
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/pWQCDh_Wu6Y"
+    src="https://www.youtube.com/embed/o4vQJnPwgiA"
     title="Forging Process"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1760,7 +1760,7 @@ P&IDs are the detailed "roadmap" of the process, showing all equipment, piping, 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/gY-z9KdqK5Y"
+    src="https://www.youtube.com/embed/j4EOTerfyTY"
     title="How to Read P&IDs"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1980,7 +1980,7 @@ cat("\nOpportunity: Combine 4 screws into snap-fit design\n")
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/NMkEQvf9Fhg"
+    src="https://www.youtube.com/embed/6AqtX8oCpKI&t"
     title="HAZOP Study Overview"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1990,6 +1990,20 @@ cat("\nOpportunity: Combine 4 screws into snap-fit design\n")
 </div>
 ```
 
+
+```{=html}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/ukn0RRt0ReA&list=PLeTiXOrLeXhI5IZKv3GeOUMOYpz5mG36S"
+    title="HAZOP Study Overview"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+```
 ### HAZOP Methodology
 
 ```{r hazop-keywords, echo=FALSE}
@@ -3741,7 +3755,7 @@ process_chars %>%
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/rR4ndSGDXSI"
+    src="https://www.youtube.com/embed/DrO5sS51Yk8&t"
     title="Process Layout Example"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -6042,7 +6056,7 @@ ggplot(pdca) +
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/rlSwuxKDJkc"
+    src="https://www.youtube.com/embed/GQSq54OcgCA"
     title="Value Stream Mapping"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -7006,7 +7020,7 @@ pfl_limits %>%
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/V8f4yXDrVJE"
+    src="https://www.youtube.com/embed/u48fm391FGk"
     title="Collaborative Robot Safety Explained"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -7756,7 +7770,7 @@ ggplot(benefits, aes(x = reorder(category, improvement), y = improvement, fill =
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/pKJi-5wjEoI"
+    src="https://www.youtube.com/embed/dloyfUXjJzs"
     title="Introduction to Workplace Ergonomics"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -8250,7 +8264,7 @@ ggplot() +
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/aNZqB30gPfE"
+    src="https://www.youtube.com/embed/BhlTumeGKpw&t"
     title="Safe Manual Handling and Lifting Techniques"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -8926,7 +8940,7 @@ ggplot(comparison_long, aes(x = metric, y = value, fill = method)) +
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
   <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/N4p4NsA96Zg"
+    src="https://www.youtube.com/embed/yt9LY28qGwU"
     title="AI Ergonomics Assessment - TuMeke Demo"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -15487,7 +15501,7 @@ kable(tool_guide,
 
 ### 8D Problem Solving
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rJWPzlNi3Cg" title="8D Problem Solving Methodology" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-9MUBLT0DjI" title="8D Problem Solving Methodology" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 
@@ -17119,11 +17133,11 @@ kable(head(template, 12),
 
 ### Understanding Gauge R&R
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TTMq85fPKSA" title="Gauge R&R Explained" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CkLEmiKFnTw" title="Gauge R&R Explained" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### MSA in Practice
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5FWCqXcJqeA" title="Measurement System Analysis" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N1mK_6Hxk48" title="Measurement System Analysis" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 
@@ -18968,11 +18982,11 @@ ggplot(vib_data, aes(x = Day, y = Vibration)) +
 
 ### Introduction to PLCs
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/O_ZrTGGFcKA" title="Introduction to PLCs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uOtdWHMKhnw&t" title="Introduction to PLCs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Industrial Networks Explained
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6zU0lVGD5QQ" title="Industrial Networks" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tAqtHsiJGg8&list=PLt50BEIirCOMY8qrcGBdoJIAUHWXfJM6H" title="Industrial Networks" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 
@@ -20594,11 +20608,11 @@ kable(audit_types, col.names = c("Audit Type", "Purpose", "Focus Areas", "Durati
 
 ### ISO 9001:2015 Overview
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/G3-czT27qbQ" title="ISO 9001:2015 Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/O5T4H8K_rwQ" title="ISO 9001:2015 Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Internal Auditing Best Practices
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uOcQSvYsLzY" title="Internal Auditing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/deRqslBeMrE" title="Internal Auditing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 
@@ -22235,11 +22249,11 @@ kable(concepts, caption = "Key Robot Programming Concepts") %>%
 
 ### Introduction to Industrial Robots
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DvS8UHD-0U4" title="Industrial Robots Introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2O7yj9g_oRQ" title="Industrial Robots Introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Collaborative Robots Explained
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/sN-GRQM2OJg" title="Collaborative Robots" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KIw3iQKC6BE" title="Collaborative Robots" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 

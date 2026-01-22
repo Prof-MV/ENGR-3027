@@ -1205,11 +1205,11 @@ kable(concepts, caption = "Key Robot Programming Concepts") %>%
 
 ### Introduction to Industrial Robots
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DvS8UHD-0U4" title="Industrial Robots Introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2O7yj9g_oRQ" title="Industrial Robots Introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Collaborative Robots Explained
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/sN-GRQM2OJg" title="Collaborative Robots" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KIw3iQKC6BE" title="Collaborative Robots" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 

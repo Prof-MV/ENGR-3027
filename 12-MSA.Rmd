@@ -1322,11 +1322,11 @@ kable(head(template, 12),
 
 ### Understanding Gauge R&R
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TTMq85fPKSA" title="Gauge R&R Explained" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CkLEmiKFnTw" title="Gauge R&R Explained" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### MSA in Practice
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5FWCqXcJqeA" title="Measurement System Analysis" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N1mK_6Hxk48" title="Measurement System Analysis" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 

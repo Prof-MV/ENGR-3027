@@ -1457,11 +1457,11 @@ ggplot(vib_data, aes(x = Day, y = Vibration)) +
 
 ### Introduction to PLCs
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/O_ZrTGGFcKA" title="Introduction to PLCs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uOtdWHMKhnw&t" title="Introduction to PLCs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Industrial Networks Explained
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6zU0lVGD5QQ" title="Industrial Networks" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tAqtHsiJGg8&list=PLt50BEIirCOMY8qrcGBdoJIAUHWXfJM6H" title="Industrial Networks" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 
