@@ -705,7 +705,7 @@ Only a deliberate, controlled **middle hold** allows the robot to move. This is 
 
 **Collaborative robots (cobots)** represent a shift from "separation" to "collaboration." They rely on sophisticated internal sensors rather than external cages, allowing humans and robots to work in the same space.
 
-```{r cobot-comparison, echo=FALSE, fig.align="center", fig.cap="Traditional Robot vs. Collaborative Robot", fig.width=10, fig.height=6}
+```{r cobot-comparison-guarding, echo=FALSE, fig.align="center", fig.cap="Traditional Robot vs. Collaborative Robot", fig.width=10, fig.height=6}
 ggplot() +
   # Traditional Robot
   annotate("rect", xmin = 0, xmax = 4, ymin = 0, ymax = 5,
