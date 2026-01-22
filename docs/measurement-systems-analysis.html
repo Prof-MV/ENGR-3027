@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 12 Measurement Systems Analysis | ENGR-3027 Process Engineering" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:image" content="https://prof-mv.github.io/ENGR-3027/images/Gemini_Generated_Image_dleggdleggdleggd.png" />
   <meta property="og:description" content="Lecture notes accompanying the course." />
   <meta name="github-repo" content="Prof-MV/ENGR-3027" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 12 Measurement Systems Analysis | ENGR-3027 Process Engineering" />
   
   <meta name="twitter:description" content="Lecture notes accompanying the course." />
-  
+  <meta name="twitter:image" content="https://prof-mv.github.io/ENGR-3027/images/Gemini_Generated_Image_dleggdleggdleggd.png" />
 
 <meta name="author" content="Martin Volkening" />
 
@@ -1243,30 +1243,22 @@ Loss of customer trust and business
 <div id="accuracy-vs.-precision" class="section level3 hasAnchor" number="12.3.2">
 <h3><span class="header-section-number">12.3.2</span> Accuracy vs. Precision<a href="measurement-systems-analysis.html#accuracy-vs.-precision" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>These are often confused but are fundamentally different concepts:</p>
-<pre><code>## Warning in geom_point(aes(x = 0, y = 0), color = &quot;red&quot;, size = 4, shape = 3, : All aesthetics have length 1,
-## but the data has 120 rows.
-## ℹ Please consider using
-##   `annotate()` or provide
-##   this layer with data
-##   containing a single row.</code></pre>
-<pre><code>## Warning in geom_circle(aes(x0 = 0, y0 = 0, r = 0.5), inherit.aes = FALSE, : All aesthetics have length 1,
-## but the data has 120 rows.
-## ℹ Please consider using
-##   `annotate()` or provide
-##   this layer with data
-##   containing a single row.</code></pre>
-<pre><code>## Warning in geom_circle(aes(x0 = 0, y0 = 0, r = 1), inherit.aes = FALSE, : All aesthetics have length 1,
-## but the data has 120 rows.
-## ℹ Please consider using
-##   `annotate()` or provide
-##   this layer with data
-##   containing a single row.</code></pre>
-<pre><code>## Warning in geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), inherit.aes = FALSE, : All aesthetics have length 1,
-## but the data has 120 rows.
-## ℹ Please consider using
-##   `annotate()` or provide
-##   this layer with data
-##   containing a single row.</code></pre>
+<pre><code>## Warning in geom_point(aes(x = 0, y = 0), color = &quot;red&quot;, size = 4, shape = 3, : All aesthetics have length 1, but the data has 120
+## rows.
+## ℹ Please consider using `annotate()` or provide
+##   this layer with data containing a single row.</code></pre>
+<pre><code>## Warning in geom_circle(aes(x0 = 0, y0 = 0, r = 0.5), inherit.aes = FALSE, : All aesthetics have length 1, but the data has 120
+## rows.
+## ℹ Please consider using `annotate()` or provide
+##   this layer with data containing a single row.</code></pre>
+<pre><code>## Warning in geom_circle(aes(x0 = 0, y0 = 0, r = 1), inherit.aes = FALSE, : All aesthetics have length 1, but the data has 120
+## rows.
+## ℹ Please consider using `annotate()` or provide
+##   this layer with data containing a single row.</code></pre>
+<pre><code>## Warning in geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), inherit.aes = FALSE, : All aesthetics have length 1, but the data has 120
+## rows.
+## ℹ Please consider using `annotate()` or provide
+##   this layer with data containing a single row.</code></pre>
 <p><img src="introduction_files/figure-html/accuracy-precision-1.png" alt="" width="1152" /></p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
@@ -1370,8 +1362,7 @@ Standard deviation of repeated measurements
 <div id="linearity" class="section level3 hasAnchor" number="12.4.2">
 <h3><span class="header-section-number">12.4.2</span> Linearity<a href="measurement-systems-analysis.html#linearity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Linearity</strong> measures whether bias changes across the measurement range. A gauge might be accurate at one end of its range but biased at the other.</p>
-<pre><code>## `geom_smooth()` using formula
-## = &#39;y ~ x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="introduction_files/figure-html/linearity-study-1.png" alt="" width="1056" /></p>
 <div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="measurement-systems-analysis.html#cb515-1" tabindex="-1"></a><span class="co"># Linearity calculation</span></span>
 <span id="cb515-2"><a href="measurement-systems-analysis.html#cb515-2" tabindex="-1"></a>reference <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">40</span>, <span class="dv">55</span>, <span class="dv">70</span>)</span>
@@ -1401,8 +1392,7 @@ Standard deviation of repeated measurements
 <div id="stability" class="section level3 hasAnchor" number="12.4.3">
 <h3><span class="header-section-number">12.4.3</span> Stability<a href="measurement-systems-analysis.html#stability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Stability</strong> (also called drift) measures whether the measurement system’s accuracy changes over time.</p>
-<pre><code>## `geom_smooth()` using formula
-## = &#39;y ~ x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="introduction_files/figure-html/stability-study-1.png" alt="" width="1056" /></p>
 </div>
 <div id="stability-control-chart" class="section level3 hasAnchor" number="12.4.4">

@@ -8,6 +8,7 @@ library(knitr)
 library(kableExtra)
 library(ggplot2)
 library(tidyr)
+source("R/helpers.R")
 ```
 
 ## Learning Objectives
@@ -68,18 +69,8 @@ No single process is optimal for all situations!
 
 A good video summarizing 6 of the 7 manufacturing processes is linked below (Coating/Plating is not covered):
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/Um_g8sQ_p3Y"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r video-manufacturing-overview, echo=FALSE, results='asis'}
+embed_youtube("Um_g8sQ_p3Y", "Manufacturing Processes Overview")
 ```
 
 ------------------------------------------------------------------------
@@ -220,18 +211,8 @@ For prototypes and low-volume production (< 500 parts), sand casting is often th
 
 Die casting is used for producing metal parts where high precision is required. Molten metal is forced under high pressure into reusable metal dies, enabling high-volume production.
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/0oibUY8KUQM"
-    title="Die Casting Process"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r video-die-casting, echo=FALSE, results='asis'}
+embed_youtube("0oibUY8KUQM", "Die Casting Process")
 ```
 
 **Process:**
@@ -252,18 +233,8 @@ Die casting is used for producing metal parts where high precision is required. 
 
 Investment casting produces complex, precision parts by creating a wax pattern that is "invested" (surrounded) with ceramic slurry, then melted out to leave a mold cavity.
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/QtxVdC7pBQM"
-    title="Investment Casting Process"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r video-investment-casting, echo=FALSE, results='asis'}
+embed_youtube("QtxVdC7pBQM", "Investment Casting Process")
 ```
 
 **Advantages:** Excellent surface finish, tight tolerances (±0.1%), complex geometries, any castable metal
@@ -339,18 +310,8 @@ ggplot(molding_data, aes(x = reorder(Process, -Typical), y = Typical)) +
 
 Injection molding is the most common process for manufacturing plastic parts. Plastic pellets are melted and injected under high pressure into a mold cavity.
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/RMjtmsr3CqA"
-    title="Injection Molding Process"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r video-injection-molding, echo=FALSE, results='asis'}
+embed_youtube("RMjtmsr3CqA", "Injection Molding Process")
 ```
 
 **Process Cycle:**
@@ -481,18 +442,8 @@ ggplot(force_data, aes(x = x, y = 1)) +
 
 Forging uses compressive forces from hammers or presses to shape heated metal. Forged parts have superior strength due to aligned grain structure.
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/o4vQJnPwgiA"
-    title="Forging Process"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r video-forging, echo=FALSE, results='asis'}
+embed_youtube("o4vQJnPwgiA", "Forging Process")
 ```
 
 **Types of Forging:**
@@ -779,19 +730,10 @@ ggplot(am_long, aes(x = Metric, y = Score, fill = Process)) +
   )
 ```
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/Vx0Z6LplaMU"
-    title="How 3D Printing Works"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r video-3d-printing, echo=FALSE, results='asis'}
+  embed_youtube("Vx0Z6LplaMU", "How 3D Printing Works")
 ```
+
 
 ### FDM (Fused Deposition Modeling)
 

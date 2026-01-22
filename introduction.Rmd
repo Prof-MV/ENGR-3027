@@ -6,12 +6,17 @@ site: bookdown::bookdown_site
 documentclass: book
 bibliography: [references.bib]
 url: https://prof-mv.github.io/ENGR-3027/
-# cover-image: path to the social sharing image like images/cover.jpg
+cover-image: "images/Gemini_Generated_Image_dleggdleggdleggd.png"
 description: |
   Lecture notes accompanying the course.
 link-citations: yes
 github-repo: Prof-MV/ENGR-3027
+always_allow_html: true
 ---
+
+```{r setup-index, include=FALSE}
+source("R/helpers.R")
+```
 
 # Introduction {-}
 
@@ -38,16 +43,22 @@ Why are we studying this?
     * The fourth industrial revolution describes the current era of digitalization, automation, and advanced manufacturing technology. It's characterized by the convergence of emerging technologies, such as robotics, the Internet of Things (IoT), and 3D printing.
     
 Check out these videos:
-    
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kpW9JcWxKq0" frameborder="0" allowfullscreen></iframe>
-    
-and 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/okXk4Bnz2Lc" frameborder="0" allowfullscreen></iframe>
-    
-What is a Fifth Industrial Revolution going to look like? 
+```{r video-industrial-rev-1, echo=FALSE, results='asis'}
+embed_youtube("kpW9JcWxKq0", "The Four Industrial Revolutions")
+```
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/sGI2FFm_8tw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+and
+
+```{r video-industrial-rev-2, echo=FALSE, results='asis'}
+embed_youtube("okXk4Bnz2Lc", "Industry 4.0 Explained")
+```
+
+What is a Fifth Industrial Revolution going to look like?
+
+```{r video-industrial-rev-5, echo=FALSE, results='asis'}
+embed_youtube("sGI2FFm_8tw", "The Fifth Industrial Revolution")
+```
 
 
 Further Reading
@@ -169,6 +180,7 @@ library(knitr)
 library(kableExtra)
 library(ggplot2)
 library(tidyr)
+source("R/helpers.R")
 ```
 
 ## Learning Objectives
@@ -229,18 +241,8 @@ No single process is optimal for all situations!
 
 A good video summarizing 6 of the 7 manufacturing processes is linked below (Coating/Plating is not covered):
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/Um_g8sQ_p3Y"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r video-manufacturing-overview, echo=FALSE, results='asis'}
+embed_youtube("Um_g8sQ_p3Y", "Manufacturing Processes Overview")
 ```
 
 ------------------------------------------------------------------------
@@ -381,18 +383,8 @@ For prototypes and low-volume production (< 500 parts), sand casting is often th
 
 Die casting is used for producing metal parts where high precision is required. Molten metal is forced under high pressure into reusable metal dies, enabling high-volume production.
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/0oibUY8KUQM"
-    title="Die Casting Process"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r video-die-casting, echo=FALSE, results='asis'}
+embed_youtube("0oibUY8KUQM", "Die Casting Process")
 ```
 
 **Process:**
@@ -413,18 +405,8 @@ Die casting is used for producing metal parts where high precision is required. 
 
 Investment casting produces complex, precision parts by creating a wax pattern that is "invested" (surrounded) with ceramic slurry, then melted out to leave a mold cavity.
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/QtxVdC7pBQM"
-    title="Investment Casting Process"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r video-investment-casting, echo=FALSE, results='asis'}
+embed_youtube("QtxVdC7pBQM", "Investment Casting Process")
 ```
 
 **Advantages:** Excellent surface finish, tight tolerances (±0.1%), complex geometries, any castable metal
@@ -500,18 +482,8 @@ ggplot(molding_data, aes(x = reorder(Process, -Typical), y = Typical)) +
 
 Injection molding is the most common process for manufacturing plastic parts. Plastic pellets are melted and injected under high pressure into a mold cavity.
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/RMjtmsr3CqA"
-    title="Injection Molding Process"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r video-injection-molding, echo=FALSE, results='asis'}
+embed_youtube("RMjtmsr3CqA", "Injection Molding Process")
 ```
 
 **Process Cycle:**
@@ -642,18 +614,8 @@ ggplot(force_data, aes(x = x, y = 1)) +
 
 Forging uses compressive forces from hammers or presses to shape heated metal. Forged parts have superior strength due to aligned grain structure.
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/o4vQJnPwgiA"
-    title="Forging Process"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r video-forging, echo=FALSE, results='asis'}
+embed_youtube("o4vQJnPwgiA", "Forging Process")
 ```
 
 **Types of Forging:**
@@ -940,19 +902,10 @@ ggplot(am_long, aes(x = Metric, y = Score, fill = Process)) +
   )
 ```
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/Vx0Z6LplaMU"
-    title="How 3D Printing Works"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r video-3d-printing, echo=FALSE, results='asis'}
+  embed_youtube("Vx0Z6LplaMU", "How 3D Printing Works")
 ```
+
 
 ### FDM (Fused Deposition Modeling)
 
@@ -1549,18 +1502,8 @@ The initial phase defines the project scope, evaluates feasibility, and develops
 
 FEED (also called FEL - Front-End Loading) develops the project definition to a level sufficient for final investment decision.
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/gSkoGFLDxF0"
-    title="FEED Process Overview"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r feed-process, echo=FALSE, results='asis'}
+  embed_youtube("gSkoGFLDxF0", "FEED Process Overview")
 ```
 
 **FEED Deliverables include:**
@@ -1756,19 +1699,10 @@ pfd_elements %>%
 
 P&IDs are the detailed "roadmap" of the process, showing all equipment, piping, valves, and instrumentation.
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/j4EOTerfyTY"
-    title="How to Read P&IDs"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r read-pandid, echo=FALSE, results='asis'}
+  embed_youtube("j4EOTerfyTY", "How to Read P&IDs")
 ```
+
 
 ```{r pid-symbols, echo=FALSE, fig.align="center", fig.cap="Common P&ID Symbols (Simplified)", fig.width=12, fig.height=8}
 # Create a simplified P&ID symbol reference
@@ -1976,34 +1910,15 @@ cat("\nOpportunity: Combine 4 screws into snap-fit design\n")
 
 **HAZOP** (Hazard and Operability Study) is a systematic method to identify hazards and operability problems in process plants.
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/6AqtX8oCpKI&t"
-    title="HAZOP Study Overview"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r hazop-study, echo=FALSE, results='asis'}
+  embed_youtube("6AqtX8oCpKI&t", "HAZOP Study Overview")
 ```
 
 
-```{=html}
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/ukn0RRt0ReA&list=PLeTiXOrLeXhI5IZKv3GeOUMOYpz5mG36S"
-    title="HAZOP Study Overview"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
-</div>
+```{r hazop-study-overview, echo=FALSE, results='asis'}
+  embed_youtube("ukn0RRt0ReA&list=PLeTiXOrLeXhI5IZKv3GeOUMOYpz5mG36S", "HAZOP Study Overview")
 ```
+
 ### HAZOP Methodology
 
 ```{r hazop-keywords, echo=FALSE}

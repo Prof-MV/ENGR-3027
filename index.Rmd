@@ -6,12 +6,17 @@ site: bookdown::bookdown_site
 documentclass: book
 bibliography: [references.bib]
 url: https://prof-mv.github.io/ENGR-3027/
-# cover-image: path to the social sharing image like images/cover.jpg
+cover-image: "images/Gemini_Generated_Image_dleggdleggdleggd.png"
 description: |
   Lecture notes accompanying the course.
 link-citations: yes
 github-repo: Prof-MV/ENGR-3027
+always_allow_html: true
 ---
+
+```{r setup-index, include=FALSE}
+source("R/helpers.R")
+```
 
 # Introduction {-}
 
@@ -38,16 +43,22 @@ Why are we studying this?
     * The fourth industrial revolution describes the current era of digitalization, automation, and advanced manufacturing technology. It's characterized by the convergence of emerging technologies, such as robotics, the Internet of Things (IoT), and 3D printing.
     
 Check out these videos:
-    
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kpW9JcWxKq0" frameborder="0" allowfullscreen></iframe>
-    
-and 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/okXk4Bnz2Lc" frameborder="0" allowfullscreen></iframe>
-    
-What is a Fifth Industrial Revolution going to look like? 
+```{r video-industrial-rev-1, echo=FALSE, results='asis'}
+embed_youtube("kpW9JcWxKq0", "The Four Industrial Revolutions")
+```
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/sGI2FFm_8tw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+and
+
+```{r video-industrial-rev-2, echo=FALSE, results='asis'}
+embed_youtube("okXk4Bnz2Lc", "Industry 4.0 Explained")
+```
+
+What is a Fifth Industrial Revolution going to look like?
+
+```{r video-industrial-rev-5, echo=FALSE, results='asis'}
+embed_youtube("sGI2FFm_8tw", "The Fifth Industrial Revolution")
+```
 
 
 Further Reading
