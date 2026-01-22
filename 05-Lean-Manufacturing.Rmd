@@ -924,7 +924,7 @@ vsm_metrics %>%
 
 ## Summary
 
-```{r summary-table, echo=FALSE}
+```{r summary-table-lean, echo=FALSE}
 summary_data <- tibble(
   Concept = c("**Lean Manufacturing**", "**3 M's**", "**7 Wastes**", "**5S**",
               "**JIT**", "**Kanban**", "**SMED**", "**Kaizen**"),

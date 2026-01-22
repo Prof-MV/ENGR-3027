@@ -1,308 +1,1062 @@
-
-# Types of Manufacturing Processes [@AfzalManufacturing]
+# Types of Manufacturing Processes
 
 ------------------------------------------------------------------------
 
-Manufacturing is defined as the conversion of raw materials into the finished goods on a large scale using man and machine whereas manufacturing processes are defined as the methods used for conversion of raw materials into finished products. Based on the product requirement there different types of manufacturing processes which are used to get the required output.
-
-In this chapter, you are going to learn about the seven types manufacturing processes and their subtypes with examples.
-
-Some websites mention four types of manufacturing processes while some mention five types of manufacturing processes. Although, [Wikipedia](https://en.wikipedia.org/wiki/List_of_manufacturing_processes) lists 7 main types of manufacturing processes which we are going to discuss below.
-
-7 Main types of Manufacturing Processes and their subtypes
-
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Flowchart illustrating different types of manufacturing processes"}
-knitr::include_graphics("images/1525956868967.jpg")
+```{r setup-ch1, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(tidyr)
 ```
 
-A good video summarizing 6 of the 7 manufacturing processes is linked below. Coating / Plating is missing.
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+1. Identify and classify the seven main types of manufacturing processes
+2. Select appropriate manufacturing processes based on material, volume, and precision requirements
+3. Compare cost, speed, and quality trade-offs between process types
+4. Recognize manufacturing processes used in automotive, food, and defense industries
+5. Apply process selection criteria to real-world manufacturing scenarios
+
+------------------------------------------------------------------------
+
+## Introduction to Manufacturing Processes
+
+Manufacturing is defined as the conversion of raw materials into finished goods on a large scale using man and machine. **Manufacturing processes** are the specific methods used for this conversion. Based on product requirements, different types of manufacturing processes are selected to achieve the required output with optimal cost, quality, and efficiency.
+
+```{r manufacturing-overview, echo=FALSE, fig.align="center", fig.cap="Overview of Manufacturing Process Categories", fig.width=10, fig.height=6}
+# Create an overview visualization of manufacturing processes
+process_categories <- data.frame(
+  Category = c("Casting", "Molding", "Forming", "Machining", "Joining", "Coating", "Additive"),
+  Primary_Material = c("Metals", "Plastics", "Metals", "All", "All", "All", "All"),
+  Volume = c(4, 5, 4, 2, 3, 3, 1),
+  Complexity = c(3, 4, 2, 5, 3, 2, 5),
+  x_pos = c(1, 2, 3, 4, 5, 6, 7)
+)
+
+ggplot(process_categories, aes(x = x_pos, y = 1)) +
+  geom_tile(aes(fill = Category), width = 0.9, height = 0.6, color = "white", size = 2) +
+  geom_text(aes(label = Category), color = "white", fontface = "bold", size = 4) +
+  scale_fill_manual(values = c("#E74C3C", "#3498DB", "#2ECC71", "#9B59B6", "#F39C12", "#1ABC9C", "#34495E")) +
+  labs(title = "Seven Main Categories of Manufacturing Processes",
+       subtitle = "Each category contains multiple specific processes for different applications") +
+  theme_void() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 16),
+    plot.subtitle = element_text(hjust = 0.5, size = 11),
+    legend.position = "none"
+  )
+```
+
+<details>
+<summary>Why do we need different manufacturing processes?</summary>
+
+Different products require different manufacturing approaches based on:
+
+- **Material type**: Metals, plastics, ceramics, composites
+- **Production volume**: One-off prototypes vs. millions of units
+- **Geometric complexity**: Simple shapes vs. intricate details
+- **Precision requirements**: Loose tolerances vs. micron-level accuracy
+- **Cost constraints**: Budget limitations affect process selection
+- **Lead time**: How quickly parts are needed
+
+No single process is optimal for all situations!
+
+</details>
+
+A good video summarizing 6 of the 7 manufacturing processes is linked below (Coating/Plating is not covered):
 
 ```{=html}
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe 
+  <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/Um_g8sQ_p3Y" 
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
+    src="https://www.youtube.com/embed/Um_g8sQ_p3Y"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
 ```
 
-## Casting
+------------------------------------------------------------------------
 
-Casting is a process of pouring liquid metal into a mold containing the hollow shape of the desired outcome. It uses sprue, gates, and runners to pour the metal. The main types of manufacturing processes under casting are:-
+## Process Selection Framework
 
-### Centrifugal Casting
+Before examining each process type, it's important to understand how engineers select the right manufacturing process. The following visualization shows the key factors:
 
-Centrifugal casting is a process of pouring molten metal into a spinning die. Spinning die creates high g-forces to the molten metal which gives it the cylindrical shape. Moreover, spinning let the impurities (less dense material) to float at the inner dia from where it is removed later. Spinning can either be on a vertical or horizontal axis depending on the configuration of the desired part such as vertical rotation is used to cast ring and cylinder and horizontal rotation is used to cast tubular shapes.
+```{r process-selection-matrix, echo=FALSE, fig.align="center", fig.cap="Process Selection Based on Volume and Complexity", fig.width=10, fig.height=7}
+# Create process selection visualization
+selection_data <- data.frame(
+  Process = c("Sand Casting", "Die Casting", "Investment Casting",
+              "Injection Molding", "Blow Molding", "Thermoforming",
+              "Forging", "Stamping", "Extrusion",
+              "CNC Machining", "3D Printing", "Manual Assembly"),
+  Volume = c(2, 5, 2, 5, 4, 3, 4, 5, 5, 2, 1, 2),
+  Complexity = c(3, 3, 5, 4, 2, 2, 2, 2, 1, 5, 5, 3),
+  Category = c("Casting", "Casting", "Casting",
+               "Molding", "Molding", "Molding",
+               "Forming", "Forming", "Forming",
+               "Machining", "Additive", "Joining")
+)
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Centrifugal Casting"}
-knitr::include_graphics("images/1525957143378.png")
-
+ggplot(selection_data, aes(x = Volume, y = Complexity, color = Category)) +
+  geom_point(size = 6, alpha = 0.8) +
+  geom_text(aes(label = Process), vjust = -1, size = 3, fontface = "bold") +
+  scale_x_continuous(limits = c(0, 6), breaks = 1:5,
+                     labels = c("Prototype\n(1-10)", "Low\n(10-1K)", "Medium\n(1K-10K)",
+                               "High\n(10K-100K)", "Mass\n(100K+)")) +
+  scale_y_continuous(limits = c(0, 6), breaks = 1:5,
+                     labels = c("Simple", "Low", "Medium", "High", "Very High")) +
+  scale_color_manual(values = c("Additive" = "#9B59B6", "Casting" = "#E74C3C", "Forming" = "#2ECC71",
+                                "Joining" = "#1ABC9C", "Machining" = "#3498DB", "Molding" = "#F39C12")) +
+  labs(x = "Production Volume", y = "Part Complexity",
+       title = "Manufacturing Process Selection Guide",
+       subtitle = "Choose processes based on volume requirements and part complexity") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+    plot.subtitle = element_text(hjust = 0.5, size = 11),
+    axis.title = element_text(face = "bold"),
+    legend.position = "bottom",
+    panel.grid.minor = element_blank()
+  )
 ```
 
-Example: Some examples of centrifugal casting include jet engine compressor cases, petrochemical furnace tubes, military products, and other high-reliability applications.
+```{r process-comparison-table, echo=FALSE}
+comparison_data <- tibble(
+  `Process Type` = c("Casting", "Molding", "Forming", "Machining", "Joining", "Coating", "Additive"),
+  `Typical Materials` = c("Metals, alloys", "Plastics, rubber", "Metals, sheet", "All materials", "All materials", "All materials", "Plastics, metals, ceramics"),
+  `Production Volume` = c("Low to High", "Medium to Very High", "Medium to Very High", "Low to Medium", "All volumes", "All volumes", "Prototype to Low"),
+  `Typical Tolerance` = c("±0.5-2mm", "±0.1-0.5mm", "±0.1-1mm", "±0.01-0.1mm", "Varies", "N/A", "±0.1-0.3mm"),
+  `Tooling Cost` = c("Medium-High", "High", "Medium-High", "Low", "Low", "Low", "None"),
+  `Unit Cost at Volume` = c("Low", "Very Low", "Low", "High", "Medium", "Low", "High")
+)
 
-### Die Casting
-
-Die casting is a manufacturing process used for producing metal parts where high precision is required. This process is accomplished by forcing molten metal under high pressure into reusable metal dies. High volume production is done using this process.
-
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Die Casting"}
-knitr::include_graphics("images/1525957168838.gif")
-
+comparison_data %>%
+  kable(format = "html", caption = "Manufacturing Process Comparison Summary") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "bordered", "responsive"),
+    full_width = TRUE,
+    position = "center"
+  ) %>%
+  row_spec(0, bold = TRUE, background = "#2C3E50", color = "white") %>%
+  column_spec(1, bold = TRUE, background = "#ECF0F1")
 ```
 
-Process
+------------------------------------------------------------------------
 
-Steel molds capable of producing several castings at once are produced. Molds are mounted securely in a die casting machine and are arranged so that one is stationary while the other is moveable. The die cavity is injected with molten metal and allowed to solidify and the part is ejected. Example: Die casting process is used for producing precise non-ferrous metal parts. Some examples of die casting include engines, clutch housings, and covers of a four-wheeled vehicle.
+## 1. Casting Processes
+
+**Casting** is a process of pouring liquid metal into a mold containing the hollow shape of the desired outcome. It uses sprue, gates, and runners to direct the molten metal flow.
+
+```{r casting-comparison, echo=FALSE, fig.align="center", fig.cap="Comparison of Casting Processes", fig.width=10, fig.height=5}
+casting_data <- data.frame(
+  Process = c("Sand Casting", "Die Casting", "Investment Casting", "Permanent Mold", "Centrifugal", "Shell Molding"),
+  Tooling_Cost = c(1, 5, 3, 4, 3, 2),
+  Production_Rate = c(1, 5, 2, 3, 2, 3),
+  Surface_Finish = c(1, 4, 5, 3, 3, 4),
+  Complexity = c(3, 3, 5, 2, 1, 3)
+)
+
+casting_long <- casting_data %>%
+  pivot_longer(cols = -Process, names_to = "Metric", values_to = "Score") %>%
+  mutate(Metric = gsub("_", " ", Metric))
+
+ggplot(casting_long, aes(x = Metric, y = Score, fill = Process)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  scale_fill_brewer(palette = "Set2") +
+  scale_y_continuous(breaks = 1:5, labels = c("Low", "Med-Low", "Medium", "Med-High", "High")) +
+  labs(title = "Casting Process Comparison",
+       subtitle = "Comparing key characteristics across casting methods",
+       x = "", y = "Rating") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 15, hjust = 1),
+    legend.position = "bottom"
+  )
+```
 
 ### Sand Casting
 
-Sand casting is a metal casting process that uses sand as the mold material. This process has a low production rate as the sand mold must be destroyed in order to remove the part. Although, it is a cheap process when low volume production is required.
+Sand casting is a metal casting process that uses sand as the mold material. This process has a low production rate as the sand mold must be destroyed to remove the part. However, it is economical for low-volume production.
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Sand Casting"}
-knitr::include_graphics("images/1525957188942.png")
+**Process Steps:**
 
-```
+1. Create a pattern (usually wood or metal)
+2. Pack sand around the pattern to form the mold
+3. Remove the pattern, leaving a cavity
+4. Pour molten metal into the cavity
+5. Allow solidification
+6. Break the sand mold to remove the casting
 
-Sand Casting Process: \* Materials used include the furnace, metal, pattern, and sand mold. \* The molten metal is poured using a ladle into the cavity of the sand mold, which is created using the pattern. \* The casting is allowed to solidify and then removed by breaking the sand mold.
+**Advantages:** Low tooling cost, can produce very large parts, suitable for all metals
 
-Example: More than 70% of all metal castings are produced via sand casting process. Some examples of sand casting process include engine blocks, machine tool bases, cylinder heads, pump housings, valves, gears, pulleys, crankshafts, connecting rods, and propellers.
+**Disadvantages:** Poor surface finish, loose tolerances, slow cycle time
 
-### Permanent Mold Casting
+**Examples:** Engine blocks, machine tool bases, cylinder heads, pump housings, large gears
 
-Permanent mold casting is a manufacturing process that offers reusability of metal molds which makes it eligible for high volume production. This process uses gravity or vacuum or gas to fill the mold.
+<details>
+<summary>Discussion: Why is sand casting still widely used despite its limitations?</summary>
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Permanent Mold Casting"}
-knitr::include_graphics("images/1525957226624.jpg")
+Sand casting remains popular because:
 
-```
+1. **Low startup cost** - A wood pattern costs hundreds vs. steel dies costing tens of thousands
+2. **Flexibility** - Easy to modify patterns for design changes
+3. **Size capability** - Can cast parts weighing several tons
+4. **Material versatility** - Works with nearly any metal
+5. **Short lead time** - Parts can be produced in days vs. weeks for die casting
 
-Process
+For prototypes and low-volume production (< 500 parts), sand casting is often the most economical choice even with its lower quality.
 
-The mold is preheated and a ceramic coating is applied to the mold cavity surfaces to facilitate part removal. The molten metal is poured from a ladle and gravity or vacuum is used to raise the molten metal into the mold assembly. The casting is allowed to solidify and then removed by opening the mold assembly. Example: Some examples of permanent mold casting include gears, pipe fittings, fuel injection housings, splines, wheels, gear housings, engine pistons.
+</details>
 
-Note the difference: Sand casting uses an expendable mold which is destroyed after each cycle whereas permanent mold casting and die casting uses a metal mold that is reused for several thousand times. Permanent mold casting process is considerably slower, and not as precise as die casting. Also, an external force is used to inject molten metal in die casting as compared to gravity or vacuum in permanent mold casting.
+### Die Casting
 
-### Investment Casting
-
-Investment casting is metal casting process of pouring molten metal into an expendable ceramic mold. This process is also known as “lost-wax casting” as the wax pattern is melted out of the mold when molten metal is poured. Complex parts are made using this process.
-
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Investment Casting"}
-knitr::include_graphics("images/1525957292681.jpg")
-
-```
-
-Process
-
-The wax pattern is prepared and surrounded/invested by the ceramic slurry that hardens it and converts it into a mold. The mold is preheated to evaporate the wax and the molten metal is poured from a ladle into the mold. The casting is allowed to solidify and then the mold is broken and the casting removed. Example: Some examples of investment casting include turbine blades, airplane parts, firearm components and military equipment.
+Die casting is used for producing metal parts where high precision is required. Molten metal is forced under high pressure into reusable metal dies, enabling high-volume production.
 
 ```{=html}
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-  <iframe 
+  <iframe
     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/QtxVdC7pBQM" 
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
+    src="https://www.youtube.com/embed/frdBP_zSGj0"
+    title="Die Casting Process"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
 ```
 
-### Shell Molding
+**Process:**
 
-Shell molding is a metal casting process that uses a sand covered with resin to form the mold. This process is similar to sand casting process but has better dimensional accuracy, higher productivity rate, and lower labor requirements. Also, the Shell Molds are reusable and expandable.
+1. Steel molds (dies) are machined to the part shape
+2. Dies are mounted in a die casting machine
+3. Molten metal is injected under high pressure (10-175 MPa)
+4. Metal solidifies rapidly due to die cooling
+5. Part is ejected and the cycle repeats
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Shell Molding"}
-knitr::include_graphics("images/1525957333118.jpg")
+**Advantages:** Excellent dimensional accuracy, smooth surface finish, high production rates (up to 400 shots/hour)
 
+**Disadvantages:** High die cost ($50,000-$500,000), limited to non-ferrous metals, porosity issues
+
+**Examples:** Engine components, transmission housings, electronic enclosures, power tool housings
+
+### Investment Casting (Lost-Wax)
+
+Investment casting produces complex, precision parts by creating a wax pattern that is "invested" (surrounded) with ceramic slurry, then melted out to leave a mold cavity.
+
+```{=html}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/QtxVdC7pBQM"
+    title="Investment Casting Process"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 ```
 
-Process
+**Advantages:** Excellent surface finish, tight tolerances (±0.1%), complex geometries, any castable metal
 
-A two-piece metal pattern is created in the shape of the desired part using iron or steel. These patterns are clamped to a dump box containing the mixture of sand and a resin binder. This is known as shell preparation method. These shells are joined together and clamped to form the complete shell mold and the molten metal is poured from a ladle into the mold cavity. After the casting is solidified, the mold is broken and the casting removed. Example: Shell molding is used for producing high precision parts. Some examples of shell molding include gear housings, cylinder heads, connecting rods, and lever arms.
+**Disadvantages:** Expensive, slow cycle time, limited part size
 
-## Molding
+**Examples:** Turbine blades, aerospace components, medical implants, jewelry, firearm components
 
-Molding is a manufacturing process that uses a rigid frame to shape hot liquid or a ductile raw material. It is mostly used to manufacture plastic products. The different types of manufacturing processes under molding are:
+<details>
+<summary>Why do aerospace companies pay premium prices for investment casting?</summary>
+
+Investment casting is essential for aerospace because:
+
+1. **Complex internal passages** - Turbine blades have intricate cooling channels
+2. **Superior metallurgy** - Controlled solidification produces better grain structure
+3. **Near-net shape** - Minimizes machining of expensive superalloys
+4. **Weight savings** - Can create hollow structures impossible with other methods
+5. **Material options** - Works with titanium, Inconel, and other aerospace alloys
+
+A single turbine blade might cost $1,000-$5,000, but there's no other process that can produce the required geometry and performance.
+
+</details>
+
+### Centrifugal Casting
+
+Centrifugal casting spins molten metal in a rotating die, using centrifugal force to distribute the metal and float impurities to the inner surface.
+
+**Applications:** Pipes, tubes, cylinder liners, bushings, rings
+
+### Permanent Mold Casting
+
+Uses reusable metal molds with gravity or low-pressure filling. Good for medium-volume production of aluminum and copper alloy parts.
+
+**Applications:** Pistons, gear housings, wheels, pipe fittings
+
+### Shell Molding
+
+Uses resin-coated sand that forms a thin, strong shell around a heated pattern. Better dimensional accuracy than sand casting.
+
+**Applications:** Gear housings, cylinder heads, connecting rods
+
+------------------------------------------------------------------------
+
+## 2. Molding Processes
+
+**Molding** uses a rigid frame to shape hot liquid or ductile raw material. It is predominantly used for plastics and rubber products.
+
+```{r molding-volume-chart, echo=FALSE, fig.align="center", fig.cap="Molding Process Selection by Production Volume", fig.width=9, fig.height=5}
+molding_data <- data.frame(
+  Process = c("Injection Molding", "Blow Molding", "Rotational Molding", "Thermoforming", "Extrusion"),
+  Min_Volume = c(10000, 5000, 100, 500, 1000),
+  Max_Volume = c(10000000, 1000000, 50000, 500000, 10000000),
+  Typical = c(100000, 50000, 5000, 10000, 500000)
+)
+
+ggplot(molding_data, aes(x = reorder(Process, -Typical), y = Typical)) +
+  geom_bar(stat = "identity", fill = "#3498DB", width = 0.6) +
+  geom_errorbar(aes(ymin = Min_Volume, ymax = Max_Volume), width = 0.2, color = "#2C3E50") +
+  scale_y_log10(labels = scales::comma) +
+  labs(title = "Economical Production Volumes for Molding Processes",
+       subtitle = "Error bars show typical volume range",
+       x = "", y = "Annual Production Volume (log scale)") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 20, hjust = 1)
+  ) +
+  coord_flip()
+```
 
 ### Injection Molding
 
-Injection molding is a molding process used for producing parts by injecting molten material into a mold. It is the most commonly used molding process for manufacturing plastic parts. This process requires the use of an injection molding machine, raw plastic pellets, and a mold to get the desired output. The plastic is melted in the injection molding machine with the help of heaters and then a rotating/reciprocating screw injects it into the mold, where it cools and solidifies into the final part.
+Injection molding is the most common process for manufacturing plastic parts. Plastic pellets are melted and injected under high pressure into a mold cavity.
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Injection Molding"}
-knitr::include_graphics("images/1525957354507.png")
-
+```{=html}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/RMjtmsr3CqA"
+    title="Injection Molding Process"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 ```
 
-Example: Some examples of injection molding include automotive parts and components, game toys, chairs, tables, storage containers, housing for household appliances, consumer electronics, buckets.
+**Process Cycle:**
+
+1. **Clamping** - Mold halves are clamped together
+2. **Injection** - Molten plastic is injected into the cavity
+3. **Cooling** - Part solidifies in the mold
+4. **Ejection** - Part is pushed out by ejector pins
+
+**Cycle times:** 10-60 seconds typical, as fast as 2 seconds for small parts
+
+**Examples:** Automotive dashboards, phone cases, medical devices, food containers, toys
+
+```{r injection-molding-cost, echo=TRUE}
+# Injection Molding Cost Analysis Example
+# Comparing costs at different production volumes
+
+mold_cost <- 50000  # Typical mold cost in dollars
+material_cost_per_kg <- 2.50  # ABS plastic
+part_weight_kg <- 0.1
+cycle_time_sec <- 30
+machine_rate_per_hour <- 75  # Machine + operator cost
+
+# Calculate cost per part at different volumes
+volumes <- c(1000, 10000, 50000, 100000, 500000)
+
+cost_analysis <- data.frame(
+  Volume = volumes,
+  Mold_Per_Part = mold_cost / volumes,
+  Material = part_weight_kg * material_cost_per_kg,
+  Processing = (cycle_time_sec / 3600) * machine_rate_per_hour
+)
+
+cost_analysis$Total_Per_Part <- cost_analysis$Mold_Per_Part +
+                                 cost_analysis$Material +
+                                 cost_analysis$Processing
+
+cat("Injection Molding Cost Breakdown:\n")
+cat("================================\n")
+for(i in 1:nrow(cost_analysis)) {
+  cat(sprintf("At %s parts: $%.2f per part (Tooling: $%.2f, Material: $%.2f, Processing: $%.2f)\n",
+              format(cost_analysis$Volume[i], big.mark=","),
+              cost_analysis$Total_Per_Part[i],
+              cost_analysis$Mold_Per_Part[i],
+              cost_analysis$Material[i],
+              cost_analysis$Processing[i]))
+}
+```
+
+<details>
+<summary>Discussion: When does injection molding become cost-effective vs. 3D printing?</summary>
+
+**Break-even analysis:**
+
+- 3D printing: ~$5-20 per part (no tooling, slow production)
+- Injection molding: $50,000 tooling + $0.50-2 per part
+
+**Break-even point:** Approximately 5,000-10,000 parts
+
+**Rule of thumb:**
+- < 500 parts: 3D printing or machining
+- 500-5,000 parts: Consider soft tooling (aluminum molds)
+- > 5,000 parts: Steel injection molds become economical
+
+</details>
 
 ### Blow Molding
 
-Blow molding is a molding process used to manufacture hollow plastic parts. This process starts with melting down the plastic and forming it into a parison. The parison is then clamped into a mold and air is blown into it. This air pushes the plastic out to match the mold. The plastic is allowed to cool and later the mold opened and the part is ejected. Although the blow molding process is costlier than injection molding, it is still used for manufacturing many plastic products.
+Blow molding creates hollow plastic parts by inflating a heated plastic tube (parison) inside a mold cavity.
 
-Blow molding is divided into three types of manufacturing processes namely extrusion blow molding, injection blow molding, and injection stretch blow molding.
+**Types:**
+- **Extrusion blow molding** - Parison extruded, then blown
+- **Injection blow molding** - Preform injection molded, then blown
+- **Stretch blow molding** - Preform stretched and blown (PET bottles)
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Blow Molding"}
-knitr::include_graphics("images/1525957373575.jpg")
-
-```
-
-Example: Some examples of blow molding include automotive ducts, stadium seating chairs, containers, trays, reservoirs, tanks, coolers, fan housings, panels, doors, toys, sporting goods, watering cans and household products, carrying cases.
-
-### Extrusion Molding
-
-Extrusion Molding is a process used to manufacture long tube-shaped products of a fixed cross-section. This process uses an extrusion machine to force the heated plastic through a die with an opening. The machine uses a reciprocating/rotating screw to feed the plastic into the die. The die then forces the material into the desired shape or the shape of the die. Heaters are used to melting the plastic in the extrusion machine. The material is allowed to cooled and then cut down into the required shape.
-
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Extrusion Molding"}
-knitr::include_graphics("images/1525957392232.gif")
-
-```
-
-Example: Some examples of extrusion molding include pipe, tube, plastic films and sheeting, thermoplastic coatings, and wire insulation.
+**Examples:** Bottles, containers, fuel tanks, automotive ducts, toys
 
 ### Rotational Molding
 
-Rotational Molding is a molding process used for manufacturing hollow parts. This process is accomplished by placing resin into a hollow mold and then rotating that tool bi-axially in an oven. There is no pressure involved in this technique, unlike other plastic manufacturing processes. Thus, making the mold cost cheap and the process economical.
+Creates hollow parts by rotating a mold on two axes while heating, causing plastic powder to melt and coat the interior surface.
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Rotational Molding"}
-knitr::include_graphics("images/1525957410843.jpg")
+**Advantages:** Low tooling cost, no internal stresses, large hollow parts
 
-```
-
-Process
-
-The mold is filled with a polymer resin and heated in an oven until the resin melts inside of the mold cavity. It is then slowly rotated to disperse and stick the soft material inside the mold cavity. A cool tool is used to solidify the part and later the part is removed from the mold. Example: Some examples of rotational molding include water tanks, medical products, consumer’s products, toys, leisure craft, sporting equipment.
+**Examples:** Kayaks, playground equipment, tanks, coolers
 
 ### Thermoforming
 
-Thermoforming is a molding process where a plastic sheet is heated to an elastic forming temperature and formed into the desired shape. This method is often used for sample and prototype parts. It is divided into three types of manufacturing processes namely vacuum forming, pressure forming and mechanical forming.
+Heats a plastic sheet until pliable, then forms it over a mold using vacuum, pressure, or mechanical force.
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Thermoforming"}
-knitr::include_graphics("images/1525957440479.gif")
-
-```
-
-Process
-
-The thermoplastic sheet is heated using either convection or radiation until it gets soften. This soft sheet is then pressed against the mold using the vacuum or air pressure or mechanical force. The excess material is then trimmed away and the formed part is released. Example: Some examples of thermoforming include switchgear, motor components, thrust washers, ash cups, valve covers, disc brake pistons, knobs, and handles.
+**Examples:** Packaging (blister packs), disposable cups, refrigerator liners
 
 ### Powder Metallurgy
 
-Powder metallurgy is a molding process used for manufacturing precision metal components from metal powders. The rate of production of parts is quite high in powder metallurgy which makes it economical than the other casting processes.
+Though involving metal, powder metallurgy uses molding principles. Metal powders are compacted in dies and sintered (heated below melting point) to fuse particles.
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Powder Metallurgy"}
-knitr::include_graphics("images/1525957542388.png")
+**Advantages:** Near-net shape, complex geometries, controlled porosity
 
+**Examples:** Self-lubricating bearings, gears, filters, magnets
+
+------------------------------------------------------------------------
+
+## 3. Forming Processes
+
+**Forming** uses mechanical forces (compression, tension, shear) to shape material without removing any material. This preserves material grain structure and can improve mechanical properties.
+
+```{r forming-forces, echo=FALSE, fig.align="center", fig.cap="Types of Forming Forces", fig.width=9, fig.height=4}
+# Visualization of forming force types
+force_data <- data.frame(
+  Type = c("Compression", "Tension", "Shear", "Bending"),
+  Process = c("Forging, Rolling", "Drawing, Stretching", "Shearing, Blanking", "Brake Forming"),
+  x = c(1, 2, 3, 4)
+)
+
+ggplot(force_data, aes(x = x, y = 1)) +
+  geom_tile(aes(fill = Type), width = 0.8, height = 0.5, color = "black") +
+  geom_text(aes(label = Type), y = 1.1, fontface = "bold", size = 4) +
+  geom_text(aes(label = Process), y = 0.9, size = 3, color = "gray30") +
+  scale_fill_manual(values = c("#E74C3C", "#F39C12", "#3498DB", "#2ECC71")) +
+  labs(title = "Forming Process Classification by Primary Force Type") +
+  theme_void() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+    legend.position = "none"
+  )
 ```
-
-Process
-
-A homogeneous mixture of metal powders or alloy powders is prepared. The metal powder is then pressed into the desired shape at room temperature. At last, the product is heated that causes the powder particles to fuse together without melting. Example: Some examples of powder metallurgy include self -lubricating bearings, porous metal filters, gears, cams, brackets, sprockets.
-
-## Forming
-
-Forming is a manufacturing process that uses suitable stresses such as compression, tension or shear to deform the material and get the desired shape. This process involves deformation and displacement of material leading to no material removal or loss of material. The different types of manufacturing processes under forming are:
 
 ### Forging
 
-Forging is a manufacturing process that uses compressive forces to shape the material. This process is accomplished with the help of a hammer, press or a special forging machine. The forged parts have good strength and toughness without the defects of porosity, inclusion or voids, also they can be used reliably for highly stressed and critical applications.
+Forging uses compressive forces from hammers or presses to shape heated metal. Forged parts have superior strength due to aligned grain structure.
 
-Forging may be carried out on materials in either hot or cold state and therefore, it is divided into types of manufacturing processes i.e. cold forging and hot forging.
-
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Forging"}
-knitr::include_graphics("images/1525957560571.jpg")
+```{=html}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/pWQCDh_Wu6Y"
+    title="Forging Process"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 ```
 
-Example: Some examples of forging include hammers, sleds, wrenches, garden tools, sockets, hardware, hand tools, edged weapons, cymbals, jewelry, rivets, bolts.
+**Types of Forging:**
+- **Open-die forging** - Simple shapes, large parts
+- **Closed-die (impression) forging** - Complex shapes, high volume
+- **Cold forging** - Room temperature, excellent finish
+- **Hot forging** - Heated material, easier deformation
 
-### Bending
+**Examples:** Crankshafts, connecting rods, gears, aircraft structural components, hand tools
 
-Bending is a manufacturing process used to deform metal into the desired shape by using a die and punch. This process is most commonly used for sheet metal products to get the required U-shape, V-shape or the channel shape. Commonly used bending machines are pan brakes, brake presses, and other specialized machine presses.
+<details>
+<summary>Why are aircraft landing gear forgings so expensive?</summary>
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Bending"}
-knitr::include_graphics("images/1525957570680.png")
-```
+Aircraft landing gear forgings can cost $100,000+ because:
 
-Process
+1. **Material** - High-strength steel or titanium alloys
+2. **Size** - Large parts require massive presses (50,000+ tons)
+3. **Certification** - Extensive testing and documentation
+4. **Grain flow** - Must be optimized for fatigue resistance
+5. **NDT requirements** - 100% ultrasonic and magnetic particle inspection
+6. **Low volume** - Only a few hundred per aircraft type per year
 
-The material is placed on the die and positioned in place with the help of stops. The upper part of the press with appropriately shaped punch attached to it descends and forms the V-shaped bend. The U-punch forms the U-shape with a single punch. Example: Some examples of bending operations include electric enclosures, electrical boxes, brackets, rectangular ductwork.
+The forged grain structure provides 20-40% better fatigue life than equivalent castings or machined parts.
+
+</details>
 
 ### Stamping
 
-Stamping or pressing is a manufacturing process in which thin walled metal parts are shaped desirably with the help of punches and dies. This process is accomplished by placing flat sheet metal into a stamping press where a tool and die surface forms the metal into the desired shape. Stamping uses hydraulic or mechanical press to perform the operations which can be done at a single die station or multiple die stations. Also, this process is usually carried out on sheet metal, but can also be used on other materials, such as polystyrene.
+Stamping uses dies and presses to form, cut, or shape sheet metal. Modern stamping lines can produce 1,000+ parts per hour.
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Stamping"}
-knitr::include_graphics("images/1525957586363.jpg")
-```
+**Operations include:**
+- **Blanking** - Cutting flat shapes from sheet
+- **Piercing** - Punching holes
+- **Drawing** - Forming cup shapes
+- **Bending** - Creating angles
+- **Coining** - Fine detail forming
 
-Example: Some examples of stamping include trunks, doors, panels, enclosures, fenders, roof, and hood outer parts.
+**Examples:** Automotive body panels, appliance housings, electronic enclosures
+
+### Bending
+
+Bending uses press brakes to create angular shapes in sheet metal.
+
+**Key formula:**
+$$\text{Bend Allowance} = \frac{\pi \times A \times (R + K \times T)}{180}$$
+
+Where: A = bend angle, R = inside radius, T = material thickness, K = K-factor (typically 0.3-0.5)
 
 ### Shearing
 
-Shearing is a manufacturing process used to remove a blank of required shape and dimension from a large sheet of metal, paper or plastics. This process includes cutting of sheet without the formation of chips or the use of burning or melting. Shearing is divided into following types of manufacturing processes:
+Shearing cuts sheet metal without chip formation using opposed cutting edges.
 
--   Blanking
--   Piercing
--   Roll slitting
--   Trimming
--   Coining
+**Types:** Blanking, piercing, trimming, notching, slitting
 
-Process
+### Rolling
 
--   The punch applies pressure to the sheet forming cracks on both the top and bottom edges of the sheet.
--   The punch goes down further to grow these cracks and eventually separate the slug from the material. Example
+Reduces material thickness by passing through rotating rolls. Used for sheet, plate, and structural shapes.
 
-Some examples of shearing include industrial machinery, automobile parts, electronic equipment, knives, scissors.
+### Extrusion (Metal)
 
-## Machining
+Forces material through a die to create constant cross-section profiles.
 
-Machining is a manufacturing process used to cut a piece of raw material into the desired shape and size with the help of controlled material-removal process. These processes are based on a common theme known as subtractive manufacturing. The machining process is used for all the types of product especially metal products. The different types of manufacturing processes under machining are:
+**Examples:** Aluminum window frames, heat sinks, structural shapes
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Machining"}
-knitr::include_graphics("images/1525957720530.jpg")
+------------------------------------------------------------------------
+
+## 4. Machining Processes
+
+**Machining** removes material using cutting tools to achieve precise dimensions and surface finishes. It is the most versatile manufacturing process but typically has higher per-part costs.
+
+```{r machining-comparison, echo=FALSE, fig.align="center", fig.cap="Machining Process Capabilities", fig.width=10, fig.height=5}
+machining_data <- data.frame(
+  Process = c("Turning", "Milling", "Drilling", "Grinding", "EDM", "Laser Cutting"),
+  Tolerance_um = c(25, 25, 50, 2, 5, 100),
+  Surface_Ra = c(1.6, 1.6, 3.2, 0.2, 0.8, 3.2),
+  Material_Removal = c(5, 4, 3, 1, 1, 2)  # Relative rate
+)
+
+machining_long <- machining_data %>%
+  mutate(
+    `Tolerance (μm)` = Tolerance_um,
+    `Surface Finish (Ra μm)` = Surface_Ra
+  ) %>%
+  select(Process, `Tolerance (μm)`, `Surface Finish (Ra μm)`) %>%
+  pivot_longer(cols = -Process, names_to = "Metric", values_to = "Value")
+
+ggplot(machining_long, aes(x = Process, y = Value, fill = Metric)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  scale_fill_manual(values = c("#3498DB", "#E74C3C")) +
+  facet_wrap(~Metric, scales = "free_y") +
+  labs(title = "Machining Process Precision Comparison",
+       subtitle = "Lower values indicate better precision",
+       x = "", y = "Value") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "none"
+  )
 ```
 
-1.  Milling is a process of removal of material from a workpiece using rotary cutters and getting the desired shape.
-2.  Turning is a process of removal of unwanted material from circular parts using a cutting tool. This process requires a lathe, workpiece, fixture, and a cutting tool.
-3.  Shaping process uses a cutting tool that reciprocates against a stationary workpiece producing a plane or a desired surface.
-4.  Drilling process uses a drill bit to make a hole of circular cross-section into the solid material.
-5.  Honing process produces a precision surface on a metal workpiece by scrubbing an abrasive stone against it.
-6.  Finishing process is used to improve appearance, adhesion, wettability, wear resistance, hardness or to remove burrs and other surface flaws with the help of sanders.
+### Turning
 
-## Joining
+Rotates the workpiece while a cutting tool moves to create cylindrical shapes.
 
-Joining or assembling process are part of every production processes where two or more parts are combined together to get the required product. The main types of manufacturing processes under joining are:
+**Performed on lathes or turning centers**
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Joining"}
-knitr::include_graphics("images/1525957735284.jpg")
+**Operations:** Facing, turning, boring, threading, grooving, parting
+
+### Milling
+
+Rotates a cutting tool while moving the workpiece to remove material. The most versatile machining process.
+
+**Types:**
+- **Peripheral milling** - Cutter axis parallel to surface
+- **Face milling** - Cutter axis perpendicular to surface
+- **End milling** - Creates slots, pockets, contours
+
+### Drilling
+
+Creates cylindrical holes using rotating drill bits.
+
+**Related operations:** Reaming (sizing), boring (enlarging), tapping (threading)
+
+### Grinding
+
+Uses abrasive wheels for precision finishing. Achieves the finest tolerances and surface finishes.
+
+**Types:** Surface grinding, cylindrical grinding, centerless grinding
+
+### Electrical Discharge Machining (EDM)
+
+Uses electrical sparks to erode conductive materials. Essential for hardened materials and complex geometries.
+
+**Applications:** Injection mold cavities, dies, aerospace components
+
+<details>
+<summary>When should you use EDM instead of conventional machining?</summary>
+
+**Choose EDM when:**
+
+1. **Hardened materials** - Can machine 60+ HRC steels that would destroy cutting tools
+2. **Complex internal features** - Wire EDM cuts intricate shapes
+3. **Tight corners** - Can achieve sharp internal corners impossible with rotary tools
+4. **Fragile parts** - No cutting forces (non-contact process)
+5. **Thin walls** - No deflection from tool pressure
+
+**Limitations:**
+- Slow material removal (grams/hour vs. kg/hour for milling)
+- Only works on conductive materials
+- Recast layer may need removal
+- Higher cost per part
+
+</details>
+
+------------------------------------------------------------------------
+
+## 5. Joining Processes
+
+**Joining** combines two or more components into a single assembly. Methods range from permanent (welding) to removable (fasteners).
+
+```{r joining-comparison, echo=FALSE}
+joining_data <- tibble(
+  Process = c("Arc Welding", "Resistance Welding", "Laser Welding", "Brazing", "Soldering", "Adhesive Bonding", "Mechanical Fastening"),
+  `Joint Strength` = c("Excellent", "Excellent", "Excellent", "Good", "Fair", "Good", "Excellent"),
+  `Dissimilar Metals` = c("Limited", "Limited", "Limited", "Yes", "Yes", "Yes", "Yes"),
+  `Automation` = c("Medium", "High", "High", "Medium", "High", "High", "High"),
+  `Typical Applications` = c("Structural steel, pressure vessels", "Auto body panels, wire mesh", "Electronics, medical devices", "Carbide tooling, HVAC", "Electronics, plumbing", "Composites, glass, plastics", "All industries")
+)
+
+joining_data %>%
+  kable(format = "html", caption = "Joining Process Comparison") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "bordered"),
+    full_width = TRUE
+  ) %>%
+  row_spec(0, bold = TRUE, background = "#2C3E50", color = "white") %>%
+  column_spec(1, bold = TRUE, background = "#ECF0F1")
 ```
 
-1.  Welding process is used to heat and melt two or more parts and force them together making a single functional part. Arc welding, resistance welding, oxyfuel gas welding are few types of welding operations.
-2.  Soldering process is also used to join two or more metal items by melting and putting a filler metal (solder) into the joint. It differs from welding as it does not involve melting of the workpieces.
-3.  Brazing process is used to join two or more metal items together by melting and flowing a filler metal into the joint. Brazing uses higher temperatures for a similar process as compared to soldering. Also, it requires much more closely fitted parts than in soldering.
-4.  Adhesive bonding is used to hold multiple closely spaced parts together using a filler material called an adhesive. It is mainly used for a non-metallic substance such as a polymer.
-5.  Mechanical Assembly – It is a fastening process which uses nut, bolts, and rivets to join the parts together. It is also a reversible joining process.
+### Welding
 
-## Coating or Plating
+Melts and fuses base materials together, often with added filler metal.
 
-This process is defined as a method of covering the part surface with powder or zinc or other chemicals to protect it from corrosion, wear and other defects. It is also done to improve the electrical conductivity or magnetic response of the material. The main types of manufacturing processes under the coating process are powder coating, electroplating, sputter deposition.
+**Common Types:**
+- **MIG (GMAW)** - Gas Metal Arc Welding - fast, easy automation
+- **TIG (GTAW)** - Gas Tungsten Arc Welding - precise, clean welds
+- **Stick (SMAW)** - Shielded Metal Arc Welding - versatile, field use
+- **Resistance** - Uses electrical resistance heating
+- **Laser/Electron Beam** - High precision, deep penetration
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Coating or Plating"}
-knitr::include_graphics("images/1525957756629.jpg")
+### Brazing and Soldering
+
+Joins metals using a filler metal with a lower melting point than the base materials. The base materials do not melt.
+
+- **Brazing** - Filler melts above 450°C (840°F)
+- **Soldering** - Filler melts below 450°C
+
+### Adhesive Bonding
+
+Uses chemical adhesives to join materials. Essential for composites, glass, and dissimilar materials.
+
+**Advantages:** Distributes stress, joins dissimilar materials, seals against fluids
+
+**Disadvantages:** Surface preparation critical, limited temperature resistance, aging concerns
+
+### Mechanical Fastening
+
+Uses bolts, screws, rivets, or clips. Allows disassembly for maintenance.
+
+------------------------------------------------------------------------
+
+## 6. Surface Treatment and Coating
+
+**Coating and surface treatment** processes protect parts from corrosion, wear, or environmental damage, and can improve appearance or electrical properties.
+
+```{r coating-processes, echo=FALSE}
+coating_data <- tibble(
+  Process = c("Electroplating", "Anodizing", "Powder Coating", "Painting", "Hot Dip Galvanizing", "PVD/CVD", "Thermal Spray"),
+  `Typical Thickness` = c("1-50 μm", "5-100 μm", "50-150 μm", "25-75 μm", "45-85 μm", "1-10 μm", "100-500 μm"),
+  `Base Material` = c("Conductive metals", "Aluminum", "Any metal", "Any", "Steel", "Any", "Any"),
+  `Primary Benefit` = c("Corrosion, appearance", "Corrosion, hardness", "Corrosion, appearance", "Appearance", "Corrosion", "Wear, hardness", "Wear, thermal barrier"),
+  Industry = c("Automotive, electronics", "Aerospace, construction", "Appliances, furniture", "All", "Construction, automotive", "Tooling, aerospace", "Aerospace, energy")
+)
+
+coating_data %>%
+  kable(format = "html", caption = "Surface Treatment and Coating Processes") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "bordered"),
+    full_width = TRUE
+  ) %>%
+  row_spec(0, bold = TRUE, background = "#2C3E50", color = "white") %>%
+  column_spec(1, bold = TRUE, background = "#ECF0F1")
 ```
 
-## Additive Manufacturing
+### Electroplating
 
-Additive manufacturing is the process reversible to subtractive manufacturing i.e. machining. It is a manufacturing process that builds 3D objects by adding layer-upon-layer of material, whether the material is plastic, metal or concrete. Additive manufacturing comprises many technologies such as 3D printing, rapid prototyping, direct digital manufacturing, layered manufacturing and additive fabrication. This technology is growing at a very fast speed due to its high-efficiency and accuracy.
+Deposits metal coating using electrical current. Common coatings include chrome, nickel, zinc, gold, and silver.
 
-```{r, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Additive Manufacturing"}
-knitr::include_graphics("images/1525957777852.png")
+### Anodizing
+
+Electrochemically grows an oxide layer on aluminum. Provides corrosion resistance and can be dyed various colors.
+
+### Powder Coating
+
+Applies dry powder electrostatically, then cures with heat. Produces thick, durable, attractive finishes.
+
+### Galvanizing
+
+Coats steel with zinc for corrosion protection. Hot-dip galvanizing provides excellent outdoor durability.
+
+------------------------------------------------------------------------
+
+## 7. Additive Manufacturing (3D Printing)
+
+**Additive manufacturing** builds parts layer-by-layer from digital models. It's the opposite of machining (subtractive manufacturing).
+
+```{r am-processes, echo=FALSE, fig.align="center", fig.cap="Additive Manufacturing Process Comparison", fig.width=10, fig.height=6}
+am_data <- data.frame(
+  Process = c("FDM", "SLA", "SLS", "DMLS/SLM", "Binder Jetting", "PolyJet"),
+  Material = c("Thermoplastics", "Photopolymers", "Nylon, Polymers", "Metals", "Metals, Sand", "Photopolymers"),
+  Accuracy = c(2, 5, 3, 4, 3, 5),
+  Speed = c(3, 2, 3, 1, 4, 2),
+  Cost = c(5, 3, 2, 1, 3, 2),
+  Strength = c(3, 2, 4, 5, 4, 2)
+)
+
+am_long <- am_data %>%
+  select(-Material) %>%
+  pivot_longer(cols = -Process, names_to = "Metric", values_to = "Score")
+
+ggplot(am_long, aes(x = Metric, y = Score, fill = Process)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  scale_fill_brewer(palette = "Set2") +
+  scale_y_continuous(breaks = 1:5, labels = c("Poor", "Fair", "Good", "Very Good", "Excellent")) +
+  labs(title = "Additive Manufacturing Process Comparison",
+       subtitle = "Comparing key characteristics across 3D printing technologies",
+       x = "", y = "Rating") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "bottom"
+  )
 ```
 
-Example: Some examples of 3D printing include jewelry, toys, decorative items, phone cases.
+```{=html}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/Vx0Z6LplaMU"
+    title="How 3D Printing Works"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+```
+
+### FDM (Fused Deposition Modeling)
+
+Extrudes thermoplastic filament through a heated nozzle. Most common desktop 3D printing technology.
+
+**Materials:** PLA, ABS, PETG, Nylon, TPU
+
+### SLA (Stereolithography)
+
+Uses UV laser to cure liquid photopolymer resin. Excellent surface finish and detail.
+
+### SLS (Selective Laser Sintering)
+
+Fuses powder material with a laser. Produces strong functional parts without support structures.
+
+### Metal 3D Printing (DMLS/SLM)
+
+Fuses metal powder with high-power lasers. Used for aerospace, medical, and tooling applications.
+
+<details>
+<summary>When does metal 3D printing make sense vs. traditional manufacturing?</summary>
+
+**Metal 3D printing is advantageous when:**
+
+1. **Complex internal features** - Conformal cooling channels in molds
+2. **Topology optimization** - Organic shapes that minimize weight
+3. **Consolidation** - Combining multiple parts into one
+4. **Low volume** - Too few parts to justify tooling
+5. **Custom/one-off** - Medical implants, prototypes
+
+**Traditional manufacturing is better when:**
+- High volumes (> 100-1000 parts depending on complexity)
+- Simple geometries
+- Large parts (3D print beds are limited)
+- Maximum strength required (forging still superior)
+
+**Cost comparison:**
+- Simple bracket: $5 machined vs. $50+ 3D printed
+- Complex aerospace part: $10,000 machined vs. $3,000 3D printed
+
+</details>
+
+------------------------------------------------------------------------
+
+## Industry Applications
+
+```{r industry-table, echo=FALSE}
+industry_examples <- tibble(
+  `Process` = c("Die Casting", "Injection Molding", "Forging", "Stamping", "Machining", "Welding", "Powder Coating", "3D Printing"),
+  `Automotive` = c("Engine blocks, transmission cases", "Dashboard, interior trim, connectors", "Crankshafts, connecting rods, gears", "Body panels, structural components", "Engine components, precision parts", "Body structure, exhaust systems", "Wheels, chassis components", "Prototypes, custom fixtures"),
+  `Food Industry` = c("Equipment housings", "Packaging, containers, caps", "Mixer blades, pump impellers", "Cans, trays, lids", "Valves, fittings", "Tanks, piping, conveyors", "Equipment frames", "Custom tooling, fixtures"),
+  `Defense/Aerospace` = c("Aircraft structural components", "Connectors, housings, switches", "Landing gear, turbine disks", "Aircraft skins, missile bodies", "Precision weapons components", "Aircraft structures, armor", "Military vehicles, equipment", "Turbine blades, brackets, tooling")
+)
+
+industry_examples %>%
+  kable(format = "html", caption = "Manufacturing Process Applications by Industry") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "bordered"),
+    full_width = TRUE
+  ) %>%
+  row_spec(0, bold = TRUE, background = "#1A5276", color = "white") %>%
+  column_spec(1, bold = TRUE, background = "#D4E6F1") %>%
+  column_spec(2, background = "#FCF3CF") %>%
+  column_spec(3, background = "#D5F5E3") %>%
+  column_spec(4, background = "#FADBD8")
+```
+
+------------------------------------------------------------------------
+
+## Sustainability in Manufacturing
+
+Modern manufacturing must consider environmental impact. Here's how different processes compare:
+
+```{r sustainability, echo=FALSE, fig.align="center", fig.cap="Environmental Considerations by Process Type", fig.width=10, fig.height=5}
+sustainability_data <- data.frame(
+  Process = c("Casting", "Molding", "Forming", "Machining", "Joining", "Additive"),
+  Material_Waste = c(2, 1, 1, 4, 1, 2),
+  Energy_Use = c(5, 3, 4, 2, 4, 3),
+  Recyclability = c(5, 3, 5, 5, 4, 2)
+)
+
+sustainability_long <- sustainability_data %>%
+  pivot_longer(cols = -Process, names_to = "Factor", values_to = "Score") %>%
+  mutate(Factor = gsub("_", " ", Factor))
+
+ggplot(sustainability_long, aes(x = Process, y = Score, fill = Factor)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  scale_fill_manual(values = c("#27AE60", "#E74C3C", "#3498DB")) +
+  scale_y_continuous(breaks = 1:5, labels = c("Very Low", "Low", "Medium", "High", "Very High")) +
+  labs(title = "Sustainability Comparison of Manufacturing Processes",
+       subtitle = "Lower Material Waste & Energy Use is better; Higher Recyclability is better",
+       x = "", y = "Rating") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "bottom"
+  )
+```
+
+<details>
+<summary>Discussion: How can manufacturers reduce environmental impact?</summary>
+
+**Strategies for sustainable manufacturing:**
+
+1. **Near-net-shape processes** - Casting, forging, and molding reduce machining waste
+2. **Closed-loop recycling** - Reprocess scrap material on-site
+3. **Energy-efficient equipment** - Modern machines use 30-50% less energy
+4. **Additive manufacturing** - Only uses material where needed
+5. **Water-based coatings** - Replace solvent-based paints
+6. **Lean manufacturing** - Reduces overproduction and waste
+7. **Life cycle assessment** - Consider total environmental impact
+
+**Example:** Aluminum die casting recycles 95%+ of sprues and runners, while machining from billet may waste 80% of material.
+
+</details>
+
+------------------------------------------------------------------------
+
+## Review Questions
+
+<details>
+<summary>Question 1: Process Identification</summary>
+
+**A company needs to produce 50,000 aluminum housings per year. Each housing is a complex shape with internal fins for heat dissipation. The surface must be smooth and dimensions must be within ±0.3mm. Which process would you recommend?**
+
+**Answer:** **Die Casting** is the best choice because:
+- High volume (50,000/year) justifies tooling cost
+- Aluminum is ideal for die casting
+- Complex internal features are possible
+- ±0.3mm tolerance is achievable
+- Good surface finish without secondary operations
+
+Alternative: If volumes were lower (< 5,000), investment casting might be considered.
+
+</details>
+
+<details>
+<summary>Question 2: Cost Comparison</summary>
+
+**Calculate the break-even point between 3D printing and injection molding for a small plastic part:**
+- 3D printing: $8 per part (no tooling)
+- Injection molding: $25,000 mold + $0.50 per part
+
+**Answer:**
+Let n = number of parts
+
+Break-even: $8n = $25,000 + $0.50n
+
+$7.50n = $25,000
+
+n = 3,333 parts
+
+**Below 3,333 parts:** 3D printing is cheaper
+**Above 3,333 parts:** Injection molding is cheaper
+
+At 10,000 parts:
+- 3D printing: $80,000
+- Injection molding: $30,000
+
+</details>
+
+<details>
+<summary>Question 3: Material Selection</summary>
+
+**Match each material/product to the most appropriate manufacturing process:**
+
+a) Stainless steel surgical instrument
+b) Large plastic kayak
+c) Titanium jet engine bracket
+d) Aluminum beverage can
+
+**Answers:**
+
+a) **Investment casting** or **machining** - Complex shapes, high precision, excellent surface finish
+b) **Rotational molding** - Large hollow plastic part, low tooling cost
+c) **Additive manufacturing (DMLS)** or **forging** - Complex geometry, lightweight, strength critical
+d) **Deep drawing (stamping)** - Very high volume, thin-wall cylinder
+
+</details>
+
+<details>
+<summary>Question 4: Process Selection Scenario</summary>
+
+**You need to manufacture a new product with these requirements:**
+- Quantity: 200 units for initial market test
+- Material: ABS plastic
+- Size: 150mm × 100mm × 50mm
+- Tolerance: ±0.5mm
+- Surface: Smooth, will be painted
+
+**What process would you recommend and why?**
+
+**Answer:** **3D Printing (FDM or SLA)** would be most appropriate because:
+
+1. **Low quantity (200)** - Injection molding tooling ($30,000+) not justified
+2. **Market test phase** - Design may change based on feedback
+3. **Quick turnaround** - Parts in days vs. weeks for tooling
+4. **Tolerances achievable** - ±0.5mm is within FDM capabilities
+5. **Post-processing acceptable** - Parts will be painted anyway
+
+**Cost comparison:**
+- FDM: 200 × $15 = $3,000
+- Injection molding: $30,000 + (200 × $1) = $30,200
+
+If the product succeeds and volume increases to 10,000+, transition to injection molding.
+
+</details>
+
+<details>
+<summary>Question 5: Hybrid Manufacturing</summary>
+
+**What is hybrid manufacturing and when is it used?**
+
+**Answer:** **Hybrid manufacturing** combines additive and subtractive processes in a single machine or workflow.
+
+**Common combinations:**
+- 3D print near-net shape → CNC machine critical surfaces
+- Cast blank → Machine precision features
+- Forge rough shape → Machine final dimensions
+
+**Benefits:**
+- Reduced material waste vs. pure machining
+- Better precision than pure additive
+- Faster than pure machining for complex parts
+
+**Example:** Aerospace companies 3D print titanium brackets, then machine mounting surfaces to achieve tight tolerances. This can reduce material waste by 90% compared to machining from billet.
+
+</details>
+
+------------------------------------------------------------------------
+
+## Summary
+
+```{r summary-table-mfg, echo=FALSE}
+summary_data <- tibble(
+  `Process Category` = c("Casting", "Molding", "Forming", "Machining", "Joining", "Coating", "Additive"),
+  `Key Principle` = c("Pour liquid into mold", "Shape heated/softened material", "Deform solid with force", "Remove material with tools", "Combine multiple parts", "Apply protective layer", "Build layer by layer"),
+  `Best For` = c("Complex metal shapes, medium-high volume", "Plastic parts, very high volume", "Strong metal parts, high volume", "Precision parts, any material", "Assembly of components", "Corrosion/wear protection", "Prototypes, complex geometry"),
+  `Typical Industries` = c("Automotive, aerospace", "Consumer products, packaging", "Automotive, construction", "All industries", "All industries", "All industries", "Aerospace, medical, prototyping")
+)
+
+summary_data %>%
+  kable(format = "html", caption = "Manufacturing Processes Summary") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "bordered"),
+    full_width = TRUE
+  ) %>%
+  row_spec(0, bold = TRUE, background = "#1A5276", color = "white") %>%
+  column_spec(1, bold = TRUE)
+```
+
+### Key Takeaways
+
+1. **No single process is best for everything** - Selection depends on material, volume, complexity, and cost constraints
+2. **Volume drives economics** - High tooling costs require high volumes to amortize
+3. **Consider the complete supply chain** - Secondary operations, assembly, and finishing affect total cost
+4. **Sustainability matters** - Modern manufacturing must minimize waste and energy use
+5. **Hybrid approaches are growing** - Combining processes optimizes cost and performance
+
+------------------------------------------------------------------------
+
+## References
+
+1. Groover, M.P. (2020). *Fundamentals of Modern Manufacturing* (7th ed.). Wiley.
+2. Kalpakjian, S., & Schmid, S.R. (2020). *Manufacturing Engineering and Technology* (8th ed.). Pearson.
+3. DeGarmo, E.P., Black, J.T., & Kohser, R.A. (2019). *DeGarmo's Materials and Processes in Manufacturing* (13th ed.). Wiley.
+4. Afzal, M. "Types of Manufacturing Processes." *Engineering Articles*.
