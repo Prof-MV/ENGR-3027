@@ -1,13 +1,12 @@
 # Measurement Systems Analysis
 
-```{r setup-ch12, echo=FALSE, message=FALSE, warning=FALSE}
-library(dplyr)
-library(knitr)
-library(kableExtra)
-library(ggplot2)
-library(tidyr)
-library(ggforce)
+```{r setup-12, include=FALSE}
+# include the helpers.R file for pdf output of youtube on pdfs as a clickable link
+source("R/helpers.R")
+# include the required packages to make sure the page can be built.
+source("R/required_packages.R")
 ```
+----------------------------------------------------------------
 
 ## Learning Objectives
 

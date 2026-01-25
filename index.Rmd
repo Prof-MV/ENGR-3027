@@ -15,7 +15,9 @@ always_allow_html: true
 ---
 
 ```{r setup-index, include=FALSE}
+# include the helpers.R file for pdf output of youtube on pdfs as a clickable link
 source("R/helpers.R")
+source("R/required_packages.R")
 ```
 
 # Introduction {-}
