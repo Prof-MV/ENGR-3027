@@ -22695,12 +22695,14 @@ source("R/required_packages.R")
 After completing this chapter, you will be able to:
 
 1. Understand AI's role in modern engineering work and its limitations
-2. Apply prompt engineering principles to get better AI responses
-3. Distinguish between poor, adequate, and excellent prompts
-4. Use iterative AI collaboration to solve complex engineering problems
-5. Critically evaluate AI-generated content for accuracy and safety
-6. Identify tasks suited for AI assistance versus human expertise
-7. Apply ethical considerations when using AI in engineering contexts
+2. Apply the four steps of effective AI use: Define, Prompt, Iterate, Validate
+3. Apply prompt engineering principles to get better AI responses
+4. Distinguish between poor, adequate, and excellent prompts
+5. Select appropriate AI tools for different tasks (chat interfaces, NotebookLM, Claude Code, browser extensions)
+6. Use iterative AI collaboration to solve complex engineering problems
+7. Critically evaluate AI-generated content for accuracy and safety
+8. Identify tasks suited for AI assistance versus human expertise
+9. Apply ethical considerations when using AI in engineering contexts
 
 ---
 
@@ -23017,6 +23019,368 @@ kable(rate_these, col.names = c("#", "Prompt", "Your Rating (B/M/G)", "Justifica
   column_spec(2, width = "50%") %>%
   column_spec(3, width = "15%") %>%
   column_spec(4, width = "25%")
+```
+
+---
+
+## The Four Steps of Effective AI Use
+
+The research shows that effectively working with AI follows a consistent four-step process. Master these steps to maximize the value of AI collaboration.
+
+```{r four-steps, echo=FALSE, fig.width=14, fig.height=8}
+steps_data <- data.frame(
+  Step = c("1. DEFINE\nthe Task", "2. PROMPT\nwith Context", "3. ITERATE\nand Refine", "4. VALIDATE\nand Apply"),
+  Description = c(
+    "Break complex problems\ninto AI-manageable tasks.\nIdentify what you need\nand what AI can help with.",
+    "Write structured prompts\nusing the seven rules.\nInclude role, context,\nconstraints, and deliverables.",
+    "Review AI output critically.\nAsk follow-up questions.\nRefine through multiple\nconversation turns.",
+    "Verify accuracy against\nstandards and expertise.\nApply human judgment.\nIntegrate into final work."
+  ),
+  Key_Action = c(
+    "Task decomposition",
+    "Prompt engineering",
+    "Multi-turn dialogue",
+    "Critical evaluation"
+  ),
+  x = c(1, 2, 3, 4),
+  y = c(1, 1, 1, 1)
+)
+
+ggplot(steps_data, aes(x = x, y = y)) +
+  geom_tile(aes(fill = Step), width = 0.95, height = 0.9, color = "white", size = 3) +
+  geom_text(aes(label = Step), fontface = "bold", vjust = -1.8, size = 5, color = "white") +
+  geom_text(aes(label = Description), vjust = 0.8, size = 4, color = "white", lineheight = 0.9) +
+  geom_text(aes(label = paste0("→ ", Key_Action)), vjust = 3.5, size = 3.5, color = "yellow", fontface = "italic") +
+  # Add arrows between steps
+  annotate("segment", x = 1.55, xend = 1.95, y = 1, yend = 1,
+           arrow = arrow(length = unit(0.3, "cm")), color = "#2c3e50", size = 1.5) +
+  annotate("segment", x = 2.55, xend = 2.95, y = 1, yend = 1,
+           arrow = arrow(length = unit(0.3, "cm")), color = "#2c3e50", size = 1.5) +
+  annotate("segment", x = 3.55, xend = 3.95, y = 1, yend = 1,
+           arrow = arrow(length = unit(0.3, "cm")), color = "#2c3e50", size = 1.5) +
+  scale_fill_manual(values = c("#e74c3c", "#3498db", "#27ae60", "#9b59b6"), guide = "none") +
+  scale_x_continuous(limits = c(0.4, 4.6)) +
+  labs(
+    title = "The Four Steps of Effective AI Collaboration",
+    subtitle = "A systematic approach to getting maximum value from AI tools"
+  ) +
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 14)
+  )
+```
+
+### Step 1: Define the Task
+
+Before engaging with AI, clearly define what you need:
+
+- **What is the end goal?** A calculation, a design, troubleshooting guidance?
+- **What constraints apply?** Budget, standards, materials, timeline?
+- **What do you already know?** Your expertise shapes the conversation
+- **Can AI actually help with this?** Some tasks require physical inspection or human judgment
+
+> **Key Insight**: The better you understand the problem, the better AI can help. Vague understanding leads to vague prompts and useless responses.
+
+### Step 2: Prompt with Context
+
+Apply the seven rules of effective prompting:
+
+1. Assign a role to establish expertise level
+2. Provide complete context and background
+3. Specify constraints and requirements
+4. List clear deliverables
+5. Request step-by-step reasoning
+6. Define the output format
+7. Include relevant standards
+
+### Step 3: Iterate and Refine
+
+Rarely is the first response perfect. Plan for 3-6 turns of conversation:
+
+- Review critically: What's useful? What's missing? What's wrong?
+- Ask targeted follow-up questions
+- Request expansions on specific areas
+- Challenge assumptions and ask for alternatives
+
+### Step 4: Validate and Apply
+
+AI output is a **starting point**, not a final answer:
+
+- Verify calculations and units
+- Cross-check against standards and codes
+- Apply your engineering judgment
+- Document what came from AI assistance
+- Take responsibility for the final work product
+
+---
+
+## AI Tools and Their Use Cases
+
+Different AI tools serve different purposes. Understanding when to use each tool maximizes productivity.
+
+```{r ai-tools-comparison, echo=FALSE, fig.width=14, fig.height=10}
+tools_data <- data.frame(
+  Tool = c("Chat Interfaces\n(Claude.ai, ChatGPT,\nGemini)",
+           "NotebookLM\n(Google)",
+           "Claude Code\n(CLI Tool)",
+           "Browser Extensions\n(Claude, etc.)"),
+  Best_For = c(
+    "General Q&A\nDrafting documents\nExplaining concepts\nBrainstorming",
+    "Research synthesis\nSource-grounded answers\nPodcast generation\nMulti-document analysis",
+    "Code development\nFile operations\nProject automation\nTechnical implementation",
+    "Web page analysis\nQuick questions\nContent summarization\nIn-context assistance"
+  ),
+  Strengths = c(
+    "Flexible, conversational\nGood for exploration\nEasy to iterate",
+    "Cites sources directly\nReduces hallucination\nGreat for learning",
+    "Edits real files\nRuns commands\nProject-aware context",
+    "Works in browser\nNo context switching\nImmediate access"
+  ),
+  x = c(1, 2, 3, 4),
+  y = c(1, 1, 1, 1)
+)
+
+ggplot(tools_data, aes(x = x, y = y)) +
+  geom_tile(aes(fill = Tool), width = 0.95, height = 0.9, color = "white", size = 2) +
+  geom_text(aes(label = Tool), fontface = "bold", vjust = -2.2, size = 4, color = "white") +
+  geom_text(aes(label = Best_For), vjust = 0.3, size = 3.5, color = "white", lineheight = 0.85) +
+  geom_text(aes(label = Strengths), vjust = 3, size = 3, color = "lightyellow", lineheight = 0.85, fontface = "italic") +
+  scale_fill_manual(values = c("#2980b9", "#27ae60", "#8e44ad", "#c0392b"), guide = "none") +
+  scale_x_continuous(limits = c(0.4, 4.6)) +
+  labs(
+    title = "AI Tool Selection Guide for Engineering Work",
+    subtitle = "Choose the right tool for each task type"
+  ) +
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
+  )
+```
+
+### Chat Interfaces (Claude.ai, ChatGPT, Gemini)
+
+Web-based conversational AI platforms are the most versatile starting point for AI collaboration.
+
+```{r chat-interfaces, echo=FALSE}
+chat_uses <- data.frame(
+  Use_Case = c(
+    "Technical Explanations",
+    "Document Drafting",
+    "Calculation Verification",
+    "Brainstorming Solutions",
+    "Code Generation",
+    "Standard Interpretation"
+  ),
+  Description = c(
+    "Explain complex concepts, standards, or technical principles in accessible terms",
+    "Draft reports, specifications, procedures, or technical memos",
+    "Double-check hand calculations; request step-by-step solutions",
+    "Generate alternative approaches to engineering problems",
+    "Write PLC ladder logic concepts, Python scripts, or MATLAB code",
+    "Interpret requirements from ISO, OSHA, NEC, or other standards"
+  ),
+  Example_Prompt = c(
+    "'Explain the difference between ASIL levels in ISO 26262 for automotive safety'",
+    "'Draft a preventive maintenance procedure for a hydraulic press'",
+    "'Verify my torque calculation: 50kg load, 0.3m arm, need Nm result'",
+    "'What are three approaches to detect bearing wear before failure?'",
+    "'Write Python code to calculate conveyor belt speed from encoder pulses'",
+    "'What does NFPA 70E require for arc flash labeling on electrical panels?'"
+  )
+)
+
+kable(chat_uses, col.names = c("Use Case", "Description", "Example Prompt"),
+      caption = "Common Engineering Use Cases for Chat Interfaces") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "18%") %>%
+  column_spec(2, width = "35%") %>%
+  column_spec(3, width = "47%", monospace = TRUE)
+```
+
+**Best Practices for Chat Interfaces:**
+
+- Start new conversations for new topics (avoid context pollution)
+- Use the "regenerate" feature to see alternative responses
+- Upload images of diagrams, schematics, or equipment for visual analysis
+- Copy important responses to notes (conversations can be lost)
+
+### NotebookLM (Google)
+
+NotebookLM is specifically designed for **source-grounded research**. Upload documents, and the AI answers questions based only on your sources.
+
+```{r notebooklm-features, echo=FALSE}
+notebooklm_data <- data.frame(
+  Feature = c(
+    "Source-Based Answers",
+    "Citation Links",
+    "Audio Overview",
+    "Multi-Document Synthesis",
+    "Note Generation"
+  ),
+  Description = c(
+    "Answers come directly from your uploaded documents, reducing hallucination",
+    "Every answer includes clickable citations to the exact source passage",
+    "Generates AI podcast-style audio summaries of your documents for learning",
+    "Combines information from multiple PDFs, websites, or text files",
+    "Creates structured notes and summaries from source materials"
+  ),
+  Engineering_Application = c(
+    "Upload equipment manuals and ask specific troubleshooting questions",
+    "Verify AI claims against original standards documents",
+    "Listen to safety standard summaries during commute or shop floor time",
+    "Compare multiple vendor datasheets or competing standards",
+    "Generate study guides from technical documentation"
+  )
+)
+
+kable(notebooklm_data, col.names = c("Feature", "Description", "Engineering Application"),
+      caption = "NotebookLM Features for Engineering Work") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "20%")
+```
+
+**Example NotebookLM Workflow:**
+
+1. Upload: ISO 12100, ISO 13849-1, equipment manual PDF
+2. Ask: "What risk assessment steps does ISO 12100 require?"
+3. Review: AI provides answer with direct citations to document sections
+4. Generate: Create an audio overview to reinforce learning
+
+> **When to Use NotebookLM**: When you need answers grounded in specific documents rather than general AI knowledge. Ideal for standards compliance, equipment documentation, and research synthesis.
+
+### Claude Code (Command Line Tool)
+
+Claude Code is a **terminal-based AI assistant** that can read, write, and execute code in your actual project environment.
+
+```{r claude-code-table, echo=FALSE}
+claude_code_data <- data.frame(
+  Capability = c(
+    "File Operations",
+    "Code Development",
+    "Command Execution",
+    "Project Context",
+    "Git Integration"
+  ),
+  Description = c(
+    "Read, write, and edit files directly in your project",
+    "Generate, refactor, and debug code with full context",
+    "Run build commands, tests, and system tools",
+    "Understands your entire codebase structure",
+    "Create commits, branches, and pull requests"
+  ),
+  Example = c(
+    "Edit src/motor_control.py to add speed ramping",
+    "Write a Python script to parse PLC data logs",
+    "Run pytest and fix any failing tests",
+    "Find all files that reference the 'Pump' class",
+    "Commit changes with descriptive message"
+  )
+)
+
+kable(claude_code_data, col.names = c("Capability", "Description", "Example"),
+      caption = "Claude Code Capabilities for Technical Work") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "18%")
+```
+
+**Engineering Applications:**
+
+- **PLC Code Analysis**: Review and understand legacy ladder logic or structured text
+- **Data Processing**: Create scripts to analyze production data, SPC charts, or sensor logs
+- **Documentation Generation**: Auto-generate code documentation or API references
+- **Test Automation**: Write unit tests for engineering calculations
+
+**Example Session:**
+```
+> claude "Analyze the motor_control.py file and suggest improvements for
+         handling encoder signal noise"
+
+Claude Code reads the file, understands the context, and provides specific
+recommendations with code changes that can be applied directly.
+```
+
+### Browser Extensions (Claude Extension, etc.)
+
+Browser extensions provide **instant AI assistance** without leaving your current workflow.
+
+```{r browser-extension, echo=FALSE}
+extension_uses <- data.frame(
+  Use_Case = c(
+    "Webpage Summarization",
+    "Technical Documentation",
+    "Email Composition",
+    "Research Assistance",
+    "Quick Calculations"
+  ),
+  How_It_Helps = c(
+    "Summarize long technical articles or datasheets instantly",
+    "Ask questions about the documentation page you're reading",
+    "Draft professional responses to technical inquiries",
+    "Explain unfamiliar terms or concepts on any webpage",
+    "Get quick engineering calculations without switching apps"
+  ),
+  Example = c(
+    "On a 20-page motor datasheet: 'What is the rated torque at 1750 RPM?'",
+    "On Allen-Bradley KB: 'How do I configure this fault code?'",
+    "'Help me respond professionally to this RFQ'",
+    "Highlight text: 'Explain MTBF in practical terms'",
+    "'Convert 150 lb-ft to Nm'"
+  )
+)
+
+kable(extension_uses, col.names = c("Use Case", "How It Helps", "Example"),
+      caption = "Browser Extension Use Cases") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "20%")
+```
+
+**Best Practices:**
+
+- Use for quick queries and summaries
+- For complex problems, move to a full chat interface
+- Be cautious with confidential information on web pages
+- Extensions work best for reading comprehension tasks
+
+### Choosing the Right Tool
+
+```{r tool-decision, echo=FALSE}
+decision_data <- data.frame(
+  Situation = c(
+    "Need to understand a technical concept",
+    "Writing code for a project",
+    "Researching from specific documents",
+    "Quick question about a webpage",
+    "Drafting technical documentation",
+    "Analyzing production data",
+    "Learning new standards"
+  ),
+  Best_Tool = c(
+    "Chat Interface",
+    "Claude Code",
+    "NotebookLM",
+    "Browser Extension",
+    "Chat Interface",
+    "Claude Code",
+    "NotebookLM (with audio)"
+  ),
+  Why = c(
+    "Flexible conversation, can explore related topics",
+    "Can directly modify files and run tests",
+    "Answers grounded in your source documents",
+    "No context switching, immediate assistance",
+    "Good at structured document generation",
+    "Can write and execute analysis scripts",
+    "Audio overviews for passive learning"
+  )
+)
+
+kable(decision_data, col.names = c("Situation", "Best Tool", "Why"),
+      caption = "Tool Selection Quick Reference") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, width = "35%") %>%
+  column_spec(2, bold = TRUE, width = "20%", color = "#2980b9")
 ```
 
 ---
@@ -23445,13 +23809,17 @@ ggplot(summary_data, aes(x = x, y = y)) +
 
 1. **The Education Paradox**: Strong foundational knowledge is required to get quality AI assistance. "AI will do it for me" is a dangerous mindset.
 
-2. **Prompt Engineering is a Skill**: Like technical writing, crafting effective prompts requires practice and follows learnable principles.
+2. **The Four Steps**: Effective AI use follows a consistent process: Define → Prompt → Iterate → Validate. Skipping steps leads to poor results.
 
-3. **Iteration is Normal**: Professional engineers should expect 3-6 turns of AI conversation for complex problems.
+3. **Prompt Engineering is a Skill**: Like technical writing, crafting effective prompts requires practice and follows learnable principles.
 
-4. **Critical Evaluation is Essential**: AI produces confident-sounding outputs that may be wrong. Verify everything.
+4. **Choose the Right Tool**: Different AI tools serve different purposes. Chat interfaces for exploration, NotebookLM for source-grounded research, Claude Code for development, and browser extensions for quick assistance.
 
-5. **Human Judgment Remains Central**: AI augments but does not replace engineering expertise, especially for safety-critical decisions.
+5. **Iteration is Normal**: Professional engineers should expect 3-6 turns of AI conversation for complex problems.
+
+6. **Critical Evaluation is Essential**: AI produces confident-sounding outputs that may be wrong. Verify everything.
+
+7. **Human Judgment Remains Central**: AI augments but does not replace engineering expertise, especially for safety-critical decisions.
 
 ---
 
@@ -23459,19 +23827,27 @@ ggplot(summary_data, aes(x = x, y = y)) +
 
 1. Explain the "education paradox" in AI usage and why it matters for engineering students.
 
-2. List the seven rules of effective engineering prompts and give an example of each.
+2. List and describe the four steps of effective AI use. Why is each step important?
 
-3. What are three red flags that should make you question an AI-generated engineering recommendation?
+3. List the seven rules of effective engineering prompts and give an example of each.
 
-4. Describe the iterative approach to AI collaboration and why single-prompt interactions are often inadequate.
+4. What are three red flags that should make you question an AI-generated engineering recommendation?
 
-5. For which types of engineering tasks is AI assistance most appropriate? Least appropriate?
+5. Describe the iterative approach to AI collaboration and why single-prompt interactions are often inadequate.
 
-6. What ethical considerations apply when using AI for engineering work in safety-critical industries?
+6. Compare and contrast the four main types of AI tools (chat interfaces, NotebookLM, Claude Code, browser extensions). When would you use each?
 
-7. Transform this bad prompt into a good prompt: "Help me size a pump."
+7. For which types of engineering tasks is AI assistance most appropriate? Least appropriate?
 
-8. Why is it important to include standards references in engineering prompts?
+8. What ethical considerations apply when using AI for engineering work in safety-critical industries?
+
+9. Transform this bad prompt into a good prompt: "Help me size a pump."
+
+10. You need to research a new ISO standard and create a summary for your team. Which AI tool(s) would you use and why?
+
+11. Why is it important to include standards references in engineering prompts?
+
+12. How does NotebookLM differ from general chat interfaces like ChatGPT or Claude.ai? When would this difference matter?
 
 ---
 
@@ -23499,6 +23875,16 @@ ggplot(summary_data, aes(x = x, y = y)) +
 **Hallucination**: AI generating plausible-sounding but factually incorrect information.
 
 **Context Window**: The amount of text an AI can consider at once; important for complex problems requiring extensive background.
+
+**Chat Interface**: Web-based conversational AI platforms (e.g., Claude.ai, ChatGPT, Gemini) for flexible, general-purpose AI interaction.
+
+**NotebookLM**: Google's AI tool that provides source-grounded answers based on uploaded documents, with citation links and audio overview generation.
+
+**Claude Code**: A command-line AI tool that can read, write, and execute code directly in project environments with full file system access.
+
+**Browser Extension**: AI tools integrated into web browsers for instant assistance without switching applications; useful for webpage analysis and quick queries.
+
+**Source-Grounded AI**: AI systems that base responses on specific provided documents rather than general training data, reducing hallucination risk.
 
 <!--chapter:end:16-Teaching-with-AI.Rmd-->
 
