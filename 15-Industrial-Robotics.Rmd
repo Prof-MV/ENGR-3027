@@ -140,7 +140,7 @@ robot_types <- data.frame(
 )
 
 ggplot(robot_types, aes(x = x, y = y)) +
-  geom_tile(aes(fill = Type), width = 0.95, height = 0.9, color = "white", size = 2) +
+  geom_tile(aes(fill = Type), width = 0.95, height = 0.9, color = "white", linewidth = 2) +
   geom_text(aes(label = Type), fontface = "bold", vjust = -2, size = 4, color = "white") +
   geom_text(aes(label = Characteristics), vjust = 0, size = 2.8, color = "white", lineheight = 0.85) +
   geom_text(aes(label = Applications), vjust = 3.5, size = 2.5, color = "white",
@@ -715,7 +715,7 @@ circular_path <- data.frame(
 paths <- rbind(joint_path, linear_path, circular_path)
 
 ggplot(paths, aes(x = x, y = y, color = Type)) +
-  geom_path(size = 1.5) +
+  geom_path(linewidth = 1.5) +
   geom_point(data = paths[paths$Type == "Joint Move",][c(1, 50),],
              size = 4, shape = 21, fill = "white") +
   geom_point(data = paths[paths$Type == "Linear Move",][c(1, 50),],
@@ -758,7 +758,7 @@ auto_apps <- data.frame(
 )
 
 ggplot(auto_apps, aes(x = x, y = y)) +
-  geom_tile(aes(fill = Application), width = 0.95, height = 0.9, color = "white", size = 2) +
+  geom_tile(aes(fill = Application), width = 0.95, height = 0.9, color = "white", linewidth = 2) +
   geom_text(aes(label = Application), fontface = "bold", size = 4, color = "white", vjust = -1.5) +
   geom_text(aes(label = paste0("Robot: ", Robot_Type)), size = 2.5, color = "white", vjust = 0) +
   geom_text(aes(label = Key_Metrics), size = 2.5, color = "white",

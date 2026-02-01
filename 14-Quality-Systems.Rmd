@@ -165,7 +165,7 @@ clauses <- data.frame(
 )
 
 ggplot(clauses, aes(x = 1, y = y)) +
-  geom_tile(aes(fill = type), width = 4, height = 0.8, color = "white", size = 1) +
+  geom_tile(aes(fill = type), width = 4, height = 0.8, color = "white", linewidth = 1) +
   geom_text(aes(x = -0.3, label = clause), fontface = "bold", size = 5, color = "#2c3e50") +
   geom_text(aes(x = 0.3, label = title), fontface = "bold", size = 3.5, hjust = 0, color = "white") +
   geom_text(aes(x = 2.8, label = description), size = 2.8, hjust = 1, color = "white") +
@@ -327,7 +327,7 @@ standards <- data.frame(
 )
 
 ggplot(standards, aes(x = x, y = y)) +
-  geom_tile(aes(fill = Standard), width = 0.9, height = 1.5, color = "white", size = 2) +
+  geom_tile(aes(fill = Standard), width = 0.9, height = 1.5, color = "white", linewidth = 2) +
   geom_text(aes(label = Standard), fontface = "bold", size = 4, color = "white", vjust = -1) +
   geom_text(aes(label = Industry), size = 3.5, color = "white") +
   geom_text(aes(label = Base), size = 2.8, color = "white", vjust = 2, lineheight = 0.9) +
@@ -392,7 +392,7 @@ core_tools <- data.frame(
 )
 
 ggplot(core_tools, aes(x = x, y = 1)) +
-  geom_tile(aes(fill = tool), width = 0.85, height = 1.5, color = "white", size = 1.5) +
+  geom_tile(aes(fill = tool), width = 0.85, height = 1.5, color = "white", linewidth = 1.5) +
   geom_text(aes(label = tool), fontface = "bold", size = 5, color = "white", vjust = -1) +
   geom_text(aes(label = name), size = 3, color = "white", lineheight = 0.9) +
   geom_text(aes(label = purpose, y = 0.3), size = 2.5, color = "white", lineheight = 0.9) +
@@ -755,7 +755,7 @@ capa_steps <- data.frame(
 )
 
 ggplot(capa_steps, aes(x = x, y = y)) +
-  geom_tile(aes(fill = step), width = 0.9, height = 1.5, color = "white", size = 1) +
+  geom_tile(aes(fill = step), width = 0.9, height = 1.5, color = "white", linewidth = 1) +
   geom_text(aes(label = paste0(step, ". ", name)), fontface = "bold",
             size = 3, color = "white", vjust = -0.5) +
   geom_text(aes(label = description), size = 2.5, color = "white",
@@ -934,7 +934,7 @@ satisfaction <- data.frame(
 )
 
 p2 <- ggplot(satisfaction, aes(x = Quarter, y = Score, group = 1)) +
-  geom_line(color = "#3498db", size = 1.5) +
+  geom_line(color = "#3498db", linewidth = 1.5) +
   geom_point(color = "#3498db", size = 4) +
   geom_hline(yintercept = 4.0, linetype = "dashed", color = "red") +
   annotate("text", x = 4.2, y = 4.0, label = "Target", color = "red", size = 3) +
@@ -1231,7 +1231,7 @@ cert_steps <- data.frame(
 )
 
 ggplot(cert_steps, aes(x = x, y = 1)) +
-  geom_segment(aes(x = 1, xend = 8, y = 1, yend = 1), color = "gray70", size = 2) +
+  geom_segment(aes(x = 1, xend = 8, y = 1, yend = 1), color = "gray70", linewidth = 2) +
   geom_point(size = 12, color = "#3498db") +
   geom_text(aes(label = step), color = "white", fontface = "bold", size = 4) +
   geom_text(aes(label = name, y = 1.4), size = 3, fontface = "bold", angle = 45, hjust = 0) +

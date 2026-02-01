@@ -49,7 +49,7 @@ hierarchy_data <- data.frame(
 
 ggplot(hierarchy_data, aes(x = 0, y = y)) +
   # Pyramid levels
-  geom_tile(aes(width = width, height = 0.9, fill = level), color = "white", size = 2) +
+  geom_tile(aes(width = width, height = 0.9, fill = level), color = "white", linewidth = 2) +
   # Level names
   geom_text(aes(label = level), fontface = "bold", color = "white", size = 5) +
   # Descriptions on the right
@@ -1261,7 +1261,7 @@ risk_matrix$Risk <- c(
 risk_matrix$RiskNum <- c(1,1,2,2, 1,2,2,3, 2,2,3,3, 2,3,3,4)
 
 ggplot(risk_matrix, aes(x = Probability, y = Severity, fill = Risk)) +
-  geom_tile(color = "white", size = 1.5) +
+  geom_tile(color = "white", linewidth = 1.5) +
   geom_text(aes(label = Risk), fontface = "bold", size = 4) +
   scale_fill_manual(values = c("Low" = "#27AE60", "Medium" = "#F39C12",
                                "High" = "#E74C3C", "Critical" = "#8E44AD")) +

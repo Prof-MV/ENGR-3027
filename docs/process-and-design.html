@@ -23,7 +23,7 @@
 <meta name="author" content="Martin Volkening" />
 
 
-<meta name="date" content="2026-01-28" />
+<meta name="date" content="2026-01-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1253,33 +1253,33 @@ Figure 2.1: Comparison of Automation Types
 - Beverage bottling lines
 - Chemical processing plants
 - Paper manufacturing</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="process-and-design.html#cb8-1" tabindex="-1"></a><span class="co"># Fixed Automation Economic Analysis</span></span>
-<span id="cb8-2"><a href="process-and-design.html#cb8-2" tabindex="-1"></a><span class="co"># When does fixed automation make sense?</span></span>
-<span id="cb8-3"><a href="process-and-design.html#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="process-and-design.html#cb8-4" tabindex="-1"></a><span class="co"># Example: Automotive transfer line for cylinder heads</span></span>
-<span id="cb8-5"><a href="process-and-design.html#cb8-5" tabindex="-1"></a>fixed_automation_cost <span class="ot">&lt;-</span> <span class="dv">5000000</span>  <span class="co"># Initial equipment cost</span></span>
-<span id="cb8-6"><a href="process-and-design.html#cb8-6" tabindex="-1"></a>annual_production <span class="ot">&lt;-</span> <span class="dv">500000</span>       <span class="co"># Parts per year</span></span>
-<span id="cb8-7"><a href="process-and-design.html#cb8-7" tabindex="-1"></a>fixed_cost_per_part <span class="ot">&lt;-</span> <span class="fl">2.50</span>       <span class="co"># Operating cost per part</span></span>
-<span id="cb8-8"><a href="process-and-design.html#cb8-8" tabindex="-1"></a>equipment_life_years <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb8-9"><a href="process-and-design.html#cb8-9" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="process-and-design.html#cb8-10" tabindex="-1"></a><span class="co"># Calculate total cost per part including amortization</span></span>
-<span id="cb8-11"><a href="process-and-design.html#cb8-11" tabindex="-1"></a>annual_equipment_cost <span class="ot">&lt;-</span> fixed_automation_cost <span class="sc">/</span> equipment_life_years</span>
-<span id="cb8-12"><a href="process-and-design.html#cb8-12" tabindex="-1"></a>total_annual_cost <span class="ot">&lt;-</span> annual_equipment_cost <span class="sc">+</span> (fixed_cost_per_part <span class="sc">*</span> annual_production)</span>
-<span id="cb8-13"><a href="process-and-design.html#cb8-13" tabindex="-1"></a>cost_per_part <span class="ot">&lt;-</span> total_annual_cost <span class="sc">/</span> annual_production</span>
-<span id="cb8-14"><a href="process-and-design.html#cb8-14" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="process-and-design.html#cb8-15" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Fixed Automation Analysis:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="process-and-design.html#cb7-1" tabindex="-1"></a><span class="co"># Fixed Automation Economic Analysis</span></span>
+<span id="cb7-2"><a href="process-and-design.html#cb7-2" tabindex="-1"></a><span class="co"># When does fixed automation make sense?</span></span>
+<span id="cb7-3"><a href="process-and-design.html#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="process-and-design.html#cb7-4" tabindex="-1"></a><span class="co"># Example: Automotive transfer line for cylinder heads</span></span>
+<span id="cb7-5"><a href="process-and-design.html#cb7-5" tabindex="-1"></a>fixed_automation_cost <span class="ot">&lt;-</span> <span class="dv">5000000</span>  <span class="co"># Initial equipment cost</span></span>
+<span id="cb7-6"><a href="process-and-design.html#cb7-6" tabindex="-1"></a>annual_production <span class="ot">&lt;-</span> <span class="dv">500000</span>       <span class="co"># Parts per year</span></span>
+<span id="cb7-7"><a href="process-and-design.html#cb7-7" tabindex="-1"></a>fixed_cost_per_part <span class="ot">&lt;-</span> <span class="fl">2.50</span>       <span class="co"># Operating cost per part</span></span>
+<span id="cb7-8"><a href="process-and-design.html#cb7-8" tabindex="-1"></a>equipment_life_years <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb7-9"><a href="process-and-design.html#cb7-9" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="process-and-design.html#cb7-10" tabindex="-1"></a><span class="co"># Calculate total cost per part including amortization</span></span>
+<span id="cb7-11"><a href="process-and-design.html#cb7-11" tabindex="-1"></a>annual_equipment_cost <span class="ot">&lt;-</span> fixed_automation_cost <span class="sc">/</span> equipment_life_years</span>
+<span id="cb7-12"><a href="process-and-design.html#cb7-12" tabindex="-1"></a>total_annual_cost <span class="ot">&lt;-</span> annual_equipment_cost <span class="sc">+</span> (fixed_cost_per_part <span class="sc">*</span> annual_production)</span>
+<span id="cb7-13"><a href="process-and-design.html#cb7-13" tabindex="-1"></a>cost_per_part <span class="ot">&lt;-</span> total_annual_cost <span class="sc">/</span> annual_production</span>
+<span id="cb7-14"><a href="process-and-design.html#cb7-14" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="process-and-design.html#cb7-15" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Fixed Automation Analysis:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Fixed Automation Analysis:</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="process-and-design.html#cb10-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;==========================</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="process-and-design.html#cb9-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;==========================</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## ==========================</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="process-and-design.html#cb12-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Equipment cost: $%s</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">format</span>(fixed_automation_cost, <span class="at">big.mark=</span><span class="st">&quot;,&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="process-and-design.html#cb11-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Equipment cost: $%s</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">format</span>(fixed_automation_cost, <span class="at">big.mark=</span><span class="st">&quot;,&quot;</span>)))</span></code></pre></div>
 <pre><code>## Equipment cost: $5e+06</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="process-and-design.html#cb14-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Annual production: %s parts</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">format</span>(annual_production, <span class="at">big.mark=</span><span class="st">&quot;,&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="process-and-design.html#cb13-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Annual production: %s parts</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">format</span>(annual_production, <span class="at">big.mark=</span><span class="st">&quot;,&quot;</span>)))</span></code></pre></div>
 <pre><code>## Annual production: 5e+05 parts</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="process-and-design.html#cb16-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Operating cost per part: $%.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, fixed_cost_per_part))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="process-and-design.html#cb15-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Operating cost per part: $%.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, fixed_cost_per_part))</span></code></pre></div>
 <pre><code>## Operating cost per part: $2.50</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="process-and-design.html#cb18-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Amortized equipment cost per part: $%.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, annual_equipment_cost<span class="sc">/</span>annual_production))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="process-and-design.html#cb17-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Amortized equipment cost per part: $%.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, annual_equipment_cost<span class="sc">/</span>annual_production))</span></code></pre></div>
 <pre><code>## Amortized equipment cost per part: $1.00</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="process-and-design.html#cb20-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Total cost per part: $%.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, cost_per_part))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="process-and-design.html#cb19-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Total cost per part: $%.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, cost_per_part))</span></code></pre></div>
 <pre><code>## Total cost per part: $3.50</code></pre>
 </div>
 <div id="programmable-automation" class="section level3 hasAnchor" number="2.3.2">
@@ -1584,6 +1584,10 @@ Not Economical for Small Scale - Minimum volumes required
 <div id="project-development-phases" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Project Development Phases<a href="process-and-design.html#project-development-phases" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Manufacturing projects follow a structured development process from initial concept to full operation. Understanding these phases is essential for process engineers.</p>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:project-phases"></span>
 <img src="introduction_files/figure-html/project-phases-1.png" alt="Project Development Phases and Gate Reviews" width="1152" />
 <p class="caption">

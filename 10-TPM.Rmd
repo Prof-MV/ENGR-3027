@@ -103,7 +103,7 @@ ggplot(goals, aes(x = x, y = 1)) +
   geom_text(aes(label = goal), y = 1, color = "white", fontface = "bold", size = 4, lineheight = 0.9) +
   geom_text(aes(label = impact), y = 0.3, color = "#2C3E50", size = 3.5, lineheight = 0.9) +
   annotate("segment", x = 0.3, xend = 3.7, y = 0.6, yend = 0.6,
-           arrow = arrow(length = unit(0.2, "cm"), ends = "both"), color = "#27AE60", size = 1.5) +
+           arrow = arrow(length = unit(0.2, "cm"), ends = "both"), color = "#27AE60", linewidth = 1.5) +
   annotate("text", x = 2, y = 0.5, label = "= Maximum OEE", color = "#27AE60", fontface = "bold", size = 4) +
   theme_void() +
   labs(title = "TPM Zero Targets") +
@@ -289,11 +289,11 @@ ggplot() +
 
   # Arrows
   annotate("segment", x = 1.75, xend = 1.75, y = 4, yend = 4.5,
-           arrow = arrow(length = unit(0.15, "cm")), size = 1) +
+           arrow = arrow(length = unit(0.15, "cm")), linewidth = 1) +
   annotate("segment", x = 5, xend = 5, y = 4, yend = 4.5,
-           arrow = arrow(length = unit(0.15, "cm")), size = 1) +
+           arrow = arrow(length = unit(0.15, "cm")), linewidth = 1) +
   annotate("segment", x = 8.25, xend = 8.25, y = 4, yend = 4.5,
-           arrow = arrow(length = unit(0.15, "cm")), size = 1) +
+           arrow = arrow(length = unit(0.15, "cm")), linewidth = 1) +
 
   theme_void() +
   labs(title = "OEE: The TPM Scorecard") +
@@ -616,13 +616,13 @@ steps <- data.frame(
 )
 
 ggplot(steps, aes(x = 1, y = y)) +
-  geom_tile(width = 2, height = 0.8, fill = "#E74C3C", color = "white", size = 2) +
+  geom_tile(width = 2, height = 0.8, fill = "#E74C3C", color = "white", linewidth = 2) +
   geom_text(aes(x = 0.2, label = step), fontface = "bold", color = "white", size = 5) +
   geom_text(aes(x = 1.2, label = name), fontface = "bold", color = "white", size = 3.5) +
   geom_text(aes(x = 2.8, label = description), hjust = 0, color = "#2C3E50", size = 3.5) +
   # Arrows
   annotate("segment", x = 1, xend = 1, y = 0.5, yend = 7.5,
-           arrow = arrow(length = unit(0.3, "cm"), ends = "first"), color = "#27AE60", size = 2) +
+           arrow = arrow(length = unit(0.3, "cm"), ends = "first"), color = "#27AE60", linewidth = 2) +
   annotate("text", x = -0.3, y = 4, label = "Progress", angle = 90, fontface = "bold",
            color = "#27AE60", size = 4) +
   theme_void() +
@@ -745,7 +745,7 @@ ggplot() +
            color = "white", size = 3, lineheight = 0.9) +
   # Arrow
   annotate("segment", x = 0.5, xend = 9.5, y = -0.5, yend = -0.5,
-           arrow = arrow(length = unit(0.3, "cm")), color = "#2C3E50", size = 1.5) +
+           arrow = arrow(length = unit(0.3, "cm")), color = "#2C3E50", linewidth = 1.5) +
   annotate("text", x = 5, y = -0.8, label = "Increasing Maturity →", fontface = "bold") +
   theme_void() +
   labs(title = "Evolution of Maintenance Strategy") +
@@ -815,7 +815,7 @@ y <- pmax(y, 0)
 pf_data <- data.frame(x = x, y = y)
 
 ggplot(pf_data, aes(x = x, y = y)) +
-  geom_line(size = 2, color = "#E74C3C") +
+  geom_line(linewidth = 2, color = "#E74C3C") +
   # P point
   geom_point(aes(x = 4, y = 75), size = 5, color = "#F39C12") +
   annotate("text", x = 4, y = 82, label = "P\n(Potential Failure)", fontface = "bold",
@@ -826,7 +826,7 @@ ggplot(pf_data, aes(x = x, y = y)) +
            color = "#E74C3C", lineheight = 0.9) +
   # P-F interval
   annotate("segment", x = 4, xend = 9, y = 50, yend = 50,
-           arrow = arrow(length = unit(0.15, "cm"), ends = "both"), color = "#27AE60", size = 1.5) +
+           arrow = arrow(length = unit(0.15, "cm"), ends = "both"), color = "#27AE60", linewidth = 1.5) +
   annotate("text", x = 6.5, y = 55, label = "P-F Interval\n(Time to plan repair)",
            fontface = "bold", color = "#27AE60", lineheight = 0.9) +
   # Detection methods
@@ -907,13 +907,13 @@ ggplot() +
 
   # Arrows
   annotate("segment", x = 1.8, xend = 2, y = 1.75, yend = 1.75,
-           arrow = arrow(length = unit(0.15, "cm")), size = 1) +
+           arrow = arrow(length = unit(0.15, "cm")), linewidth = 1) +
   annotate("segment", x = 3.8, xend = 4, y = 1.75, yend = 1.75,
-           arrow = arrow(length = unit(0.15, "cm")), size = 1) +
+           arrow = arrow(length = unit(0.15, "cm")), linewidth = 1) +
   annotate("segment", x = 5.8, xend = 6, y = 1.75, yend = 1.75,
-           arrow = arrow(length = unit(0.15, "cm")), size = 1) +
+           arrow = arrow(length = unit(0.15, "cm")), linewidth = 1) +
   annotate("segment", x = 7.8, xend = 8, y = 1.75, yend = 1.75,
-           arrow = arrow(length = unit(0.15, "cm")), size = 1) +
+           arrow = arrow(length = unit(0.15, "cm")), linewidth = 1) +
 
   theme_void() +
   labs(title = "Focused Improvement (Kobetsu Kaizen) Process") +
@@ -1086,7 +1086,7 @@ ggplot(case_data, aes(x = component, y = value, fill = period)) +
   geom_text(aes(label = paste0(value, "%")), position = position_dodge(width = 0.7),
             vjust = -0.5, size = 3.5) +
   scale_fill_manual(values = c("Before TPM" = "#E74C3C", "After TPM" = "#27AE60")) +
-  geom_hline(yintercept = 85, linetype = "dashed", color = "#F39C12", size = 1) +
+  geom_hline(yintercept = 85, linetype = "dashed", color = "#F39C12", linewidth = 1) +
   annotate("text", x = 4.5, y = 87, label = "World Class", color = "#F39C12", fontface = "bold") +
   labs(title = "OEE Improvement Through TPM",
        x = "", y = "Percentage (%)") +

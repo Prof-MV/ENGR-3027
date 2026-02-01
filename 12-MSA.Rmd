@@ -53,9 +53,9 @@ measurement_data <- data.frame(
 
 ggplot(measurement_data, aes(x = Measurement, fill = System)) +
   geom_histogram(bins = 20, color = "white", alpha = 0.8) +
-  geom_vline(xintercept = true_value, linetype = "dashed", color = "red", size = 1.2) +
-  geom_vline(xintercept = 25.00 - 0.10, linetype = "solid", color = "darkred", size = 0.8) +
-  geom_vline(xintercept = 25.00 + 0.10, linetype = "solid", color = "darkred", size = 0.8) +
+  geom_vline(xintercept = true_value, linetype = "dashed", color = "red", linewidth = 1.2) +
+  geom_vline(xintercept = 25.00 - 0.10, linetype = "solid", color = "darkred", linewidth = 0.8) +
+  geom_vline(xintercept = 25.00 + 0.10, linetype = "solid", color = "darkred", linewidth = 0.8) +
   annotate("text", x = true_value, y = 12, label = "True Value",
            color = "red", fontface = "bold", hjust = -0.1) +
   annotate("text", x = 24.90, y = 12, label = "LSL", color = "darkred", hjust = 1.1) +
@@ -141,7 +141,7 @@ connections <- data.frame(
 ggplot() +
   geom_segment(data = connections,
                aes(x = x, y = y, xend = xend, yend = yend),
-               color = "gray50", size = 1) +
+               color = "gray50", linewidth = 1) +
   geom_label(data = components,
              aes(x = x, y = y, label = label, fill = factor(level)),
              size = 3.5, fontface = "bold", color = "white",
@@ -249,8 +249,8 @@ bias_data <- data.frame(
 
 ggplot(bias_data, aes(x = measurement, y = value)) +
   geom_point(color = "steelblue", size = 3) +
-  geom_hline(yintercept = reference, color = "red", linetype = "dashed", size = 1) +
-  geom_hline(yintercept = mean(measurements), color = "blue", size = 1) +
+  geom_hline(yintercept = reference, color = "red", linetype = "dashed", linewidth = 1) +
+  geom_hline(yintercept = mean(measurements), color = "blue", linewidth = 1) +
   annotate("text", x = 26, y = reference, label = "Reference = 50.00",
            hjust = 0, color = "red", fontface = "bold") +
   annotate("text", x = 26, y = mean(measurements),
@@ -1279,7 +1279,7 @@ steps <- data.frame(
 )
 
 ggplot(steps, aes(x = x, y = y)) +
-  geom_tile(aes(fill = step), width = 0.9, height = 0.8, color = "white", size = 1) +
+  geom_tile(aes(fill = step), width = 0.9, height = 0.8, color = "white", linewidth = 1) +
   geom_text(aes(label = name), fontface = "bold", size = 3.5, color = "white",
             vjust = -0.3) +
   geom_text(aes(label = description), size = 2.8, color = "white",
@@ -1287,7 +1287,7 @@ ggplot(steps, aes(x = x, y = y)) +
   scale_fill_gradient(low = "#3498db", high = "#2c3e50", guide = "none") +
   # Add arrows between columns
   annotate("segment", x = 1.5, xend = 1.6, y = 3, yend = 3,
-           arrow = arrow(length = unit(0.3, "cm")), size = 1.5) +
+           arrow = arrow(length = unit(0.3, "cm")), linewidth = 1.5) +
   coord_cartesian(xlim = c(0.4, 2.6)) +
   labs(title = "Gauge R&R Study Process Flow",
        subtitle = "Steps for conducting a complete MSA study") +

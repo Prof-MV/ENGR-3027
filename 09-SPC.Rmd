@@ -51,7 +51,7 @@ ggplot() +
            size = 3, color = "white", lineheight = 0.9) +
   # Arrow
   annotate("segment", x = 4.2, xend = 4.8, y = 1.5, yend = 1.5,
-           arrow = arrow(length = unit(0.3, "cm")), size = 2, color = "#2C3E50") +
+           arrow = arrow(length = unit(0.3, "cm")), linewidth = 2, color = "#2C3E50") +
   theme_void() +
   labs(title = "The Shift from Inspection to Prevention",
        subtitle = "SPC enables real-time process monitoring and early intervention") +
@@ -135,8 +135,8 @@ df <- data.frame(
 ggplot(df, aes(x = sample, y = value)) +
   geom_line(color = "#3498DB") +
   geom_point(color = "#3498DB", size = 2) +
-  geom_hline(yintercept = 50, linetype = "dashed", color = "#27AE60", size = 1) +
-  geom_hline(yintercept = c(44, 56), linetype = "dotted", color = "#E74C3C", size = 1) +
+  geom_hline(yintercept = 50, linetype = "dashed", color = "#27AE60", linewidth = 1) +
+  geom_hline(yintercept = c(44, 56), linetype = "dotted", color = "#E74C3C", linewidth = 1) +
   facet_wrap(~type, ncol = 1) +
   annotate("text", x = 52, y = 56.5, label = "UCL", color = "#E74C3C", size = 3) +
   annotate("text", x = 52, y = 43.5, label = "LCL", color = "#E74C3C", size = 3) +
@@ -257,8 +257,8 @@ combined <- rbind(in_control, out_control)
 ggplot(combined, aes(x = x, y = y)) +
   geom_line(color = "#3498DB") +
   geom_point(aes(color = y > 56 | y < 44), size = 3) +
-  geom_hline(yintercept = 50, linetype = "solid", color = "#27AE60", size = 1) +
-  geom_hline(yintercept = c(44, 56), linetype = "dashed", color = "#E74C3C", size = 1) +
+  geom_hline(yintercept = 50, linetype = "solid", color = "#27AE60", linewidth = 1) +
+  geom_hline(yintercept = c(44, 56), linetype = "dashed", color = "#E74C3C", linewidth = 1) +
   scale_color_manual(values = c("FALSE" = "#3498DB", "TRUE" = "#E74C3C"), guide = "none") +
   facet_wrap(~status) +
   labs(title = "Recognizing In-Control vs. Out-of-Control Conditions",
@@ -293,13 +293,13 @@ ucl <- mean_val + 3 * sd(data$value[-18])
 lcl <- mean_val - 3 * sd(data$value[-18])
 
 ggplot(data, aes(x = subgroup, y = value)) +
-  geom_line(color = "#3498DB", size = 0.8) +
+  geom_line(color = "#3498DB", linewidth = 0.8) +
   geom_point(aes(color = value > ucl | value < lcl), size = 3) +
   # Center line
-  geom_hline(yintercept = mean_val, color = "#27AE60", size = 1.2) +
+  geom_hline(yintercept = mean_val, color = "#27AE60", linewidth = 1.2) +
   # Control limits
-  geom_hline(yintercept = ucl, color = "#E74C3C", linetype = "dashed", size = 1) +
-  geom_hline(yintercept = lcl, color = "#E74C3C", linetype = "dashed", size = 1) +
+  geom_hline(yintercept = ucl, color = "#E74C3C", linetype = "dashed", linewidth = 1) +
+  geom_hline(yintercept = lcl, color = "#E74C3C", linetype = "dashed", linewidth = 1) +
   # Zone lines
   geom_hline(yintercept = mean_val + 2*sd(data$value[-18]), color = "#F39C12", linetype = "dotted") +
   geom_hline(yintercept = mean_val - 2*sd(data$value[-18]), color = "#F39C12", linetype = "dotted") +
@@ -368,12 +368,12 @@ y <- dnorm(x)
 df <- data.frame(x = x, y = y)
 
 ggplot(df, aes(x = x, y = y)) +
-  geom_line(size = 1.2, color = "#2C3E50") +
+  geom_line(linewidth = 1.2, color = "#2C3E50") +
   geom_area(data = subset(df, x >= -3 & x <= 3), fill = "#3498DB", alpha = 0.5) +
   geom_area(data = subset(df, x >= -2 & x <= 2), fill = "#27AE60", alpha = 0.5) +
   geom_area(data = subset(df, x >= -1 & x <= 1), fill = "#F39C12", alpha = 0.5) +
-  geom_vline(xintercept = c(-3, 3), linetype = "dashed", color = "#E74C3C", size = 1) +
-  geom_vline(xintercept = 0, color = "#27AE60", size = 1) +
+  geom_vline(xintercept = c(-3, 3), linetype = "dashed", color = "#E74C3C", linewidth = 1) +
+  geom_vline(xintercept = 0, color = "#27AE60", linewidth = 1) +
   annotate("text", x = 0, y = 0.2, label = "68.27%\n(±1σ)", size = 3, fontface = "bold") +
   annotate("text", x = 1.5, y = 0.1, label = "95.45%\n(±2σ)", size = 3) +
   annotate("text", x = 2.5, y = 0.03, label = "99.73%\n(±3σ)", size = 3) +
@@ -592,8 +592,8 @@ plot_data <- data.frame(
 p1 <- ggplot(plot_data, aes(x = subgroup, y = xbar)) +
   geom_line(color = "#3498DB") +
   geom_point(aes(color = xbar > UCL_xbar | xbar < LCL_xbar), size = 3) +
-  geom_hline(yintercept = X_double_bar, color = "#27AE60", size = 1) +
-  geom_hline(yintercept = c(UCL_xbar, LCL_xbar), color = "#E74C3C", linetype = "dashed", size = 1) +
+  geom_hline(yintercept = X_double_bar, color = "#27AE60", linewidth = 1) +
+  geom_hline(yintercept = c(UCL_xbar, LCL_xbar), color = "#E74C3C", linetype = "dashed", linewidth = 1) +
   scale_color_manual(values = c("FALSE" = "#3498DB", "TRUE" = "#E74C3C"), guide = "none") +
   annotate("text", x = 26, y = UCL_xbar, label = paste("UCL =", round(UCL_xbar, 3)), hjust = 0, size = 3) +
   annotate("text", x = 26, y = X_double_bar, label = paste("CL =", round(X_double_bar, 3)), hjust = 0, size = 3) +
@@ -607,8 +607,8 @@ p1 <- ggplot(plot_data, aes(x = subgroup, y = xbar)) +
 p2 <- ggplot(plot_data, aes(x = subgroup, y = R)) +
   geom_line(color = "#F39C12") +
   geom_point(aes(color = R > UCL_R | R < LCL_R), size = 3) +
-  geom_hline(yintercept = R_bar, color = "#27AE60", size = 1) +
-  geom_hline(yintercept = c(UCL_R, LCL_R), color = "#E74C3C", linetype = "dashed", size = 1) +
+  geom_hline(yintercept = R_bar, color = "#27AE60", linewidth = 1) +
+  geom_hline(yintercept = c(UCL_R, LCL_R), color = "#E74C3C", linetype = "dashed", linewidth = 1) +
   scale_color_manual(values = c("FALSE" = "#F39C12", "TRUE" = "#E74C3C"), guide = "none") +
   annotate("text", x = 26, y = UCL_R, label = paste("UCL =", round(UCL_R, 3)), hjust = 0, size = 3) +
   annotate("text", x = 26, y = R_bar, label = paste("CL =", round(R_bar, 3)), hjust = 0, size = 3) +
@@ -676,8 +676,8 @@ imr_data <- data.frame(
 p1 <- ggplot(imr_data, aes(x = obs, y = individual)) +
   geom_line(color = "#3498DB") +
   geom_point(aes(color = individual > UCL_I | individual < LCL_I), size = 3) +
-  geom_hline(yintercept = X_bar, color = "#27AE60", size = 1) +
-  geom_hline(yintercept = c(UCL_I, LCL_I), color = "#E74C3C", linetype = "dashed", size = 1) +
+  geom_hline(yintercept = X_bar, color = "#27AE60", linewidth = 1) +
+  geom_hline(yintercept = c(UCL_I, LCL_I), color = "#E74C3C", linetype = "dashed", linewidth = 1) +
   scale_color_manual(values = c("FALSE" = "#3498DB", "TRUE" = "#E74C3C"), guide = "none") +
   labs(title = "Individual (I) Chart", x = "", y = "Individual Value") +
   theme_minimal() +
@@ -687,9 +687,9 @@ p1 <- ggplot(imr_data, aes(x = obs, y = individual)) +
 p2 <- ggplot(imr_data[-1, ], aes(x = obs, y = MR)) +
   geom_line(color = "#F39C12") +
   geom_point(aes(color = MR > UCL_MR), size = 3) +
-  geom_hline(yintercept = MR_bar, color = "#27AE60", size = 1) +
-  geom_hline(yintercept = UCL_MR, color = "#E74C3C", linetype = "dashed", size = 1) +
-  geom_hline(yintercept = 0, color = "#E74C3C", linetype = "dashed", size = 1) +
+  geom_hline(yintercept = MR_bar, color = "#27AE60", linewidth = 1) +
+  geom_hline(yintercept = UCL_MR, color = "#E74C3C", linetype = "dashed", linewidth = 1) +
+  geom_hline(yintercept = 0, color = "#E74C3C", linetype = "dashed", linewidth = 1) +
   scale_color_manual(values = c("FALSE" = "#F39C12", "TRUE" = "#E74C3C"), guide = "none") +
   labs(title = "Moving Range (MR) Chart", x = "Observation Number", y = "Moving Range") +
   theme_minimal() +
@@ -757,7 +757,7 @@ ggplot(p_data, aes(x = day)) +
   geom_point(aes(y = p, color = p > UCL | p < LCL), size = 3) +
   geom_line(aes(y = UCL), color = "#E74C3C", linetype = "dashed") +
   geom_line(aes(y = LCL), color = "#E74C3C", linetype = "dashed") +
-  geom_hline(yintercept = p_bar, color = "#27AE60", size = 1) +
+  geom_hline(yintercept = p_bar, color = "#27AE60", linewidth = 1) +
   scale_color_manual(values = c("FALSE" = "#3498DB", "TRUE" = "#E74C3C"), guide = "none") +
   scale_y_continuous(labels = scales::percent) +
   labs(title = "p Chart: Proportion Defective",
@@ -796,8 +796,8 @@ c_data <- data.frame(
 ggplot(c_data, aes(x = sample, y = defects)) +
   geom_line(color = "#9B59B6") +
   geom_point(aes(color = defects > UCL_c | defects < LCL_c), size = 3) +
-  geom_hline(yintercept = c_bar, color = "#27AE60", size = 1) +
-  geom_hline(yintercept = c(UCL_c, LCL_c), color = "#E74C3C", linetype = "dashed", size = 1) +
+  geom_hline(yintercept = c_bar, color = "#27AE60", linewidth = 1) +
+  geom_hline(yintercept = c(UCL_c, LCL_c), color = "#E74C3C", linetype = "dashed", linewidth = 1) +
   scale_color_manual(values = c("FALSE" = "#9B59B6", "TRUE" = "#E74C3C"), guide = "none") +
   annotate("text", x = 26, y = UCL_c, label = paste("UCL =", round(UCL_c, 1)), hjust = 0) +
   annotate("text", x = 26, y = c_bar, label = paste("c-bar =", round(c_bar, 1)), hjust = 0) +
@@ -895,7 +895,7 @@ rules_data <- data.frame(
 )
 
 ggplot(rules_data, aes(x = x, y = y)) +
-  geom_hline(yintercept = 0, color = "#27AE60", size = 0.8) +
+  geom_hline(yintercept = 0, color = "#27AE60", linewidth = 0.8) +
   geom_hline(yintercept = c(-3, 3), color = "#E74C3C", linetype = "dashed") +
   geom_hline(yintercept = c(-2, 2), color = "#F39C12", linetype = "dotted") +
   geom_hline(yintercept = c(-1, 1), color = "#9B59B6", linetype = "dotted") +
@@ -970,9 +970,9 @@ x <- seq(-5, 5, 0.01)
 y <- dnorm(x)
 
 ggplot(data.frame(x, y), aes(x, y)) +
-  geom_line(size = 1.2, color = "#3498DB") +
+  geom_line(linewidth = 1.2, color = "#3498DB") +
   geom_area(fill = "#3498DB", alpha = 0.3) +
-  geom_vline(xintercept = c(-3, 3), color = "#E74C3C", linetype = "dashed", size = 1.2) +
+  geom_vline(xintercept = c(-3, 3), color = "#E74C3C", linetype = "dashed", linewidth = 1.2) +
   annotate("segment", x = -4, xend = 4, y = -0.02, yend = -0.02,
            arrow = arrow(length = unit(0.15, "cm"), ends = "both"), size = 1) +
   annotate("text", x = 0, y = -0.04, label = "Specification Width", fontface = "bold") +
@@ -1035,9 +1035,9 @@ df <- data.frame(
 )
 
 ggplot(df, aes(x = x, y = y)) +
-  geom_line(color = "#3498DB", size = 1) +
+  geom_line(color = "#3498DB", linewidth = 1) +
   geom_area(fill = "#3498DB", alpha = 0.3) +
-  geom_vline(xintercept = c(-3, 3), color = "#E74C3C", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = c(-3, 3), color = "#E74C3C", linetype = "dashed", linewidth = 1) +
   facet_wrap(~scenario, ncol = 3) +
   labs(title = "Same Cp, Different Cpk — Centering Matters!",
        subtitle = "Specification limits at ±3 shown in red",

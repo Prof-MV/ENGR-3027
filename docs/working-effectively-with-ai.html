@@ -23,7 +23,7 @@
 <meta name="author" content="Martin Volkening" />
 
 
-<meta name="date" content="2026-01-28" />
+<meta name="date" content="2026-01-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1224,6 +1224,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p><strong>Key Insight</strong>: There is a nearly perfect correlation between prompt sophistication and response quality. You need strong foundational knowledge to get quality AI assistance. “AI will do it for me” is a trap.</p>
 </blockquote>
+<details>
+<summary>
+Discussion: Why does expertise improve AI results?
+</summary>
+<p>The “education paradox” reveals a fundamental truth about AI collaboration:</p>
+<ul>
+<li><strong>Better questions lead to better answers</strong>: Experts know what to ask and how to frame problems</li>
+<li><strong>Domain knowledge enables validation</strong>: You can only verify AI output if you understand the domain</li>
+<li><strong>Iterative refinement requires expertise</strong>: Knowing when to push back or ask follow-up questions</li>
+<li><strong>Critical evaluation is essential</strong>: AI can sound confident while being wrong</li>
+</ul>
+<p><strong>Think about it</strong>: If you don’t understand the fundamentals of motor selection, how would you know if an AI recommendation is correct or dangerously undersized?</p>
+</details>
 </div>
 <div id="ai-impact-by-industry" class="section level3 hasAnchor" number="16.2.2">
 <h3><span class="header-section-number">16.2.2</span> AI Impact by Industry<a href="working-effectively-with-ai.html#ai-impact-by-industry" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1339,11 +1352,37 @@ Moderate
 </tbody>
 </table>
 <hr />
+<details>
+<summary>
+Why do automotive and defense require “Critical” human oversight?
+</summary>
+<p><strong>Safety-critical applications</strong> require mandatory human validation because:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Regulatory requirements</strong>: ISO 26262 (automotive) and MIL-STDs (defense) require documented human review</li>
+<li><strong>Liability</strong>: Engineers are legally responsible for designs, not AI tools</li>
+<li><strong>Failure consequences</strong>: Errors can cause injury, death, or mission failure</li>
+<li><strong>AI limitations</strong>: Current AI cannot reliably reason about edge cases and failure modes</li>
+<li><strong>Standards compliance</strong>: AI cannot certify compliance with safety standards</li>
+</ol>
+<p><strong>Best practice</strong>: Use AI for initial research and drafting, but always validate with human experts and formal analysis methods (FMEA, FTA, HAZOP).</p>
+</details>
+<hr />
 </div>
 </div>
 <div id="prompt-engineering-fundamentals" class="section level2 hasAnchor" number="16.3">
 <h2><span class="header-section-number">16.3</span> Prompt Engineering Fundamentals<a href="working-effectively-with-ai.html#prompt-engineering-fundamentals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Prompt engineering</strong> is the skill of crafting inputs to AI systems that produce useful, accurate, and relevant outputs. In engineering contexts, this skill is becoming as important as technical writing.</p>
+<details>
+<summary>
+Before you read: What makes a good question?
+</summary>
+<p>Think about the difference between these two questions:</p>
+<ol style="list-style-type: decimal">
+<li>“Can you help me with my motor problem?”</li>
+<li>“I have a 3-phase 460V 50HP motor that trips its overload after 15 minutes of running. Ambient temperature is 35°C. What diagnostic steps should I follow?”</li>
+</ol>
+<p>Which question would get better help from a human expert? The same principle applies to AI. Before reading about prompt engineering, consider what information you would need to give a colleague to get useful help.</p>
+</details>
 <div id="the-seven-rules-of-effective-prompts" class="section level3 hasAnchor" number="16.3.1">
 <h3><span class="header-section-number">16.3.1</span> The Seven Rules of Effective Prompts<a href="working-effectively-with-ai.html#the-seven-rules-of-effective-prompts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="introduction_files/figure-html/prompt-rules-1.png" alt="" width="1344" /></p>
@@ -1754,6 +1793,33 @@ ________
 <li>Document what came from AI assistance</li>
 <li>Take responsibility for the final work product</li>
 </ul>
+<details>
+<summary>
+Case Study: When validation caught an AI error
+</summary>
+<p><strong>Scenario</strong>: An engineering student used AI to calculate the required conveyor belt width for a food processing line handling 500 kg/hr of bulk product.</p>
+<p><strong>AI Response</strong>: Recommended a 300mm belt based on throughput calculations.</p>
+<p><strong>Validation Issue</strong>: The AI correctly calculated volumetric flow but failed to consider:
+- Minimum belt width for the discharge chute (400mm required)
+- Product spread factor for irregular materials
+- Safety factor for surge capacity</p>
+<p><strong>Actual Requirement</strong>: 500mm belt per facility standards.</p>
+<p><strong>Lesson</strong>: AI calculations may be mathematically correct but miss practical engineering constraints. Always validate against physical requirements, codes, and site-specific standards.</p>
+</details>
+<details>
+<summary>
+Discussion: When should you NOT use AI?
+</summary>
+<p>AI is not appropriate when:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Physical inspection is required</strong>: AI cannot see, touch, or measure actual equipment</li>
+<li><strong>Real-time safety decisions</strong>: Lockout/tagout procedures, emergency response</li>
+<li><strong>Legal certification</strong>: Stamping drawings, signing off on safety assessments</li>
+<li><strong>Novel situations</strong>: First-of-a-kind designs with no training data</li>
+<li><strong>Classified/proprietary work</strong>: Confidential designs should not be uploaded</li>
+</ol>
+<p><strong>Rule of thumb</strong>: If a human expert would need to be physically present, AI cannot substitute.</p>
+</details>
 <hr />
 </div>
 </div>
@@ -2269,6 +2335,17 @@ Include safety relay wiring diagram description.</code></pre>
 <blockquote>
 <p><strong>Key Point</strong>: This four-turn conversation produced a design that would have required a much longer single prompt to achieve, and the iterative approach allowed for course correction along the way.</p>
 </blockquote>
+<details>
+<summary>
+Try it yourself: Practice iterative prompting
+</summary>
+<p><strong>Your Challenge</strong>: Use the four-turn approach to design a temperature monitoring system for a food processing facility.</p>
+<p><strong>Turn 1</strong>: Define the basic requirements (number of zones, temperature ranges, alerting needs)</p>
+<p><strong>Turn 2</strong>: Add specifics (sensor types, communication protocol, integration with existing systems)</p>
+<p><strong>Turn 3</strong>: Address failure modes and safety (what happens if a sensor fails? How are critical temperature excursions handled?)</p>
+<p><strong>Turn 4</strong>: Request validation questions and identify what you need to verify before implementation</p>
+<p><strong>Compare your results</strong>: Did the iterative approach give you a more complete design than your initial prompt would have?</p>
+</details>
 <hr />
 </div>
 </div>
@@ -2828,6 +2905,21 @@ A P.Eng. must review and approve critical designs; AI cannot be licensed
 </tr>
 </tbody>
 </table>
+<details>
+<summary>
+Quick Check: AI or Human?
+</summary>
+<p>For each task below, decide whether AI assistance is appropriate, limited, or inappropriate:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Drafting a maintenance procedure for a conveyor system</strong> → <em>Appropriate with verification</em></li>
+<li><strong>Deciding whether to shut down a production line during a safety incident</strong> → <em>Human only</em></li>
+<li><strong>Generating a bill of materials from a design specification</strong> → <em>Appropriate with verification</em></li>
+<li><strong>Certifying a machine guarding design for compliance</strong> → <em>Human only (requires P.Eng.)</em></li>
+<li><strong>Troubleshooting a motor that “sounds funny”</strong> → <em>Limited - AI can suggest causes, human must inspect</em></li>
+<li><strong>Explaining the difference between ISO 13849 and IEC 62443</strong> → <em>Appropriate</em></li>
+</ol>
+<p><strong>Key insight</strong>: AI excels at information synthesis and drafting, but physical observation, legal certification, and real-time safety decisions require human expertise.</p>
+</details>
 <hr />
 </div>
 </div>
@@ -2910,6 +3002,20 @@ P.Eng. or equivalent must review all safety-critical designs
 </tr>
 </tbody>
 </table>
+<details>
+<summary>
+Reflection: Your responsibilities as an AI-assisted engineer
+</summary>
+<p>Consider these questions for your own practice:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Disclosure</strong>: Does your employer have a policy on AI tool usage? What about your professional engineering body?</p></li>
+<li><p><strong>Verification</strong>: What specific steps will you take to verify AI-generated calculations before using them?</p></li>
+<li><p><strong>Confidentiality</strong>: What types of information from your work should NEVER be input into public AI tools?</p></li>
+<li><p><strong>Professional development</strong>: How will you continue building expertise rather than becoming dependent on AI for answers?</p></li>
+<li><p><strong>Liability</strong>: If an AI-assisted design fails, who is responsible? (Hint: It’s always the licensed engineer who approved it.)</p></li>
+</ol>
+<p><strong>Remember</strong>: AI tools change rapidly, but professional engineering ethics remain constant. Your responsibility for the safety and quality of your work never transfers to a tool.</p>
+</details>
 <hr />
 </div>
 </div>

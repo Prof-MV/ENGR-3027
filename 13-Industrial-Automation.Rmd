@@ -194,7 +194,7 @@ pyramid_levels <- data.frame(
 )
 
 ggplot(pyramid_levels, aes(x = 0, y = y)) +
-  geom_tile(aes(width = width, height = 0.8, fill = color), color = "white", size = 2) +
+  geom_tile(aes(width = width, height = 0.8, fill = color), color = "white", linewidth = 2) +
   geom_text(aes(x = -2.5, label = level), fontface = "bold", hjust = 1, size = 4) +
   geom_text(aes(label = name), fontface = "bold", size = 4.5, color = "white") +
   geom_text(aes(label = description, y = y - 0.25), size = 3, color = "white") +
@@ -1345,7 +1345,7 @@ i4_tech <- data.frame(
 )
 
 ggplot(i4_tech, aes(x = x, y = y)) +
-  geom_tile(aes(fill = Technology), width = 0.9, height = 0.8, color = "white", size = 1.5) +
+  geom_tile(aes(fill = Technology), width = 0.9, height = 0.8, color = "white", linewidth = 1.5) +
   geom_text(aes(label = Technology), fontface = "bold", size = 3.5, color = "white", vjust = -0.5) +
   geom_text(aes(label = Description), size = 2.8, color = "white", vjust = 1.5, lineheight = 0.9) +
   scale_fill_manual(values = c("#e74c3c", "#3498db", "#27ae60", "#f39c12",
@@ -1428,11 +1428,11 @@ cat("\nRecommendation: Schedule bearing replacement before day", alarm_day, "\n"
 vib_data <- data.frame(Day = days, Vibration = vibration)
 
 ggplot(vib_data, aes(x = Day, y = Vibration)) +
-  geom_line(color = "steelblue", size = 1) +
+  geom_line(color = "steelblue", linewidth = 1) +
   geom_point(color = "steelblue", size = 2) +
-  geom_hline(yintercept = warning_threshold, linetype = "dashed", color = "orange", size = 1) +
-  geom_hline(yintercept = alarm_threshold, linetype = "dashed", color = "red", size = 1) +
-  geom_hline(yintercept = baseline_vibration, linetype = "dotted", color = "green", size = 1) +
+  geom_hline(yintercept = warning_threshold, linetype = "dashed", color = "orange", linewidth = 1) +
+  geom_hline(yintercept = alarm_threshold, linetype = "dashed", color = "red", linewidth = 1) +
+  geom_hline(yintercept = baseline_vibration, linetype = "dotted", color = "green", linewidth = 1) +
   annotate("text", x = 30, y = baseline_vibration + 0.2, label = "Baseline",
            hjust = 1, color = "green", fontface = "bold") +
   annotate("text", x = 30, y = warning_threshold + 0.2, label = "Warning",

@@ -40,9 +40,9 @@ paradox_data <- data.frame(
 )
 
 ggplot(paradox_data, aes(x = factor(Skill_Level, levels = c("Low", "Medium", "High", "Expert")))) +
-  geom_line(aes(y = AI_Response_Quality, group = 1, color = "AI Response Quality"), size = 2) +
+  geom_line(aes(y = AI_Response_Quality, group = 1, color = "AI Response Quality"), linewidth = 2) +
   geom_point(aes(y = AI_Response_Quality, color = "AI Response Quality"), size = 4) +
-  geom_line(aes(y = Success_Rate/10, group = 1, color = "Task Success Rate (%)"), size = 2, linetype = "dashed") +
+  geom_line(aes(y = Success_Rate/10, group = 1, color = "Task Success Rate (%)"), linewidth = 2, linetype = "dashed") +
   geom_point(aes(y = Success_Rate/10, color = "Task Success Rate (%)"), size = 4) +
   scale_y_continuous(
     name = "Quality Score (1-10)",
@@ -63,6 +63,20 @@ ggplot(paradox_data, aes(x = factor(Skill_Level, levels = c("Low", "Medium", "Hi
 ```
 
 > **Key Insight**: There is a nearly perfect correlation between prompt sophistication and response quality. You need strong foundational knowledge to get quality AI assistance. "AI will do it for me" is a trap.
+
+<details>
+<summary>Discussion: Why does expertise improve AI results?</summary>
+
+The "education paradox" reveals a fundamental truth about AI collaboration:
+
+- **Better questions lead to better answers**: Experts know what to ask and how to frame problems
+- **Domain knowledge enables validation**: You can only verify AI output if you understand the domain
+- **Iterative refinement requires expertise**: Knowing when to push back or ask follow-up questions
+- **Critical evaluation is essential**: AI can sound confident while being wrong
+
+**Think about it**: If you don't understand the fundamentals of motor selection, how would you know if an AI recommendation is correct or dangerously undersized?
+
+</details>
 
 ### AI Impact by Industry
 
@@ -91,9 +105,38 @@ kable(ai_impact, col.names = c("Industry", "Common AI Applications", "Potential 
 
 ---
 
+<details>
+<summary>Why do automotive and defense require "Critical" human oversight?</summary>
+
+**Safety-critical applications** require mandatory human validation because:
+
+1. **Regulatory requirements**: ISO 26262 (automotive) and MIL-STDs (defense) require documented human review
+2. **Liability**: Engineers are legally responsible for designs, not AI tools
+3. **Failure consequences**: Errors can cause injury, death, or mission failure
+4. **AI limitations**: Current AI cannot reliably reason about edge cases and failure modes
+5. **Standards compliance**: AI cannot certify compliance with safety standards
+
+**Best practice**: Use AI for initial research and drafting, but always validate with human experts and formal analysis methods (FMEA, FTA, HAZOP).
+
+</details>
+
+---
+
 ## Prompt Engineering Fundamentals
 
 **Prompt engineering** is the skill of crafting inputs to AI systems that produce useful, accurate, and relevant outputs. In engineering contexts, this skill is becoming as important as technical writing.
+
+<details>
+<summary>Before you read: What makes a good question?</summary>
+
+Think about the difference between these two questions:
+
+1. "Can you help me with my motor problem?"
+2. "I have a 3-phase 460V 50HP motor that trips its overload after 15 minutes of running. Ambient temperature is 35°C. What diagnostic steps should I follow?"
+
+Which question would get better help from a human expert? The same principle applies to AI. Before reading about prompt engineering, consider what information you would need to give a colleague to get useful help.
+
+</details>
 
 ### The Seven Rules of Effective Prompts
 
@@ -115,7 +158,7 @@ rules <- data.frame(
 )
 
 ggplot(rules, aes(x = x, y = y)) +
-  geom_tile(aes(fill = Rule), width = 0.95, height = 0.9, color = "white", size = 2) +
+  geom_tile(aes(fill = Rule), width = 0.95, height = 0.9, color = "white", linewidth = 2) +
   geom_text(aes(label = Rule), fontface = "bold", vjust = -1.5, size = 7, color = "white") +
   geom_text(aes(label = Description), vjust = 1, size = 5, color = "white", lineheight = 0.9) +
   scale_fill_manual(values = c("#e74c3c", "#3498db", "#27ae60", "#f39c12",
@@ -364,7 +407,7 @@ steps_data <- data.frame(
 )
 
 ggplot(steps_data, aes(x = x, y = y)) +
-  geom_tile(aes(fill = Step), width = 0.95, height = 0.9, color = "white", size = 3) +
+  geom_tile(aes(fill = Step), width = 0.95, height = 0.9, color = "white", linewidth = 3) +
   geom_text(aes(label = Step), fontface = "bold", vjust = -1.8, size = 5, color = "white") +
   geom_text(aes(label = Description), vjust = 0.8, size = 4, color = "white", lineheight = 0.9) +
   geom_text(aes(label = paste0("→ ", Key_Action)), vjust = 3.5, size = 3.5, color = "yellow", fontface = "italic") +
@@ -430,6 +473,39 @@ AI output is a **starting point**, not a final answer:
 - Document what came from AI assistance
 - Take responsibility for the final work product
 
+<details>
+<summary>Case Study: When validation caught an AI error</summary>
+
+**Scenario**: An engineering student used AI to calculate the required conveyor belt width for a food processing line handling 500 kg/hr of bulk product.
+
+**AI Response**: Recommended a 300mm belt based on throughput calculations.
+
+**Validation Issue**: The AI correctly calculated volumetric flow but failed to consider:
+- Minimum belt width for the discharge chute (400mm required)
+- Product spread factor for irregular materials
+- Safety factor for surge capacity
+
+**Actual Requirement**: 500mm belt per facility standards.
+
+**Lesson**: AI calculations may be mathematically correct but miss practical engineering constraints. Always validate against physical requirements, codes, and site-specific standards.
+
+</details>
+
+<details>
+<summary>Discussion: When should you NOT use AI?</summary>
+
+AI is not appropriate when:
+
+1. **Physical inspection is required**: AI cannot see, touch, or measure actual equipment
+2. **Real-time safety decisions**: Lockout/tagout procedures, emergency response
+3. **Legal certification**: Stamping drawings, signing off on safety assessments
+4. **Novel situations**: First-of-a-kind designs with no training data
+5. **Classified/proprietary work**: Confidential designs should not be uploaded
+
+**Rule of thumb**: If a human expert would need to be physically present, AI cannot substitute.
+
+</details>
+
 ---
 
 ## AI Tools and Their Use Cases
@@ -459,7 +535,7 @@ tools_data <- data.frame(
 )
 
 ggplot(tools_data, aes(x = x, y = y)) +
-  geom_tile(aes(fill = Tool), width = 0.95, height = 0.9, color = "white", size = 2) +
+  geom_tile(aes(fill = Tool), width = 0.95, height = 0.9, color = "white", linewidth = 2) +
   geom_text(aes(label = Tool), fontface = "bold", vjust = -2.2, size = 4, color = "white") +
   geom_text(aes(label = Best_For), vjust = 0.3, size = 3.5, color = "white", lineheight = 0.85) +
   geom_text(aes(label = Strengths), vjust = 3, size = 3, color = "lightyellow", lineheight = 0.85, fontface = "italic") +
@@ -725,7 +801,7 @@ cycle_data <- data.frame(
 )
 
 ggplot(cycle_data, aes(x = x, y = y)) +
-  geom_tile(aes(fill = Step), width = 0.9, height = 0.8, color = "white", size = 2) +
+  geom_tile(aes(fill = Step), width = 0.9, height = 0.8, color = "white", linewidth = 2) +
   geom_text(aes(label = Step), fontface = "bold", vjust = -1, size = 3.2, color = "white") +
   geom_text(aes(label = Description), vjust = 1.5, size = 2.8, color = "white", lineheight = 0.9) +
   # Add arrows between steps
@@ -799,6 +875,23 @@ Review your complete design and:
 **AI Response Summary**: Comprehensive assumption list, remaining questions, and standards references for documentation.
 
 > **Key Point**: This four-turn conversation produced a design that would have required a much longer single prompt to achieve, and the iterative approach allowed for course correction along the way.
+
+<details>
+<summary>Try it yourself: Practice iterative prompting</summary>
+
+**Your Challenge**: Use the four-turn approach to design a temperature monitoring system for a food processing facility.
+
+**Turn 1**: Define the basic requirements (number of zones, temperature ranges, alerting needs)
+
+**Turn 2**: Add specifics (sensor types, communication protocol, integration with existing systems)
+
+**Turn 3**: Address failure modes and safety (what happens if a sensor fails? How are critical temperature excursions handled?)
+
+**Turn 4**: Request validation questions and identify what you need to verify before implementation
+
+**Compare your results**: Did the iterative approach give you a more complete design than your initial prompt would have?
+
+</details>
 
 ---
 
@@ -1004,6 +1097,22 @@ kable(limitations, col.names = c("Limitation", "Description", "Example"),
   column_spec(1, bold = TRUE, width = "18%", color = "#e74c3c")
 ```
 
+<details>
+<summary>Quick Check: AI or Human?</summary>
+
+For each task below, decide whether AI assistance is appropriate, limited, or inappropriate:
+
+1. **Drafting a maintenance procedure for a conveyor system** → *Appropriate with verification*
+2. **Deciding whether to shut down a production line during a safety incident** → *Human only*
+3. **Generating a bill of materials from a design specification** → *Appropriate with verification*
+4. **Certifying a machine guarding design for compliance** → *Human only (requires P.Eng.)*
+5. **Troubleshooting a motor that "sounds funny"** → *Limited - AI can suggest causes, human must inspect*
+6. **Explaining the difference between ISO 13849 and IEC 62443** → *Appropriate*
+
+**Key insight**: AI excels at information synthesis and drafting, but physical observation, legal certification, and real-time safety decisions require human expertise.
+
+</details>
+
 ---
 
 ## Ethical Considerations
@@ -1046,6 +1155,25 @@ kable(ethics, col.names = c("Industry", "Key Ethical/Legal Concern", "Guidance")
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
   column_spec(1, bold = TRUE, width = "15%")
 ```
+
+<details>
+<summary>Reflection: Your responsibilities as an AI-assisted engineer</summary>
+
+Consider these questions for your own practice:
+
+1. **Disclosure**: Does your employer have a policy on AI tool usage? What about your professional engineering body?
+
+2. **Verification**: What specific steps will you take to verify AI-generated calculations before using them?
+
+3. **Confidentiality**: What types of information from your work should NEVER be input into public AI tools?
+
+4. **Professional development**: How will you continue building expertise rather than becoming dependent on AI for answers?
+
+5. **Liability**: If an AI-assisted design fails, who is responsible? (Hint: It's always the licensed engineer who approved it.)
+
+**Remember**: AI tools change rapidly, but professional engineering ethics remain constant. Your responsibility for the safety and quality of your work never transfers to a tool.
+
+</details>
 
 ---
 
@@ -1109,7 +1237,7 @@ summary_data <- data.frame(
 )
 
 ggplot(summary_data, aes(x = x, y = y)) +
-  geom_tile(aes(fill = Principle), width = 0.9, height = 0.85, color = "white", size = 2) +
+  geom_tile(aes(fill = Principle), width = 0.9, height = 0.85, color = "white", linewidth = 2) +
   geom_text(aes(label = Principle), fontface = "bold", vjust = -1.2, size = 4, color = "white") +
   geom_text(aes(label = Key_Point), vjust = 1.2, size = 3, color = "white", lineheight = 0.9) +
   scale_fill_manual(values = c("#3498db", "#27ae60", "#f39c12", "#e74c3c", "#9b59b6"), guide = "none") +

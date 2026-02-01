@@ -471,7 +471,7 @@ cycle_data <- data.frame(
 )
 
 ggplot(cycle_data, aes(x = x, y = severity)) +
-  geom_line(size = 2, color = "#2C3E50") +
+  geom_line(linewidth = 2, color = "#2C3E50") +
   geom_point(aes(color = stage), size = 15) +
   geom_text(aes(label = stage), color = "white", fontface = "bold", size = 3) +
   geom_text(aes(y = severity - 0.8, label = recovery), size = 3, fontface = "italic") +
@@ -534,7 +534,7 @@ prevention <- data.frame(
 )
 
 ggplot(prevention, aes(x = 0, y = y)) +
-  geom_tile(aes(width = width, height = 0.8, fill = level), color = "white", size = 2) +
+  geom_tile(aes(width = width, height = 0.8, fill = level), color = "white", linewidth = 2) +
   geom_text(aes(label = level), fontface = "bold", color = "white", size = 5) +
   geom_text(aes(x = 3.5, label = description), hjust = 0, size = 3.5, lineheight = 0.9) +
   scale_fill_manual(values = c("Engineering Controls" = "#27AE60",
@@ -654,7 +654,7 @@ principles <- data.frame(
 )
 
 ggplot(principles, aes(x = x, y = y)) +
-  geom_tile(width = 0.9, height = 0.8, fill = "#3498DB", color = "white", size = 2) +
+  geom_tile(width = 0.9, height = 0.8, fill = "#3498DB", color = "white", linewidth = 2) +
   geom_text(aes(label = principle), color = "white", fontface = "bold", size = 3.5,
             lineheight = 0.9) +
   theme_void() +
@@ -708,9 +708,9 @@ ggplot() +
   stat_function(fun = dnorm, args = list(mean = 170, sd = 10),
                 xlim = c(140, 200), size = 2, color = "#3498DB") +
   # Percentile lines
-  geom_vline(xintercept = 153.5, linetype = "dashed", color = "#E74C3C", size = 1) +
-  geom_vline(xintercept = 170, linetype = "dashed", color = "#F39C12", size = 1) +
-  geom_vline(xintercept = 186.5, linetype = "dashed", color = "#27AE60", size = 1) +
+  geom_vline(xintercept = 153.5, linetype = "dashed", color = "#E74C3C", linewidth = 1) +
+  geom_vline(xintercept = 170, linetype = "dashed", color = "#F39C12", linewidth = 1) +
+  geom_vline(xintercept = 186.5, linetype = "dashed", color = "#27AE60", linewidth = 1) +
   # Labels
   annotate("text", x = 153.5, y = 0.035, label = "5th\npercentile",
            size = 3, color = "#E74C3C", vjust = 0) +
@@ -1537,7 +1537,7 @@ ggplot(results_long, aes(x = metric, y = change)) +
            color = "black", width = 0.7) +
   geom_text(aes(label = paste0(ifelse(change > 0, "+", ""), round(change), "%")),
             vjust = ifelse(results_long$change < 0, 1.5, -0.5), fontface = "bold", size = 4) +
-  geom_hline(yintercept = 0, color = "black", size = 1) +
+  geom_hline(yintercept = 0, color = "black", linewidth = 1) +
   scale_y_continuous(limits = c(-90, 30)) +
   labs(title = "Impact of Ergonomic Interventions",
        subtitle = "Percentage change from baseline after 18 months",

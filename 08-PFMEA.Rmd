@@ -235,7 +235,7 @@ team <- data.frame(
 )
 
 ggplot(team, aes(x = x, y = y)) +
-  geom_tile(width = 0.9, height = 0.8, fill = "#3498DB", color = "white", size = 2) +
+  geom_tile(width = 0.9, height = 0.8, fill = "#3498DB", color = "white", linewidth = 2) +
   geom_text(aes(label = role), color = "white", fontface = "bold", size = 3.5,
             vjust = -0.3, lineheight = 0.8) +
   geom_text(aes(label = contribution), color = "white", size = 2.5,
@@ -355,7 +355,7 @@ steps <- data.frame(
 )
 
 ggplot(steps, aes(x = x, y = y)) +
-  geom_tile(aes(fill = phase), width = 0.9, height = 0.8, color = "white", size = 2) +
+  geom_tile(aes(fill = phase), width = 0.9, height = 0.8, color = "white", linewidth = 2) +
   geom_text(aes(label = paste0(step, ". ", name)), color = "white",
             fontface = "bold", size = 3, lineheight = 0.9) +
   scale_fill_manual(values = c("Plan" = "#3498DB", "Analyze" = "#F39C12",
@@ -597,38 +597,38 @@ For each failure mode, identify all possible causes: **"Why might this failure o
 ```{r step6-causes, echo=FALSE, fig.align="center", fig.cap="Fishbone Diagram: Causes of Short Shot", fig.width=10, fig.height=6}
 ggplot() +
   # Main arrow (spine)
-  annotate("segment", x = 0, xend = 9, y = 3, yend = 3, size = 2, color = "#2C3E50") +
+  annotate("segment", x = 0, xend = 9, y = 3, yend = 3, linewidth = 2, color = "#2C3E50") +
   # Effect
   annotate("rect", xmin = 9, xmax = 10.5, ymin = 2.5, ymax = 3.5, fill = "#E74C3C") +
   annotate("text", x = 9.75, y = 3, label = "SHORT\nSHOT", fontface = "bold",
            color = "white", size = 4, lineheight = 0.9) +
 
   # Machine branch
-  annotate("segment", x = 2, xend = 2, y = 3, yend = 5, color = "#3498DB", size = 1.5) +
+  annotate("segment", x = 2, xend = 2, y = 3, yend = 5, color = "#3498DB", linewidth = 1.5) +
   annotate("text", x = 2, y = 5.2, label = "MACHINE", fontface = "bold", color = "#3498DB") +
   annotate("text", x = 1.2, y = 4.5, label = "• Worn screw\n• Clogged nozzle\n• Low pressure",
            size = 2.5, hjust = 0, lineheight = 0.9) +
 
   # Material branch
-  annotate("segment", x = 4, xend = 4, y = 3, yend = 5, color = "#27AE60", size = 1.5) +
+  annotate("segment", x = 4, xend = 4, y = 3, yend = 5, color = "#27AE60", linewidth = 1.5) +
   annotate("text", x = 4, y = 5.2, label = "MATERIAL", fontface = "bold", color = "#27AE60") +
   annotate("text", x = 3.2, y = 4.5, label = "• High viscosity\n• Contamination\n• Moisture",
            size = 2.5, hjust = 0, lineheight = 0.9) +
 
   # Method branch
-  annotate("segment", x = 6, xend = 6, y = 3, yend = 5, color = "#F39C12", size = 1.5) +
+  annotate("segment", x = 6, xend = 6, y = 3, yend = 5, color = "#F39C12", linewidth = 1.5) +
   annotate("text", x = 6, y = 5.2, label = "METHOD", fontface = "bold", color = "#F39C12") +
   annotate("text", x = 5.2, y = 4.5, label = "• Wrong parameters\n• Short shot size\n• Low speed",
            size = 2.5, hjust = 0, lineheight = 0.9) +
 
   # Mold branch
-  annotate("segment", x = 3, xend = 3, y = 3, yend = 1, color = "#9B59B6", size = 1.5) +
+  annotate("segment", x = 3, xend = 3, y = 3, yend = 1, color = "#9B59B6", linewidth = 1.5) +
   annotate("text", x = 3, y = 0.8, label = "MOLD", fontface = "bold", color = "#9B59B6") +
   annotate("text", x = 2.2, y = 1.5, label = "• Blocked vents\n• Cold spots\n• Gate too small",
            size = 2.5, hjust = 0, lineheight = 0.9) +
 
   # Man branch
-  annotate("segment", x = 6, xend = 6, y = 3, yend = 1, color = "#E74C3C", size = 1.5) +
+  annotate("segment", x = 6, xend = 6, y = 3, yend = 1, color = "#E74C3C", linewidth = 1.5) +
   annotate("text", x = 6, y = 0.8, label = "MAN", fontface = "bold", color = "#E74C3C") +
   annotate("text", x = 5.2, y = 1.5, label = "• Setup error\n• Wrong program\n• Inadequate training",
            size = 2.5, hjust = 0, lineheight = 0.9) +
@@ -1031,7 +1031,7 @@ improvement_data <- data.frame(
 ggplot(improvement_data, aes(x = option, y = RPN, fill = option)) +
   geom_bar(stat = "identity", color = "black", width = 0.6) +
   geom_text(aes(label = RPN), vjust = -0.5, fontface = "bold", size = 5) +
-  geom_hline(yintercept = 100, linetype = "dashed", color = "#E74C3C", size = 1) +
+  geom_hline(yintercept = 100, linetype = "dashed", color = "#E74C3C", linewidth = 1) +
   annotate("text", x = 4.5, y = 110, label = "Action threshold", hjust = 0, color = "#E74C3C") +
   scale_fill_manual(values = c("Current" = "#E74C3C", "Option 1:\nDetection" = "#F39C12",
                                "Option 2:\nOccurrence" = "#3498DB", "Option 3:\nBoth" = "#27AE60")) +

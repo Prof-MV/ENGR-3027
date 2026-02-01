@@ -159,7 +159,7 @@ timeline_data <- data.frame(
 )
 
 ggplot(timeline_data, aes(x = year, y = y)) +
-  geom_hline(yintercept = 0, color = "#2C3E50", size = 2) +
+  geom_hline(yintercept = 0, color = "#2C3E50", linewidth = 2) +
   geom_point(size = 8, color = "#E74C3C") +
   geom_text(aes(label = year), vjust = -2.5, fontface = "bold", size = 4) +
   geom_text(aes(label = event), vjust = 2.5, size = 3, lineheight = 0.8) +
