@@ -4,7 +4,9 @@
       "Bash(ls -la \"c:\\\\Users\\\\mvolk\\\\Documents\\\\!_Fanshawe\\\\26W\\\\ENGR-3027\\\\LectureBook\\\\quizzes\"\" 2>/dev/null || dir \"c:UsersmvolkDocuments!_Fanshawe26WENGR-3027LectureBookquizzes \")",
       "Bash(dir:*)",
       "Bash(git mv:*)",
-      "Bash(del nul)"
+      "Bash(del nul)",
+      "WebFetch(domain:ergo-plus.com)",
+      "WebFetch(domain:www.tumeke.io)"
     ]
   }
 }

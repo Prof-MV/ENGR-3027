@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Process and Design | ENGR-3027 Process Engineering</title>
+  <title>Chapter 16 Simulation Modeling with AnyLogic | ENGR-3027 Process Engineering</title>
   <meta name="description" content="Lecture notes accompanying the course." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Process and Design | ENGR-3027 Process Engineering" />
+  <meta property="og:title" content="Chapter 16 Simulation Modeling with AnyLogic | ENGR-3027 Process Engineering" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://prof-mv.github.io/ENGR-3027/images/Gemini_Generated_Image_dleggdleggdleggd.png" />
   <meta property="og:description" content="Lecture notes accompanying the course." />
   <meta name="github-repo" content="Prof-MV/ENGR-3027" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Process and Design | ENGR-3027 Process Engineering" />
+  <meta name="twitter:title" content="Chapter 16 Simulation Modeling with AnyLogic | ENGR-3027 Process Engineering" />
   
   <meta name="twitter:description" content="Lecture notes accompanying the course." />
   <meta name="twitter:image" content="https://prof-mv.github.io/ENGR-3027/images/Gemini_Generated_Image_dleggdleggdleggd.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="types-of-manufacturing-processes.html"/>
-<link rel="next" href="integrated-manufacturing-systems.html"/>
+<link rel="prev" href="industrial-robotics.html"/>
+<link rel="next" href="working-effectively-with-ai.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -1266,385 +1266,135 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="process-and-design" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Process and Design<a href="process-and-design.html#process-and-design" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="chap-17-anylogic" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Chapter 16</span> Simulation Modeling with AnyLogic<a href="chap-17-anylogic.html#chap-17-anylogic" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <hr />
-<div id="learning-objectives-1" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Learning Objectives<a href="process-and-design.html#learning-objectives-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>By the end of this chapter, you will be able to:</p>
+<div id="learning-objectives-15" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Learning Objectives<a href="chap-17-anylogic.html#learning-objectives-15" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>After completing this chapter, you will be able to:</p>
 <ol style="list-style-type: decimal">
-<li>Describe the stages of process plant project development from concept to operation</li>
-<li>Differentiate between fixed, programmable, and flexible automation systems</li>
-<li>Interpret Process Flow Diagrams (PFDs) and Piping &amp; Instrumentation Diagrams (P&amp;IDs)</li>
-<li>Explain the purpose and content of Front-End Engineering Design (FEED)</li>
-<li>Apply Design for Manufacturing (DFM) and Design for Assembly (DFA) principles</li>
-<li>Understand the role of HAZOP studies in process safety</li>
-<li>Identify key engineering deliverables for each project phase</li>
+<li>Explain what simulation modeling is and why it is essential for manufacturing system design</li>
+<li>Describe the three simulation paradigms available in AnyLogic (discrete-event, agent-based, and system dynamics)</li>
+<li>Identify the key components and libraries in AnyLogic for manufacturing simulation</li>
+<li>Build a basic production line simulation using the Process Modeling Library</li>
+<li>Model warehouse picking and order fulfillment operations</li>
+<li>Analyze simulation results to optimize throughput, reduce bottlenecks, and improve efficiency</li>
+<li>Apply simulation to validate design decisions before physical implementation</li>
+<li>Use built-in AnyLogic examples to accelerate model development</li>
 </ol>
 <hr />
 </div>
-<div id="introduction-to-process-engineering" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Introduction to Process Engineering<a href="process-and-design.html#introduction-to-process-engineering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Process engineering</strong> is a specialized branch of engineering that focuses on the design, optimization, and implementation of manufacturing processes and production systems. Process engineers work at the intersection of design and production, ensuring that products can be manufactured efficiently, safely, and economically.</p>
-<details>
-<summary>
-What is the role of a process engineer?
-</summary>
-<p>Process engineers are responsible for:</p>
-<ul>
-<li><strong>Designing production processes</strong> - Selecting equipment, defining sequences, optimizing flow</li>
-<li><strong>Improving existing processes</strong> - Reducing waste, increasing throughput, improving quality</li>
-<li><strong>Scaling up from lab to production</strong> - Taking R&amp;D concepts to full-scale manufacturing</li>
-<li><strong>Ensuring safety and compliance</strong> - Meeting regulatory and environmental requirements</li>
-<li><strong>Supporting production</strong> - Troubleshooting issues, training operators</li>
-<li><strong>Cost optimization</strong> - Reducing manufacturing costs while maintaining quality</li>
-</ul>
-</details>
-<hr />
+<div id="introduction-to-simulation-modeling" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Introduction to Simulation Modeling<a href="chap-17-anylogic.html#introduction-to-simulation-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="callout-think">
+<p><strong>Before You Read:</strong> Imagine you are designing a new automotive assembly line that will cost $50 million to build. How would you test whether your design will meet production targets <em>before</em> spending any money on construction?</p>
 </div>
-<div id="types-of-manufacturing-automation" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Types of Manufacturing Automation<a href="process-and-design.html#types-of-manufacturing-automation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Automation is essential for achieving high productivity, consistent quality, and competitive manufacturing costs. There are three fundamental types of automation, each suited to different production scenarios.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:automation-comparison"></span>
-<img src="introduction_files/figure-html/automation-comparison-1.png" alt="Comparison of Automation Types" width="960" />
+<p>In manufacturing, making the wrong design decision can be incredibly expensive. A misplaced workstation, an undersized conveyor, or an incorrect staffing level can result in millions of dollars in lost productivity. <strong>Simulation modeling</strong> allows engineers to build virtual representations of manufacturing systems and test them under various conditions—all without spending a single dollar on physical equipment.</p>
+<div id="what-is-simulation" class="section level3 hasAnchor" number="16.2.1">
+<h3><span class="header-section-number">16.2.1</span> What is Simulation?<a href="chap-17-anylogic.html#what-is-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Simulation</strong> is the process of creating a computer model that mimics the behavior of a real-world system over time. Unlike static calculations or spreadsheet analysis, simulation captures the <em>dynamic</em> nature of manufacturing systems:</p>
+<ul>
+<li>Products arrive at random intervals</li>
+<li>Machines break down unexpectedly</li>
+<li>Workers take breaks</li>
+<li>Quality defects occur randomly</li>
+<li>Rush orders disrupt schedules</li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-simulation-value"></span>
+<img src="introduction_files/figure-html/fig-simulation-value-1.png" alt="The value of simulation in reducing project risk" width="960" />
 <p class="caption">
-Figure 2.1: Comparison of Automation Types
+Figure 16.1: The value of simulation in reducing project risk
 </p>
 </div>
-<div id="fixed-automation" class="section level3 hasAnchor" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Fixed Automation<a href="process-and-design.html#fixed-automation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Fixed automation</strong> (also called “hard automation”) uses specialized equipment designed for a specific product. The sequence of operations is determined by the equipment configuration and cannot be easily changed.</p>
-<p><strong>Characteristics:</strong>
-- Very high production rates (thousands per hour)
-- Low per-unit cost at high volumes
-- High initial capital investment
-- Inflexible - dedicated to one product</p>
-<p><strong>Examples:</strong>
-- Automotive transfer lines for engine blocks
-- Beverage bottling lines
-- Chemical processing plants
-- Paper manufacturing</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="process-and-design.html#cb7-1" tabindex="-1"></a><span class="co"># Fixed Automation Economic Analysis</span></span>
-<span id="cb7-2"><a href="process-and-design.html#cb7-2" tabindex="-1"></a><span class="co"># When does fixed automation make sense?</span></span>
-<span id="cb7-3"><a href="process-and-design.html#cb7-3" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="process-and-design.html#cb7-4" tabindex="-1"></a><span class="co"># Example: Automotive transfer line for cylinder heads</span></span>
-<span id="cb7-5"><a href="process-and-design.html#cb7-5" tabindex="-1"></a>fixed_automation_cost <span class="ot">&lt;-</span> <span class="dv">5000000</span>  <span class="co"># Initial equipment cost</span></span>
-<span id="cb7-6"><a href="process-and-design.html#cb7-6" tabindex="-1"></a>annual_production <span class="ot">&lt;-</span> <span class="dv">500000</span>       <span class="co"># Parts per year</span></span>
-<span id="cb7-7"><a href="process-and-design.html#cb7-7" tabindex="-1"></a>fixed_cost_per_part <span class="ot">&lt;-</span> <span class="fl">2.50</span>       <span class="co"># Operating cost per part</span></span>
-<span id="cb7-8"><a href="process-and-design.html#cb7-8" tabindex="-1"></a>equipment_life_years <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb7-9"><a href="process-and-design.html#cb7-9" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="process-and-design.html#cb7-10" tabindex="-1"></a><span class="co"># Calculate total cost per part including amortization</span></span>
-<span id="cb7-11"><a href="process-and-design.html#cb7-11" tabindex="-1"></a>annual_equipment_cost <span class="ot">&lt;-</span> fixed_automation_cost <span class="sc">/</span> equipment_life_years</span>
-<span id="cb7-12"><a href="process-and-design.html#cb7-12" tabindex="-1"></a>total_annual_cost <span class="ot">&lt;-</span> annual_equipment_cost <span class="sc">+</span> (fixed_cost_per_part <span class="sc">*</span> annual_production)</span>
-<span id="cb7-13"><a href="process-and-design.html#cb7-13" tabindex="-1"></a>cost_per_part <span class="ot">&lt;-</span> total_annual_cost <span class="sc">/</span> annual_production</span>
-<span id="cb7-14"><a href="process-and-design.html#cb7-14" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="process-and-design.html#cb7-15" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Fixed Automation Analysis:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
-<pre><code>## Fixed Automation Analysis:</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="process-and-design.html#cb9-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;==========================</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
-<pre><code>## ==========================</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="process-and-design.html#cb11-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Equipment cost: $%s</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">format</span>(fixed_automation_cost, <span class="at">big.mark=</span><span class="st">&quot;,&quot;</span>)))</span></code></pre></div>
-<pre><code>## Equipment cost: $5e+06</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="process-and-design.html#cb13-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Annual production: %s parts</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">format</span>(annual_production, <span class="at">big.mark=</span><span class="st">&quot;,&quot;</span>)))</span></code></pre></div>
-<pre><code>## Annual production: 5e+05 parts</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="process-and-design.html#cb15-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Operating cost per part: $%.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, fixed_cost_per_part))</span></code></pre></div>
-<pre><code>## Operating cost per part: $2.50</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="process-and-design.html#cb17-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Amortized equipment cost per part: $%.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, annual_equipment_cost<span class="sc">/</span>annual_production))</span></code></pre></div>
-<pre><code>## Amortized equipment cost per part: $1.00</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="process-and-design.html#cb19-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Total cost per part: $%.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, cost_per_part))</span></code></pre></div>
-<pre><code>## Total cost per part: $3.50</code></pre>
+<div class="callout-industry">
+<p><strong>Industry Application:</strong> Mercedes-Benz engineers used AnyLogic simulation to optimize their Sprinter van production line, achieving a <strong>5% efficiency gain</strong> by identifying and eliminating bottlenecks before any physical changes were made. This saved millions in potential rework costs.</p>
 </div>
-<div id="programmable-automation" class="section level3 hasAnchor" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> Programmable Automation<a href="process-and-design.html#programmable-automation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Programmable automation</strong> allows the production equipment to be reprogrammed for different products. It’s suited for batch production where products change periodically.</p>
-<p><strong>Characteristics:</strong>
-- Medium production rates
-- Significant changeover time between products
-- Lower initial cost than fixed automation
-- Suitable for batch sizes of 100-10,000</p>
-<p><strong>Examples:</strong>
-- CNC machining centers
-- Industrial robots
-- PLC-controlled assembly machines
-- Batch chemical reactors</p>
-<details>
-<summary>
-Discussion: When should you choose programmable over fixed automation?
-</summary>
-<p><strong>Choose programmable automation when:</strong></p>
-<ol style="list-style-type: decimal">
-<li><strong>Product variety</strong> - You make multiple products on the same equipment</li>
-<li><strong>Volume uncertainty</strong> - Demand may shift between products</li>
-<li><strong>Product evolution</strong> - Frequent design changes expected</li>
-<li><strong>Lower volumes</strong> - Not enough volume to justify dedicated equipment</li>
-<li><strong>Capital constraints</strong> - Can’t afford multiple dedicated lines</li>
-</ol>
-<p><strong>Example scenario:</strong>
-A machine shop that makes 20 different part numbers for aerospace customers would use CNC machines (programmable) rather than dedicated transfer lines (fixed) because:
-- Volumes per part number are low (100-1,000/year)
-- New part designs are introduced regularly
-- Flexibility to respond to customer changes is critical</p>
-</details>
 </div>
-<div id="flexible-automation" class="section level3 hasAnchor" number="2.3.3">
-<h3><span class="header-section-number">2.3.3</span> Flexible Automation<a href="process-and-design.html#flexible-automation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Flexible automation</strong> can produce a variety of parts with minimal changeover time. It combines the flexibility of programmable automation with the productivity approaching fixed automation.</p>
-<p><strong>Characteristics:</strong>
-- Medium-high production rates
-- Very fast changeover (minutes, not hours)
-- High initial investment
-- Suitable for medium variety, medium volume</p>
-<p><strong>Examples:</strong>
-- Flexible Manufacturing Systems (FMS)
-- Robotic assembly cells
-- Automated guided vehicle (AGV) systems
-- Modern automotive final assembly lines</p>
-<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
+<div id="why-anylogic" class="section level3 hasAnchor" number="16.2.2">
+<h3><span class="header-section-number">16.2.2</span> Why AnyLogic?<a href="chap-17-anylogic.html#why-anylogic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>AnyLogic</strong> is one of the world’s leading simulation platforms, used by companies including Tesla, BMW, Amazon, Ford, and General Electric. It stands out from other simulation software for several key reasons:</p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:automation-selection">Table 2.1: </span>Automation Type Selection Guide
+<span id="tab:anylogic-comparison">Table 16.1: </span><span id="tab:anylogic-comparison">Table 16.2: </span>AnyLogic compared to typical simulation software
 </caption>
 <thead>
 <tr>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Production Characteristic
+<th style="text-align:left;">
+Feature
 </th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Fixed Automation
+<th style="text-align:center;">
+AnyLogic
 </th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Programmable Automation
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Flexible Automation
+<th style="text-align:center;">
+Other Software
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Annual Volume
+<td style="text-align:left;">
+Multi-method modeling
 </td>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-&gt; 1,000,000 units
+<td style="text-align:center;">
+Yes - all three paradigms
 </td>
-<td style="text-align:left;background-color: rgba(252, 243, 207, 255) !important;">
-1,000 - 100,000 units
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-10,000 - 500,000 units
+<td style="text-align:center;">
+Usually single method
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Product Variety
+<td style="text-align:left;">
+Manufacturing libraries
 </td>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Single product
+<td style="text-align:center;">
+Material Handling Library
 </td>
-<td style="text-align:left;background-color: rgba(252, 243, 207, 255) !important;">
-Several products in batches
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Many products, mixed
+<td style="text-align:center;">
+Varies
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Changeover Frequency
+<td style="text-align:left;">
+3D visualization
 </td>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Rarely (years)
+<td style="text-align:center;">
+Built-in 3D
 </td>
-<td style="text-align:left;background-color: rgba(252, 243, 207, 255) !important;">
-Weekly to monthly
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Hours to minutes
+<td style="text-align:center;">
+Often requires plugins
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Initial Investment
+<td style="text-align:left;">
+Cloud-based simulation
 </td>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Very High ($5M+)
+<td style="text-align:center;">
+AnyLogic Cloud
 </td>
-<td style="text-align:left;background-color: rgba(252, 243, 207, 255) !important;">
-Medium ($500K-$2M)
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-High ($2M-$10M)
+<td style="text-align:center;">
+Limited
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Operating Cost
+<td style="text-align:left;">
+Academic version
 </td>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Lowest per unit
+<td style="text-align:center;">
+Free for students
 </td>
-<td style="text-align:left;background-color: rgba(252, 243, 207, 255) !important;">
-Medium per unit
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Low-medium per unit
+<td style="text-align:center;">
+Varies
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Best Industries
+<td style="text-align:left;">
+Agent-based modeling
 </td>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Automotive, Beverage, Chemical
+<td style="text-align:center;">
+Industry-leading
 </td>
-<td style="text-align:left;background-color: rgba(252, 243, 207, 255) !important;">
-Job shops, Aerospace, Medical
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Electronics, Automotive suppliers
-</td>
-</tr>
-</tbody>
-</table>
-<details>
-<summary>
-List industries where you can find various automated process systems
-</summary>
-<p><strong>By automation type:</strong></p>
-<p><strong>Fixed Automation:</strong>
-- Oil refineries
-- Chemical plants
-- Food processing (high-volume)
-- Beverage bottling
-- Automotive powertrain
-- Steel mills
-- Paper/pulp mills</p>
-<p><strong>Programmable Automation:</strong>
-- Aerospace manufacturing
-- Medical device production
-- Pharmaceutical (batch)
-- Job shops
-- Tool &amp; die making
-- Defense contractors</p>
-<p><strong>Flexible Automation:</strong>
-- Electronics assembly
-- Automotive final assembly
-- Warehouse/distribution
-- Semiconductor fabrication
-- Consumer appliances
-- Furniture manufacturing</p>
-</details>
-</div>
-<div id="automation-advantages-and-disadvantages" class="section level3 hasAnchor" number="2.3.4">
-<h3><span class="header-section-number">2.3.4</span> Automation Advantages and Disadvantages<a href="process-and-design.html#automation-advantages-and-disadvantages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:automation-pros-cons">Table 2.2: </span>Advantages and Disadvantages of Manufacturing Automation
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Category
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Point
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Advantages
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Lowered Operating Costs - Reduced labor per unit
-</td>
-</tr>
-<tr>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Advantages
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Improved Worker Safety - Removes humans from hazardous operations
-</td>
-</tr>
-<tr>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Advantages
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Reduced Factory Lead Times - Faster, more predictable production
-</td>
-</tr>
-<tr>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Advantages
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Increased Production Output - 24/7 operation possible
-</td>
-</tr>
-<tr>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Advantages
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Smaller Environmental Footprint - Optimized resource usage
-</td>
-</tr>
-<tr>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Advantages
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Increased Productivity and Efficiency - Consistent cycle times
-</td>
-</tr>
-<tr>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Advantages
-</td>
-<td style="text-align:left;background-color: rgba(213, 245, 227, 255) !important;">
-Increased System Versatility - Modern systems adapt to changes
-</td>
-</tr>
-<tr>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Disadvantages
-</td>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Higher Start-up Cost - Significant capital investment required
-</td>
-</tr>
-<tr>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Disadvantages
-</td>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Higher Cost of Maintenance - Specialized technicians needed
-</td>
-</tr>
-<tr>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Disadvantages
-</td>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Obsolescence/Depreciation - Technology changes rapidly
-</td>
-</tr>
-<tr>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Disadvantages
-</td>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Workforce Displacement - Fewer direct labor jobs
-</td>
-</tr>
-<tr>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Disadvantages
-</td>
-<td style="text-align:left;background-color: rgba(250, 219, 216, 255) !important;">
-Not Economical for Small Scale - Minimum volumes required
+<td style="text-align:center;">
+Limited support
 </td>
 </tr>
 </tbody>
@@ -1652,1378 +1402,1126 @@ Not Economical for Small Scale - Minimum volumes required
 <hr />
 </div>
 </div>
-<div id="project-development-phases" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Project Development Phases<a href="process-and-design.html#project-development-phases" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Manufacturing projects follow a structured development process from initial concept to full operation. Understanding these phases is essential for process engineers.</p>
-<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in
-## ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.
+<div id="sec-paradigms-17" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">16.3</span> The Three Simulation Paradigms<a href="chap-17-anylogic.html#sec-paradigms-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>AnyLogic is unique because it supports <strong>three different simulation approaches</strong> within a single platform. Understanding when to use each paradigm is essential for effective modeling.</p>
+<div id="discrete-event-simulation-des" class="section level3 hasAnchor" number="16.3.1">
+<h3><span class="header-section-number">16.3.1</span> Discrete-Event Simulation (DES)<a href="chap-17-anylogic.html#discrete-event-simulation-des" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Discrete-event simulation</strong> models systems as a sequence of events that occur at specific points in time. Between events, nothing changes. This is the most common approach for manufacturing simulation.</p>
+<div class="callout-concept">
+<p><strong>Key Concept: Discrete-Event Simulation</strong>
+In DES, entities (products, orders, customers) flow through a series of processes (workstations, queues, resources). The simulation “jumps” from event to event, making it computationally efficient.</p>
+</div>
+<p><strong>Best for:</strong>
+- Assembly lines and production systems
+- Warehouse operations and logistics
+- Service processes and queuing systems
+- Call centers and order processing</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-des-flow"></span>
+<img src="introduction_files/figure-html/fig-des-flow-1.png" alt="Discrete-event simulation flow diagram" width="960" />
+<p class="caption">
+Figure 16.2: Discrete-event simulation flow diagram
+</p>
+</div>
+</div>
+<div id="agent-based-modeling-abm" class="section level3 hasAnchor" number="16.3.2">
+<h3><span class="header-section-number">16.3.2</span> Agent-Based Modeling (ABM)<a href="chap-17-anylogic.html#agent-based-modeling-abm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Agent-based modeling</strong> simulates systems by defining individual agents (workers, robots, vehicles) that have their own behaviors, goals, and decision rules. Agents interact with each other and their environment, and complex system behavior <em>emerges</em> from these interactions.</p>
+<p><strong>Best for:</strong>
+- Autonomous mobile robots (AMRs) and AGVs
+- Pedestrian and crowd simulation
+- Market and consumer behavior
+- Complex adaptive systems</p>
+<div class="callout-industry">
+<p><strong>Industry Application:</strong> Tesla uses agent-based simulation in AnyLogic to optimize the deployment of autonomous mobile robots in their manufacturing facilities. Each robot is modeled as an agent with its own task allocation logic, collision avoidance, and charging behavior.</p>
+</div>
+</div>
+<div id="system-dynamics-sd" class="section level3 hasAnchor" number="16.3.3">
+<h3><span class="header-section-number">16.3.3</span> System Dynamics (SD)<a href="chap-17-anylogic.html#system-dynamics-sd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>System dynamics</strong> models systems using stocks, flows, and feedback loops. It focuses on aggregate behavior over time rather than individual entities.</p>
+<p><strong>Best for:</strong>
+- Strategic planning and capacity modeling
+- Supply chain dynamics
+- Policy analysis
+- Long-term trends and forecasting</p>
+</div>
+<div id="choosing-the-right-paradigm" class="section level3 hasAnchor" number="16.3.4">
+<h3><span class="header-section-number">16.3.4</span> Choosing the Right Paradigm<a href="chap-17-anylogic.html#choosing-the-right-paradigm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Warning: The `label.size` argument of `geom_label()` is
+## deprecated as of ggplot2 3.5.0.
+## ℹ Please use the `linewidth` argument instead.
 ## This warning is displayed once per session.
 ## Call `lifecycle::last_lifecycle_warnings()` to see
 ## where this warning was generated.</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:project-phases"></span>
-<img src="introduction_files/figure-html/project-phases-1.png" alt="Project Development Phases and Gate Reviews" width="1152" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-paradigm-selection"></span>
+<img src="introduction_files/figure-html/fig-paradigm-selection-1.png" alt="Decision framework for selecting simulation paradigm" width="960" />
 <p class="caption">
-Figure 2.2: Project Development Phases and Gate Reviews
+Figure 16.3: Decision framework for selecting simulation paradigm
 </p>
 </div>
-<div id="phase-1-concept-development" class="section level3 hasAnchor" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> Phase 1: Concept Development<a href="process-and-design.html#phase-1-concept-development" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The initial phase defines the project scope, evaluates feasibility, and develops preliminary cost estimates.</p>
-<p><strong>Key Deliverables:</strong>
-- Project charter and business case
-- Preliminary process flow diagrams
-- Order-of-magnitude cost estimate (±30-50%)
-- Initial schedule
-- Risk assessment</p>
+<div class="callout-check">
+<p><strong>Quick Check:</strong> A company wants to simulate their new automated warehouse with 50 mobile robots that must navigate, avoid collisions, and coordinate pickups. Which paradigm would you recommend and why?</p>
 </div>
-<div id="phase-2-front-end-engineering-design-feed" class="section level3 hasAnchor" number="2.4.2">
-<h3><span class="header-section-number">2.4.2</span> Phase 2: Front-End Engineering Design (FEED)<a href="process-and-design.html#phase-2-front-end-engineering-design-feed" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>FEED (also called FEL - Front-End Loading) develops the project definition to a level sufficient for final investment decision.</p>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-<p><iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/gSkoGFLDxF0"
-    title="FEED Process Overview"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-</iframe></p>
-</div>
-<p><strong>FEED Deliverables include:</strong></p>
-<ul>
-<li>Project organization chart</li>
-<li>Defined project scope</li>
-<li>Process Flow Diagrams (PFDs)</li>
-<li>Piping &amp; Instrumentation Diagrams (P&amp;IDs)</li>
-<li>Equipment datasheets and specifications</li>
-<li>Major equipment list</li>
-<li>2D and 3D preliminary models</li>
-<li>Equipment layout and installation plan</li>
-<li>HAZOP and safety studies</li>
-<li>Automation strategy</li>
-<li>Budget estimate (±10-15%)</li>
-<li>Project timeline</li>
-<li>Fixed-bid quote capability</li>
-</ul>
-<details>
-<summary>
-What are the steps of Process System Design and Engineering?
-</summary>
-<ol style="list-style-type: decimal">
-<li><strong>Process Development</strong>
-<ul>
-<li>Develop PFDs &amp; P&amp;IDs</li>
-<li>Process simulation</li>
-<li>Heat and mass balance</li>
-</ul></li>
-<li><strong>Equipment Engineering</strong>
-<ul>
-<li>2D &amp; 3D models</li>
-<li>Equipment layout and installation plan</li>
-<li>Skid design</li>
-<li>Mechanical &amp; structural design</li>
-</ul></li>
-<li><strong>Systems Engineering</strong>
-<ul>
-<li>Piping design</li>
-<li>Electrical design</li>
-<li>Instrumentation design</li>
-<li>Control system architecture</li>
-</ul></li>
-<li><strong>Installation Planning</strong>
-<ul>
-<li>Lifts &amp; installation planning</li>
-<li>Construction sequencing</li>
-<li>Tie-in planning</li>
-</ul></li>
-</ol>
-</details>
-</div>
-<div id="phase-3-detailed-engineering" class="section level3 hasAnchor" number="2.4.3">
-<h3><span class="header-section-number">2.4.3</span> Phase 3: Detailed Engineering<a href="process-and-design.html#phase-3-detailed-engineering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Detailed engineering produces all documents needed for procurement and construction.</p>
-<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:engineering-disciplines">Table 2.3: </span>Engineering Disciplines and Deliverables
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(26, 82, 118, 255) !important;">
-Discipline
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(26, 82, 118, 255) !important;">
-Key Deliverables
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(26, 82, 118, 255) !important;">
-Systems Provided
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-Process
-</td>
-<td style="text-align:left;">
-P&amp;IDs, datasheets, process packages, operating procedures
-</td>
-<td style="text-align:left;">
-Process units, utility systems
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-Mechanical
-</td>
-<td style="text-align:left;">
-Vessel drawings, heat exchanger specs, rotating equipment specs
-</td>
-<td style="text-align:left;">
-Pressure vessels, tanks, exchangers, pumps
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-Piping
-</td>
-<td style="text-align:left;">
-Isometrics, pipe specs, stress analysis, 3D models
-</td>
-<td style="text-align:left;">
-Process piping, utility piping
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-Electrical
-</td>
-<td style="text-align:left;">
-Single-line diagrams, load lists, cable schedules, lighting
-</td>
-<td style="text-align:left;">
-Power distribution, motor control, lighting
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-I&amp;C
-</td>
-<td style="text-align:left;">
-Logic diagrams, instrument index, control narratives, HMI specs
-</td>
-<td style="text-align:left;">
-DCS/PLC, safety systems, instruments
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-Civil/Structural
-</td>
-<td style="text-align:left;">
-Foundation drawings, structural steel, buildings, roads
-</td>
-<td style="text-align:left;">
-Foundations, structures, buildings
-</td>
-</tr>
-</tbody>
-</table>
-<details>
-<summary>
-Automation and Controls Engineering needs to include which tasks?
-</summary>
-<p><strong>Control System Design:</strong>
-- Automation architecture design
-- Control panel fabrication drawings
-- PLC/DCS programming
-- HMI/SCADA design
-- Safety system design (SIS)</p>
-<p><strong>Documentation:</strong>
-- Control narratives
-- Logic diagrams (cause &amp; effect)
-- Instrument datasheets
-- Loop diagrams
-- Cable schedules</p>
-<p><strong>Integration:</strong>
-- Controls integration services
-- Network architecture
-- Cybersecurity
-- Historian configuration
-- MES integration</p>
-</details>
-</div>
-<div id="phase-4-7-construction-commissioning-and-start-up" class="section level3 hasAnchor" number="2.4.4">
-<h3><span class="header-section-number">2.4.4</span> Phase 4-7: Construction, Commissioning, and Start-up<a href="process-and-design.html#phase-4-7-construction-commissioning-and-start-up" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:project-activities">Table 2.4: </span>Later Project Phases
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Phase
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Key Activities
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Process Engineer Role
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Typical Duration
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Procurement &amp; Fabrication
-</td>
-<td style="text-align:left;">
-Purchase equipment, fabricate skids, manufacture custom items
-</td>
-<td style="text-align:left;">
-Review vendor documents, approve equipment
-</td>
-<td style="text-align:left;">
-3-12 months
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Construction
-</td>
-<td style="text-align:left;">
-Civil work, install equipment, piping, electrical, instrumentation
-</td>
-<td style="text-align:left;">
-Supervise installation, resolve field issues
-</td>
-<td style="text-align:left;">
-6-24 months
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Commissioning
-</td>
-<td style="text-align:left;">
-System checkout, loop testing, safety system validation
-</td>
-<td style="text-align:left;">
-Verify system operation, support testing
-</td>
-<td style="text-align:left;">
-1-3 months
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Start-up
-</td>
-<td style="text-align:left;">
-Initial operation, performance testing, operator training
-</td>
-<td style="text-align:left;">
-Optimize process, troubleshoot issues, train operators
-</td>
-<td style="text-align:left;">
-1-3 months
-</td>
-</tr>
-</tbody>
-</table>
-<details>
-<summary>
-What needs to be planned for Testing &amp; Commissioning?
-</summary>
-<p><strong>Pre-Commissioning:</strong>
-- Mechanical completion checks
-- Piping pressure tests
-- Electrical continuity tests
-- Instrument calibration</p>
-<p><strong>Commissioning:</strong>
-- Loop checking
-- Control system function tests
-- Safety system (SIS) validation
-- Utility systems start-up
-- Dry run testing</p>
-<p><strong>Performance Testing:</strong>
-- Factory Acceptance Tests (FAT)
-- Site Acceptance Tests (SAT)
-- Performance guarantee tests
-- Reliability testing</p>
-</details>
 <hr />
 </div>
 </div>
-<div id="process-documentation" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> Process Documentation<a href="process-and-design.html#process-documentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="process-flow-diagrams-pfds" class="section level3 hasAnchor" number="2.5.1">
-<h3><span class="header-section-number">2.5.1</span> Process Flow Diagrams (PFDs)<a href="process-and-design.html#process-flow-diagrams-pfds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>PFDs show the overall process flow, major equipment, and key operating conditions. They are the “big picture” view of the process.</p>
+<div id="sec-interface-17" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">16.4</span> The AnyLogic Interface and Libraries<a href="chap-17-anylogic.html#sec-interface-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-anylogic-workspace" class="section level3 hasAnchor" number="16.4.1">
+<h3><span class="header-section-number">16.4.1</span> The AnyLogic Workspace<a href="chap-17-anylogic.html#the-anylogic-workspace" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When you open AnyLogic, you’ll see several key areas:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Model Browser</strong> (left panel) - Shows all elements in your model</li>
+<li><strong>Graphical Editor</strong> (center) - Where you build your model visually</li>
+<li><strong>Palette</strong> (right panel) - Contains libraries and elements you can drag into your model</li>
+<li><strong>Properties</strong> (bottom) - Configure selected elements</li>
+</ol>
+</div>
+<div id="essential-libraries-for-manufacturing" class="section level3 hasAnchor" number="16.4.2">
+<h3><span class="header-section-number">16.4.2</span> Essential Libraries for Manufacturing<a href="chap-17-anylogic.html#essential-libraries-for-manufacturing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>AnyLogic includes specialized libraries that dramatically accelerate model development:</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:pfd-elements">Table 2.5: </span>Process Flow Diagram (PFD) Content
+<span id="tab:libraries-table">Table 16.3: </span><span id="tab:libraries-table">Table 16.4: </span>Key AnyLogic libraries for manufacturing simulation
 </caption>
 <thead>
 <tr>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(39, 174, 96, 255) !important;">
-Element
+<th style="text-align:left;">
+Library
 </th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(39, 174, 96, 255) !important;">
-What’s Shown
+<th style="text-align:left;">
+Primary Use
 </th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(39, 174, 96, 255) !important;">
-What’s NOT Shown
+<th style="text-align:left;">
+Key Elements
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(213, 245, 227, 255) !important;">
-Major Equipment
+<td style="text-align:left;font-weight: bold;">
+Process Modeling Library
 </td>
 <td style="text-align:left;">
-Reactors, vessels, heat exchangers, pumps, compressors
+Discrete-event simulation of any process
 </td>
 <td style="text-align:left;">
-Pipe sizes, valve types, instrument details
+Source, Queue, Delay, Service, Sink
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(213, 245, 227, 255) !important;">
-Process Streams
+<td style="text-align:left;font-weight: bold;">
+Material Handling Library
 </td>
 <td style="text-align:left;">
-Main process flow lines with arrows
+Conveyors, cranes, AGVs, forklifts
 </td>
 <td style="text-align:left;">
-Minor bypasses, drain lines, vent lines
+Conveyor, Station, Transporter, Crane
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(213, 245, 227, 255) !important;">
-Operating Conditions
+<td style="text-align:left;font-weight: bold;">
+Pedestrian Library
 </td>
 <td style="text-align:left;">
-Temperature, pressure, flow rates at key points
+Worker movement and ergonomics
 </td>
 <td style="text-align:left;">
-All intermediate conditions
+PedSource, PedService, PedSink
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(213, 245, 227, 255) !important;">
-Control Loops
+<td style="text-align:left;font-weight: bold;">
+Road Traffic Library
 </td>
 <td style="text-align:left;">
-Major control loops only
+Truck logistics and yard management
 </td>
 <td style="text-align:left;">
-Local instruments, minor controls
+CarSource, Road, Intersection
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(213, 245, 227, 255) !important;">
-Utility Streams
+<td style="text-align:left;font-weight: bold;">
+Rail Library
 </td>
 <td style="text-align:left;">
-Steam, cooling water, nitrogen (simplified)
+Rail-based transport systems
 </td>
 <td style="text-align:left;">
-Detailed utility connections
+RailNetwork, Train, RailYard
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(213, 245, 227, 255) !important;">
-Stream Data
+<td style="text-align:left;font-weight: bold;">
+Fluid Library
 </td>
 <td style="text-align:left;">
-Stream numbers with heat/mass balance table
+Bulk material and liquid processing
 </td>
 <td style="text-align:left;">
-All intermediate streams
+Tank, Pipe, Valve, FlowRate
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="piping-instrumentation-diagrams-pids" class="section level3 hasAnchor" number="2.5.2">
-<h3><span class="header-section-number">2.5.2</span> Piping &amp; Instrumentation Diagrams (P&amp;IDs)<a href="process-and-design.html#piping-instrumentation-diagrams-pids" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>P&amp;IDs are the detailed “roadmap” of the process, showing all equipment, piping, valves, and instrumentation.</p>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-<p><iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/j4EOTerfyTY"
-    title="How to Read P&IDs"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-</iframe></p>
-</div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pid-symbols"></span>
-<img src="introduction_files/figure-html/pid-symbols-1.png" alt="Common P&amp;ID Symbols (Simplified)" width="1152" />
+<div id="the-process-modeling-library" class="section level3 hasAnchor" number="16.4.3">
+<h3><span class="header-section-number">16.4.3</span> The Process Modeling Library<a href="chap-17-anylogic.html#the-process-modeling-library" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>Process Modeling Library</strong> is the foundation for most manufacturing simulations. It provides building blocks for creating flowchart-based models:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-pml-elements"></span>
+<img src="introduction_files/figure-html/fig-pml-elements-1.png" alt="Key Process Modeling Library elements" width="960" />
 <p class="caption">
-Figure 2.3: Common P&amp;ID Symbols (Simplified)
+Figure 16.4: Key Process Modeling Library elements
 </p>
 </div>
-<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
+<div class="callout-activity">
+<p><strong>Hands-On Activity:</strong> Open AnyLogic and create a new model. Drag a Source, Queue, Delay, and Sink from the Process Modeling Library. Connect them in sequence. Run the simulation and observe entities flowing through.</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="sec-production-17" class="section level2 hasAnchor" number="16.5">
+<h2><span class="header-section-number">16.5</span> Production Line Simulation<a href="chap-17-anylogic.html#sec-production-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now let’s apply these concepts to design and analyze an automotive production line. We’ll walk through a complete example using AnyLogic’s built-in examples as a starting point.</p>
+<div id="case-study-automotive-door-panel-assembly-line" class="section level3 hasAnchor" number="16.5.1">
+<h3><span class="header-section-number">16.5.1</span> Case Study: Automotive Door Panel Assembly Line<a href="chap-17-anylogic.html#case-study-automotive-door-panel-assembly-line" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="callout-case">
+<p><strong>The Scenario:</strong>
+You are designing a door panel assembly line for an automotive supplier. The line must:</p>
+<ul>
+<li>Process <strong>480 door panels per 8-hour shift</strong> (1 panel per minute)</li>
+<li>Include 5 workstations: stamping, welding, painting, assembly, and inspection</li>
+<li>Meet quality target of <strong>&lt; 2% defect rate</strong></li>
+<li>Maintain <strong>85% overall equipment effectiveness (OEE)</strong></li>
+</ul>
+<p>Your task is to simulate this line to verify it meets these requirements before construction begins.</p>
+</div>
+</div>
+<div id="step-1-calculate-required-takt-time" class="section level3 hasAnchor" number="16.5.2">
+<h3><span class="header-section-number">16.5.2</span> Step 1: Calculate Required Takt Time<a href="chap-17-anylogic.html#step-1-calculate-required-takt-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before building the simulation, we need to calculate the <strong>takt time</strong>—the maximum time allowed per unit to meet demand.</p>
+<p><span class="math display" id="eq:takt-17">\[\begin{equation}
+Takt\ Time = \frac{Available\ Production\ Time}{Customer\ Demand}
+\tag{16.1}
+\end{equation}\]</span></p>
+<p>For our example:</p>
+<p><span class="math display">\[Takt\ Time = \frac{8\ hours \times 60\ min/hour}{480\ panels} = 1\ minute/panel\]</span></p>
+<p>This means each workstation must complete its operation in <strong>less than 1 minute</strong> to avoid becoming a bottleneck.</p>
+</div>
+<div id="step-2-define-process-parameters" class="section level3 hasAnchor" number="16.5.3">
+<h3><span class="header-section-number">16.5.3</span> Step 2: Define Process Parameters<a href="chap-17-anylogic.html#step-2-define-process-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:instrument-tags">Table 2.6: </span>ISA Instrument Tag Structure
+<span id="tab:process-params">Table 16.5: </span><span id="tab:process-params">Table 16.6: </span>Process parameters for door panel assembly line
 </caption>
 <thead>
 <tr>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(142, 68, 173, 255) !important;">
-First Letter
+<th style="text-align:left;">
+Station
 </th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(142, 68, 173, 255) !important;">
-Measured Variable
+<th style="text-align:center;">
+Mean Time (sec)
 </th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(142, 68, 173, 255) !important;">
-Modifier Letters
+<th style="text-align:center;">
+Std Dev (sec)
 </th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(142, 68, 173, 255) !important;">
-Example Tag
+<th style="text-align:center;">
+Defect Rate (%)
+</th>
+<th style="text-align:center;">
+Availability (%)
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;width: 8em; font-weight: bold;background-color: rgba(232, 218, 239, 255) !important;">
-F
+<td style="text-align:left;font-weight: bold;">
+Stamping
 </td>
-<td style="text-align:left;">
-Flow
+<td style="text-align:center;">
+45
 </td>
-<td style="text-align:left;">
-T = Transmitter
+<td style="text-align:center;">
+5
 </td>
-<td style="text-align:left;">
-FT-101 (Flow Transmitter)
+<td style="text-align:center;">
+0.5
 </td>
-</tr>
-<tr>
-<td style="text-align:left;width: 8em; font-weight: bold;background-color: rgba(232, 218, 239, 255) !important;">
-L
-</td>
-<td style="text-align:left;">
-Level
-</td>
-<td style="text-align:left;">
-C = Controller
-</td>
-<td style="text-align:left;">
-LC-201 (Level Controller)
+<td style="text-align:center;">
+95
 </td>
 </tr>
 <tr>
-<td style="text-align:left;width: 8em; font-weight: bold;background-color: rgba(232, 218, 239, 255) !important;">
-P
+<td style="text-align:left;font-weight: bold;">
+Welding
 </td>
-<td style="text-align:left;">
-Pressure
+<td style="text-align:center;">
+52
 </td>
-<td style="text-align:left;">
-I = Indicator
+<td style="text-align:center;">
+8
 </td>
-<td style="text-align:left;">
-PI-301 (Pressure Indicator)
+<td style="text-align:center;">
+0.8
 </td>
-</tr>
-<tr>
-<td style="text-align:left;width: 8em; font-weight: bold;background-color: rgba(232, 218, 239, 255) !important;">
-T
-</td>
-<td style="text-align:left;">
-Temperature
-</td>
-<td style="text-align:left;">
-E = Element/Sensor
-</td>
-<td style="text-align:left;">
-TE-401 (Temperature Element)
+<td style="text-align:center;">
+92
 </td>
 </tr>
 <tr>
-<td style="text-align:left;width: 8em; font-weight: bold;background-color: rgba(232, 218, 239, 255) !important;">
-A
+<td style="text-align:left;font-weight: bold;">
+Painting
 </td>
-<td style="text-align:left;">
-Analysis
+<td style="text-align:center;">
+48
 </td>
-<td style="text-align:left;">
-V = Valve
+<td style="text-align:center;">
+6
 </td>
-<td style="text-align:left;">
-AT-501 (Analyzer Transmitter)
+<td style="text-align:center;">
+0.6
+</td>
+<td style="text-align:center;">
+90
 </td>
 </tr>
 <tr>
-<td style="text-align:left;width: 8em; font-weight: bold;background-color: rgba(232, 218, 239, 255) !important;">
-S
+<td style="text-align:left;font-weight: bold;">
+Assembly
 </td>
-<td style="text-align:left;">
-Speed
+<td style="text-align:center;">
+55
 </td>
-<td style="text-align:left;">
-A = Alarm
+<td style="text-align:center;">
+7
 </td>
-<td style="text-align:left;">
-SI-601 (Speed Indicator)
+<td style="text-align:center;">
+0.7
+</td>
+<td style="text-align:center;">
+94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Inspection
+</td>
+<td style="text-align:center;">
+30
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+0.0
+</td>
+<td style="text-align:center;">
+98
 </td>
 </tr>
 </tbody>
 </table>
-<details>
-<summary>
-Quick Quiz: Decode these instrument tags
-</summary>
-<p><strong>Decode the following P&amp;ID tags:</strong></p>
+</div>
+<div id="step-3-build-the-simulation-model" class="section level3 hasAnchor" number="16.5.4">
+<h3><span class="header-section-number">16.5.4</span> Step 3: Build the Simulation Model<a href="chap-17-anylogic.html#step-3-build-the-simulation-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In AnyLogic, we would create this model by:</p>
 <ol style="list-style-type: decimal">
-<li><strong>FIC-101</strong> = ?</li>
-<li><strong>TT-205</strong> = ?</li>
-<li><strong>PSV-301</strong> = ?</li>
-<li><strong>LCV-402</strong> = ?</li>
+<li>Dragging a <strong>Source</strong> block to generate door panels at the required rate</li>
+<li>Adding <strong>Service</strong> blocks for each workstation (with appropriate process times)</li>
+<li>Connecting <strong>Queue</strong> blocks between stations to handle waiting</li>
+<li>Adding <strong>SelectOutput</strong> blocks after each station to route defective parts</li>
+<li>Placing a <strong>Sink</strong> at the end to collect finished panels</li>
 </ol>
-<p><strong>Answers:</strong></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-production-line-model"></span>
+<img src="introduction_files/figure-html/fig-production-line-model-1.png" alt="AnyLogic production line model structure" width="1152" />
+<p class="caption">
+Figure 16.5: AnyLogic production line model structure
+</p>
+</div>
+</div>
+<div id="step-4-simulate-and-analyze-results" class="section level3 hasAnchor" number="16.5.5">
+<h3><span class="header-section-number">16.5.5</span> Step 4: Simulate and Analyze Results<a href="chap-17-anylogic.html#step-4-simulate-and-analyze-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s simulate what the output might look like when we run this model:</p>
+<div class="sourceCode" id="cb1019"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1019-1"><a href="chap-17-anylogic.html#cb1019-1" tabindex="-1"></a><span class="co"># Simulate production line results</span></span>
+<span id="cb1019-2"><a href="chap-17-anylogic.html#cb1019-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1019-3"><a href="chap-17-anylogic.html#cb1019-3" tabindex="-1"></a></span>
+<span id="cb1019-4"><a href="chap-17-anylogic.html#cb1019-4" tabindex="-1"></a><span class="co"># Generate hourly production data</span></span>
+<span id="cb1019-5"><a href="chap-17-anylogic.html#cb1019-5" tabindex="-1"></a>hours <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span></span>
+<span id="cb1019-6"><a href="chap-17-anylogic.html#cb1019-6" tabindex="-1"></a>good_parts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">56</span>, <span class="dv">58</span>, <span class="dv">55</span>, <span class="dv">57</span>, <span class="dv">59</span>, <span class="dv">54</span>, <span class="dv">58</span>, <span class="dv">57</span>)</span>
+<span id="cb1019-7"><a href="chap-17-anylogic.html#cb1019-7" tabindex="-1"></a>defects <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb1019-8"><a href="chap-17-anylogic.html#cb1019-8" tabindex="-1"></a>target <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">60</span>, <span class="dv">8</span>)</span>
+<span id="cb1019-9"><a href="chap-17-anylogic.html#cb1019-9" tabindex="-1"></a></span>
+<span id="cb1019-10"><a href="chap-17-anylogic.html#cb1019-10" tabindex="-1"></a>production_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1019-11"><a href="chap-17-anylogic.html#cb1019-11" tabindex="-1"></a>  <span class="at">Hour =</span> hours,</span>
+<span id="cb1019-12"><a href="chap-17-anylogic.html#cb1019-12" tabindex="-1"></a>  <span class="at">Good =</span> good_parts,</span>
+<span id="cb1019-13"><a href="chap-17-anylogic.html#cb1019-13" tabindex="-1"></a>  <span class="at">Defects =</span> defects,</span>
+<span id="cb1019-14"><a href="chap-17-anylogic.html#cb1019-14" tabindex="-1"></a>  <span class="at">Target =</span> target</span>
+<span id="cb1019-15"><a href="chap-17-anylogic.html#cb1019-15" tabindex="-1"></a>)</span>
+<span id="cb1019-16"><a href="chap-17-anylogic.html#cb1019-16" tabindex="-1"></a></span>
+<span id="cb1019-17"><a href="chap-17-anylogic.html#cb1019-17" tabindex="-1"></a><span class="co"># Generate queue length data over time</span></span>
+<span id="cb1019-18"><a href="chap-17-anylogic.html#cb1019-18" tabindex="-1"></a>time_points <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">480</span>, <span class="at">by =</span> <span class="dv">5</span>)</span>
+<span id="cb1019-19"><a href="chap-17-anylogic.html#cb1019-19" tabindex="-1"></a>queue_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1019-20"><a href="chap-17-anylogic.html#cb1019-20" tabindex="-1"></a>  <span class="at">Time =</span> <span class="fu">rep</span>(time_points, <span class="dv">5</span>),</span>
+<span id="cb1019-21"><a href="chap-17-anylogic.html#cb1019-21" tabindex="-1"></a>  <span class="at">Queue =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Q1&quot;</span>, <span class="st">&quot;Q2&quot;</span>, <span class="st">&quot;Q3&quot;</span>, <span class="st">&quot;Q4&quot;</span>, <span class="st">&quot;Q5&quot;</span>), <span class="at">each =</span> <span class="fu">length</span>(time_points)),</span>
+<span id="cb1019-22"><a href="chap-17-anylogic.html#cb1019-22" tabindex="-1"></a>  <span class="at">Length =</span> <span class="fu">c</span>(</span>
+<span id="cb1019-23"><a href="chap-17-anylogic.html#cb1019-23" tabindex="-1"></a>    <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">rnorm</span>(<span class="fu">length</span>(time_points), <span class="dv">2</span>, <span class="dv">1</span>)),    <span class="co"># Q1</span></span>
+<span id="cb1019-24"><a href="chap-17-anylogic.html#cb1019-24" tabindex="-1"></a>    <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">rnorm</span>(<span class="fu">length</span>(time_points), <span class="dv">5</span>, <span class="dv">2</span>)),    <span class="co"># Q2 - bottleneck</span></span>
+<span id="cb1019-25"><a href="chap-17-anylogic.html#cb1019-25" tabindex="-1"></a>    <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">rnorm</span>(<span class="fu">length</span>(time_points), <span class="dv">3</span>, <span class="fl">1.5</span>)),  <span class="co"># Q3</span></span>
+<span id="cb1019-26"><a href="chap-17-anylogic.html#cb1019-26" tabindex="-1"></a>    <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">rnorm</span>(<span class="fu">length</span>(time_points), <span class="dv">4</span>, <span class="fl">1.8</span>)),  <span class="co"># Q4</span></span>
+<span id="cb1019-27"><a href="chap-17-anylogic.html#cb1019-27" tabindex="-1"></a>    <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">rnorm</span>(<span class="fu">length</span>(time_points), <span class="dv">1</span>, <span class="fl">0.5</span>))   <span class="co"># Q5</span></span>
+<span id="cb1019-28"><a href="chap-17-anylogic.html#cb1019-28" tabindex="-1"></a>  )</span>
+<span id="cb1019-29"><a href="chap-17-anylogic.html#cb1019-29" tabindex="-1"></a>)</span>
+<span id="cb1019-30"><a href="chap-17-anylogic.html#cb1019-30" tabindex="-1"></a></span>
+<span id="cb1019-31"><a href="chap-17-anylogic.html#cb1019-31" tabindex="-1"></a><span class="co"># Create multi-panel plot</span></span>
+<span id="cb1019-32"><a href="chap-17-anylogic.html#cb1019-32" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(production_df, <span class="fu">aes</span>(<span class="at">x =</span> Hour)) <span class="sc">+</span></span>
+<span id="cb1019-33"><a href="chap-17-anylogic.html#cb1019-33" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> Good), <span class="at">fill =</span> <span class="st">&quot;#2ECC71&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb1019-34"><a href="chap-17-anylogic.html#cb1019-34" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="sc">-</span>Defects), <span class="at">fill =</span> <span class="st">&quot;#E74C3C&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb1019-35"><a href="chap-17-anylogic.html#cb1019-35" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Target), <span class="at">color =</span> <span class="st">&quot;#3498DB&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1019-36"><a href="chap-17-anylogic.html#cb1019-36" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1019-37"><a href="chap-17-anylogic.html#cb1019-37" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fl">8.5</span>, <span class="at">y =</span> <span class="dv">60</span>, <span class="at">label =</span> <span class="st">&quot;Target&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#3498DB&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1019-38"><a href="chap-17-anylogic.html#cb1019-38" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1019-39"><a href="chap-17-anylogic.html#cb1019-39" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Hourly Production Output&quot;</span>,</span>
+<span id="cb1019-40"><a href="chap-17-anylogic.html#cb1019-40" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Green = Good parts, Red = Defects, Dashed = Target&quot;</span>,</span>
+<span id="cb1019-41"><a href="chap-17-anylogic.html#cb1019-41" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Hour&quot;</span>,</span>
+<span id="cb1019-42"><a href="chap-17-anylogic.html#cb1019-42" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Units&quot;</span></span>
+<span id="cb1019-43"><a href="chap-17-anylogic.html#cb1019-43" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1019-44"><a href="chap-17-anylogic.html#cb1019-44" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1019-45"><a href="chap-17-anylogic.html#cb1019-45" tabindex="-1"></a></span>
+<span id="cb1019-46"><a href="chap-17-anylogic.html#cb1019-46" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(queue_data, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Length, <span class="at">color =</span> Queue)) <span class="sc">+</span></span>
+<span id="cb1019-47"><a href="chap-17-anylogic.html#cb1019-47" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1019-48"><a href="chap-17-anylogic.html#cb1019-48" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">5</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1019-49"><a href="chap-17-anylogic.html#cb1019-49" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">450</span>, <span class="at">y =</span> <span class="dv">6</span>, <span class="at">label =</span> <span class="st">&quot;Warning</span><span class="sc">\n</span><span class="st">Threshold&quot;</span>,</span>
+<span id="cb1019-50"><a href="chap-17-anylogic.html#cb1019-50" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb1019-51"><a href="chap-17-anylogic.html#cb1019-51" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1019-52"><a href="chap-17-anylogic.html#cb1019-52" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1019-53"><a href="chap-17-anylogic.html#cb1019-53" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Queue Lengths Over Shift&quot;</span>,</span>
+<span id="cb1019-54"><a href="chap-17-anylogic.html#cb1019-54" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Q2 (after Stamping) shows potential bottleneck&quot;</span>,</span>
+<span id="cb1019-55"><a href="chap-17-anylogic.html#cb1019-55" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Time (minutes)&quot;</span>,</span>
+<span id="cb1019-56"><a href="chap-17-anylogic.html#cb1019-56" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Queue Length&quot;</span></span>
+<span id="cb1019-57"><a href="chap-17-anylogic.html#cb1019-57" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1019-58"><a href="chap-17-anylogic.html#cb1019-58" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1019-59"><a href="chap-17-anylogic.html#cb1019-59" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb1019-60"><a href="chap-17-anylogic.html#cb1019-60" tabindex="-1"></a></span>
+<span id="cb1019-61"><a href="chap-17-anylogic.html#cb1019-61" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-production-results"></span>
+<img src="introduction_files/figure-html/fig-production-results-1.png" alt="Simulated production line performance over 8-hour shift" width="960" />
+<p class="caption">
+Figure 16.6: Simulated production line performance over 8-hour shift
+</p>
+</div>
+</div>
+<div id="interpreting-the-results" class="section level3 hasAnchor" number="16.5.6">
+<h3><span class="header-section-number">16.5.6</span> Interpreting the Results<a href="chap-17-anylogic.html#interpreting-the-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>From our simulation, we can observe:</p>
 <ol style="list-style-type: decimal">
-<li><strong>FIC-101</strong> = Flow Indicating Controller (loop 101)</li>
-<li><strong>TT-205</strong> = Temperature Transmitter (loop 205)</li>
-<li><strong>PSV-301</strong> = Pressure Safety Valve (loop 301)</li>
-<li><strong>LCV-402</strong> = Level Control Valve (loop 402)</li>
+<li><strong>Production Target:</strong> The line produces approximately 454 good parts per shift (454/480 = 94.6% of target)</li>
+<li><strong>Defect Rate:</strong> 13 defects / 467 total = 2.8% (exceeds our 2% target)</li>
+<li><strong>Bottleneck Identified:</strong> Queue Q2 (after Stamping) consistently has the longest queue, indicating the <strong>Welding station</strong> is the bottleneck</li>
 </ol>
-</details>
-<hr />
+<div class="callout-warning">
+<p><strong>Critical Finding:</strong> The Welding station with a mean process time of 52 seconds and 8% variability is creating a bottleneck. Even though 52 seconds is under the 60-second takt time, the variability combined with 92% availability causes cumulative delays.</p>
 </div>
 </div>
-<div id="design-for-manufacturing-dfm-and-assembly-dfa" class="section level2 hasAnchor" number="2.6">
-<h2><span class="header-section-number">2.6</span> Design for Manufacturing (DFM) and Assembly (DFA)<a href="process-and-design.html#design-for-manufacturing-dfm-and-assembly-dfa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>DFM</strong> and <strong>DFA</strong> are methodologies that consider manufacturing and assembly constraints during product design, reducing cost and improving quality.</p>
-<div id="dfm-principles" class="section level3 hasAnchor" number="2.6.1">
-<h3><span class="header-section-number">2.6.1</span> DFM Principles<a href="process-and-design.html#dfm-principles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dfm-principles"></span>
-<img src="introduction_files/figure-html/dfm-principles-1.png" alt="DFM Guidelines" width="960" />
+<div id="step-5-test-improvement-scenarios" class="section level3 hasAnchor" number="16.5.7">
+<h3><span class="header-section-number">16.5.7</span> Step 5: Test Improvement Scenarios<a href="chap-17-anylogic.html#step-5-test-improvement-scenarios" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The power of simulation is testing “what-if” scenarios. Let’s compare different improvement options:</p>
+<div class="sourceCode" id="cb1020"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1020-1"><a href="chap-17-anylogic.html#cb1020-1" tabindex="-1"></a><span class="co"># Create scenario comparison data</span></span>
+<span id="cb1020-2"><a href="chap-17-anylogic.html#cb1020-2" tabindex="-1"></a>scenarios <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1020-3"><a href="chap-17-anylogic.html#cb1020-3" tabindex="-1"></a>  <span class="at">Scenario =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Current State&quot;</span>, <span class="st">&quot;Add Buffer&quot;</span>, <span class="st">&quot;Reduce Variability&quot;</span>,</span>
+<span id="cb1020-4"><a href="chap-17-anylogic.html#cb1020-4" tabindex="-1"></a>                      <span class="st">&quot;Add Parallel Station&quot;</span>, <span class="st">&quot;Combined Approach&quot;</span>),</span>
+<span id="cb1020-5"><a href="chap-17-anylogic.html#cb1020-5" tabindex="-1"></a>                    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Current State&quot;</span>, <span class="st">&quot;Add Buffer&quot;</span>, <span class="st">&quot;Reduce Variability&quot;</span>,</span>
+<span id="cb1020-6"><a href="chap-17-anylogic.html#cb1020-6" tabindex="-1"></a>                               <span class="st">&quot;Add Parallel Station&quot;</span>, <span class="st">&quot;Combined Approach&quot;</span>)),</span>
+<span id="cb1020-7"><a href="chap-17-anylogic.html#cb1020-7" tabindex="-1"></a>  <span class="at">Throughput =</span> <span class="fu">c</span>(<span class="dv">454</span>, <span class="dv">462</span>, <span class="dv">471</span>, <span class="dv">485</span>, <span class="dv">498</span>),</span>
+<span id="cb1020-8"><a href="chap-17-anylogic.html#cb1020-8" tabindex="-1"></a>  <span class="at">Investment =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>, <span class="dv">50</span>, <span class="dv">200</span>, <span class="dv">180</span>),</span>
+<span id="cb1020-9"><a href="chap-17-anylogic.html#cb1020-9" tabindex="-1"></a>  <span class="at">ROI =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">53</span>, <span class="dv">34</span>, <span class="fl">15.5</span>, <span class="fl">24.4</span>)</span>
+<span id="cb1020-10"><a href="chap-17-anylogic.html#cb1020-10" tabindex="-1"></a>)</span>
+<span id="cb1020-11"><a href="chap-17-anylogic.html#cb1020-11" tabindex="-1"></a></span>
+<span id="cb1020-12"><a href="chap-17-anylogic.html#cb1020-12" tabindex="-1"></a><span class="co"># Throughput comparison</span></span>
+<span id="cb1020-13"><a href="chap-17-anylogic.html#cb1020-13" tabindex="-1"></a><span class="fu">ggplot</span>(scenarios, <span class="fu">aes</span>(<span class="at">x =</span> Scenario, <span class="at">y =</span> Throughput, <span class="at">fill =</span> Scenario)) <span class="sc">+</span></span>
+<span id="cb1020-14"><a href="chap-17-anylogic.html#cb1020-14" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb1020-15"><a href="chap-17-anylogic.html#cb1020-15" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">480</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1020-16"><a href="chap-17-anylogic.html#cb1020-16" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Throughput), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1020-17"><a href="chap-17-anylogic.html#cb1020-17" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">5</span>, <span class="at">y =</span> <span class="dv">485</span>, <span class="at">label =</span> <span class="st">&quot;Target: 480&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1020-18"><a href="chap-17-anylogic.html#cb1020-18" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1020-19"><a href="chap-17-anylogic.html#cb1020-19" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1020-20"><a href="chap-17-anylogic.html#cb1020-20" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Throughput by Improvement Scenario&quot;</span>,</span>
+<span id="cb1020-21"><a href="chap-17-anylogic.html#cb1020-21" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Simulation results for 8-hour shift&quot;</span>,</span>
+<span id="cb1020-22"><a href="chap-17-anylogic.html#cb1020-22" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1020-23"><a href="chap-17-anylogic.html#cb1020-23" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Parts per Shift&quot;</span></span>
+<span id="cb1020-24"><a href="chap-17-anylogic.html#cb1020-24" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1020-25"><a href="chap-17-anylogic.html#cb1020-25" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1020-26"><a href="chap-17-anylogic.html#cb1020-26" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1020-27"><a href="chap-17-anylogic.html#cb1020-27" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb1020-28"><a href="chap-17-anylogic.html#cb1020-28" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">30</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb1020-29"><a href="chap-17-anylogic.html#cb1020-29" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-improvement-scenarios"></span>
+<img src="introduction_files/figure-html/fig-improvement-scenarios-1.png" alt="Comparison of improvement scenarios" width="960" />
 <p class="caption">
-Figure 2.4: DFM Guidelines
+Figure 16.7: Comparison of improvement scenarios
 </p>
 </div>
-<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:dfm-guidelines">Table 2.7: </span>Design for Manufacturing Guidelines
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(26, 82, 118, 255) !important;">
-DFM Guideline
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(26, 82, 118, 255) !important;">
-Why It Matters
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(26, 82, 118, 255) !important;">
-Example
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 15em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-Minimize total number of parts
-</td>
-<td style="text-align:left;">
-Fewer parts = fewer chances for failure, less inventory, lower cost
-</td>
-<td style="text-align:left;">
-Combine bracket and housing into single molded part
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 15em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-Use standard components
-</td>
-<td style="text-align:left;">
-Standard parts are cheaper, faster to procure, easier to replace
-</td>
-<td style="text-align:left;">
-Use M6 bolts instead of custom fasteners
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 15em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-Design for ease of fabrication
-</td>
-<td style="text-align:left;">
-Complex features increase manufacturing cost and defect rates
-</td>
-<td style="text-align:left;">
-Avoid undercuts, deep pockets, thin walls
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 15em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-Design for ease of assembly
-</td>
-<td style="text-align:left;">
-Reduces assembly time and errors
-</td>
-<td style="text-align:left;">
-Use snap-fits instead of screws where appropriate
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 15em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-Minimize assembly directions
-</td>
-<td style="text-align:left;">
-Multiple directions require repositioning, increasing time
-</td>
-<td style="text-align:left;">
-All parts insert from top-down in assembly
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 15em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-Maximize compliance in assembly
-</td>
-<td style="text-align:left;">
-Tight tolerances increase cost; allow self-alignment where possible
-</td>
-<td style="text-align:left;">
-Use tapered holes for self-centering pins
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 15em; font-weight: bold;background-color: rgba(212, 230, 241, 255) !important;">
-Design for ease of service
-</td>
-<td style="text-align:left;">
-Products will need maintenance; design for technician access
-</td>
-<td style="text-align:left;">
-Locate service points on accessible panels
-</td>
-</tr>
-</tbody>
-</table>
+<div class="callout-discussion">
+<p><strong>Group Discussion:</strong> Based on these results, which improvement option would you recommend? Consider not just throughput but also implementation cost, timeline, and risk. Discuss the trade-offs with your team.</p>
 </div>
-<div id="dfa-analysis" class="section level3 hasAnchor" number="2.6.2">
-<h3><span class="header-section-number">2.6.2</span> DFA Analysis<a href="process-and-design.html#dfa-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>DFA systematically evaluates assembly operations to identify improvement opportunities.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="process-and-design.html#cb22-1" tabindex="-1"></a><span class="co"># DFA Analysis Example: Simple Assembly</span></span>
-<span id="cb22-2"><a href="process-and-design.html#cb22-2" tabindex="-1"></a><span class="co"># Calculate assembly efficiency using Boothroyd-Dewhurst method</span></span>
-<span id="cb22-3"><a href="process-and-design.html#cb22-3" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="process-and-design.html#cb22-4" tabindex="-1"></a><span class="co"># Assembly data (simplified)</span></span>
-<span id="cb22-5"><a href="process-and-design.html#cb22-5" tabindex="-1"></a>parts <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb22-6"><a href="process-and-design.html#cb22-6" tabindex="-1"></a>  <span class="at">Part =</span> <span class="fu">c</span>(<span class="st">&quot;Base&quot;</span>, <span class="st">&quot;PCB&quot;</span>, <span class="st">&quot;Cover&quot;</span>, <span class="st">&quot;Screw 1&quot;</span>, <span class="st">&quot;Screw 2&quot;</span>, <span class="st">&quot;Screw 3&quot;</span>, <span class="st">&quot;Screw 4&quot;</span>, <span class="st">&quot;Label&quot;</span>),</span>
-<span id="cb22-7"><a href="process-and-design.html#cb22-7" tabindex="-1"></a>  <span class="at">Handling_Time =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">3.0</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="fl">4.0</span>),  <span class="co"># seconds</span></span>
-<span id="cb22-8"><a href="process-and-design.html#cb22-8" tabindex="-1"></a>  <span class="at">Insertion_Time =</span> <span class="fu">c</span>(<span class="fl">3.0</span>, <span class="fl">4.0</span>, <span class="fl">3.5</span>, <span class="fl">6.0</span>, <span class="fl">6.0</span>, <span class="fl">6.0</span>, <span class="fl">6.0</span>, <span class="fl">2.0</span>),  <span class="co"># seconds</span></span>
-<span id="cb22-9"><a href="process-and-design.html#cb22-9" tabindex="-1"></a>  <span class="at">Theoretically_Necessary =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb22-10"><a href="process-and-design.html#cb22-10" tabindex="-1"></a>)</span>
-<span id="cb22-11"><a href="process-and-design.html#cb22-11" tabindex="-1"></a></span>
-<span id="cb22-12"><a href="process-and-design.html#cb22-12" tabindex="-1"></a><span class="co"># Calculations</span></span>
-<span id="cb22-13"><a href="process-and-design.html#cb22-13" tabindex="-1"></a>total_parts <span class="ot">&lt;-</span> <span class="fu">nrow</span>(parts)</span>
-<span id="cb22-14"><a href="process-and-design.html#cb22-14" tabindex="-1"></a>total_time <span class="ot">&lt;-</span> <span class="fu">sum</span>(parts<span class="sc">$</span>Handling_Time <span class="sc">+</span> parts<span class="sc">$</span>Insertion_Time)</span>
-<span id="cb22-15"><a href="process-and-design.html#cb22-15" tabindex="-1"></a>min_parts <span class="ot">&lt;-</span> <span class="fu">sum</span>(parts<span class="sc">$</span>Theoretically_Necessary)</span>
-<span id="cb22-16"><a href="process-and-design.html#cb22-16" tabindex="-1"></a>ideal_time <span class="ot">&lt;-</span> min_parts <span class="sc">*</span> <span class="dv">3</span>  <span class="co"># 3 seconds is theoretical minimum per part</span></span>
-<span id="cb22-17"><a href="process-and-design.html#cb22-17" tabindex="-1"></a></span>
-<span id="cb22-18"><a href="process-and-design.html#cb22-18" tabindex="-1"></a>efficiency <span class="ot">&lt;-</span> (ideal_time <span class="sc">/</span> total_time) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb22-19"><a href="process-and-design.html#cb22-19" tabindex="-1"></a></span>
-<span id="cb22-20"><a href="process-and-design.html#cb22-20" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;DFA Analysis Results:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
-<pre><code>## DFA Analysis Results:</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="process-and-design.html#cb24-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=====================</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
-<pre><code>## =====================</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="process-and-design.html#cb26-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Total parts: %d</span><span class="sc">\n</span><span class="st">&quot;</span>, total_parts))</span></code></pre></div>
-<pre><code>## Total parts: 8</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="process-and-design.html#cb28-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Theoretically minimum parts: %d</span><span class="sc">\n</span><span class="st">&quot;</span>, min_parts))</span></code></pre></div>
-<pre><code>## Theoretically minimum parts: 3</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="process-and-design.html#cb30-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Total assembly time: %.1f seconds</span><span class="sc">\n</span><span class="st">&quot;</span>, total_time))</span></code></pre></div>
-<pre><code>## Total assembly time: 62.5 seconds</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="process-and-design.html#cb32-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Ideal assembly time: %.1f seconds</span><span class="sc">\n</span><span class="st">&quot;</span>, ideal_time))</span></code></pre></div>
-<pre><code>## Ideal assembly time: 9.0 seconds</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="process-and-design.html#cb34-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;Design Efficiency: %.1f%%</span><span class="sc">\n</span><span class="st">&quot;</span>, efficiency))</span></code></pre></div>
-<pre><code>## Design Efficiency: 14.4%</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="process-and-design.html#cb36-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Opportunity: Combine 4 screws into snap-fit design</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-## Opportunity: Combine 4 screws into snap-fit design</code></pre>
-<details>
-<summary>
-Case Study: Redesigning for DFM/DFA
-</summary>
-<p><strong>Original Design:</strong>
-- 15 parts
-- 4 different screw types
-- Assembly time: 180 seconds
-- Multiple assembly directions
-- Special tools required</p>
-<p><strong>Redesigned using DFM/DFA:</strong>
-- 8 parts (47% reduction)
-- 1 standard screw type
-- Assembly time: 75 seconds (58% reduction)
-- Single assembly direction (top-down)
-- No special tools</p>
-<p><strong>Cost Impact:</strong>
-- Part cost reduced 35%
-- Assembly labor reduced 58%
-- Quality defects reduced 60%
-- Total product cost reduced 40%</p>
-</details>
 <hr />
 </div>
 </div>
-<div id="hazop-studies" class="section level2 hasAnchor" number="2.7">
-<h2><span class="header-section-number">2.7</span> HAZOP Studies<a href="process-and-design.html#hazop-studies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>HAZOP</strong> (Hazard and Operability Study) is a systematic method to identify hazards and operability problems in process plants.</p>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-<p><iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/6AqtX8oCpKI&t"
-    title="HAZOP Study Overview"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-</iframe></p>
+<div id="sec-warehouse-17" class="section level2 hasAnchor" number="16.6">
+<h2><span class="header-section-number">16.6</span> Warehouse Simulation: Picking and Order Fulfillment<a href="chap-17-anylogic.html#sec-warehouse-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Modern warehouses face immense pressure to fulfill orders quickly and accurately. Simulation helps optimize picking strategies, staffing levels, and automation investments.</p>
+<div id="the-warehouse-challenge" class="section level3 hasAnchor" number="16.6.1">
+<h3><span class="header-section-number">16.6.1</span> The Warehouse Challenge<a href="chap-17-anylogic.html#the-warehouse-challenge" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="callout-think">
+<p><strong>Before You Read:</strong> If you had to fill 1,000 customer orders per day from a warehouse with 50,000 different products (SKUs), how would you organize the picking process? What factors would affect efficiency?</p>
 </div>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-<p><iframe
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/ukn0RRt0ReA&list=PLeTiXOrLeXhI5IZKv3GeOUMOYpz5mG36S"
-    title="HAZOP Study Overview"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-</iframe></p>
+<p>Warehouse operations involve complex interactions between:</p>
+<ul>
+<li><strong>Order arrivals</strong> (often unpredictable)</li>
+<li><strong>Picker movement</strong> (walking is typically 50% of picker time)</li>
+<li><strong>Storage locations</strong> (where products are stored affects travel time)</li>
+<li><strong>Picking strategies</strong> (single-order vs. batch picking)</li>
+<li><strong>Material handling equipment</strong> (carts, forklifts, conveyor systems)</li>
+<li><strong>Packing and shipping</strong> (labor-intensive final steps)</li>
+</ul>
 </div>
-<div id="hazop-methodology" class="section level3 hasAnchor" number="2.7.1">
-<h3><span class="header-section-number">2.7.1</span> HAZOP Methodology<a href="process-and-design.html#hazop-methodology" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
+<div id="case-study-e-commerce-distribution-center" class="section level3 hasAnchor" number="16.6.2">
+<h3><span class="header-section-number">16.6.2</span> Case Study: E-Commerce Distribution Center<a href="chap-17-anylogic.html#case-study-e-commerce-distribution-center" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="callout-case">
+<p><strong>The Scenario:</strong>
+An e-commerce company is designing a new distribution center to handle:</p>
+<ul>
+<li><strong>13,000 order lines per day</strong> (an order line = one product in one order)</li>
+<li><strong>750 picking cartons</strong> processed daily</li>
+<li>Peak periods with <strong>3x normal order volume</strong></li>
+<li>Delivery promise of <strong>same-day shipping</strong> for orders before 2 PM</li>
+</ul>
+<p>They need to decide: What picking algorithm will minimize fulfillment time while meeting labor cost targets?</p>
+</div>
+</div>
+<div id="picking-strategies-compared" class="section level3 hasAnchor" number="16.6.3">
+<h3><span class="header-section-number">16.6.3</span> Picking Strategies Compared<a href="chap-17-anylogic.html#picking-strategies-compared" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>AnyLogic allows us to simulate and compare different picking strategies:</p>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:hazop-keywords">Table 2.8: </span>HAZOP Guide Words and Examples
+<span id="tab:picking-strategies">Table 16.7: </span><span id="tab:picking-strategies">Table 16.8: </span>Warehouse picking strategies
 </caption>
 <thead>
 <tr>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
-Guide Word
+<th style="text-align:left;">
+Strategy
 </th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
-Meaning
+<th style="text-align:left;">
+Description
 </th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
-Example with FLOW
+<th style="text-align:left;">
+Best For
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(250, 219, 216, 255) !important;">
-NO/NOT
+<td style="text-align:left;width: 15%; font-weight: bold;">
+Single-Order Picking
 </td>
-<td style="text-align:left;">
-Complete negation of design intent
+<td style="text-align:left;width: 45%; ">
+One picker completes one order at a time
 </td>
-<td style="text-align:left;">
-No flow - pump failure, blocked line
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(250, 219, 216, 255) !important;">
-MORE
-</td>
-<td style="text-align:left;">
-Quantitative increase
-</td>
-<td style="text-align:left;">
-More flow - control valve fails open
+<td style="text-align:left;width: 40%; ">
+Small operations, high accuracy required
 </td>
 </tr>
 <tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(250, 219, 216, 255) !important;">
-LESS
+<td style="text-align:left;width: 15%; font-weight: bold;">
+Batch Picking
 </td>
-<td style="text-align:left;">
-Quantitative decrease
+<td style="text-align:left;width: 45%; ">
+Picker collects items for multiple orders simultaneously
 </td>
-<td style="text-align:left;">
-Less flow - partial blockage, pump wear
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(250, 219, 216, 255) !important;">
-AS WELL AS
-</td>
-<td style="text-align:left;">
-Qualitative modification/addition
-</td>
-<td style="text-align:left;">
-Flow + contamination - upstream leak
+<td style="text-align:left;width: 40%; ">
+High-volume with clustered SKUs
 </td>
 </tr>
 <tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(250, 219, 216, 255) !important;">
-PART OF
+<td style="text-align:left;width: 15%; font-weight: bold;">
+Zone Picking
 </td>
-<td style="text-align:left;">
-Qualitative decrease
+<td style="text-align:left;width: 45%; ">
+Warehouse divided into zones; each picker handles one zone
 </td>
-<td style="text-align:left;">
-Only part of intended flow path active
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(250, 219, 216, 255) !important;">
-REVERSE
-</td>
-<td style="text-align:left;">
-Logical opposite of intent
-</td>
-<td style="text-align:left;">
-Reverse flow - check valve failure
+<td style="text-align:left;width: 40%; ">
+Very large warehouses
 </td>
 </tr>
 <tr>
-<td style="text-align:left;width: 10em; font-weight: bold;background-color: rgba(250, 219, 216, 255) !important;">
-OTHER THAN
+<td style="text-align:left;width: 15%; font-weight: bold;">
+Wave Picking
 </td>
-<td style="text-align:left;">
-Complete substitution
+<td style="text-align:left;width: 45%; ">
+Orders grouped into waves released at intervals
 </td>
-<td style="text-align:left;">
-Wrong material flowing
+<td style="text-align:left;width: 40%; ">
+Managing workload throughout shift
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 15%; font-weight: bold;">
+Cluster Picking
+</td>
+<td style="text-align:left;width: 45%; ">
+Multiple orders picked into compartmentalized cart
+</td>
+<td style="text-align:left;width: 40%; ">
+Medium volume, diverse products
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="hazop-example" class="section level3 hasAnchor" number="2.7.2">
-<h3><span class="header-section-number">2.7.2</span> HAZOP Example<a href="process-and-design.html#hazop-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<table class="table table-striped table-hover table-bordered" style="font-size: 11px; margin-left: auto; margin-right: auto;">
-<caption style="font-size: initial !important;">
-<span id="tab:hazop-example">Table 2.9: </span>HAZOP Worksheet Example
+<div id="simulating-picker-movement" class="section level3 hasAnchor" number="16.6.4">
+<h3><span class="header-section-number">16.6.4</span> Simulating Picker Movement<a href="chap-17-anylogic.html#simulating-picker-movement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One of the key factors in warehouse efficiency is picker travel distance. AnyLogic can model this using the <strong>Pedestrian Library</strong> combined with the <strong>Process Modeling Library</strong>.</p>
+<div class="sourceCode" id="cb1021"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1021-1"><a href="chap-17-anylogic.html#cb1021-1" tabindex="-1"></a><span class="co"># Simulate picker travel data for different storage strategies</span></span>
+<span id="cb1021-2"><a href="chap-17-anylogic.html#cb1021-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb1021-3"><a href="chap-17-anylogic.html#cb1021-3" tabindex="-1"></a></span>
+<span id="cb1021-4"><a href="chap-17-anylogic.html#cb1021-4" tabindex="-1"></a><span class="co"># Random storage vs. velocity-based storage</span></span>
+<span id="cb1021-5"><a href="chap-17-anylogic.html#cb1021-5" tabindex="-1"></a>n_picks <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb1021-6"><a href="chap-17-anylogic.html#cb1021-6" tabindex="-1"></a>random_storage <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_picks, <span class="at">mean =</span> <span class="dv">180</span>, <span class="at">sd =</span> <span class="dv">40</span>)  <span class="co"># feet per pick</span></span>
+<span id="cb1021-7"><a href="chap-17-anylogic.html#cb1021-7" tabindex="-1"></a>velocity_storage <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_picks, <span class="at">mean =</span> <span class="dv">95</span>, <span class="at">sd =</span> <span class="dv">25</span>)  <span class="co"># feet per pick</span></span>
+<span id="cb1021-8"><a href="chap-17-anylogic.html#cb1021-8" tabindex="-1"></a>abc_storage <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_picks, <span class="at">mean =</span> <span class="dv">120</span>, <span class="at">sd =</span> <span class="dv">30</span>)      <span class="co"># feet per pick</span></span>
+<span id="cb1021-9"><a href="chap-17-anylogic.html#cb1021-9" tabindex="-1"></a></span>
+<span id="cb1021-10"><a href="chap-17-anylogic.html#cb1021-10" tabindex="-1"></a>travel_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1021-11"><a href="chap-17-anylogic.html#cb1021-11" tabindex="-1"></a>  <span class="at">Strategy =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Random Storage&quot;</span>, <span class="st">&quot;ABC Analysis&quot;</span>, <span class="st">&quot;Velocity-Based&quot;</span>), <span class="at">each =</span> n_picks),</span>
+<span id="cb1021-12"><a href="chap-17-anylogic.html#cb1021-12" tabindex="-1"></a>  <span class="at">Distance =</span> <span class="fu">c</span>(random_storage, abc_storage, velocity_storage)</span>
+<span id="cb1021-13"><a href="chap-17-anylogic.html#cb1021-13" tabindex="-1"></a>)</span>
+<span id="cb1021-14"><a href="chap-17-anylogic.html#cb1021-14" tabindex="-1"></a></span>
+<span id="cb1021-15"><a href="chap-17-anylogic.html#cb1021-15" tabindex="-1"></a><span class="fu">ggplot</span>(travel_data, <span class="fu">aes</span>(<span class="at">x =</span> Strategy, <span class="at">y =</span> Distance, <span class="at">fill =</span> Strategy)) <span class="sc">+</span></span>
+<span id="cb1021-16"><a href="chap-17-anylogic.html#cb1021-16" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1021-17"><a href="chap-17-anylogic.html#cb1021-17" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(velocity_storage), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#2ECC71&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1021-18"><a href="chap-17-anylogic.html#cb1021-18" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1021-19"><a href="chap-17-anylogic.html#cb1021-19" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fl">3.35</span>, <span class="at">y =</span> <span class="fu">mean</span>(velocity_storage),</span>
+<span id="cb1021-20"><a href="chap-17-anylogic.html#cb1021-20" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">&quot;Best: &quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(velocity_storage)), <span class="st">&quot; ft&quot;</span>),</span>
+<span id="cb1021-21"><a href="chap-17-anylogic.html#cb1021-21" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">&quot;#2ECC71&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1021-22"><a href="chap-17-anylogic.html#cb1021-22" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#E74C3C&quot;</span>, <span class="st">&quot;#F39C12&quot;</span>, <span class="st">&quot;#2ECC71&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb1021-23"><a href="chap-17-anylogic.html#cb1021-23" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1021-24"><a href="chap-17-anylogic.html#cb1021-24" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Picker Travel Distance by Storage Strategy&quot;</span>,</span>
+<span id="cb1021-25"><a href="chap-17-anylogic.html#cb1021-25" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Red diamond = mean; Velocity-based storage reduces travel by 47%&quot;</span>,</span>
+<span id="cb1021-26"><a href="chap-17-anylogic.html#cb1021-26" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Storage Assignment Strategy&quot;</span>,</span>
+<span id="cb1021-27"><a href="chap-17-anylogic.html#cb1021-27" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Travel Distance per Pick (feet)&quot;</span></span>
+<span id="cb1021-28"><a href="chap-17-anylogic.html#cb1021-28" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1021-29"><a href="chap-17-anylogic.html#cb1021-29" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1021-30"><a href="chap-17-anylogic.html#cb1021-30" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-picker-travel"></span>
+<img src="introduction_files/figure-html/fig-picker-travel-1.png" alt="Impact of storage assignment on picker travel distance" width="960" />
+<p class="caption">
+Figure 16.8: Impact of storage assignment on picker travel distance
+</p>
+</div>
+<div class="callout-industry">
+<p><strong>Industry Application:</strong> Kuehne+Nagel used AnyLogic simulation to design a new warehouse processing 13,000 order lines per day. By testing different picking algorithms in simulation, they identified the optimal approach before building the physical facility, avoiding costly redesigns.</p>
+</div>
+</div>
+<div id="autonomous-mobile-robots-amrs-in-warehouses" class="section level3 hasAnchor" number="16.6.5">
+<h3><span class="header-section-number">16.6.5</span> Autonomous Mobile Robots (AMRs) in Warehouses<a href="chap-17-anylogic.html#autonomous-mobile-robots-amrs-in-warehouses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Modern warehouses increasingly use <strong>autonomous mobile robots</strong> to reduce picker travel time. Instead of workers walking to products, robots bring shelving units to stationary pick stations.</p>
+<div class="sourceCode" id="cb1022"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1022-1"><a href="chap-17-anylogic.html#cb1022-1" tabindex="-1"></a><span class="co"># Simulate AMR performance</span></span>
+<span id="cb1022-2"><a href="chap-17-anylogic.html#cb1022-2" tabindex="-1"></a>amr_counts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>, <span class="dv">50</span>)</span>
+<span id="cb1022-3"><a href="chap-17-anylogic.html#cb1022-3" tabindex="-1"></a>fulfillment_times <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">45</span>, <span class="dv">28</span>, <span class="dv">18</span>, <span class="dv">13</span>, <span class="fl">10.5</span>, <span class="dv">9</span>, <span class="fl">8.2</span>, <span class="fl">7.8</span>, <span class="fl">7.6</span>, <span class="fl">7.5</span>)</span>
+<span id="cb1022-4"><a href="chap-17-anylogic.html#cb1022-4" tabindex="-1"></a>utilization <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">95</span>, <span class="dv">88</span>, <span class="dv">78</span>, <span class="dv">68</span>, <span class="dv">58</span>, <span class="dv">52</span>, <span class="dv">48</span>, <span class="dv">45</span>, <span class="dv">43</span>)</span>
+<span id="cb1022-5"><a href="chap-17-anylogic.html#cb1022-5" tabindex="-1"></a></span>
+<span id="cb1022-6"><a href="chap-17-anylogic.html#cb1022-6" tabindex="-1"></a>amr_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1022-7"><a href="chap-17-anylogic.html#cb1022-7" tabindex="-1"></a>  <span class="at">AMRs =</span> amr_counts,</span>
+<span id="cb1022-8"><a href="chap-17-anylogic.html#cb1022-8" tabindex="-1"></a>  <span class="at">Time =</span> fulfillment_times,</span>
+<span id="cb1022-9"><a href="chap-17-anylogic.html#cb1022-9" tabindex="-1"></a>  <span class="at">Utilization =</span> utilization</span>
+<span id="cb1022-10"><a href="chap-17-anylogic.html#cb1022-10" tabindex="-1"></a>)</span>
+<span id="cb1022-11"><a href="chap-17-anylogic.html#cb1022-11" tabindex="-1"></a></span>
+<span id="cb1022-12"><a href="chap-17-anylogic.html#cb1022-12" tabindex="-1"></a><span class="co"># Dual y-axis plot</span></span>
+<span id="cb1022-13"><a href="chap-17-anylogic.html#cb1022-13" tabindex="-1"></a>coeff <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb1022-14"><a href="chap-17-anylogic.html#cb1022-14" tabindex="-1"></a></span>
+<span id="cb1022-15"><a href="chap-17-anylogic.html#cb1022-15" tabindex="-1"></a><span class="fu">ggplot</span>(amr_data, <span class="fu">aes</span>(<span class="at">x =</span> AMRs)) <span class="sc">+</span></span>
+<span id="cb1022-16"><a href="chap-17-anylogic.html#cb1022-16" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Time), <span class="at">color =</span> <span class="st">&quot;#3498DB&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb1022-17"><a href="chap-17-anylogic.html#cb1022-17" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> Time), <span class="at">color =</span> <span class="st">&quot;#3498DB&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb1022-18"><a href="chap-17-anylogic.html#cb1022-18" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Utilization <span class="sc">*</span> coeff), <span class="at">color =</span> <span class="st">&quot;#E74C3C&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1022-19"><a href="chap-17-anylogic.html#cb1022-19" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> Utilization <span class="sc">*</span> coeff), <span class="at">color =</span> <span class="st">&quot;#E74C3C&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb1022-20"><a href="chap-17-anylogic.html#cb1022-20" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">25</span>, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#2ECC71&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb1022-21"><a href="chap-17-anylogic.html#cb1022-21" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">27</span>, <span class="at">y =</span> <span class="dv">40</span>, <span class="at">label =</span> <span class="st">&quot;Optimal</span><span class="sc">\n</span><span class="st">Point&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#2ECC71&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1022-22"><a href="chap-17-anylogic.html#cb1022-22" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb1022-23"><a href="chap-17-anylogic.html#cb1022-23" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Fulfillment Time (minutes)&quot;</span>,</span>
+<span id="cb1022-24"><a href="chap-17-anylogic.html#cb1022-24" tabindex="-1"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span> . <span class="sc">/</span> coeff, <span class="at">name =</span> <span class="st">&quot;Robot Utilization (%)&quot;</span>)</span>
+<span id="cb1022-25"><a href="chap-17-anylogic.html#cb1022-25" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1022-26"><a href="chap-17-anylogic.html#cb1022-26" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1022-27"><a href="chap-17-anylogic.html#cb1022-27" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Finding the Optimal Number of Autonomous Mobile Robots&quot;</span>,</span>
+<span id="cb1022-28"><a href="chap-17-anylogic.html#cb1022-28" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Blue = Fulfillment time (lower is better); Red = Robot utilization (higher is better)&quot;</span>,</span>
+<span id="cb1022-29"><a href="chap-17-anylogic.html#cb1022-29" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Number of AMRs&quot;</span></span>
+<span id="cb1022-30"><a href="chap-17-anylogic.html#cb1022-30" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1022-31"><a href="chap-17-anylogic.html#cb1022-31" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1022-32"><a href="chap-17-anylogic.html#cb1022-32" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1022-33"><a href="chap-17-anylogic.html#cb1022-33" tabindex="-1"></a>    <span class="at">axis.title.y.left =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&quot;#3498DB&quot;</span>),</span>
+<span id="cb1022-34"><a href="chap-17-anylogic.html#cb1022-34" tabindex="-1"></a>    <span class="at">axis.title.y.right =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&quot;#E74C3C&quot;</span>)</span>
+<span id="cb1022-35"><a href="chap-17-anylogic.html#cb1022-35" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-amr-simulation"></span>
+<img src="introduction_files/figure-html/fig-amr-simulation-1.png" alt="Simulation results: order fulfillment time vs. number of AMRs" width="960" />
+<p class="caption">
+Figure 16.9: Simulation results: order fulfillment time vs. number of AMRs
+</p>
+</div>
+<p>This simulation reveals a classic trade-off: adding more robots reduces order fulfillment time but also decreases utilization (robots spend more time idle). The <strong>optimal point</strong> balances these factors based on business requirements.</p>
+<div class="callout-check">
+<p><strong>Quick Check:</strong>
+1. Why does adding more robots eventually show diminishing returns?
+2. If robots cost $50,000 each and labor costs $25/hour, how would you calculate the breakeven point?
+3. What other factors should be considered beyond raw cost?</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="sec-examples-17" class="section level2 hasAnchor" number="16.7">
+<h2><span class="header-section-number">16.7</span> Built-in AnyLogic Examples<a href="chap-17-anylogic.html#sec-examples-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>AnyLogic includes numerous pre-built example models that serve as excellent learning resources and starting points for your own projects. Here are the key examples relevant to manufacturing and warehouse operations:</p>
+<div id="manufacturing-examples" class="section level3 hasAnchor" number="16.7.1">
+<h3><span class="header-section-number">16.7.1</span> Manufacturing Examples<a href="chap-17-anylogic.html#manufacturing-examples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:manufacturing-examples">Table 16.9: </span><span id="tab:manufacturing-examples">Table 16.10: </span>Key manufacturing example models in AnyLogic
 </caption>
 <thead>
 <tr>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
-Node
+<th style="text-align:left;">
+Example Name
 </th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
-Parameter
+<th style="text-align:left;">
+Location
 </th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
-Guide Word
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
-Deviation
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
-Cause
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
-Consequence
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
-Safeguard
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(192, 57, 43, 255) !important;">
-Action
+<th style="text-align:left;">
+What You’ll Learn
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;width: 10em; ">
-Feed Pump P-101 to Reactor R-101
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Job Shop
 </td>
 <td style="text-align:left;">
-Flow
+Help &gt; Example Models &gt; Manufacturing
 </td>
 <td style="text-align:left;">
-No
-</td>
-<td style="text-align:left;">
-No Flow
-</td>
-<td style="text-align:left;">
-Pump failure, blocked suction
-</td>
-<td style="text-align:left;">
-Reactor starved, runaway possible
-</td>
-<td style="text-align:left;">
-Low flow alarm, interlock
-</td>
-<td style="text-align:left;">
-Verify interlock function
+Routing jobs through multiple machines, scheduling
 </td>
 </tr>
 <tr>
-<td style="text-align:left;width: 10em; ">
-Feed Pump P-101 to Reactor R-101
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Assembly Line
 </td>
 <td style="text-align:left;">
-Flow
+Help &gt; Example Models &gt; Manufacturing
 </td>
 <td style="text-align:left;">
-More
-</td>
-<td style="text-align:left;">
-More Flow
-</td>
-<td style="text-align:left;">
-Control valve fails open
-</td>
-<td style="text-align:left;">
-Reactor overflow, environmental release
-</td>
-<td style="text-align:left;">
-High level alarm, overflow protection
-</td>
-<td style="text-align:left;">
-Add independent high-high level trip
+Line balancing, takt time, bottleneck analysis
 </td>
 </tr>
 <tr>
-<td style="text-align:left;width: 10em; ">
-Feed Pump P-101 to Reactor R-101
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Flexible Manufacturing System
 </td>
 <td style="text-align:left;">
-Pressure
+Help &gt; Example Models &gt; Manufacturing
 </td>
 <td style="text-align:left;">
-More
-</td>
-<td style="text-align:left;">
-High Pressure
-</td>
-<td style="text-align:left;">
-Downstream blockage
-</td>
-<td style="text-align:left;">
-Pipe rupture, personnel injury
-</td>
-<td style="text-align:left;">
-Relief valve, high pressure trip
-</td>
-<td style="text-align:left;">
-Verify relief valve sizing
+Flexible routing, machine selection, setup times
 </td>
 </tr>
 <tr>
-<td style="text-align:left;width: 10em; ">
-Feed Pump P-101 to Reactor R-101
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Conveyor System
 </td>
 <td style="text-align:left;">
-Temperature
+Help &gt; Example Models &gt; Material Handling
 </td>
 <td style="text-align:left;">
-Less
+Conveyor design, merging, diverting, accumulation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+AGV System
 </td>
 <td style="text-align:left;">
-Low Temperature
+Help &gt; Example Models &gt; Material Handling
 </td>
 <td style="text-align:left;">
-Cooling water leak into feed
-</td>
-<td style="text-align:left;">
-Reaction incomplete, off-spec product
-</td>
-<td style="text-align:left;">
-Low temp alarm, feed analysis
-</td>
-<td style="text-align:left;">
-Add temperature interlock
+Vehicle dispatching, path planning, charging stations
 </td>
 </tr>
 </tbody>
 </table>
-<details>
-<summary>
-Discussion: Why is HAZOP done during FEED, not later?
-</summary>
-<p>HAZOP should be completed during FEED because:</p>
+</div>
+<div id="warehouse-and-logistics-examples" class="section level3 hasAnchor" number="16.7.2">
+<h3><span class="header-section-number">16.7.2</span> Warehouse and Logistics Examples<a href="chap-17-anylogic.html#warehouse-and-logistics-examples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:warehouse-examples">Table 16.11: </span><span id="tab:warehouse-examples">Table 16.12: </span>Key warehouse example models in AnyLogic
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Example Name
+</th>
+<th style="text-align:left;">
+Location
+</th>
+<th style="text-align:left;">
+What You’ll Learn
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Warehouse
+</td>
+<td style="text-align:left;">
+Help &gt; Example Models &gt; Logistics
+</td>
+<td style="text-align:left;">
+Storage assignment, inventory management
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Distribution Center
+</td>
+<td style="text-align:left;">
+Help &gt; Example Models &gt; Logistics
+</td>
+<td style="text-align:left;">
+Receiving, put-away, picking, shipping integration
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Order Picking
+</td>
+<td style="text-align:left;">
+Help &gt; Example Models &gt; Logistics
+</td>
+<td style="text-align:left;">
+Picking route optimization, batch vs. single order
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+AS/RS System
+</td>
+<td style="text-align:left;">
+Help &gt; Example Models &gt; Material Handling
+</td>
+<td style="text-align:left;">
+Automated storage retrieval, crane sequencing
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Cross-Docking
+</td>
+<td style="text-align:left;">
+Help &gt; Example Models &gt; Logistics
+</td>
+<td style="text-align:left;">
+Minimal storage, direct transfer operations
+</td>
+</tr>
+</tbody>
+</table>
+<div class="callout-activity">
+<p><strong>Hands-On Activity:</strong> Open AnyLogic and navigate to Help &gt; Example Models. Open the “Assembly Line” example and run it. Then:
+1. Identify the bottleneck station (highest queue length)
+2. Modify the process time for that station
+3. Observe how throughput changes
+4. Document your findings</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="sec-tutorial-17" class="section level2 hasAnchor" number="16.8">
+<h2><span class="header-section-number">16.8</span> Building Your First Model: Step-by-Step Tutorial<a href="chap-17-anylogic.html#sec-tutorial-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s walk through building a simple but complete production line model from scratch.</p>
+<div id="tutorial-three-station-production-line" class="section level3 hasAnchor" number="16.8.1">
+<h3><span class="header-section-number">16.8.1</span> Tutorial: Three-Station Production Line<a href="chap-17-anylogic.html#tutorial-three-station-production-line" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Objective:</strong> Model a production line with three workstations and analyze throughput.</p>
+<div id="step-1-create-a-new-model" class="section level4 hasAnchor" number="16.8.1.1">
+<h4><span class="header-section-number">16.8.1.1</span> Step 1: Create a New Model<a href="chap-17-anylogic.html#step-1-create-a-new-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ol style="list-style-type: decimal">
-<li><strong>Cost of changes</strong> - Changes during FEED cost 1x; during detailed design cost 10x; during construction cost 100x</li>
-<li><strong>Design influence</strong> - P&amp;IDs are still being developed and can be modified</li>
-<li><strong>Equipment selection</strong> - Safety requirements may affect equipment sizing</li>
-<li><strong>Budget accuracy</strong> - Safety systems must be included in project budget</li>
-<li><strong>Regulatory approval</strong> - Many jurisdictions require HAZOP before construction permits</li>
+<li>Open AnyLogic</li>
+<li>File &gt; New &gt; Model</li>
+<li>Name it “ProductionLine_Tutorial”</li>
+<li>Select “Discrete Event” as the model type</li>
 </ol>
-<p><strong>Best practice:</strong> Conduct preliminary HAZOP early in FEED, then detailed HAZOP when P&amp;IDs are 60-80% complete.</p>
-</details>
+</div>
+<div id="step-2-add-the-process-flow" class="section level4 hasAnchor" number="16.8.1.2">
+<h4><span class="header-section-number">16.8.1.2</span> Step 2: Add the Process Flow<a href="chap-17-anylogic.html#step-2-add-the-process-flow" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>From the <strong>Process Modeling Library</strong>, drag these elements onto the canvas in order:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Source</strong> - Generates parts entering the system</li>
+<li><strong>Queue</strong> - Holds parts waiting for Station 1</li>
+<li><strong>Delay</strong> - Represents Station 1 processing time</li>
+<li><strong>Queue</strong> - Holds parts waiting for Station 2</li>
+<li><strong>Service</strong> - Represents Station 2 (requires a worker resource)</li>
+<li><strong>Queue</strong> - Holds parts waiting for Station 3</li>
+<li><strong>Delay</strong> - Represents Station 3 processing time</li>
+<li><strong>Sink</strong> - Removes completed parts from the system</li>
+</ol>
+</div>
+<div id="step-3-connect-the-elements" class="section level4 hasAnchor" number="16.8.1.3">
+<h4><span class="header-section-number">16.8.1.3</span> Step 3: Connect the Elements<a href="chap-17-anylogic.html#step-3-connect-the-elements" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Click on the output port of each element and drag to the input port of the next element. The flow should look like:</p>
+<pre><code>Source → Queue → Delay → Queue → Service → Queue → Delay → Sink</code></pre>
+</div>
+<div id="step-4-configure-parameters" class="section level4 hasAnchor" number="16.8.1.4">
+<h4><span class="header-section-number">16.8.1.4</span> Step 4: Configure Parameters<a href="chap-17-anylogic.html#step-4-configure-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Click each element and set these properties:</p>
+<p><strong>Source:</strong>
+- Arrivals defined by: Inter-arrival time
+- Inter-arrival time: <code>exponential(1)</code> (1 part per minute on average)</p>
+<p><strong>Delays (Stations 1 and 3):</strong>
+- Delay time: <code>triangular(0.5, 0.8, 1.2)</code> (minutes)</p>
+<p><strong>Service (Station 2):</strong>
+- Delay time: <code>triangular(0.6, 0.9, 1.5)</code> (minutes)
+- Requires a Resource Pool (add one and set capacity to 1)</p>
+<p><strong>Queues:</strong>
+- Maximum capacity: 10</p>
+</div>
+<div id="step-5-add-statistics-collection" class="section level4 hasAnchor" number="16.8.1.5">
+<h4><span class="header-section-number">16.8.1.5</span> Step 5: Add Statistics Collection<a href="chap-17-anylogic.html#step-5-add-statistics-collection" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Add these statistics to track performance:</p>
+<ol style="list-style-type: decimal">
+<li><strong>TimeMeasureStart</strong> - After Source</li>
+<li><strong>TimeMeasureEnd</strong> - Before Sink</li>
+<li><strong>Dataset</strong> - To log throughput over time</li>
+</ol>
+</div>
+<div id="step-6-run-and-analyze" class="section level4 hasAnchor" number="16.8.1.6">
+<h4><span class="header-section-number">16.8.1.6</span> Step 6: Run and Analyze<a href="chap-17-anylogic.html#step-6-run-and-analyze" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb1024"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1024-1"><a href="chap-17-anylogic.html#cb1024-1" tabindex="-1"></a><span class="co"># Simulate expected results</span></span>
+<span id="cb1024-2"><a href="chap-17-anylogic.html#cb1024-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">789</span>)</span>
+<span id="cb1024-3"><a href="chap-17-anylogic.html#cb1024-3" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">480</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb1024-4"><a href="chap-17-anylogic.html#cb1024-4" tabindex="-1"></a></span>
+<span id="cb1024-5"><a href="chap-17-anylogic.html#cb1024-5" tabindex="-1"></a><span class="co"># Generate cumulative throughput</span></span>
+<span id="cb1024-6"><a href="chap-17-anylogic.html#cb1024-6" tabindex="-1"></a>throughput <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">rpois</span>(<span class="fu">length</span>(time), <span class="at">lambda =</span> <span class="fl">0.85</span>))</span>
+<span id="cb1024-7"><a href="chap-17-anylogic.html#cb1024-7" tabindex="-1"></a></span>
+<span id="cb1024-8"><a href="chap-17-anylogic.html#cb1024-8" tabindex="-1"></a><span class="co"># Generate queue lengths</span></span>
+<span id="cb1024-9"><a href="chap-17-anylogic.html#cb1024-9" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">rnorm</span>(<span class="fu">length</span>(time), <span class="fl">1.5</span>, <span class="fl">0.8</span>))</span>
+<span id="cb1024-10"><a href="chap-17-anylogic.html#cb1024-10" tabindex="-1"></a>q2 <span class="ot">&lt;-</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">rnorm</span>(<span class="fu">length</span>(time), <span class="fl">3.2</span>, <span class="fl">1.2</span>))  <span class="co"># Bottleneck</span></span>
+<span id="cb1024-11"><a href="chap-17-anylogic.html#cb1024-11" tabindex="-1"></a>q3 <span class="ot">&lt;-</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">rnorm</span>(<span class="fu">length</span>(time), <span class="fl">0.8</span>, <span class="fl">0.5</span>))</span>
+<span id="cb1024-12"><a href="chap-17-anylogic.html#cb1024-12" tabindex="-1"></a></span>
+<span id="cb1024-13"><a href="chap-17-anylogic.html#cb1024-13" tabindex="-1"></a>tutorial_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1024-14"><a href="chap-17-anylogic.html#cb1024-14" tabindex="-1"></a>  <span class="at">Time =</span> time,</span>
+<span id="cb1024-15"><a href="chap-17-anylogic.html#cb1024-15" tabindex="-1"></a>  <span class="at">Throughput =</span> throughput,</span>
+<span id="cb1024-16"><a href="chap-17-anylogic.html#cb1024-16" tabindex="-1"></a>  <span class="at">Q1 =</span> q1,</span>
+<span id="cb1024-17"><a href="chap-17-anylogic.html#cb1024-17" tabindex="-1"></a>  <span class="at">Q2 =</span> q2,</span>
+<span id="cb1024-18"><a href="chap-17-anylogic.html#cb1024-18" tabindex="-1"></a>  <span class="at">Q3 =</span> q3</span>
+<span id="cb1024-19"><a href="chap-17-anylogic.html#cb1024-19" tabindex="-1"></a>)</span>
+<span id="cb1024-20"><a href="chap-17-anylogic.html#cb1024-20" tabindex="-1"></a></span>
+<span id="cb1024-21"><a href="chap-17-anylogic.html#cb1024-21" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tutorial_data, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Throughput)) <span class="sc">+</span></span>
+<span id="cb1024-22"><a href="chap-17-anylogic.html#cb1024-22" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;#2ECC71&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1024-23"><a href="chap-17-anylogic.html#cb1024-23" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">400</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1024-24"><a href="chap-17-anylogic.html#cb1024-24" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">50</span>, <span class="at">y =</span> <span class="dv">420</span>, <span class="at">label =</span> <span class="st">&quot;Target: 400&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1024-25"><a href="chap-17-anylogic.html#cb1024-25" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Cumulative Throughput&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Time (min)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Parts Completed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1024-26"><a href="chap-17-anylogic.html#cb1024-26" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1024-27"><a href="chap-17-anylogic.html#cb1024-27" tabindex="-1"></a></span>
+<span id="cb1024-28"><a href="chap-17-anylogic.html#cb1024-28" tabindex="-1"></a>tutorial_long <span class="ot">&lt;-</span> tutorial_data <span class="sc">%&gt;%</span></span>
+<span id="cb1024-29"><a href="chap-17-anylogic.html#cb1024-29" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Q1, Q2, Q3), <span class="at">names_to =</span> <span class="st">&quot;Queue&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Length&quot;</span>)</span>
+<span id="cb1024-30"><a href="chap-17-anylogic.html#cb1024-30" tabindex="-1"></a></span>
+<span id="cb1024-31"><a href="chap-17-anylogic.html#cb1024-31" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tutorial_long, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Length, <span class="at">color =</span> Queue)) <span class="sc">+</span></span>
+<span id="cb1024-32"><a href="chap-17-anylogic.html#cb1024-32" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb1024-33"><a href="chap-17-anylogic.html#cb1024-33" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#3498DB&quot;</span>, <span class="st">&quot;#E74C3C&quot;</span>, <span class="st">&quot;#F39C12&quot;</span>),</span>
+<span id="cb1024-34"><a href="chap-17-anylogic.html#cb1024-34" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Before Station 1&quot;</span>, <span class="st">&quot;Before Station 2&quot;</span>, <span class="st">&quot;Before Station 3&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb1024-35"><a href="chap-17-anylogic.html#cb1024-35" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Queue Lengths&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Time (min)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Parts Waiting&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1024-36"><a href="chap-17-anylogic.html#cb1024-36" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1024-37"><a href="chap-17-anylogic.html#cb1024-37" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb1024-38"><a href="chap-17-anylogic.html#cb1024-38" tabindex="-1"></a></span>
+<span id="cb1024-39"><a href="chap-17-anylogic.html#cb1024-39" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-tutorial-results"></span>
+<img src="introduction_files/figure-html/fig-tutorial-results-1.png" alt="Expected results from tutorial model" width="960" />
+<p class="caption">
+Figure 16.10: Expected results from tutorial model
+</p>
+</div>
+<div class="callout-check">
+<p><strong>Verify Your Model:</strong> After running, you should observe:
+- Approximately 400-420 parts completed in 480 minutes
+- Queue 2 (before Station 2) has the longest average length
+- The system is stable (queues don’t grow without bound)</p>
+</div>
 <hr />
 </div>
 </div>
-<div id="cost-estimation" class="section level2 hasAnchor" number="2.8">
-<h2><span class="header-section-number">2.8</span> Cost Estimation<a href="process-and-design.html#cost-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Accurate cost estimation is critical for project approval and budget management.</p>
-<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:cost-estimate-classes">Table 2.10: </span>Cost Estimate Classification (AACE International)
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-AACE Class
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Project Phase
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Engineering Complete
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Accuracy Range
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(44, 62, 80, 255) !important;">
-Purpose
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Class 5
-</td>
-<td style="text-align:left;">
-Concept Screening
-</td>
-<td style="text-align:left;">
-0-2%
-</td>
-<td style="text-align:left;">
--50% to +100%
-</td>
-<td style="text-align:left;">
-Screening alternatives
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Class 4
-</td>
-<td style="text-align:left;">
-Concept Study
-</td>
-<td style="text-align:left;">
-1-15%
-</td>
-<td style="text-align:left;">
--30% to +50%
-</td>
-<td style="text-align:left;">
-Feasibility
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Class 3
-</td>
-<td style="text-align:left;">
-FEED/Budget
-</td>
-<td style="text-align:left;">
-10-40%
-</td>
-<td style="text-align:left;">
--20% to +30%
-</td>
-<td style="text-align:left;">
-Authorization
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Class 2
-</td>
-<td style="text-align:left;">
-Detailed Design
-</td>
-<td style="text-align:left;">
-30-75%
-</td>
-<td style="text-align:left;">
--15% to +20%
-</td>
-<td style="text-align:left;">
-Control
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;background-color: rgba(236, 240, 241, 255) !important;">
-Class 1
-</td>
-<td style="text-align:left;">
-Construction
-</td>
-<td style="text-align:left;">
-65-100%
-</td>
-<td style="text-align:left;">
--10% to +15%
-</td>
-<td style="text-align:left;">
-Bid/Tender
-</td>
-</tr>
-</tbody>
-</table>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cost-breakdown"></span>
-<img src="introduction_files/figure-html/cost-breakdown-1.png" alt="Typical Process Plant Cost Breakdown" width="864" />
+</div>
+<div id="sec-advanced-17" class="section level2 hasAnchor" number="16.9">
+<h2><span class="header-section-number">16.9</span> Advanced Topics<a href="chap-17-anylogic.html#sec-advanced-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="d-visualization" class="section level3 hasAnchor" number="16.9.1">
+<h3><span class="header-section-number">16.9.1</span> 3D Visualization<a href="chap-17-anylogic.html#d-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>AnyLogic includes powerful 3D visualization capabilities that help communicate simulation results to stakeholders who may not understand abstract flowcharts.</p>
+<p>Benefits of 3D visualization:
+- Easier validation with plant managers (“Does this look like our facility?”)
+- Executive presentations and funding requests
+- Training material for new employees
+- Virtual commissioning before physical construction</p>
+</div>
+<div id="integration-with-real-data" class="section level3 hasAnchor" number="16.9.2">
+<h3><span class="header-section-number">16.9.2</span> Integration with Real Data<a href="chap-17-anylogic.html#integration-with-real-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Production simulations become more valuable when connected to real data:</p>
+<ul>
+<li><strong>Historical data import:</strong> Load actual order data, machine logs, or production records</li>
+<li><strong>Real-time dashboards:</strong> Connect to databases for live monitoring</li>
+<li><strong>Digital twin operation:</strong> Mirror physical operations in real-time</li>
+</ul>
+</div>
+<div id="optimization-experiments" class="section level3 hasAnchor" number="16.9.3">
+<h3><span class="header-section-number">16.9.3</span> Optimization Experiments<a href="chap-17-anylogic.html#optimization-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>AnyLogic includes an <strong>Optimization</strong> experiment type that automatically searches for the best parameter values:</p>
+<div class="sourceCode" id="cb1025"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1025-1"><a href="chap-17-anylogic.html#cb1025-1" tabindex="-1"></a><span class="co"># Simulate optimization process</span></span>
+<span id="cb1025-2"><a href="chap-17-anylogic.html#cb1025-2" tabindex="-1"></a>iterations <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span></span>
+<span id="cb1025-3"><a href="chap-17-anylogic.html#cb1025-3" tabindex="-1"></a>staff_levels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1025-4"><a href="chap-17-anylogic.html#cb1025-4" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">5</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="dv">7</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="dv">6</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="dv">8</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="dv">7</span>, <span class="dv">5</span>),</span>
+<span id="cb1025-5"><a href="chap-17-anylogic.html#cb1025-5" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">6</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="dv">7</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="dv">7</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="dv">7</span>, <span class="dv">5</span>)</span>
+<span id="cb1025-6"><a href="chap-17-anylogic.html#cb1025-6" tabindex="-1"></a>)</span>
+<span id="cb1025-7"><a href="chap-17-anylogic.html#cb1025-7" tabindex="-1"></a>throughput <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1025-8"><a href="chap-17-anylogic.html#cb1025-8" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="dv">380</span>, <span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="dv">445</span>, <span class="dv">8</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="dv">420</span>, <span class="dv">9</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="dv">450</span>, <span class="dv">7</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="dv">448</span>, <span class="dv">7</span>),</span>
+<span id="cb1025-9"><a href="chap-17-anylogic.html#cb1025-9" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">425</span>, <span class="dv">8</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="dv">450</span>, <span class="dv">6</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="dv">452</span>, <span class="dv">5</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="dv">455</span>, <span class="dv">4</span>)</span>
+<span id="cb1025-10"><a href="chap-17-anylogic.html#cb1025-10" tabindex="-1"></a>)</span>
+<span id="cb1025-11"><a href="chap-17-anylogic.html#cb1025-11" tabindex="-1"></a></span>
+<span id="cb1025-12"><a href="chap-17-anylogic.html#cb1025-12" tabindex="-1"></a>opt_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1025-13"><a href="chap-17-anylogic.html#cb1025-13" tabindex="-1"></a>  <span class="at">Iteration =</span> iterations,</span>
+<span id="cb1025-14"><a href="chap-17-anylogic.html#cb1025-14" tabindex="-1"></a>  <span class="at">Staff =</span> staff_levels,</span>
+<span id="cb1025-15"><a href="chap-17-anylogic.html#cb1025-15" tabindex="-1"></a>  <span class="at">Throughput =</span> throughput</span>
+<span id="cb1025-16"><a href="chap-17-anylogic.html#cb1025-16" tabindex="-1"></a>)</span>
+<span id="cb1025-17"><a href="chap-17-anylogic.html#cb1025-17" tabindex="-1"></a></span>
+<span id="cb1025-18"><a href="chap-17-anylogic.html#cb1025-18" tabindex="-1"></a>opt_data<span class="sc">$</span>Best <span class="ot">&lt;-</span> <span class="fu">cummax</span>(opt_data<span class="sc">$</span>Throughput)</span>
+<span id="cb1025-19"><a href="chap-17-anylogic.html#cb1025-19" tabindex="-1"></a></span>
+<span id="cb1025-20"><a href="chap-17-anylogic.html#cb1025-20" tabindex="-1"></a><span class="fu">ggplot</span>(opt_data, <span class="fu">aes</span>(<span class="at">x =</span> Iteration)) <span class="sc">+</span></span>
+<span id="cb1025-21"><a href="chap-17-anylogic.html#cb1025-21" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> Throughput), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;#3498DB&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1025-22"><a href="chap-17-anylogic.html#cb1025-22" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Best), <span class="at">color =</span> <span class="st">&quot;#E74C3C&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb1025-23"><a href="chap-17-anylogic.html#cb1025-23" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">455</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#2ECC71&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1025-24"><a href="chap-17-anylogic.html#cb1025-24" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">45</span>, <span class="at">y =</span> <span class="dv">460</span>, <span class="at">label =</span> <span class="st">&quot;Optimal: 7 staff, 455 parts&quot;</span>,</span>
+<span id="cb1025-25"><a href="chap-17-anylogic.html#cb1025-25" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">&quot;#2ECC71&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1025-26"><a href="chap-17-anylogic.html#cb1025-26" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1025-27"><a href="chap-17-anylogic.html#cb1025-27" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Optimization Experiment: Finding Optimal Staffing&quot;</span>,</span>
+<span id="cb1025-28"><a href="chap-17-anylogic.html#cb1025-28" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Blue points = individual runs; Red line = best found so far&quot;</span>,</span>
+<span id="cb1025-29"><a href="chap-17-anylogic.html#cb1025-29" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Iteration&quot;</span>,</span>
+<span id="cb1025-30"><a href="chap-17-anylogic.html#cb1025-30" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Throughput (parts/shift)&quot;</span></span>
+<span id="cb1025-31"><a href="chap-17-anylogic.html#cb1025-31" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1025-32"><a href="chap-17-anylogic.html#cb1025-32" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig-optimization"></span>
+<img src="introduction_files/figure-html/fig-optimization-1.png" alt="Optimization search finding the best staffing level" width="960" />
 <p class="caption">
-Figure 2.5: Typical Process Plant Cost Breakdown
+Figure 16.11: Optimization search finding the best staffing level
 </p>
 </div>
 <hr />
 </div>
-<div id="case-study-automotive-paint-line-project" class="section level2 hasAnchor" number="2.9">
-<h2><span class="header-section-number">2.9</span> Case Study: Automotive Paint Line Project<a href="process-and-design.html#case-study-automotive-paint-line-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:case-study-timeline"></span>
-<img src="introduction_files/figure-html/case-study-timeline-1.png" alt="Automotive Paint Line Project Timeline" width="1152" />
-<p class="caption">
-Figure 2.6: Automotive Paint Line Project Timeline
-</p>
 </div>
-<details>
-<summary>
-Case Study Details: Paint Line Engineering Challenges
-</summary>
-<p><strong>Project Overview:</strong>
-- New automotive paint line for SUV body shop
-- Capacity: 60 jobs per hour (JPH)
-- Process: E-coat, primer, basecoat, clearcoat</p>
-<p><strong>Key Engineering Challenges:</strong></p>
-<p><strong>1. Environmental Control</strong>
-- Temperature: ±1°C throughout paint booth
-- Humidity: 65% ±5% RH
-- Air cleanliness: Class 10,000</p>
-<p><strong>2. Automation Requirements</strong>
-- 48 paint robots (8 per zone)
-- Conveyor system with 2m pitch
-- Zone tracking and recipe management</p>
-<p><strong>3. Safety Systems</strong>
-- Explosion-proof electrical classification
-- Fire suppression throughout
-- VOC monitoring and control</p>
-<p><strong>4. Quality Systems</strong>
-- Inline thickness measurement
-- Automated visual inspection
-- Recipe management and traceability</p>
-<p><strong>Project Outcome:</strong>
-- On-time completion
-- Under budget by 3%
-- Quality metrics exceeded targets
-- 99.2% first-pass yield achieved</p>
-</details>
+<div id="sec-summary-17" class="section level2 hasAnchor" number="16.10">
+<h2><span class="header-section-number">16.10</span> Key Takeaways<a href="chap-17-anylogic.html#sec-summary-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="callout-summary">
+<p><strong>What We Learned:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Simulation enables risk-free experimentation</strong> - Test design changes in virtual environments before spending money on physical implementation</p></li>
+<li><p><strong>AnyLogic supports three paradigms</strong> - Discrete-event (for process flows), agent-based (for autonomous entities), and system dynamics (for strategic planning)</p></li>
+<li><p><strong>Manufacturing simulation identifies bottlenecks</strong> - Queue analysis reveals which stations limit throughput</p></li>
+<li><p><strong>Warehouse simulation optimizes picking</strong> - Compare strategies like batch picking, zone picking, and AMR deployment before implementation</p></li>
+<li><p><strong>Built-in examples accelerate learning</strong> - Start from AnyLogic’s example models to understand best practices</p></li>
+<li><p><strong>The value is in the “what-if”</strong> - Simulation’s true power is comparing scenarios to find optimal solutions</p></li>
+</ol>
+<p><strong>Key Equations:</strong>
+- Takt Time: Equation <a href="chap-17-anylogic.html#eq:takt-17">(16.1)</a></p>
+<p><strong>Before Moving On:</strong>
+- Can you explain when to use discrete-event vs. agent-based simulation?
+- Can you build a basic three-station production line in AnyLogic?
+- Can you identify how simulation could help in your workplace or industry?</p>
+</div>
 <hr />
 </div>
-<div id="review-questions-1" class="section level2 hasAnchor" number="2.10">
-<h2><span class="header-section-number">2.10</span> Review Questions<a href="process-and-design.html#review-questions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<details>
-<summary>
-Question 1: Automation Selection
-</summary>
-<p><strong>A medical device company needs to produce 5,000 units per year of a surgical instrument. The design is mature and not expected to change. Volumes could grow to 50,000 units if successful. Which automation type should they initially choose?</strong></p>
-<p><strong>Answer:</strong> <strong>Programmable automation</strong> (CNC machining, robotic cells)</p>
-<p><strong>Reasoning:</strong>
-- Current volume (5,000/year) doesn’t justify fixed automation
-- Flexibility allows for minor design refinements
-- Can scale up by adding shifts or machines
-- Lower initial investment preserves capital
-- If volume grows to 50,000, can justify dedicated equipment later</p>
-</details>
-<details>
-<summary>
-Question 2: P&amp;ID Interpretation
-</summary>
-<p><strong>Decode the following instrument tags and explain their function:</strong></p>
+<div id="sec-problems-17" class="section level2 hasAnchor" number="16.11">
+<h2><span class="header-section-number">16.11</span> Practice Problems<a href="chap-17-anylogic.html#sec-problems-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-1-takt-time-calculation" class="section level3 hasAnchor" number="16.11.1">
+<h3><span class="header-section-number">16.11.1</span> Problem 1: Takt Time Calculation<a href="chap-17-anylogic.html#problem-1-takt-time-calculation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A refrigerator assembly plant operates two 8-hour shifts per day with a 30-minute lunch break per shift. Customer demand is 720 units per day.</p>
 <ol style="list-style-type: lower-alpha">
-<li>FIC-201</li>
-<li>PSV-305</li>
-<li>TT-401</li>
-<li>LCV-150</li>
+<li>Calculate the takt time in seconds</li>
+<li>If the bottleneck station has a cycle time of 62 seconds, will they meet demand? Why or why not?</li>
+<li>Suggest two approaches to resolve the issue</li>
 </ol>
-<p><strong>Answers:</strong></p>
+</div>
+<div id="problem-2-simulation-model-design" class="section level3 hasAnchor" number="16.11.2">
+<h3><span class="header-section-number">16.11.2</span> Problem 2: Simulation Model Design<a href="chap-17-anylogic.html#problem-2-simulation-model-design" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You are asked to simulate a paint shop with:
+- 3 spray booths operating in parallel
+- Conveyor system bringing parts from preparation area
+- Curing oven with 30-minute cycle time
+- Quality inspection with 5% rejection rate</p>
 <ol style="list-style-type: lower-alpha">
-<li><strong>FIC-201</strong> - Flow Indicating Controller (loop 201)
-<ul>
-<li>Measures flow, displays value, and controls a valve</li>
-</ul></li>
-<li><strong>PSV-305</strong> - Pressure Safety Valve (loop 305)
-<ul>
-<li>Relieves pressure if it exceeds setpoint (safety device)</li>
-</ul></li>
-<li><strong>TT-401</strong> - Temperature Transmitter (loop 401)
-<ul>
-<li>Converts temperature measurement to 4-20mA signal</li>
-</ul></li>
-<li><strong>LCV-150</strong> - Level Control Valve (loop 150)
-<ul>
-<li>Valve that is manipulated by a level controller</li>
-</ul></li>
+<li>Sketch the simulation model structure</li>
+<li>List which AnyLogic libraries you would use</li>
+<li>Identify potential bottlenecks to investigate</li>
 </ol>
-</details>
-<details>
-<summary>
-Question 3: Project Phases
-</summary>
-<p><strong>Why is FEED often considered the most critical project phase?</strong></p>
-<p><strong>Answer:</strong> FEED is critical because:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Defines scope</strong> - All subsequent work based on FEED deliverables</li>
-<li><strong>Locks in 80% of cost</strong> - Design decisions determine equipment and construction costs</li>
-<li><strong>Lowest cost to change</strong> - Changes cost 10-100x more in later phases</li>
-<li><strong>Authorization basis</strong> - Management approves project based on FEED estimate</li>
-<li><strong>Risk identification</strong> - HAZOP and risk studies identify safety requirements</li>
-<li><strong>Contractor selection</strong> - FEED package used for competitive bidding</li>
-</ol>
-<p><strong>Poor FEED = project overruns, scope changes, and budget problems.</strong></p>
-</details>
-<details>
-<summary>
-Question 4: DFM Application
-</summary>
-<p><strong>A product currently uses 12 screws of 3 different sizes for assembly. Apply DFM principles to improve this design.</strong></p>
-<p><strong>Answer:</strong> Apply these DFM principles:</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Minimize parts</strong>: Can some screws be eliminated by using integral snap-fits?</p></li>
-<li><p><strong>Standardize</strong>: Use one screw size instead of three</p>
-<ul>
-<li>Reduces inventory complexity</li>
-<li>Single tool for assembly</li>
-<li>Lower procurement cost</li>
-</ul></li>
-<li><p><strong>Design for ease</strong>: Consider alternatives:</p>
-<ul>
-<li>Snap-fit connections (no tools)</li>
-<li>Twist-lock features</li>
-<li>Press-fit pins</li>
-</ul></li>
-</ol>
-<p><strong>Possible redesign:</strong>
-- Reduce from 12 screws to 4 screws (for serviceability)
-- All same size (M3 × 8)
-- Add 4 snap-fits for initial positioning
-- Result: 67% fewer fasteners, single tool, faster assembly</p>
-</details>
-<details>
-<summary>
-Question 5: HAZOP Analysis
-</summary>
-<p><strong>For a reactor feed pump, apply the HAZOP guide word “REVERSE” to the parameter “FLOW”. What could cause this? What are the consequences? What safeguards would you recommend?</strong></p>
-<p><strong>Answer:</strong></p>
-<p><strong>Deviation:</strong> Reverse flow through feed pump</p>
-<p><strong>Causes:</strong>
-- Pump stops while discharge valve open
-- Check valve fails (stuck open or missing)
-- Parallel pump creates backflow
-- Reactor pressure exceeds pump shutoff head</p>
-<p><strong>Consequences:</strong>
-- Reactor contents backflow into feed tank
-- Contamination of feed material
-- Possible chemical reaction in feed system
-- Pump damage (running backward)</p>
-<p><strong>Safeguards:</strong>
-- Check valve on pump discharge
-- Automatic pump discharge block valve (closes on pump stop)
-- Low flow alarm and trip
-- Reactor pressure monitoring
-- Backflow-preventing orifice</p>
-</details>
-<hr />
 </div>
-<div id="summary-1" class="section level2 hasAnchor" number="2.11">
-<h2><span class="header-section-number">2.11</span> Summary<a href="process-and-design.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:summary-ch2">Table 2.11: </span>Chapter 2 Summary
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(26, 82, 118, 255) !important;">
-Topic
-</th>
-<th style="text-align:left;font-weight: bold;color: white !important;background-color: rgba(26, 82, 118, 255) !important;">
-Key Takeaway
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 12em; font-weight: bold;">
-Automation Types
-</td>
-<td style="text-align:left;">
-Fixed for high volume single product; Programmable for batch; Flexible for variety with quick changeover
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 12em; font-weight: bold;">
-Project Phases
-</td>
-<td style="text-align:left;">
-Concept → FEED → Detailed Design → Construction → Commissioning → Start-up
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 12em; font-weight: bold;">
-PFDs vs P&amp;IDs
-</td>
-<td style="text-align:left;">
-PFD = big picture (equipment, flows); P&amp;ID = detailed (all instruments, valves, piping)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 12em; font-weight: bold;">
-DFM/DFA
-</td>
-<td style="text-align:left;">
-Design for easy manufacturing and assembly reduces cost 20-40%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 12em; font-weight: bold;">
-HAZOP
-</td>
-<td style="text-align:left;">
-Systematic hazard identification using guide words; do it during FEED
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 12em; font-weight: bold;">
-Cost Estimation
-</td>
-<td style="text-align:left;">
-Estimate accuracy improves with engineering completion; AACE Class 1-5
-</td>
-</tr>
-</tbody>
-</table>
-<div id="key-takeaways-1" class="section level3 hasAnchor" number="2.11.1">
-<h3><span class="header-section-number">2.11.1</span> Key Takeaways<a href="process-and-design.html#key-takeaways-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li><strong>Automation selection</strong> depends on production volume, variety, and changeover requirements</li>
-<li><strong>FEED phase</strong> defines 80% of project cost with only 10-15% of engineering effort</li>
-<li><strong>P&amp;IDs</strong> are the critical document connecting design to construction</li>
-<li><strong>DFM/DFA</strong> should be applied early in design to maximize impact</li>
-<li><strong>HAZOP</strong> identifies hazards systematically and must be done before construction</li>
-<li><strong>Cost estimates</strong> improve in accuracy as engineering progresses</li>
+<div id="problem-3-warehouse-picking-analysis" class="section level3 hasAnchor" number="16.11.3">
+<h3><span class="header-section-number">16.11.3</span> Problem 3: Warehouse Picking Analysis<a href="chap-17-anylogic.html#problem-3-warehouse-picking-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A warehouse uses single-order picking with 5 pickers. Each picker walks an average of 3 miles per 8-hour shift. The company is considering batch picking with specialized carts.</p>
+<ol style="list-style-type: lower-alpha">
+<li>If batch picking reduces travel by 35%, how many miles would be saved per picker per shift?</li>
+<li>If workers walk at 3 mph and pick items at a rate of 2 per minute while at a location, what percentage of time is currently spent walking?</li>
+<li>What information would you need to simulate this scenario in AnyLogic?</li>
 </ol>
+</div>
+<div id="problem-4-amr-fleet-sizing" class="section level3 hasAnchor" number="16.11.4">
+<h3><span class="header-section-number">16.11.4</span> Problem 4: AMR Fleet Sizing<a href="chap-17-anylogic.html#problem-4-amr-fleet-sizing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using the graph in Figure <a href="#fig-amr-simulation"><strong>??</strong></a> as a reference:</p>
+<ol style="list-style-type: lower-alpha">
+<li>If the company requires fulfillment time under 12 minutes, what is the minimum number of AMRs needed?</li>
+<li>What trade-off occurs when moving from 25 to 50 AMRs?</li>
+<li>If each AMR costs $50,000 and operates for 5 years, what is the daily cost per AMR?</li>
+</ol>
+<div class="callout-challenge">
+<p><strong>Challenge Problem:</strong> Design a simulation experiment to determine the optimal number of pickers and AMRs for a warehouse with variable order volumes. The solution should:
+- Handle daily order volumes ranging from 5,000 to 20,000 lines
+- Meet a 2-hour fulfillment target
+- Minimize total labor and equipment costs</p>
+</div>
 <hr />
 </div>
 </div>
-<div id="references-1" class="section level2 hasAnchor" number="2.12">
-<h2><span class="header-section-number">2.12</span> References<a href="process-and-design.html#references-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li>Towler, G., &amp; Sinnott, R. (2021). <em>Chemical Engineering Design</em> (7th ed.). Elsevier.</li>
-<li>AACE International. (2020). <em>Cost Estimate Classification System</em>.</li>
-<li>ISA-5.1. (2022). <em>Instrumentation Symbols and Identification</em>.</li>
-<li>Boothroyd, G., Dewhurst, P., &amp; Knight, W.A. (2011). <em>Product Design for Manufacture and Assembly</em> (3rd ed.). CRC Press.</li>
-<li>CCPS. (2008). <em>Guidelines for Hazard Evaluation Procedures</em> (3rd ed.). Wiley.</li>
-</ol>
+<div id="sec-resources-17" class="section level2 hasAnchor" number="16.12">
+<h2><span class="header-section-number">16.12</span> Further Resources<a href="chap-17-anylogic.html#sec-resources-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="anylogic-official-resources" class="section level3 hasAnchor" number="16.12.1">
+<h3><span class="header-section-number">16.12.1</span> AnyLogic Official Resources<a href="chap-17-anylogic.html#anylogic-official-resources" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>AnyLogic University:</strong> Free online courses covering all simulation paradigms</li>
+<li><strong>Example Models:</strong> Help &gt; Example Models in AnyLogic software</li>
+<li><strong>Cloud Platform:</strong> cloud.anylogic.com for running simulations online</li>
+</ul>
+</div>
+<div id="academic-resources" class="section level3 hasAnchor" number="16.12.2">
+<h3><span class="header-section-number">16.12.2</span> Academic Resources<a href="chap-17-anylogic.html#academic-resources" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Borshchev, A. (2013). <em>The Big Book of Simulation Modeling</em>. AnyLogic North America.</li>
+<li>Law, A.M. (2015). <em>Simulation Modeling and Analysis</em> (5th ed.). McGraw-Hill.</li>
+</ul>
+</div>
+<div id="industry-case-studies-1" class="section level3 hasAnchor" number="16.12.3">
+<h3><span class="header-section-number">16.12.3</span> Industry Case Studies<a href="chap-17-anylogic.html#industry-case-studies-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Mercedes-Benz Sprinter production optimization</li>
+<li>Kuehne+Nagel warehouse picking algorithm selection</li>
+<li>Tesla autonomous mobile robot deployment</li>
+</ul>
+<div class="callout-tip">
+<p><strong>Getting Started:</strong> Download the free Personal Learning Edition of AnyLogic from anylogic.com. It includes all features and example models—the only limitation is model size.</p>
+</div>
 
+</div>
 </div>
 </div>
             </section>
@@ -3031,8 +2529,8 @@ Estimate accuracy improves with engineering completion; AACE Class 1-5
           </div>
         </div>
       </div>
-<a href="types-of-manufacturing-processes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="integrated-manufacturing-systems.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="industrial-robotics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="working-effectively-with-ai.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -3063,7 +2561,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/Prof-MV/ENGR-3027/blob/master/02-Process-and-Design.Rmd",
+    "link": "https://github.com/Prof-MV/ENGR-3027/blob/master/17-AnyLogic-Simulation.Rmd",
     "text": "Edit"
   },
   "history": {
