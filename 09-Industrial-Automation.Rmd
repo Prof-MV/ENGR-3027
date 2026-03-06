@@ -822,7 +822,7 @@ speeds <- sapply(frequencies, function(f) {
 
 cat("Speed vs Frequency (V/Hz mode):\n")
 cat("─────────────────────────────\n")
-for(i in 1:length(frequencies)) {
+for(i in seq_along(frequencies)) {
   cat(sprintf("%2d Hz: %4d RPM\n", frequencies[i], speeds[i]))
 }
 
