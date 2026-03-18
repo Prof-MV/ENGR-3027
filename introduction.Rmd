@@ -11912,37 +11912,37 @@ ggplot() +
            y = 2 + 1.5 * sin(seq(0, 2*pi, length.out = 100)),
            color = "gray70", size = 2) +
 
-  # Arrows indicating direction
-  annotate("segment", x = 3.5, xend = 3.3, y = 2.5, yend = 3.2,
+  # Arrows indicating direction (reversed by swapping start/end coordinates)
+  annotate("segment", x = 3.3, xend = 3.5, y = 3.2, yend = 2.5,
            arrow = arrow(length = unit(0.3, "cm")), color = "#3498db", size = 1.5) +
-  annotate("segment", x = 2.5, xend = 1.5, y = 3.5, yend = 3.3,
+  annotate("segment", x = 1.5, xend = 2.5, y = 3.3, yend = 3.5,
            arrow = arrow(length = unit(0.3, "cm")), color = "#27ae60", size = 1.5) +
-  annotate("segment", x = 0.5, xend = 0.7, y = 2.5, yend = 1.5,
+  annotate("segment", x = 0.7, xend = 0.5, y = 1.5, yend = 2.5,
            arrow = arrow(length = unit(0.3, "cm")), color = "#e74c3c", size = 1.5) +
-  annotate("segment", x = 1.5, xend = 2.5, y = 0.5, yend = 0.7,
+  annotate("segment", x = 2.5, xend = 1.5, y = 0.7, yend = 0.5,
            arrow = arrow(length = unit(0.3, "cm")), color = "#f39c12", size = 1.5) +
 
   # Step boxes
   geom_label(data = scan_steps, aes(x = x, y = y, label = name),
              fill = c("#3498db", "#27ae60", "#e74c3c", "#f39c12"),
-             color = "white", fontface = "bold", size = 3.5,
+             color = "white", fontface = "bold", size = 5,
              label.padding = unit(0.4, "lines")) +
 
   # Center label
   annotate("text", x = 2, y = 2, label = "SCAN\nCYCLE\n(~10-50ms)",
-           fontface = "bold", size = 4, lineheight = 0.9) +
+           fontface = "bold", size = 5.5, lineheight = 0.9) +
 
-  # Time annotations
-  annotate("text", x = c(2, 4.5, 2, -0.5), y = c(4.7, 2, -0.7, 2),
-           label = scan_steps$time, size = 3, color = "gray40") +
+  # Time annotations — placed below each step box
+  annotate("text", x = c(2, 4, 2, 0), y = c(3.55, 1.55, -0.45, 1.55),
+           label = scan_steps$time, size = 4.5, color = "gray40") +
 
   coord_cartesian(xlim = c(-1, 5), ylim = c(-1, 5)) +
   labs(title = "PLC Scan Cycle",
        subtitle = "Continuous loop executing at predictable intervals") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 13)
   )
 ```
 
@@ -12127,7 +12127,7 @@ ggplot(sensors, aes(x = Category, y = 1, fill = Category)) + # Added y = 1 here
   geom_text(aes(label = Type), 
             position = position_stack(vjust = 0.5),
             color = "white", 
-            size = 3.5, 
+            size = 4.5, 
             fontface = "bold") +
   scale_fill_manual(values = c("Discrete (On/Off)" = "#3498db", 
                                "Analog (Variable)" = "#27ae60", 
