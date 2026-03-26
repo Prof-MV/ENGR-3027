@@ -144,7 +144,7 @@ ggplot() +
                color = "gray50", linewidth = 1) +
   geom_label(data = components,
              aes(x = x, y = y, label = label, fill = factor(level)),
-             size = 3.5, fontface = "bold", color = "white",
+             size = 4.5, fontface = "bold", color = "white",
              label.padding = unit(0.4, "lines")) +
   scale_fill_manual(values = c("1" = "#2c3e50", "2" = "#3498db",
                                "3" = "#27ae60", "4" = "#e74c3c"),
@@ -183,15 +183,19 @@ scenarios$Scenario <- factor(scenarios$Scenario,
                                         "Precise but Inaccurate\n(Biased)",
                                         "Inaccurate & Imprecise\n(WORST)"))
 
+# Circle data for target rings
+circle_data <- data.frame(x0 = 0, y0 = 0, r = c(0.5, 1, 1.5),
+                          color = c("red", "orange", "gold"))
+
 ggplot(scenarios, aes(x = x, y = y)) +
+  geom_circle(data = circle_data[1,], aes(x0 = x0, y0 = y0, r = r),
+              inherit.aes = FALSE, color = "red", linetype = "dashed") +
+  geom_circle(data = circle_data[2,], aes(x0 = x0, y0 = y0, r = r),
+              inherit.aes = FALSE, color = "orange", linetype = "dashed") +
+  geom_circle(data = circle_data[3,], aes(x0 = x0, y0 = y0, r = r),
+              inherit.aes = FALSE, color = "gold", linetype = "dashed") +
   geom_point(color = "steelblue", size = 2, alpha = 0.7) +
-  geom_point(aes(x = 0, y = 0), color = "red", size = 4, shape = 3, stroke = 2) +
-  geom_circle(aes(x0 = 0, y0 = 0, r = 0.5), inherit.aes = FALSE,
-              color = "red", linetype = "dashed") +
-  geom_circle(aes(x0 = 0, y0 = 0, r = 1), inherit.aes = FALSE,
-              color = "orange", linetype = "dashed") +
-  geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), inherit.aes = FALSE,
-              color = "gold", linetype = "dashed") +
+  annotate("point", x = 0, y = 0, color = "red", size = 4, shape = 3, stroke = 2) +
   facet_wrap(~Scenario, nrow = 1) +
   coord_fixed(xlim = c(-3, 3), ylim = c(-3, 3)) +
   labs(title = "Accuracy vs. Precision: The Target Analogy",
@@ -593,7 +597,43 @@ cat("%GRR (of tolerance):", round(GRR / tolerance * 100 * 5.15, 1), "%\n")
 
 ### ANOVA Method (Full Study)
 
-The ANOVA method is more accurate and provides additional information.
+**ANOVA** (Analysis of Variance) is a statistical technique that partitions the total observed variation in a dataset into distinct components, each attributable to a specific source. In the context of Gauge R&R, ANOVA separates the total measurement variation into contributions from:
+
+- **Parts** (the actual differences between items being measured)
+- **Operators** (systematic differences between people taking measurements)
+- **Part × Operator interaction** (whether certain operators measure certain parts differently)
+- **Repeatability** (random error when the same operator measures the same part multiple times)
+
+#### Why Use ANOVA for Gauge R&R?
+
+The fundamental question in any measurement system analysis is: *"How much of the variation I observe comes from my measurement system versus the actual differences between parts?"* ANOVA answers this question by statistically decomposing variance—it calculates how much each source contributes to what we observe.
+
+Consider the alternative: if we simply looked at the spread of all measurements, we wouldn't know whether a wide spread indicates highly variable parts (good—our gauge can detect differences) or a poor measurement system (bad—we're adding noise). ANOVA untangles these effects mathematically.
+
+#### Why ANOVA is the Preferred Method
+
+While the Range Method provides a quick estimate, ANOVA offers several critical advantages for Gauge R&R studies:
+
+| Aspect | Range Method | ANOVA Method |
+|--------|--------------|--------------|
+| **Interaction effects** | Cannot detect | Identifies Part × Operator interactions |
+| **Statistical rigor** | Approximation using range-based estimates | Exact variance component estimation |
+| **Hypothesis testing** | Not available | Provides F-tests and p-values for each source |
+| **Accuracy** | Tends to overestimate GRR | More precise variance estimates |
+| **Information richness** | Basic EV/AV breakdown | Full decomposition with confidence intervals |
+| **Industry acceptance** | Screening only | Required for formal MSA studies (AIAG) |
+
+The ability to detect **interaction effects** is particularly important. If Operator A consistently measures Part 3 higher than Operator B does (but they agree on other parts), this indicates a training issue or technique difference that the Range Method would miss entirely. ANOVA flags this interaction, enabling targeted corrective action.
+
+#### How ANOVA Works in Gauge R&R
+
+ANOVA uses the **F-statistic** to test whether variation between groups (e.g., between operators) is significantly larger than variation within groups (repeatability). The mathematical basis is:
+
+$$F = \frac{\text{Mean Square Between Groups}}{\text{Mean Square Within Groups}} = \frac{MS_{factor}}{MS_{error}}$$
+
+A large F-value indicates that the factor (Part, Operator, or their interaction) contributes meaningfully to the observed variation. The p-value tells us the probability of seeing such an F-value if the factor had no real effect.
+
+From the ANOVA table's Mean Squares, we extract **variance components** ($\sigma^2$) for each source, then combine them to calculate the standard metrics: %EV (repeatability), %AV (reproducibility), %GRR, and the number of distinct categories (ndc).
 
 ```{r anova-method, echo=TRUE}
 # Full Gauge R&R using ANOVA method
@@ -840,13 +880,43 @@ For pass/fail or categorical measurements (visual inspection, go/no-go gauges), 
 
 ### Kappa Statistic
 
-The **Kappa statistic** measures agreement beyond chance:
+When evaluating attribute measurement systems (pass/fail, accept/reject, visual inspection), you might think that **percent agreement** would be sufficient—if two inspectors agree 90% of the time, isn't that good enough? The problem is that some agreement happens purely by chance, and percent agreement doesn't account for this.
+
+#### Why Percent Agreement Can Be Misleading
+
+Consider a visual inspection where 95% of parts are good. If an inspector simply guesses "Accept" for every part (without even looking), they would be "correct" 95% of the time. Two such inspectors would agree 90.5% of the time by pure chance:
+
+$$P_e = P(\text{both say Accept}) + P(\text{both say Reject}) = 0.95^2 + 0.05^2 = 0.905$$
+
+This is why we need **Cohen's Kappa** ($\kappa$)—it measures agreement *beyond what we'd expect from chance alone*.
+
+#### The Kappa Formula
 
 $$\kappa = \frac{P_o - P_e}{1 - P_e}$$
 
 Where:
-- $P_o$ = Observed proportion of agreement
-- $P_e$ = Expected proportion of agreement by chance
+
+- $P_o$ = Observed proportion of agreement (how often they actually agree)
+- $P_e$ = Expected proportion of agreement by chance (how often they'd agree if guessing randomly based on their individual tendencies)
+- $1 - P_e$ = Maximum possible agreement beyond chance
+
+**Interpreting the formula:** The numerator ($P_o - P_e$) represents *actual agreement minus chance agreement*—the "real" agreement attributable to consistent measurement. The denominator ($1 - P_e$) normalizes this to a 0–1 scale by dividing by the maximum possible improvement over chance.
+
+| Kappa Value | Meaning |
+|-------------|---------|
+| $\kappa = 1$ | Perfect agreement (everyone agrees, and not by chance) |
+| $\kappa = 0$ | Agreement equals chance—no better than random guessing |
+| $\kappa < 0$ | Agreement is *worse* than chance (systematic disagreement) |
+
+#### When to Use Kappa
+
+Use Kappa when evaluating:
+
+- **Inspector vs. Reference**: Does the operator match the known correct answer? (Most important for MSA)
+- **Inspector vs. Inspector**: Do two operators classify the same parts the same way?
+- **Inspector vs. Self (Repeatability)**: Does the same operator give the same answer when re-inspecting the same part?
+
+For a robust attribute MSA, you should calculate Kappa for all three comparisons. High agreement with other operators but low agreement with the reference standard indicates *consistent but incorrect* inspection—a training problem.
 
 ```{r kappa-interpretation, echo=FALSE}
 kappa_table <- data.frame(

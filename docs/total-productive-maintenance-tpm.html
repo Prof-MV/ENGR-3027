@@ -23,7 +23,7 @@
 <meta name="author" content="Martin Volkening" />
 
 
-<meta name="date" content="2026-03-18" />
+<meta name="date" content="2026-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1051,7 +1051,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.7.2" data-path="troubleshooting-and-root-cause-analysis.html"><a href="troubleshooting-and-root-cause-analysis.html#fta-example-pump-fails-to-deliver-flow"><i class="fa fa-check"></i><b>15.7.2</b> FTA Example: Pump Fails to Deliver Flow</a></li>
 <li class="chapter" data-level="15.7.3" data-path="troubleshooting-and-root-cause-analysis.html"><a href="troubleshooting-and-root-cause-analysis.html#calculating-probability-with-fta"><i class="fa fa-check"></i><b>15.7.3</b> Calculating Probability with FTA</a></li>
 </ul></li>
-<li class="chapter" data-level="15.8" data-path="troubleshooting-and-root-cause-analysis.html"><a href="troubleshooting-and-root-cause-analysis.html#pareto-analysis"><i class="fa fa-check"></i><b>15.8</b> Pareto Analysis</a>
+<li class="chapter" data-level="15.8" data-path="troubleshooting-and-root-cause-analysis.html"><a href="troubleshooting-and-root-cause-analysis.html#pareto-analysis-1"><i class="fa fa-check"></i><b>15.8</b> Pareto Analysis</a>
 <ul>
 <li class="chapter" data-level="15.8.1" data-path="troubleshooting-and-root-cause-analysis.html"><a href="troubleshooting-and-root-cause-analysis.html#creating-a-pareto-chart"><i class="fa fa-check"></i><b>15.8.1</b> Creating a Pareto Chart</a></li>
 <li class="chapter" data-level="15.8.2" data-path="troubleshooting-and-root-cause-analysis.html"><a href="troubleshooting-and-root-cause-analysis.html#interpreting-pareto-analysis"><i class="fa fa-check"></i><b>15.8.2</b> Interpreting Pareto Analysis</a></li>
@@ -1536,7 +1536,7 @@ Question: Why involve operators in maintenance?
 Figure 12.3: The Eight Pillars of TPM
 </p>
 </div>
-<table class="table table-striped table-hover table-bordered table-responsive" style="font-size: 11px; margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover table-bordered table-responsive" style="font-size: 13px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
 <span id="tab:pillars-table">Table 12.3: </span>The Eight Pillars of TPM
 </caption>
@@ -1769,84 +1769,84 @@ All six big losses combined
 </div>
 <div id="oee-calculation-example" class="section level3 hasAnchor" number="12.4.3">
 <h3><span class="header-section-number">12.4.3</span> OEE Calculation Example<a href="total-productive-maintenance-tpm.html#oee-calculation-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="total-productive-maintenance-tpm.html#cb798-1" tabindex="-1"></a><span class="co"># OEE Calculation Example: Injection Molding Machine</span></span>
-<span id="cb798-2"><a href="total-productive-maintenance-tpm.html#cb798-2" tabindex="-1"></a></span>
-<span id="cb798-3"><a href="total-productive-maintenance-tpm.html#cb798-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== SHIFT DATA ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="total-productive-maintenance-tpm.html#cb797-1" tabindex="-1"></a><span class="co"># OEE Calculation Example: Injection Molding Machine</span></span>
+<span id="cb797-2"><a href="total-productive-maintenance-tpm.html#cb797-2" tabindex="-1"></a></span>
+<span id="cb797-3"><a href="total-productive-maintenance-tpm.html#cb797-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== SHIFT DATA ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## === SHIFT DATA ===</code></pre>
-<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="total-productive-maintenance-tpm.html#cb800-1" tabindex="-1"></a><span class="co"># Time data</span></span>
-<span id="cb800-2"><a href="total-productive-maintenance-tpm.html#cb800-2" tabindex="-1"></a>shift_length <span class="ot">&lt;-</span> <span class="dv">480</span>  <span class="co"># minutes (8 hours)</span></span>
-<span id="cb800-3"><a href="total-productive-maintenance-tpm.html#cb800-3" tabindex="-1"></a>planned_downtime <span class="ot">&lt;-</span> <span class="dv">30</span>  <span class="co"># breaks, planned maintenance</span></span>
-<span id="cb800-4"><a href="total-productive-maintenance-tpm.html#cb800-4" tabindex="-1"></a>planned_production_time <span class="ot">&lt;-</span> shift_length <span class="sc">-</span> planned_downtime</span>
-<span id="cb800-5"><a href="total-productive-maintenance-tpm.html#cb800-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Planned Production Time:&quot;</span>, planned_production_time, <span class="st">&quot;minutes</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="total-productive-maintenance-tpm.html#cb799-1" tabindex="-1"></a><span class="co"># Time data</span></span>
+<span id="cb799-2"><a href="total-productive-maintenance-tpm.html#cb799-2" tabindex="-1"></a>shift_length <span class="ot">&lt;-</span> <span class="dv">480</span>  <span class="co"># minutes (8 hours)</span></span>
+<span id="cb799-3"><a href="total-productive-maintenance-tpm.html#cb799-3" tabindex="-1"></a>planned_downtime <span class="ot">&lt;-</span> <span class="dv">30</span>  <span class="co"># breaks, planned maintenance</span></span>
+<span id="cb799-4"><a href="total-productive-maintenance-tpm.html#cb799-4" tabindex="-1"></a>planned_production_time <span class="ot">&lt;-</span> shift_length <span class="sc">-</span> planned_downtime</span>
+<span id="cb799-5"><a href="total-productive-maintenance-tpm.html#cb799-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Planned Production Time:&quot;</span>, planned_production_time, <span class="st">&quot;minutes</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Planned Production Time: 450 minutes</code></pre>
-<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="total-productive-maintenance-tpm.html#cb802-1" tabindex="-1"></a><span class="co"># Downtime losses</span></span>
-<span id="cb802-2"><a href="total-productive-maintenance-tpm.html#cb802-2" tabindex="-1"></a>breakdown_time <span class="ot">&lt;-</span> <span class="dv">25</span>  <span class="co"># equipment failure</span></span>
-<span id="cb802-3"><a href="total-productive-maintenance-tpm.html#cb802-3" tabindex="-1"></a>changeover_time <span class="ot">&lt;-</span> <span class="dv">35</span>  <span class="co"># mold changes</span></span>
-<span id="cb802-4"><a href="total-productive-maintenance-tpm.html#cb802-4" tabindex="-1"></a>adjustment_time <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># setup adjustments</span></span>
-<span id="cb802-5"><a href="total-productive-maintenance-tpm.html#cb802-5" tabindex="-1"></a>total_downtime <span class="ot">&lt;-</span> breakdown_time <span class="sc">+</span> changeover_time <span class="sc">+</span> adjustment_time</span>
-<span id="cb802-6"><a href="total-productive-maintenance-tpm.html#cb802-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Unplanned Downtime:&quot;</span>, total_downtime, <span class="st">&quot;minutes</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="total-productive-maintenance-tpm.html#cb801-1" tabindex="-1"></a><span class="co"># Downtime losses</span></span>
+<span id="cb801-2"><a href="total-productive-maintenance-tpm.html#cb801-2" tabindex="-1"></a>breakdown_time <span class="ot">&lt;-</span> <span class="dv">25</span>  <span class="co"># equipment failure</span></span>
+<span id="cb801-3"><a href="total-productive-maintenance-tpm.html#cb801-3" tabindex="-1"></a>changeover_time <span class="ot">&lt;-</span> <span class="dv">35</span>  <span class="co"># mold changes</span></span>
+<span id="cb801-4"><a href="total-productive-maintenance-tpm.html#cb801-4" tabindex="-1"></a>adjustment_time <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># setup adjustments</span></span>
+<span id="cb801-5"><a href="total-productive-maintenance-tpm.html#cb801-5" tabindex="-1"></a>total_downtime <span class="ot">&lt;-</span> breakdown_time <span class="sc">+</span> changeover_time <span class="sc">+</span> adjustment_time</span>
+<span id="cb801-6"><a href="total-productive-maintenance-tpm.html#cb801-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Unplanned Downtime:&quot;</span>, total_downtime, <span class="st">&quot;minutes</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Unplanned Downtime: 70 minutes</code></pre>
-<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="total-productive-maintenance-tpm.html#cb804-1" tabindex="-1"></a>run_time <span class="ot">&lt;-</span> planned_production_time <span class="sc">-</span> total_downtime</span>
-<span id="cb804-2"><a href="total-productive-maintenance-tpm.html#cb804-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Run Time:&quot;</span>, run_time, <span class="st">&quot;minutes</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="total-productive-maintenance-tpm.html#cb803-1" tabindex="-1"></a>run_time <span class="ot">&lt;-</span> planned_production_time <span class="sc">-</span> total_downtime</span>
+<span id="cb803-2"><a href="total-productive-maintenance-tpm.html#cb803-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Run Time:&quot;</span>, run_time, <span class="st">&quot;minutes</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Run Time: 380 minutes</code></pre>
-<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb806-1"><a href="total-productive-maintenance-tpm.html#cb806-1" tabindex="-1"></a><span class="co"># Production data</span></span>
-<span id="cb806-2"><a href="total-productive-maintenance-tpm.html#cb806-2" tabindex="-1"></a>ideal_cycle_time <span class="ot">&lt;-</span> <span class="fl">0.5</span>  <span class="co"># minutes per part (design spec)</span></span>
-<span id="cb806-3"><a href="total-productive-maintenance-tpm.html#cb806-3" tabindex="-1"></a>total_parts <span class="ot">&lt;-</span> <span class="dv">700</span>  <span class="co"># parts produced</span></span>
-<span id="cb806-4"><a href="total-productive-maintenance-tpm.html#cb806-4" tabindex="-1"></a>good_parts <span class="ot">&lt;-</span> <span class="dv">665</span>   <span class="co"># parts passing inspection</span></span>
-<span id="cb806-5"><a href="total-productive-maintenance-tpm.html#cb806-5" tabindex="-1"></a>defects <span class="ot">&lt;-</span> total_parts <span class="sc">-</span> good_parts</span>
-<span id="cb806-6"><a href="total-productive-maintenance-tpm.html#cb806-6" tabindex="-1"></a></span>
-<span id="cb806-7"><a href="total-productive-maintenance-tpm.html#cb806-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== PRODUCTION DATA ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="total-productive-maintenance-tpm.html#cb805-1" tabindex="-1"></a><span class="co"># Production data</span></span>
+<span id="cb805-2"><a href="total-productive-maintenance-tpm.html#cb805-2" tabindex="-1"></a>ideal_cycle_time <span class="ot">&lt;-</span> <span class="fl">0.5</span>  <span class="co"># minutes per part (design spec)</span></span>
+<span id="cb805-3"><a href="total-productive-maintenance-tpm.html#cb805-3" tabindex="-1"></a>total_parts <span class="ot">&lt;-</span> <span class="dv">700</span>  <span class="co"># parts produced</span></span>
+<span id="cb805-4"><a href="total-productive-maintenance-tpm.html#cb805-4" tabindex="-1"></a>good_parts <span class="ot">&lt;-</span> <span class="dv">665</span>   <span class="co"># parts passing inspection</span></span>
+<span id="cb805-5"><a href="total-productive-maintenance-tpm.html#cb805-5" tabindex="-1"></a>defects <span class="ot">&lt;-</span> total_parts <span class="sc">-</span> good_parts</span>
+<span id="cb805-6"><a href="total-productive-maintenance-tpm.html#cb805-6" tabindex="-1"></a></span>
+<span id="cb805-7"><a href="total-productive-maintenance-tpm.html#cb805-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== PRODUCTION DATA ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## === PRODUCTION DATA ===</code></pre>
-<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="total-productive-maintenance-tpm.html#cb808-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Total Parts Produced:&quot;</span>, total_parts, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="total-productive-maintenance-tpm.html#cb807-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Total Parts Produced:&quot;</span>, total_parts, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Total Parts Produced: 700</code></pre>
-<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="total-productive-maintenance-tpm.html#cb810-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Good Parts:&quot;</span>, good_parts, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="total-productive-maintenance-tpm.html#cb809-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Good Parts:&quot;</span>, good_parts, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Good Parts: 665</code></pre>
-<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb812-1"><a href="total-productive-maintenance-tpm.html#cb812-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Defects:&quot;</span>, defects, <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="total-productive-maintenance-tpm.html#cb811-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Defects:&quot;</span>, defects, <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Defects: 35</code></pre>
-<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="total-productive-maintenance-tpm.html#cb814-1" tabindex="-1"></a><span class="co"># Calculate OEE Components</span></span>
-<span id="cb814-2"><a href="total-productive-maintenance-tpm.html#cb814-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== OEE CALCULATION ===</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="total-productive-maintenance-tpm.html#cb813-1" tabindex="-1"></a><span class="co"># Calculate OEE Components</span></span>
+<span id="cb813-2"><a href="total-productive-maintenance-tpm.html#cb813-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== OEE CALCULATION ===</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## === OEE CALCULATION ===</code></pre>
-<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="total-productive-maintenance-tpm.html#cb816-1" tabindex="-1"></a><span class="co"># Availability</span></span>
-<span id="cb816-2"><a href="total-productive-maintenance-tpm.html#cb816-2" tabindex="-1"></a>availability <span class="ot">&lt;-</span> (run_time <span class="sc">/</span> planned_production_time) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb816-3"><a href="total-productive-maintenance-tpm.html#cb816-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;AVAILABILITY:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="total-productive-maintenance-tpm.html#cb815-1" tabindex="-1"></a><span class="co"># Availability</span></span>
+<span id="cb815-2"><a href="total-productive-maintenance-tpm.html#cb815-2" tabindex="-1"></a>availability <span class="ot">&lt;-</span> (run_time <span class="sc">/</span> planned_production_time) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb815-3"><a href="total-productive-maintenance-tpm.html#cb815-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;AVAILABILITY:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## AVAILABILITY:</code></pre>
-<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb818-1"><a href="total-productive-maintenance-tpm.html#cb818-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  = Run Time / Planned Production Time</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="total-productive-maintenance-tpm.html#cb817-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  = Run Time / Planned Production Time</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>##   = Run Time / Planned Production Time</code></pre>
-<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb820-1"><a href="total-productive-maintenance-tpm.html#cb820-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  =&quot;</span>, run_time, <span class="st">&quot;/&quot;</span>, planned_production_time, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="total-productive-maintenance-tpm.html#cb819-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  =&quot;</span>, run_time, <span class="st">&quot;/&quot;</span>, planned_production_time, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>##   = 380 / 450</code></pre>
-<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="total-productive-maintenance-tpm.html#cb822-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  =&quot;</span>, <span class="fu">round</span>(availability, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="total-productive-maintenance-tpm.html#cb821-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  =&quot;</span>, <span class="fu">round</span>(availability, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>##   = 84.4 %</code></pre>
-<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb824-1"><a href="total-productive-maintenance-tpm.html#cb824-1" tabindex="-1"></a><span class="co"># Performance</span></span>
-<span id="cb824-2"><a href="total-productive-maintenance-tpm.html#cb824-2" tabindex="-1"></a><span class="co"># Actual output vs. theoretical output during run time</span></span>
-<span id="cb824-3"><a href="total-productive-maintenance-tpm.html#cb824-3" tabindex="-1"></a>theoretical_output <span class="ot">&lt;-</span> run_time <span class="sc">/</span> ideal_cycle_time</span>
-<span id="cb824-4"><a href="total-productive-maintenance-tpm.html#cb824-4" tabindex="-1"></a>performance <span class="ot">&lt;-</span> (total_parts <span class="sc">/</span> theoretical_output) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb824-5"><a href="total-productive-maintenance-tpm.html#cb824-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;PERFORMANCE:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="total-productive-maintenance-tpm.html#cb823-1" tabindex="-1"></a><span class="co"># Performance</span></span>
+<span id="cb823-2"><a href="total-productive-maintenance-tpm.html#cb823-2" tabindex="-1"></a><span class="co"># Actual output vs. theoretical output during run time</span></span>
+<span id="cb823-3"><a href="total-productive-maintenance-tpm.html#cb823-3" tabindex="-1"></a>theoretical_output <span class="ot">&lt;-</span> run_time <span class="sc">/</span> ideal_cycle_time</span>
+<span id="cb823-4"><a href="total-productive-maintenance-tpm.html#cb823-4" tabindex="-1"></a>performance <span class="ot">&lt;-</span> (total_parts <span class="sc">/</span> theoretical_output) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb823-5"><a href="total-productive-maintenance-tpm.html#cb823-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;PERFORMANCE:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## PERFORMANCE:</code></pre>
-<div class="sourceCode" id="cb826"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb826-1"><a href="total-productive-maintenance-tpm.html#cb826-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  Theoretical Output =&quot;</span>, theoretical_output, <span class="st">&quot;parts</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="total-productive-maintenance-tpm.html#cb825-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  Theoretical Output =&quot;</span>, theoretical_output, <span class="st">&quot;parts</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>##   Theoretical Output = 760 parts</code></pre>
-<div class="sourceCode" id="cb828"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb828-1"><a href="total-productive-maintenance-tpm.html#cb828-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  Actual Output =&quot;</span>, total_parts, <span class="st">&quot;parts</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="total-productive-maintenance-tpm.html#cb827-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  Actual Output =&quot;</span>, total_parts, <span class="st">&quot;parts</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>##   Actual Output = 700 parts</code></pre>
-<div class="sourceCode" id="cb830"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb830-1"><a href="total-productive-maintenance-tpm.html#cb830-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  = Actual / Theoretical</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="total-productive-maintenance-tpm.html#cb829-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  = Actual / Theoretical</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>##   = Actual / Theoretical</code></pre>
-<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="total-productive-maintenance-tpm.html#cb832-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  =&quot;</span>, <span class="fu">round</span>(performance, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="total-productive-maintenance-tpm.html#cb831-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  =&quot;</span>, <span class="fu">round</span>(performance, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>##   = 92.1 %</code></pre>
-<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="total-productive-maintenance-tpm.html#cb834-1" tabindex="-1"></a><span class="co"># Quality</span></span>
-<span id="cb834-2"><a href="total-productive-maintenance-tpm.html#cb834-2" tabindex="-1"></a>quality <span class="ot">&lt;-</span> (good_parts <span class="sc">/</span> total_parts) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb834-3"><a href="total-productive-maintenance-tpm.html#cb834-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;QUALITY:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="total-productive-maintenance-tpm.html#cb833-1" tabindex="-1"></a><span class="co"># Quality</span></span>
+<span id="cb833-2"><a href="total-productive-maintenance-tpm.html#cb833-2" tabindex="-1"></a>quality <span class="ot">&lt;-</span> (good_parts <span class="sc">/</span> total_parts) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb833-3"><a href="total-productive-maintenance-tpm.html#cb833-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;QUALITY:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## QUALITY:</code></pre>
-<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="total-productive-maintenance-tpm.html#cb836-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  = Good Parts / Total Parts</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="total-productive-maintenance-tpm.html#cb835-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  = Good Parts / Total Parts</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>##   = Good Parts / Total Parts</code></pre>
-<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb838-1"><a href="total-productive-maintenance-tpm.html#cb838-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  =&quot;</span>, good_parts, <span class="st">&quot;/&quot;</span>, total_parts, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="total-productive-maintenance-tpm.html#cb837-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  =&quot;</span>, good_parts, <span class="st">&quot;/&quot;</span>, total_parts, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>##   = 665 / 700</code></pre>
-<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb840-1"><a href="total-productive-maintenance-tpm.html#cb840-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  =&quot;</span>, <span class="fu">round</span>(quality, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="total-productive-maintenance-tpm.html#cb839-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  =&quot;</span>, <span class="fu">round</span>(quality, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>##   = 95 %</code></pre>
-<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="total-productive-maintenance-tpm.html#cb842-1" tabindex="-1"></a><span class="co"># Overall OEE</span></span>
-<span id="cb842-2"><a href="total-productive-maintenance-tpm.html#cb842-2" tabindex="-1"></a>oee <span class="ot">&lt;-</span> (availability<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> (performance<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> (quality<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb842-3"><a href="total-productive-maintenance-tpm.html#cb842-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== OVERALL OEE ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="total-productive-maintenance-tpm.html#cb841-1" tabindex="-1"></a><span class="co"># Overall OEE</span></span>
+<span id="cb841-2"><a href="total-productive-maintenance-tpm.html#cb841-2" tabindex="-1"></a>oee <span class="ot">&lt;-</span> (availability<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> (performance<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> (quality<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb841-3"><a href="total-productive-maintenance-tpm.html#cb841-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== OVERALL OEE ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## === OVERALL OEE ===</code></pre>
-<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb844-1"><a href="total-productive-maintenance-tpm.html#cb844-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;OEE =&quot;</span>, <span class="fu">round</span>(availability, <span class="dv">1</span>), <span class="st">&quot;% ×&quot;</span>, <span class="fu">round</span>(performance, <span class="dv">1</span>), <span class="st">&quot;% ×&quot;</span>, <span class="fu">round</span>(quality, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="total-productive-maintenance-tpm.html#cb843-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;OEE =&quot;</span>, <span class="fu">round</span>(availability, <span class="dv">1</span>), <span class="st">&quot;% ×&quot;</span>, <span class="fu">round</span>(performance, <span class="dv">1</span>), <span class="st">&quot;% ×&quot;</span>, <span class="fu">round</span>(quality, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## OEE = 84.4 % × 92.1 % × 95 %</code></pre>
-<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="total-productive-maintenance-tpm.html#cb846-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;OEE =&quot;</span>, <span class="fu">round</span>(oee, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb845-1"><a href="total-productive-maintenance-tpm.html#cb845-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;OEE =&quot;</span>, <span class="fu">round</span>(oee, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## OEE = 73.9 %</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:oee-waterfall"></span>
 <img src="introduction_files/figure-html/oee-waterfall-1.png" alt="OEE Waterfall Chart: Where Time Goes" width="960" />
@@ -1977,7 +1977,7 @@ OEE = 88.6% × 89.7% × 96.0% = 76.3%</code></pre>
 Figure 12.6: The Six Big Losses
 </p>
 </div>
-<table class="table table-striped table-hover table-bordered table-responsive" style="font-size: 11px; margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover table-bordered table-responsive" style="font-size: 13px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
 <span id="tab:six-losses-detail">Table 12.6: </span>The Six Big Losses Explained
 </caption>
@@ -2631,18 +2631,8 @@ Days to weeks
 <div id="the-p-f-curve" class="section level3 hasAnchor" number="12.7.3">
 <h3><span class="header-section-number">12.7.3</span> The P-F Curve<a href="total-productive-maintenance-tpm.html#the-p-f-curve" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <strong>P-F Curve</strong> illustrates the concept of detecting potential failure (P) before functional failure (F).</p>
-<pre><code>## Warning in geom_point(aes(x = 4, y = 75), size = 5, color = &quot;#F39C12&quot;): All aesthetics have length 1, but the
-## data has 101 rows.
-## ℹ Please consider using `annotate()` or
-##   provide this layer with data
-##   containing a single row.</code></pre>
-<pre><code>## Warning in geom_point(aes(x = 9, y = 10), size = 5, color = &quot;#E74C3C&quot;): All aesthetics have length 1, but the
-## data has 101 rows.
-## ℹ Please consider using `annotate()` or
-##   provide this layer with data
-##   containing a single row.</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:pf-curve"></span>
-<img src="introduction_files/figure-html/pf-curve-1.png" alt="The P-F Curve: Detecting Failure Early" width="960" />
+<img src="introduction_files/figure-html/pf-curve-1.png" alt="The P-F Curve: Detecting Failure Early" width="1152" />
 <p class="caption">
 Figure 12.11: The P-F Curve: Detecting Failure Early
 </p>
@@ -2684,9 +2674,328 @@ Question: Why is predictive maintenance better than preventive maintenance?
 Figure 12.12: Focused Improvement Process
 </p>
 </div>
+<div id="understanding-kaizen" class="section level4 hasAnchor" number="12.8.1.1">
+<h4><span class="header-section-number">12.8.1.1</span> Understanding Kaizen<a href="total-productive-maintenance-tpm.html#understanding-kaizen" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Kaizen</strong> (改善) is a Japanese term meaning “change for better” or <strong>continuous improvement</strong>. Unlike large-scale transformation projects, Kaizen focuses on small, incremental improvements made consistently over time. The philosophy is built on the belief that every process can be improved, and everyone—from operators to managers—should participate in identifying and implementing improvements.</p>
+<p><strong>Core Principles of Kaizen:</strong></p>
+<ul>
+<li><strong>Good processes bring good results</strong> — Focus on improving the process, not blaming people</li>
+<li><strong>Go see for yourself (Gemba)</strong> — Understand the actual situation at the workplace</li>
+<li><strong>Speak with data</strong> — Base decisions on facts and measurements</li>
+<li><strong>Take action to contain and correct root causes</strong> — Don’t just treat symptoms</li>
+<li><strong>Work as a team</strong> — Cross-functional collaboration produces better solutions</li>
+<li><strong>Kaizen is everybody’s business</strong> — Every employee can contribute improvements</li>
+</ul>
+</div>
+<div id="the-five-steps-in-detail" class="section level4 hasAnchor" number="12.8.1.2">
+<h4><span class="header-section-number">12.8.1.2</span> The Five Steps in Detail<a href="total-productive-maintenance-tpm.html#the-five-steps-in-detail" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Step 1: SELECT — Identify the Biggest Loss</strong></p>
+<p>The first step uses data to identify which loss has the greatest impact on OEE. This typically involves:</p>
+<ul>
+<li>Reviewing OEE data and breakdown logs</li>
+<li>Creating Pareto charts to visualize loss magnitude</li>
+<li>Selecting a loss that is significant, measurable, and within the team’s ability to address</li>
+<li>Forming a cross-functional team with members who understand the equipment and process</li>
+</ul>
+<p><em>Key question: “Which single problem, if solved, would give us the biggest improvement?”</em></p>
+<p><strong>Step 2: ANALYZE — Root Cause Analysis</strong></p>
+<p>Once a loss is selected, the team investigates its root cause using structured problem-solving tools:</p>
+<ul>
+<li><strong>Why-Why Analysis (5 Whys)</strong>: Repeatedly asking “why” to drill down from symptoms to root causes</li>
+<li><strong>Fishbone Diagram (Ishikawa)</strong>: Categorizing potential causes by Machine, Method, Material, Man, Measurement, Environment</li>
+<li><strong>PM Analysis</strong>: A systematic method for chronic losses that examines physical mechanisms</li>
+<li><strong>Data collection</strong>: Gathering facts at the Gemba (actual workplace)</li>
+</ul>
+<p><em>Key principle: Never assume you know the cause—verify with evidence.</em></p>
+<p><strong>Step 3: DEVELOP — Create Countermeasures</strong></p>
+<p>Based on root cause analysis, the team develops countermeasures—actions designed to eliminate or reduce the root cause:</p>
+<ul>
+<li>Brainstorm multiple potential solutions</li>
+<li>Evaluate options based on effectiveness, cost, and implementation time</li>
+<li>Create an action plan with clear responsibilities and deadlines</li>
+<li>Consider both immediate fixes and permanent solutions</li>
+<li>Apply error-proofing (Poka-Yoke) where possible</li>
+</ul>
+<p><em>Important: Countermeasures address root causes, not just symptoms.</em></p>
+<p><strong>Step 4: IMPLEMENT — Execute the Plan</strong></p>
+<p>The team puts countermeasures into action:</p>
+<ul>
+<li>Follow the action plan systematically</li>
+<li>Make changes during planned downtime when possible</li>
+<li>Document all modifications made</li>
+<li>Train affected personnel on new procedures</li>
+<li>Monitor results immediately after implementation</li>
+<li>Be prepared to adjust if initial results are not as expected</li>
+</ul>
+<p><em>Tip: Start with small-scale trials before full implementation when possible.</em></p>
+<p><strong>Step 5: SUSTAIN — Standardize and Share</strong></p>
+<p>The final step ensures improvements are maintained and shared across the organization:</p>
+<ul>
+<li><strong>Standardize</strong>: Update procedures, checklists, and work instructions to reflect the new method</li>
+<li><strong>Visualize</strong>: Create visual controls that make the standard easy to follow</li>
+<li><strong>Train</strong>: Ensure all shifts and new employees learn the improved method</li>
+<li><strong>Verify</strong>: Include checks in AM routines or audits to confirm the standard is being followed</li>
+<li><strong>Share</strong>: Communicate successful improvements to other areas that might benefit (Yokoten—horizontal deployment)</li>
+</ul>
+<p><em>Kaizen is never finished—today’s standard is tomorrow’s baseline for further improvement.</em></p>
+</div>
+<div id="kaizen-event-vs.-daily-kaizen" class="section level4 hasAnchor" number="12.8.1.3">
+<h4><span class="header-section-number">12.8.1.3</span> Kaizen Event vs. Daily Kaizen<a href="total-productive-maintenance-tpm.html#kaizen-event-vs.-daily-kaizen" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="48%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Kaizen Event (Blitz)</th>
+<th>Daily Kaizen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Duration</strong></td>
+<td>3-5 days intensive</td>
+<td>Ongoing, small improvements</td>
+</tr>
+<tr class="even">
+<td><strong>Scope</strong></td>
+<td>Focused on one specific problem</td>
+<td>Any improvement opportunity</td>
+</tr>
+<tr class="odd">
+<td><strong>Team</strong></td>
+<td>Dedicated cross-functional team</td>
+<td>Individual or small group</td>
+</tr>
+<tr class="even">
+<td><strong>Impact</strong></td>
+<td>Significant, measurable improvement</td>
+<td>Cumulative effect over time</td>
+</tr>
+<tr class="odd">
+<td><strong>Example</strong></td>
+<td>Reduce changeover time by 50%</td>
+<td>Reorganize tool storage for easier access</td>
+</tr>
+</tbody>
+</table>
+<p>Both approaches are valuable—Kaizen events tackle significant losses while daily Kaizen builds a culture of continuous improvement.</p>
+</div>
 </div>
 <div id="loss-elimination-tools" class="section level3 hasAnchor" number="12.8.2">
 <h3><span class="header-section-number">12.8.2</span> Loss Elimination Tools<a href="total-productive-maintenance-tpm.html#loss-elimination-tools" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Effective loss elimination requires systematic tools that help teams identify problems, find root causes, and implement lasting solutions. The following tools are essential for Focused Improvement activities.</p>
+<div id="pareto-analysis" class="section level4 hasAnchor" number="12.8.2.1">
+<h4><span class="header-section-number">12.8.2.1</span> Pareto Analysis<a href="total-productive-maintenance-tpm.html#pareto-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Pareto Analysis</strong> applies the 80/20 rule: roughly 80% of losses come from 20% of causes. By creating a Pareto chart, teams can visualize which losses have the greatest impact and prioritize their improvement efforts accordingly.</p>
+<p><strong>How to use:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Collect data on all losses (downtime events, defects, speed reductions)</li>
+<li>Categorize losses by type or cause</li>
+<li>Calculate the frequency or duration of each category</li>
+<li>Rank categories from highest to lowest</li>
+<li>Create a bar chart with a cumulative percentage line</li>
+<li>Focus improvement efforts on the “vital few” categories that account for most losses</li>
+</ol>
+</div>
+<div id="why-why-analysis-5-whys" class="section level4 hasAnchor" number="12.8.2.2">
+<h4><span class="header-section-number">12.8.2.2</span> Why-Why Analysis (5 Whys)<a href="total-productive-maintenance-tpm.html#why-why-analysis-5-whys" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Why-Why Analysis</strong> is a simple but powerful technique for drilling down from a symptom to its root cause by repeatedly asking “Why?” The goal is to go beyond surface-level explanations to find the fundamental cause that, if addressed, will prevent recurrence.</p>
+<p><strong>Example:</strong></p>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="40%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Problem</td>
+<td>Machine stopped</td>
+<td>Overload tripped</td>
+</tr>
+<tr class="even">
+<td>Why 1?</td>
+<td>Why did the overload trip?</td>
+<td>Motor drew excessive current</td>
+</tr>
+<tr class="odd">
+<td>Why 2?</td>
+<td>Why excessive current?</td>
+<td>Bearing was seized</td>
+</tr>
+<tr class="even">
+<td>Why 3?</td>
+<td>Why was bearing seized?</td>
+<td>Insufficient lubrication</td>
+</tr>
+<tr class="odd">
+<td>Why 4?</td>
+<td>Why insufficient lubrication?</td>
+<td>Lubrication schedule not followed</td>
+</tr>
+<tr class="even">
+<td>Why 5?</td>
+<td>Why not followed?</td>
+<td>No visual indicator when lubrication is due</td>
+</tr>
+<tr class="odd">
+<td><strong>Root Cause</strong></td>
+<td></td>
+<td>Missing visual management for lubrication schedule</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tips for effective Why-Why Analysis:</strong></p>
+<ul>
+<li>Stay focused on one causal chain at a time</li>
+<li>Base answers on facts, not assumptions—verify at the Gemba</li>
+<li>Don’t stop at “human error”—ask why the error was possible</li>
+<li>The number 5 is a guideline, not a rule—continue until you reach a controllable root cause</li>
+</ul>
+</div>
+<div id="pm-analysis" class="section level4 hasAnchor" number="12.8.2.3">
+<h4><span class="header-section-number">12.8.2.3</span> PM Analysis<a href="total-productive-maintenance-tpm.html#pm-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>PM Analysis</strong> (Physical Mechanism Analysis or Phenomenon-Mechanism Analysis) is a systematic method for analyzing <strong>chronic losses</strong>—problems that occur repeatedly despite multiple repair attempts. It examines the physical principles behind equipment failures.</p>
+<p><strong>The PM Analysis Process:</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Clarify the phenomenon</strong>: Describe exactly what happens, when, and under what conditions</li>
+<li><strong>Conduct physical analysis</strong>: Understand the physical principles involved (friction, heat, vibration, etc.)</li>
+<li><strong>Identify conditions that produce the phenomenon</strong>: List all conditions required for the problem to occur</li>
+<li><strong>Investigate equipment, materials, and methods</strong>: Examine each condition against the 4Ms (Machine, Material, Method, Man)</li>
+<li><strong>Plan and implement countermeasures</strong>: Address the conditions that allow the problem to occur</li>
+<li><strong>Verify results</strong>: Confirm the chronic loss has been eliminated</li>
+</ol>
+<p><em>PM Analysis is particularly valuable when Why-Why Analysis doesn’t resolve a recurring problem.</em></p>
+</div>
+<div id="smed-single-minute-exchange-of-die-1" class="section level4 hasAnchor" number="12.8.2.4">
+<h4><span class="header-section-number">12.8.2.4</span> SMED (Single-Minute Exchange of Die)<a href="total-productive-maintenance-tpm.html#smed-single-minute-exchange-of-die-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>SMED</strong> is a systematic approach to reducing changeover or setup time—the time between the last good part of one product and the first good part of the next. The goal is to complete changeovers in under 10 minutes (single-digit minutes).</p>
+<p><strong>The SMED Process:</strong></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:smed-steps2"></span>
+<img src="introduction_files/figure-html/smed-steps2-1.png" alt="SMED Methodology" width="960" />
+<p class="caption">
+Figure 12.13: SMED Methodology
+</p>
+</div>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li><strong>Internal setup</strong>: Tasks that can only be done when the machine is stopped (changing the die itself)</li>
+<li><strong>External setup</strong>: Tasks that can be done while the machine is running (preparing tools, preheating)</li>
+</ul>
+<p><strong>Typical SMED Improvements:</strong></p>
+<table>
+<colgroup>
+<col width="55%" />
+<col width="45%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Technique</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prepare in advance</td>
+<td>Stage tools and materials before stopping the machine</td>
+</tr>
+<tr class="even">
+<td>Use quick-release clamps</td>
+<td>Replace bolts with cam locks or hydraulic clamps</td>
+</tr>
+<tr class="odd">
+<td>Eliminate adjustments</td>
+<td>Use fixtures, stops, and standardized settings</td>
+</tr>
+<tr class="even">
+<td>Parallel operations</td>
+<td>Two people working simultaneously on different tasks</td>
+</tr>
+<tr class="odd">
+<td>Standardize components</td>
+<td>Use common bolt sizes, connection types</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="poka-yoke-error-proofing" class="section level4 hasAnchor" number="12.8.2.5">
+<h4><span class="header-section-number">12.8.2.5</span> Poka-Yoke (Error-Proofing)<a href="total-productive-maintenance-tpm.html#poka-yoke-error-proofing" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Poka-Yoke</strong> (ポカヨケ) means “mistake-proofing” or “error-proofing.” These are devices or methods that either prevent errors from occurring or detect them immediately when they do occur.</p>
+<p><strong>Types of Poka-Yoke:</strong></p>
+<table>
+<colgroup>
+<col width="24%" />
+<col width="40%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Function</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Prevention</strong></td>
+<td>Makes errors impossible</td>
+<td>Asymmetric connector that only fits one way</td>
+</tr>
+<tr class="even">
+<td><strong>Detection</strong></td>
+<td>Identifies errors immediately</td>
+<td>Sensor that stops the line if a part is missing</td>
+</tr>
+<tr class="odd">
+<td><strong>Warning</strong></td>
+<td>Alerts operator to potential error</td>
+<td>Light or buzzer when a step is skipped</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Poka-Yoke Design Principles:</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Design out the possibility of error</strong> — The best Poka-Yoke makes the error impossible</li>
+<li><strong>Detect at the source</strong> — Catch errors where they occur, not downstream</li>
+<li><strong>Stop and fix immediately</strong> — Don’t pass defects to the next process</li>
+<li><strong>Keep it simple</strong> — Low-cost, reliable solutions are better than complex ones</li>
+</ol>
+<p><strong>Examples in Manufacturing:</strong></p>
+<ul>
+<li><strong>Guide pins</strong> that prevent a part from being loaded incorrectly</li>
+<li><strong>Counters</strong> that verify the correct number of components were installed</li>
+<li><strong>Checklists with physical verification</strong> (e.g., removing a flag for each completed step)</li>
+<li><strong>Limit switches</strong> that confirm proper positioning before the cycle starts</li>
+<li><strong>Color coding</strong> to match parts with their correct locations</li>
+</ul>
+<details>
+<summary>
+Question: How do you decide which tool to use?
+</summary>
+<p><strong>Tool Selection Guide:</strong></p>
+<ul>
+<li><strong>Pareto Analysis</strong>: Use first to identify which loss to focus on</li>
+<li><strong>Why-Why Analysis</strong>: Use for sporadic failures with clear cause-effect relationships</li>
+<li><strong>PM Analysis</strong>: Use for chronic losses that keep recurring despite repairs</li>
+<li><strong>SMED</strong>: Use specifically for setup/changeover losses (Loss #2)</li>
+<li><strong>Poka-Yoke</strong>: Use to prevent defects and human errors (Losses #5, #6)</li>
+</ul>
+<p>Often, multiple tools are used together—Pareto to select the problem, Why-Why or PM Analysis to find the root cause, and Poka-Yoke to prevent recurrence.</p>
+</details>
+</div>
+<div id="summary-of-loss-elimination-tools" class="section level4 hasAnchor" number="12.8.2.6">
+<h4><span class="header-section-number">12.8.2.6</span> Summary of Loss Elimination Tools<a href="total-productive-maintenance-tpm.html#summary-of-loss-elimination-tools" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <table class="table table-striped table-hover table-bordered" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:loss-tools">Table 12.11: </span>Tools for Loss Elimination
@@ -2763,6 +3072,7 @@ Quality improvement (Losses #5, #6)
 </tbody>
 </table>
 <hr />
+</div>
 </div>
 </div>
 <div id="tpm-implementation" class="section level2 hasAnchor" number="12.9">
@@ -3033,32 +3343,32 @@ TPM takes 3-5 years to fully implement
 </div>
 <div id="problem-analysis" class="section level3 hasAnchor" number="12.10.2">
 <h3><span class="header-section-number">12.10.2</span> Problem Analysis<a href="total-productive-maintenance-tpm.html#problem-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="total-productive-maintenance-tpm.html#cb851-1" tabindex="-1"></a><span class="co"># Initial State</span></span>
-<span id="cb851-2"><a href="total-productive-maintenance-tpm.html#cb851-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== INITIAL OEE BREAKDOWN ===</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="total-productive-maintenance-tpm.html#cb848-1" tabindex="-1"></a><span class="co"># Initial State</span></span>
+<span id="cb848-2"><a href="total-productive-maintenance-tpm.html#cb848-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== INITIAL OEE BREAKDOWN ===</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## === INITIAL OEE BREAKDOWN ===</code></pre>
-<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="total-productive-maintenance-tpm.html#cb853-1" tabindex="-1"></a>availability_initial <span class="ot">&lt;-</span> <span class="dv">78</span>  <span class="co"># %</span></span>
-<span id="cb853-2"><a href="total-productive-maintenance-tpm.html#cb853-2" tabindex="-1"></a>performance_initial <span class="ot">&lt;-</span> <span class="dv">82</span>   <span class="co"># %</span></span>
-<span id="cb853-3"><a href="total-productive-maintenance-tpm.html#cb853-3" tabindex="-1"></a>quality_initial <span class="ot">&lt;-</span> <span class="dv">81</span>       <span class="co"># %</span></span>
-<span id="cb853-4"><a href="total-productive-maintenance-tpm.html#cb853-4" tabindex="-1"></a></span>
-<span id="cb853-5"><a href="total-productive-maintenance-tpm.html#cb853-5" tabindex="-1"></a>oee_initial <span class="ot">&lt;-</span> (availability_initial<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> (performance_initial<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> (quality_initial<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb853-6"><a href="total-productive-maintenance-tpm.html#cb853-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Availability:&quot;</span>, availability_initial, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="total-productive-maintenance-tpm.html#cb850-1" tabindex="-1"></a>availability_initial <span class="ot">&lt;-</span> <span class="dv">78</span>  <span class="co"># %</span></span>
+<span id="cb850-2"><a href="total-productive-maintenance-tpm.html#cb850-2" tabindex="-1"></a>performance_initial <span class="ot">&lt;-</span> <span class="dv">82</span>   <span class="co"># %</span></span>
+<span id="cb850-3"><a href="total-productive-maintenance-tpm.html#cb850-3" tabindex="-1"></a>quality_initial <span class="ot">&lt;-</span> <span class="dv">81</span>       <span class="co"># %</span></span>
+<span id="cb850-4"><a href="total-productive-maintenance-tpm.html#cb850-4" tabindex="-1"></a></span>
+<span id="cb850-5"><a href="total-productive-maintenance-tpm.html#cb850-5" tabindex="-1"></a>oee_initial <span class="ot">&lt;-</span> (availability_initial<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> (performance_initial<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> (quality_initial<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb850-6"><a href="total-productive-maintenance-tpm.html#cb850-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Availability:&quot;</span>, availability_initial, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Availability: 78 %</code></pre>
-<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="total-productive-maintenance-tpm.html#cb855-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Performance:&quot;</span>, performance_initial, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="total-productive-maintenance-tpm.html#cb852-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Performance:&quot;</span>, performance_initial, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Performance: 82 %</code></pre>
-<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb857-1"><a href="total-productive-maintenance-tpm.html#cb857-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Quality:&quot;</span>, quality_initial, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="total-productive-maintenance-tpm.html#cb854-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Quality:&quot;</span>, quality_initial, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Quality: 81 %</code></pre>
-<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="total-productive-maintenance-tpm.html#cb859-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;OEE:&quot;</span>, <span class="fu">round</span>(oee_initial, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="total-productive-maintenance-tpm.html#cb856-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;OEE:&quot;</span>, <span class="fu">round</span>(oee_initial, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## OEE: 51.8 %</code></pre>
-<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="total-productive-maintenance-tpm.html#cb861-1" tabindex="-1"></a><span class="co"># Loss breakdown</span></span>
-<span id="cb861-2"><a href="total-productive-maintenance-tpm.html#cb861-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== TOP LOSSES IDENTIFIED ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="total-productive-maintenance-tpm.html#cb858-1" tabindex="-1"></a><span class="co"># Loss breakdown</span></span>
+<span id="cb858-2"><a href="total-productive-maintenance-tpm.html#cb858-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== TOP LOSSES IDENTIFIED ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## === TOP LOSSES IDENTIFIED ===</code></pre>
-<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb863-1"><a href="total-productive-maintenance-tpm.html#cb863-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;1. Equipment breakdowns: 8% of time</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb860"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb860-1"><a href="total-productive-maintenance-tpm.html#cb860-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;1. Equipment breakdowns: 8% of time</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## 1. Equipment breakdowns: 8% of time</code></pre>
-<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb865-1"><a href="total-productive-maintenance-tpm.html#cb865-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;2. Setup/changeover: 7% of time</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb862-1"><a href="total-productive-maintenance-tpm.html#cb862-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;2. Setup/changeover: 7% of time</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## 2. Setup/changeover: 7% of time</code></pre>
-<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb867-1"><a href="total-productive-maintenance-tpm.html#cb867-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;3. Minor stops: 12% of time</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb864"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb864-1"><a href="total-productive-maintenance-tpm.html#cb864-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;3. Minor stops: 12% of time</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## 3. Minor stops: 12% of time</code></pre>
-<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="total-productive-maintenance-tpm.html#cb869-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;4. Defects: 4% of production</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb866"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb866-1"><a href="total-productive-maintenance-tpm.html#cb866-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;4. Defects: 4% of production</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## 4. Defects: 4% of production</code></pre>
 </div>
 <div id="improvements-implemented" class="section level3 hasAnchor" number="12.10.3">
@@ -3108,33 +3418,33 @@ TPM takes 3-5 years to fully implement
 </div>
 <div id="results-after-18-months" class="section level3 hasAnchor" number="12.10.4">
 <h3><span class="header-section-number">12.10.4</span> Results After 18 Months<a href="total-productive-maintenance-tpm.html#results-after-18-months" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb871"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb871-1"><a href="total-productive-maintenance-tpm.html#cb871-1" tabindex="-1"></a><span class="co"># After TPM Implementation</span></span>
-<span id="cb871-2"><a href="total-productive-maintenance-tpm.html#cb871-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== FINAL OEE BREAKDOWN ===</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb868"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb868-1"><a href="total-productive-maintenance-tpm.html#cb868-1" tabindex="-1"></a><span class="co"># After TPM Implementation</span></span>
+<span id="cb868-2"><a href="total-productive-maintenance-tpm.html#cb868-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== FINAL OEE BREAKDOWN ===</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## === FINAL OEE BREAKDOWN ===</code></pre>
-<div class="sourceCode" id="cb873"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb873-1"><a href="total-productive-maintenance-tpm.html#cb873-1" tabindex="-1"></a>availability_final <span class="ot">&lt;-</span> <span class="dv">91</span>    <span class="co"># %</span></span>
-<span id="cb873-2"><a href="total-productive-maintenance-tpm.html#cb873-2" tabindex="-1"></a>performance_final <span class="ot">&lt;-</span> <span class="dv">94</span>     <span class="co"># %</span></span>
-<span id="cb873-3"><a href="total-productive-maintenance-tpm.html#cb873-3" tabindex="-1"></a>quality_final <span class="ot">&lt;-</span> <span class="fl">98.5</span>       <span class="co"># %</span></span>
-<span id="cb873-4"><a href="total-productive-maintenance-tpm.html#cb873-4" tabindex="-1"></a></span>
-<span id="cb873-5"><a href="total-productive-maintenance-tpm.html#cb873-5" tabindex="-1"></a>oee_final <span class="ot">&lt;-</span> (availability_final<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> (performance_final<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> (quality_final<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb873-6"><a href="total-productive-maintenance-tpm.html#cb873-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Availability:&quot;</span>, availability_final, <span class="st">&quot;% (was&quot;</span>, availability_initial, <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="total-productive-maintenance-tpm.html#cb870-1" tabindex="-1"></a>availability_final <span class="ot">&lt;-</span> <span class="dv">91</span>    <span class="co"># %</span></span>
+<span id="cb870-2"><a href="total-productive-maintenance-tpm.html#cb870-2" tabindex="-1"></a>performance_final <span class="ot">&lt;-</span> <span class="dv">94</span>     <span class="co"># %</span></span>
+<span id="cb870-3"><a href="total-productive-maintenance-tpm.html#cb870-3" tabindex="-1"></a>quality_final <span class="ot">&lt;-</span> <span class="fl">98.5</span>       <span class="co"># %</span></span>
+<span id="cb870-4"><a href="total-productive-maintenance-tpm.html#cb870-4" tabindex="-1"></a></span>
+<span id="cb870-5"><a href="total-productive-maintenance-tpm.html#cb870-5" tabindex="-1"></a>oee_final <span class="ot">&lt;-</span> (availability_final<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> (performance_final<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> (quality_final<span class="sc">/</span><span class="dv">100</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb870-6"><a href="total-productive-maintenance-tpm.html#cb870-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Availability:&quot;</span>, availability_final, <span class="st">&quot;% (was&quot;</span>, availability_initial, <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Availability: 91 % (was 78 %)</code></pre>
-<div class="sourceCode" id="cb875"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb875-1"><a href="total-productive-maintenance-tpm.html#cb875-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Performance:&quot;</span>, performance_final, <span class="st">&quot;% (was&quot;</span>, performance_initial, <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb872-1"><a href="total-productive-maintenance-tpm.html#cb872-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Performance:&quot;</span>, performance_final, <span class="st">&quot;% (was&quot;</span>, performance_initial, <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Performance: 94 % (was 82 %)</code></pre>
-<div class="sourceCode" id="cb877"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb877-1"><a href="total-productive-maintenance-tpm.html#cb877-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Quality:&quot;</span>, quality_final, <span class="st">&quot;% (was&quot;</span>, quality_initial, <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb874"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb874-1"><a href="total-productive-maintenance-tpm.html#cb874-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Quality:&quot;</span>, quality_final, <span class="st">&quot;% (was&quot;</span>, quality_initial, <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Quality: 98.5 % (was 81 %)</code></pre>
-<div class="sourceCode" id="cb879"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb879-1"><a href="total-productive-maintenance-tpm.html#cb879-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;OEE:&quot;</span>, <span class="fu">round</span>(oee_final, <span class="dv">1</span>), <span class="st">&quot;% (was&quot;</span>, <span class="fu">round</span>(oee_initial, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb876-1"><a href="total-productive-maintenance-tpm.html#cb876-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;OEE:&quot;</span>, <span class="fu">round</span>(oee_final, <span class="dv">1</span>), <span class="st">&quot;% (was&quot;</span>, <span class="fu">round</span>(oee_initial, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## OEE: 84.3 % (was 51.8 %)</code></pre>
-<div class="sourceCode" id="cb881"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb881-1"><a href="total-productive-maintenance-tpm.html#cb881-1" tabindex="-1"></a>improvement <span class="ot">&lt;-</span> oee_final <span class="sc">-</span> oee_initial</span>
-<span id="cb881-2"><a href="total-productive-maintenance-tpm.html#cb881-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== IMPROVEMENT ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="total-productive-maintenance-tpm.html#cb878-1" tabindex="-1"></a>improvement <span class="ot">&lt;-</span> oee_final <span class="sc">-</span> oee_initial</span>
+<span id="cb878-2"><a href="total-productive-maintenance-tpm.html#cb878-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== IMPROVEMENT ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## === IMPROVEMENT ===</code></pre>
-<div class="sourceCode" id="cb883"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb883-1"><a href="total-productive-maintenance-tpm.html#cb883-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;OEE Improvement:&quot;</span>, <span class="fu">round</span>(improvement, <span class="dv">1</span>), <span class="st">&quot;percentage points</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb880"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb880-1"><a href="total-productive-maintenance-tpm.html#cb880-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;OEE Improvement:&quot;</span>, <span class="fu">round</span>(improvement, <span class="dv">1</span>), <span class="st">&quot;percentage points</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## OEE Improvement: 32.4 percentage points</code></pre>
-<div class="sourceCode" id="cb885"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb885-1"><a href="total-productive-maintenance-tpm.html#cb885-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Relative Improvement:&quot;</span>, <span class="fu">round</span>((improvement<span class="sc">/</span>oee_initial)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">0</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb882"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb882-1"><a href="total-productive-maintenance-tpm.html#cb882-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Relative Improvement:&quot;</span>, <span class="fu">round</span>((improvement<span class="sc">/</span>oee_initial)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">0</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Relative Improvement: 63 %</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:case-visualization"></span>
 <img src="introduction_files/figure-html/case-visualization-1.png" alt="OEE Improvement: Before and After TPM" width="864" />
 <p class="caption">
-Figure 12.13: OEE Improvement: Before and After TPM
+Figure 12.14: OEE Improvement: Before and After TPM
 </p>
 </div>
 <hr />

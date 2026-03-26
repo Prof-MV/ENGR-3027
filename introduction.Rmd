@@ -15102,7 +15102,7 @@ ggplot() +
                color = "gray50", linewidth = 1) +
   geom_label(data = components,
              aes(x = x, y = y, label = label, fill = factor(level)),
-             size = 3.5, fontface = "bold", color = "white",
+             size = 4.5, fontface = "bold", color = "white",
              label.padding = unit(0.4, "lines")) +
   scale_fill_manual(values = c("1" = "#2c3e50", "2" = "#3498db",
                                "3" = "#27ae60", "4" = "#e74c3c"),
@@ -15143,7 +15143,7 @@ scenarios$Scenario <- factor(scenarios$Scenario,
 
 ggplot(scenarios, aes(x = x, y = y)) +
   geom_point(color = "steelblue", size = 2, alpha = 0.7) +
-  geom_point(aes(x = 0, y = 0), color = "red", size = 4, shape = 3, stroke = 2) +
+  annotate("point", x = 0, y = 0, color = "red", size = 4, shape = 3, stroke = 2) +
   geom_circle(aes(x0 = 0, y0 = 0, r = 0.5), inherit.aes = FALSE,
               color = "red", linetype = "dashed") +
   geom_circle(aes(x0 = 0, y0 = 0, r = 1), inherit.aes = FALSE,
@@ -15551,7 +15551,43 @@ cat("%GRR (of tolerance):", round(GRR / tolerance * 100 * 5.15, 1), "%\n")
 
 ### ANOVA Method (Full Study)
 
-The ANOVA method is more accurate and provides additional information.
+**ANOVA** (Analysis of Variance) is a statistical technique that partitions the total observed variation in a dataset into distinct components, each attributable to a specific source. In the context of Gauge R&R, ANOVA separates the total measurement variation into contributions from:
+
+- **Parts** (the actual differences between items being measured)
+- **Operators** (systematic differences between people taking measurements)
+- **Part × Operator interaction** (whether certain operators measure certain parts differently)
+- **Repeatability** (random error when the same operator measures the same part multiple times)
+
+#### Why Use ANOVA for Gauge R&R?
+
+The fundamental question in any measurement system analysis is: *"How much of the variation I observe comes from my measurement system versus the actual differences between parts?"* ANOVA answers this question by statistically decomposing variance—it calculates how much each source contributes to what we observe.
+
+Consider the alternative: if we simply looked at the spread of all measurements, we wouldn't know whether a wide spread indicates highly variable parts (good—our gauge can detect differences) or a poor measurement system (bad—we're adding noise). ANOVA untangles these effects mathematically.
+
+#### Why ANOVA is the Preferred Method
+
+While the Range Method provides a quick estimate, ANOVA offers several critical advantages for Gauge R&R studies:
+
+| Aspect | Range Method | ANOVA Method |
+|--------|--------------|--------------|
+| **Interaction effects** | Cannot detect | Identifies Part × Operator interactions |
+| **Statistical rigor** | Approximation using range-based estimates | Exact variance component estimation |
+| **Hypothesis testing** | Not available | Provides F-tests and p-values for each source |
+| **Accuracy** | Tends to overestimate GRR | More precise variance estimates |
+| **Information richness** | Basic EV/AV breakdown | Full decomposition with confidence intervals |
+| **Industry acceptance** | Screening only | Required for formal MSA studies (AIAG) |
+
+The ability to detect **interaction effects** is particularly important. If Operator A consistently measures Part 3 higher than Operator B does (but they agree on other parts), this indicates a training issue or technique difference that the Range Method would miss entirely. ANOVA flags this interaction, enabling targeted corrective action.
+
+#### How ANOVA Works in Gauge R&R
+
+ANOVA uses the **F-statistic** to test whether variation between groups (e.g., between operators) is significantly larger than variation within groups (repeatability). The mathematical basis is:
+
+$$F = \frac{\text{Mean Square Between Groups}}{\text{Mean Square Within Groups}} = \frac{MS_{factor}}{MS_{error}}$$
+
+A large F-value indicates that the factor (Part, Operator, or their interaction) contributes meaningfully to the observed variation. The p-value tells us the probability of seeing such an F-value if the factor had no real effect.
+
+From the ANOVA table's Mean Squares, we extract **variance components** ($\sigma^2$) for each source, then combine them to calculate the standard metrics: %EV (repeatability), %AV (reproducibility), %GRR, and the number of distinct categories (ndc).
 
 ```{r anova-method, echo=TRUE}
 # Full Gauge R&R using ANOVA method
@@ -15798,13 +15834,43 @@ For pass/fail or categorical measurements (visual inspection, go/no-go gauges), 
 
 ### Kappa Statistic
 
-The **Kappa statistic** measures agreement beyond chance:
+When evaluating attribute measurement systems (pass/fail, accept/reject, visual inspection), you might think that **percent agreement** would be sufficient—if two inspectors agree 90% of the time, isn't that good enough? The problem is that some agreement happens purely by chance, and percent agreement doesn't account for this.
+
+#### Why Percent Agreement Can Be Misleading
+
+Consider a visual inspection where 95% of parts are good. If an inspector simply guesses "Accept" for every part (without even looking), they would be "correct" 95% of the time. Two such inspectors would agree 90.5% of the time by pure chance:
+
+$$P_e = P(\text{both say Accept}) + P(\text{both say Reject}) = 0.95^2 + 0.05^2 = 0.905$$
+
+This is why we need **Cohen's Kappa** ($\kappa$)—it measures agreement *beyond what we'd expect from chance alone*.
+
+#### The Kappa Formula
 
 $$\kappa = \frac{P_o - P_e}{1 - P_e}$$
 
 Where:
-- $P_o$ = Observed proportion of agreement
-- $P_e$ = Expected proportion of agreement by chance
+
+- $P_o$ = Observed proportion of agreement (how often they actually agree)
+- $P_e$ = Expected proportion of agreement by chance (how often they'd agree if guessing randomly based on their individual tendencies)
+- $1 - P_e$ = Maximum possible agreement beyond chance
+
+**Interpreting the formula:** The numerator ($P_o - P_e$) represents *actual agreement minus chance agreement*—the "real" agreement attributable to consistent measurement. The denominator ($1 - P_e$) normalizes this to a 0–1 scale by dividing by the maximum possible improvement over chance.
+
+| Kappa Value | Meaning |
+|-------------|---------|
+| $\kappa = 1$ | Perfect agreement (everyone agrees, and not by chance) |
+| $\kappa = 0$ | Agreement equals chance—no better than random guessing |
+| $\kappa < 0$ | Agreement is *worse* than chance (systematic disagreement) |
+
+#### When to Use Kappa
+
+Use Kappa when evaluating:
+
+- **Inspector vs. Reference**: Does the operator match the known correct answer? (Most important for MSA)
+- **Inspector vs. Inspector**: Do two operators classify the same parts the same way?
+- **Inspector vs. Self (Repeatability)**: Does the same operator give the same answer when re-inspecting the same part?
+
+For a robust attribute MSA, you should calculate Kappa for all three comparisons. High agreement with other operators but low agreement with the reference standard indicates *consistent but incorrect* inspection—a training problem.
 
 ```{r kappa-interpretation, echo=FALSE}
 kappa_table <- data.frame(
@@ -16707,19 +16773,19 @@ By the end of this chapter, you will be able to:
 ggplot() +
   # Total
   annotate("rect", xmin = 0, xmax = 3, ymin = 0, ymax = 3, fill = "#3498DB", alpha = 0.8) +
-  annotate("text", x = 1.5, y = 2.5, label = "TOTAL", fontface = "bold", size = 5, color = "white") +
+  annotate("text", x = 1.5, y = 2.5, label = "TOTAL", fontface = "bold", size = 6, color = "white") +
   annotate("text", x = 1.5, y = 1.5, label = "Everyone\nparticipates\n\nAll departments\nAll levels",
-           size = 3, color = "white", lineheight = 0.9) +
+           size = 4, color = "white", lineheight = 0.9) +
   # Productive
   annotate("rect", xmin = 3.5, xmax = 6.5, ymin = 0, ymax = 3, fill = "#27AE60", alpha = 0.8) +
-  annotate("text", x = 5, y = 2.5, label = "PRODUCTIVE", fontface = "bold", size = 5, color = "white") +
+  annotate("text", x = 5, y = 2.5, label = "PRODUCTIVE", fontface = "bold", size = 6, color = "white") +
   annotate("text", x = 5, y = 1.5, label = "Maximize\neffectiveness\n\nZero losses\nZero defects",
-           size = 3, color = "white", lineheight = 0.9) +
+           size = 4, color = "white", lineheight = 0.9) +
   # Maintenance
   annotate("rect", xmin = 7, xmax = 10, ymin = 0, ymax = 3, fill = "#E74C3C", alpha = 0.8) +
-  annotate("text", x = 8.5, y = 2.5, label = "MAINTENANCE", fontface = "bold", size = 5, color = "white") +
+  annotate("text", x = 8.5, y = 2.5, label = "MAINTENANCE", fontface = "bold", size = 6, color = "white") +
   annotate("text", x = 8.5, y = 1.5, label = "Equipment\ncare\n\nPrevent failures\nExtend life",
-           size = 3, color = "white", lineheight = 0.9) +
+           size = 4, color = "white", lineheight = 0.9) +
   theme_void() +
   labs(title = "Total Productive Maintenance: Breaking Down the Name",
        subtitle = "A company-wide approach to equipment effectiveness") +
@@ -16772,7 +16838,7 @@ goals <- data.frame(
 ggplot(goals, aes(x = x, y = 1)) +
   geom_point(size = 30, color = "#E74C3C") +
   geom_text(aes(label = goal), y = 1, color = "white", fontface = "bold", size = 4, lineheight = 0.9) +
-  geom_text(aes(label = impact), y = 0.3, color = "#2C3E50", size = 3.5, lineheight = 0.9) +
+  geom_text(aes(label = impact), y = 0.3, color = "#2C3E50", size = 4.5, lineheight = 0.9) +
   annotate("segment", x = 0.3, xend = 3.7, y = 0.6, yend = 0.6,
            arrow = arrow(length = unit(0.2, "cm"), ends = "both"), color = "#27AE60", linewidth = 1.5) +
   annotate("text", x = 2, y = 0.5, label = "= Maximum OEE", color = "#27AE60", fontface = "bold", size = 4) +
@@ -16841,44 +16907,44 @@ ggplot() +
   # Foundation
   annotate("rect", xmin = 0, xmax = 10, ymin = 0, ymax = 1, fill = "#2C3E50", color = "black") +
   annotate("text", x = 5, y = 0.5, label = "FOUNDATION: 5S (Sort, Set in Order, Shine, Standardize, Sustain)",
-           color = "white", fontface = "bold", size = 3.5) +
+           color = "white", fontface = "bold", size = 4.5) +
   # Roof
   annotate("polygon", x = c(-0.5, 5, 10.5), y = c(5.2, 6.5, 5.2), fill = "#C0392B", color = "black") +
   annotate("text", x = 5, y = 5.7, label = "ZERO LOSSES: Zero Breakdowns • Zero Defects • Zero Accidents",
-           color = "white", fontface = "bold", size = 3.5) +
+           color = "white", fontface = "bold", size = 4.5) +
 
   # Pillar 1
   annotate("rect", xmin = 0.2, xmax = 1.1, ymin = 1.2, ymax = 5, fill = "#E74C3C", color = "black") +
   annotate("text", x = 0.65, y = 3.1, label = "Autonomous\nMaintenance", color = "white",
-           fontface = "bold", size = 2.5, lineheight = 0.9, angle = 90) +
+           fontface = "bold", size = 3.5, lineheight = 0.9, angle = 90) +
   # Pillar 2
   annotate("rect", xmin = 1.4, xmax = 2.3, ymin = 1.2, ymax = 5, fill = "#E67E22", color = "black") +
   annotate("text", x = 1.85, y = 3.1, label = "Planned\nMaintenance", color = "white",
-           fontface = "bold", size = 2.5, lineheight = 0.9, angle = 90) +
+           fontface = "bold", size = 3.5, lineheight = 0.9, angle = 90) +
   # Pillar 3
   annotate("rect", xmin = 2.6, xmax = 3.5, ymin = 1.2, ymax = 5, fill = "#F1C40F", color = "black") +
   annotate("text", x = 3.05, y = 3.1, label = "Quality\nMaintenance", color = "white",
-           fontface = "bold", size = 2.5, lineheight = 0.9, angle = 90) +
+           fontface = "bold", size = 3.5, lineheight = 0.9, angle = 90) +
   # Pillar 4
   annotate("rect", xmin = 3.8, xmax = 4.7, ymin = 1.2, ymax = 5, fill = "#27AE60", color = "black") +
   annotate("text", x = 4.25, y = 3.1, label = "Focused\nImprovement", color = "white",
-           fontface = "bold", size = 2.5, lineheight = 0.9, angle = 90) +
+           fontface = "bold", size = 3.5, lineheight = 0.9, angle = 90) +
   # Pillar 5
   annotate("rect", xmin = 5, xmax = 5.9, ymin = 1.2, ymax = 5, fill = "#3498DB", color = "black") +
   annotate("text", x = 5.45, y = 3.1, label = "Early Equip.\nManagement", color = "white",
-           fontface = "bold", size = 2.5, lineheight = 0.9, angle = 90) +
+           fontface = "bold", size = 3.5, lineheight = 0.9, angle = 90) +
   # Pillar 6
   annotate("rect", xmin = 6.2, xmax = 7.1, ymin = 1.2, ymax = 5, fill = "#9B59B6", color = "black") +
   annotate("text", x = 6.65, y = 3.1, label = "Training &\nEducation", color = "white",
-           fontface = "bold", size = 2.5, lineheight = 0.9, angle = 90) +
+           fontface = "bold", size = 3.5, lineheight = 0.9, angle = 90) +
   # Pillar 7
   annotate("rect", xmin = 7.4, xmax = 8.3, ymin = 1.2, ymax = 5, fill = "#1ABC9C", color = "black") +
   annotate("text", x = 7.85, y = 3.1, label = "Safety, Health\nEnvironment", color = "white",
-           fontface = "bold", size = 2.5, lineheight = 0.9, angle = 90) +
+           fontface = "bold", size = 3.5, lineheight = 0.9, angle = 90) +
   # Pillar 8
   annotate("rect", xmin = 8.6, xmax = 9.5, ymin = 1.2, ymax = 5, fill = "#34495E", color = "black") +
   annotate("text", x = 9.05, y = 3.1, label = "TPM in\nOffice", color = "white",
-           fontface = "bold", size = 2.5, lineheight = 0.9, angle = 90) +
+           fontface = "bold", size = 3.5, lineheight = 0.9, angle = 90) +
 
   theme_void() +
   labs(title = "The House of TPM: Eight Pillars Built on 5S Foundation") +
@@ -16913,7 +16979,7 @@ pillars <- tibble(
 pillars %>%
   kable(format = "html", caption = "The Eight Pillars of TPM") %>%
   kable_styling(bootstrap_options = c("striped", "hover", "bordered", "responsive"),
-                full_width = TRUE, position = "center", font_size = 11) %>%
+                full_width = TRUE, position = "center", font_size = 13) %>%
   row_spec(0, bold = TRUE, background = "#8E44AD", color = "white") %>%
   column_spec(1, bold = TRUE, width = "3em")
 ```
@@ -16931,32 +16997,32 @@ ggplot() +
   # Main formula box
   annotate("rect", xmin = 2, xmax = 8, ymin = 4.5, ymax = 5.5, fill = "#2C3E50", color = "black") +
   annotate("text", x = 5, y = 5, label = "OEE = Availability × Performance × Quality",
-           color = "white", fontface = "bold", size = 5) +
+           color = "white", fontface = "bold", size = 6) +
 
   # Three components
   # Availability
   annotate("rect", xmin = 0.5, xmax = 3, ymin = 2, ymax = 4, fill = "#3498DB", color = "black") +
-  annotate("text", x = 1.75, y = 3.6, label = "AVAILABILITY", color = "white", fontface = "bold", size = 4) +
+  annotate("text", x = 1.75, y = 3.6, label = "AVAILABILITY", color = "white", fontface = "bold", size = 5) +
   annotate("text", x = 1.75, y = 3, label = "Run Time\n÷\nPlanned Production Time",
-           color = "white", size = 3, lineheight = 0.9) +
+           color = "white", size = 4, lineheight = 0.9) +
   annotate("text", x = 1.75, y = 1.5, label = "Downtime\nLosses", color = "#3498DB",
-           fontface = "bold", size = 3, lineheight = 0.9) +
+           fontface = "bold", size = 4, lineheight = 0.9) +
 
   # Performance
   annotate("rect", xmin = 3.5, xmax = 6.5, ymin = 2, ymax = 4, fill = "#27AE60", color = "black") +
-  annotate("text", x = 5, y = 3.6, label = "PERFORMANCE", color = "white", fontface = "bold", size = 4) +
+  annotate("text", x = 5, y = 3.6, label = "PERFORMANCE", color = "white", fontface = "bold", size = 5) +
   annotate("text", x = 5, y = 3, label = "Ideal Cycle Time × Total Count\n÷\nRun Time",
-           color = "white", size = 3, lineheight = 0.9) +
+           color = "white", size = 4, lineheight = 0.9) +
   annotate("text", x = 5, y = 1.5, label = "Speed\nLosses", color = "#27AE60",
-           fontface = "bold", size = 3, lineheight = 0.9) +
+           fontface = "bold", size = 4, lineheight = 0.9) +
 
   # Quality
   annotate("rect", xmin = 7, xmax = 9.5, ymin = 2, ymax = 4, fill = "#E74C3C", color = "black") +
-  annotate("text", x = 8.25, y = 3.6, label = "QUALITY", color = "white", fontface = "bold", size = 4) +
+  annotate("text", x = 8.25, y = 3.6, label = "QUALITY", color = "white", fontface = "bold", size = 5) +
   annotate("text", x = 8.25, y = 3, label = "Good Count\n÷\nTotal Count",
-           color = "white", size = 3, lineheight = 0.9) +
+           color = "white", size = 4, lineheight = 0.9) +
   annotate("text", x = 8.25, y = 1.5, label = "Quality\nLosses", color = "#E74C3C",
-           fontface = "bold", size = 3, lineheight = 0.9) +
+           fontface = "bold", size = 4, lineheight = 0.9) +
 
   # Arrows
   annotate("segment", x = 1.75, xend = 1.75, y = 4, yend = 4.5,
@@ -16968,7 +17034,7 @@ ggplot() +
 
   theme_void() +
   labs(title = "OEE: The TPM Scorecard") +
-  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14)) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 16)) +
   ylim(1, 6)
 ```
 
@@ -17068,34 +17134,35 @@ cat("OEE =", round(oee, 1), "%\n")
 ```
 
 ```{r oee-waterfall, echo=FALSE, fig.align="center", fig.cap="OEE Waterfall Chart: Where Time Goes", fig.width=10, fig.height=6}
-# Create waterfall data
+# Create waterfall data with proper cascading structure
 waterfall <- data.frame(
-  category = c("Shift Time", "Planned DT", "Breakdowns", "Changeover",
-               "Speed Loss", "Defects", "Value-Added"),
+  category = factor(c("Shift Time", "Planned DT", "Breakdowns", "Changeover",
+                      "Speed Loss", "Defects", "Value-Added"),
+                    levels = c("Shift Time", "Planned DT", "Breakdowns", "Changeover",
+                               "Speed Loss", "Defects", "Value-Added")),
   value = c(480, -30, -25, -45, -30, -17.5, 332.5),
   type = c("start", "loss", "loss", "loss", "loss", "loss", "end")
 )
 
+# Calculate cascading positions
 waterfall$end <- cumsum(c(480, -30, -25, -45, -30, -17.5, 0))
 waterfall$start <- c(0, waterfall$end[1:6])
-waterfall$start[7] <- 0
+waterfall$start[7] <- 0  # Final bar starts from 0
 
-ggplot(waterfall, aes(x = reorder(category, -abs(value)))) +
-  geom_rect(aes(xmin = as.numeric(factor(category)) - 0.4,
-                xmax = as.numeric(factor(category)) + 0.4,
+ggplot(waterfall, aes(x = category)) +
+  geom_rect(aes(xmin = as.numeric(category) - 0.4,
+                xmax = as.numeric(category) + 0.4,
                 ymin = pmin(start, end), ymax = pmax(start, end),
                 fill = type), color = "black") +
   geom_text(aes(y = (start + end)/2, label = abs(value)), fontface = "bold") +
   scale_fill_manual(values = c("start" = "#3498DB", "loss" = "#E74C3C", "end" = "#27AE60")) +
-  scale_x_discrete(limits = c("Shift Time", "Planned DT", "Breakdowns", "Changeover",
-                               "Speed Loss", "Defects", "Value-Added")) +
   labs(title = "OEE Waterfall: From Total Time to Value-Added Time",
        subtitle = "Every loss category reduces available productive time",
        x = "", y = "Minutes") +
   theme_minimal() +
   theme(
-    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
-    plot.subtitle = element_text(hjust = 0.5, size = 10),
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 16),
+    plot.subtitle = element_text(hjust = 0.5, size = 12),
     legend.position = "none",
     axis.text.x = element_text(angle = 30, hjust = 1)
   )
@@ -17176,10 +17243,10 @@ ggplot() +
            color = "#3498DB", size = 4) +
   annotate("rect", xmin = 0.2, xmax = 1.4, ymin = 4.2, ymax = 5.8, fill = "#3498DB", color = "black") +
   annotate("text", x = 0.8, y = 5.4, label = "1", fontface = "bold", color = "white", size = 5) +
-  annotate("text", x = 0.8, y = 5, label = "Equipment\nFailure", color = "white", size = 3, lineheight = 0.9) +
+  annotate("text", x = 0.8, y = 5, label = "Equipment\nFailure", color = "white", size = 4, lineheight = 0.9) +
   annotate("rect", xmin = 1.6, xmax = 3, ymin = 4.2, ymax = 5.8, fill = "#3498DB", color = "black") +
   annotate("text", x = 2.3, y = 5.4, label = "2", fontface = "bold", color = "white", size = 5) +
-  annotate("text", x = 2.3, y = 5, label = "Setup &\nAdjustment", color = "white", size = 3, lineheight = 0.9) +
+  annotate("text", x = 2.3, y = 5, label = "Setup &\nAdjustment", color = "white", size = 4, lineheight = 0.9) +
 
   # Performance losses (green)
   annotate("rect", xmin = 3.4, xmax = 6.6, ymin = 4, ymax = 6.5, fill = "#27AE60", alpha = 0.2) +
@@ -17187,10 +17254,10 @@ ggplot() +
            color = "#27AE60", size = 4) +
   annotate("rect", xmin = 3.6, xmax = 4.8, ymin = 4.2, ymax = 5.8, fill = "#27AE60", color = "black") +
   annotate("text", x = 4.2, y = 5.4, label = "3", fontface = "bold", color = "white", size = 5) +
-  annotate("text", x = 4.2, y = 5, label = "Idling &\nMinor Stops", color = "white", size = 3, lineheight = 0.9) +
+  annotate("text", x = 4.2, y = 5, label = "Idling &\nMinor Stops", color = "white", size = 4, lineheight = 0.9) +
   annotate("rect", xmin = 5, xmax = 6.4, ymin = 4.2, ymax = 5.8, fill = "#27AE60", color = "black") +
   annotate("text", x = 5.7, y = 5.4, label = "4", fontface = "bold", color = "white", size = 5) +
-  annotate("text", x = 5.7, y = 5, label = "Reduced\nSpeed", color = "white", size = 3, lineheight = 0.9) +
+  annotate("text", x = 5.7, y = 5, label = "Reduced\nSpeed", color = "white", size = 4, lineheight = 0.9) +
 
   # Quality losses (orange)
   annotate("rect", xmin = 6.8, xmax = 10, ymin = 4, ymax = 6.5, fill = "#E74C3C", alpha = 0.2) +
@@ -17198,14 +17265,14 @@ ggplot() +
            color = "#E74C3C", size = 4) +
   annotate("rect", xmin = 7, xmax = 8.2, ymin = 4.2, ymax = 5.8, fill = "#E74C3C", color = "black") +
   annotate("text", x = 7.6, y = 5.4, label = "5", fontface = "bold", color = "white", size = 5) +
-  annotate("text", x = 7.6, y = 5, label = "Process\nDefects", color = "white", size = 3, lineheight = 0.9) +
+  annotate("text", x = 7.6, y = 5, label = "Process\nDefects", color = "white", size = 4, lineheight = 0.9) +
   annotate("rect", xmin = 8.4, xmax = 9.8, ymin = 4.2, ymax = 5.8, fill = "#E74C3C", color = "black") +
   annotate("text", x = 9.1, y = 5.4, label = "6", fontface = "bold", color = "white", size = 5) +
-  annotate("text", x = 9.1, y = 5, label = "Startup\nRejects", color = "white", size = 3, lineheight = 0.9) +
+  annotate("text", x = 9.1, y = 5, label = "Startup\nRejects", color = "white", size = 4, lineheight = 0.9) +
 
   theme_void() +
   labs(title = "The Six Big Losses: Targets for TPM Improvement") +
-  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14)) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 16)) +
   ylim(3.5, 7)
 ```
 
@@ -17233,7 +17300,7 @@ losses_detail <- tibble(
 losses_detail %>%
   kable(format = "html", caption = "The Six Big Losses Explained") %>%
   kable_styling(bootstrap_options = c("striped", "hover", "bordered", "responsive"),
-                full_width = TRUE, position = "center", font_size = 11) %>%
+                full_width = TRUE, position = "center", font_size = 13) %>%
   row_spec(0, bold = TRUE, background = "#E67E22", color = "white") %>%
   row_spec(1:2, background = "#D6EAF8") %>%
   row_spec(3:4, background = "#D5F5E3") %>%
@@ -17288,18 +17355,18 @@ steps <- data.frame(
 
 ggplot(steps, aes(x = 1, y = y)) +
   geom_tile(width = 2, height = 0.8, fill = "#E74C3C", color = "white", linewidth = 2) +
-  geom_text(aes(x = 0.2, label = step), fontface = "bold", color = "white", size = 5) +
-  geom_text(aes(x = 1.2, label = name), fontface = "bold", color = "white", size = 3.5) +
-  geom_text(aes(x = 2.8, label = description), hjust = 0, color = "#2C3E50", size = 3.5) +
-  # Arrows
-  annotate("segment", x = 1, xend = 1, y = 0.5, yend = 7.5,
+  geom_text(aes(x = 0.2, label = step), fontface = "bold", color = "white", size = 5.5) +
+  geom_text(aes(x = 1.2, label = name), fontface = "bold", color = "white", size = 4.5) +
+  geom_text(aes(x = 2.8, label = description), hjust = 0, color = "#2C3E50", size = 4.5) +
+  # Arrow between boxes and descriptions
+  annotate("segment", x = 2.55, xend = 2.4, y = 0.5, yend = 7.5,
            arrow = arrow(length = unit(0.3, "cm"), ends = "first"), color = "#27AE60", linewidth = 2) +
-  annotate("text", x = -0.3, y = 4, label = "Progress", angle = 90, fontface = "bold",
+  annotate("text", x = 2.4, y = 4, label = "Progress", angle = 270, fontface = "bold",
            color = "#27AE60", size = 4) +
   theme_void() +
   labs(title = "Seven Steps of Autonomous Maintenance") +
   theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14)) +
-  xlim(-0.8, 5)
+  xlim(-0.5, 5.5)
 ```
 
 ```{r am-steps-detail, echo=FALSE}
@@ -17339,21 +17406,21 @@ During autonomous maintenance activities, operators identify abnormalities using
 
 ```{r tag-system, echo=FALSE, fig.align="center", fig.cap="AM Tag System", fig.width=9, fig.height=4}
 ggplot() +
-  # Red tag
-  annotate("rect", xmin = 0.5, xmax = 2.5, ymin = 0, ymax = 3, fill = "#E74C3C", color = "black") +
-  annotate("text", x = 1.5, y = 2.5, label = "RED TAG", fontface = "bold", color = "white", size = 5) +
-  annotate("text", x = 1.5, y = 1.5, label = "Maintenance\nRequired\n\nOperator cannot fix",
-           color = "white", size = 3, lineheight = 0.9) +
-  # White/Blue tag
-  annotate("rect", xmin = 3.5, xmax = 5.5, ymin = 0, ymax = 3, fill = "#3498DB", color = "black") +
-  annotate("text", x = 4.5, y = 2.5, label = "BLUE TAG", fontface = "bold", color = "white", size = 5) +
-  annotate("text", x = 4.5, y = 1.5, label = "Operator\nAction\n\nOperator can fix",
-           color = "white", size = 3, lineheight = 0.9) +
   # Yellow tag
-  annotate("rect", xmin = 6.5, xmax = 8.5, ymin = 0, ymax = 3, fill = "#F1C40F", color = "black") +
-  annotate("text", x = 7.5, y = 2.5, label = "YELLOW TAG", fontface = "bold", color = "black", size = 5) +
-  annotate("text", x = 7.5, y = 1.5, label = "Safety\nHazard\n\nImmediate attention",
-           color = "black", size = 3, lineheight = 0.9) +
+  annotate("rect", xmin = 0.5, xmax = 2.5, ymin = 0, ymax = 3, fill = "#F1C40F", color = "black") +
+  annotate("text", x = 1.5, y = 2.5, label = "YELLOW TAG", fontface = "bold", color = "black", size = 5) +
+  annotate("text", x = 1.5, y = 1.5, label = "Safety\nHazard\n\nImmediate attention",
+           color = "black", size = 4, lineheight = 0.9) +
+  # Red tag
+  annotate("rect", xmin = 3.5, xmax = 5.5, ymin = 0, ymax = 3, fill = "#E74C3C", color = "black") +
+  annotate("text", x = 4.5, y = 2.5, label = "RED TAG", fontface = "bold", color = "white", size = 5) +
+  annotate("text", x = 4.5, y = 1.5, label = "Maintenance\nRequired\n\nOperator cannot fix",
+           color = "white", size = 4, lineheight = 0.9) +
+  # Blue tag
+  annotate("rect", xmin = 6.5, xmax = 8.5, ymin = 0, ymax = 3, fill = "#3498DB", color = "black") +
+  annotate("text", x = 7.5, y = 2.5, label = "BLUE TAG", fontface = "bold", color = "white", size = 5) +
+  annotate("text", x = 7.5, y = 1.5, label = "Operator\nAction\n\nOperator can fix",
+           color = "white", size = 4, lineheight = 0.9) +
   theme_void() +
   labs(title = "AM Tag System: Identifying and Tracking Abnormalities") +
   theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14))
@@ -17396,31 +17463,31 @@ checklist %>%
 ggplot() +
   # Reactive
   annotate("rect", xmin = 0, xmax = 2.3, ymin = 0, ymax = 3, fill = "#E74C3C", alpha = 0.8) +
-  annotate("text", x = 1.15, y = 2.5, label = "REACTIVE", fontface = "bold", color = "white", size = 4) +
+  annotate("text", x = 1.15, y = 2.5, label = "REACTIVE", fontface = "bold", color = "white", size = 5) +
   annotate("text", x = 1.15, y = 1.5, label = "Breakdown\nMaintenance\n\nFix when broken",
-           color = "white", size = 3, lineheight = 0.9) +
+           color = "white", size = 4, lineheight = 0.9) +
   # Preventive
   annotate("rect", xmin = 2.6, xmax = 4.9, ymin = 0, ymax = 3, fill = "#F39C12", alpha = 0.8) +
-  annotate("text", x = 3.75, y = 2.5, label = "PREVENTIVE", fontface = "bold", color = "white", size = 4) +
+  annotate("text", x = 3.75, y = 2.5, label = "PREVENTIVE", fontface = "bold", color = "white", size = 5) +
   annotate("text", x = 3.75, y = 1.5, label = "Time-Based\nMaintenance\n\nScheduled intervals",
-           color = "white", size = 3, lineheight = 0.9) +
+           color = "white", size = 4, lineheight = 0.9) +
   # Predictive
   annotate("rect", xmin = 5.2, xmax = 7.5, ymin = 0, ymax = 3, fill = "#3498DB", alpha = 0.8) +
-  annotate("text", x = 6.35, y = 2.5, label = "PREDICTIVE", fontface = "bold", color = "white", size = 4) +
+  annotate("text", x = 6.35, y = 2.5, label = "PREDICTIVE", fontface = "bold", color = "white", size = 5) +
   annotate("text", x = 6.35, y = 1.5, label = "Condition-Based\nMaintenance\n\nMonitor & predict",
-           color = "white", size = 3, lineheight = 0.9) +
+           color = "white", size = 4, lineheight = 0.9) +
   # Proactive
   annotate("rect", xmin = 7.8, xmax = 10.1, ymin = 0, ymax = 3, fill = "#27AE60", alpha = 0.8) +
-  annotate("text", x = 8.95, y = 2.5, label = "PROACTIVE", fontface = "bold", color = "white", size = 4) +
+  annotate("text", x = 8.95, y = 2.5, label = "PROACTIVE", fontface = "bold", color = "white", size = 5) +
   annotate("text", x = 8.95, y = 1.5, label = "Root Cause\nElimination\n\nPrevent recurrence",
-           color = "white", size = 3, lineheight = 0.9) +
+           color = "white", size = 4, lineheight = 0.9) +
   # Arrow
   annotate("segment", x = 0.5, xend = 9.5, y = -0.5, yend = -0.5,
            arrow = arrow(length = unit(0.3, "cm")), color = "#2C3E50", linewidth = 1.5) +
   annotate("text", x = 5, y = -0.8, label = "Increasing Maturity →", fontface = "bold") +
   theme_void() +
   labs(title = "Evolution of Maintenance Strategy") +
-  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14)) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 16)) +
   ylim(-1.2, 3.5)
 ```
 
@@ -17477,44 +17544,80 @@ pdm_tech %>%
 
 The **P-F Curve** illustrates the concept of detecting potential failure (P) before functional failure (F).
 
-```{r pf-curve, echo=FALSE, fig.align="center", fig.cap="The P-F Curve: Detecting Failure Early", fig.width=10, fig.height=6}
-# Create P-F curve data
-x <- seq(0, 10, 0.1)
-y <- 100 - 10*exp(0.3*x - 1.5)
-y <- pmax(y, 0)
+```{r pf-curve, echo=FALSE, fig.align="center", fig.cap="The P-F Curve: Detecting Failure Early", fig.width=12, fig.height=7}
+# Create P-F curve with gradual decline then steeper drop
+x <- seq(0, 10, 0.01)
+# Curve: starts flat, gradual decline, then steeper toward failure
+y <- 95 - 5*(x/10)^0.5 - 40*(x/10)^2.5
+y <- pmax(y, 5)
 
 pf_data <- data.frame(x = x, y = y)
 
+# Define zone boundaries based on curve
+p_x <- 3.5  # Point of potential failure detection
+f_x <- 8.5  # Functional failure point
+
 ggplot(pf_data, aes(x = x, y = y)) +
-  geom_line(linewidth = 2, color = "#E74C3C") +
+  # Colored zones under the curve
+  geom_ribbon(data = subset(pf_data, x <= 2), aes(ymin = 0, ymax = y), fill = "#27AE60", alpha = 0.4) +
+  geom_ribbon(data = subset(pf_data, x >= 2 & x <= 5), aes(ymin = 0, ymax = y), fill = "#F1C40F", alpha = 0.4) +
+  geom_ribbon(data = subset(pf_data, x >= 5 & x <= 7.5), aes(ymin = 0, ymax = y), fill = "#E67E22", alpha = 0.4) +
+  geom_ribbon(data = subset(pf_data, x >= 7.5), aes(ymin = 0, ymax = y), fill = "#E74C3C", alpha = 0.4) +
+  # Main curve
+  geom_line(linewidth = 2.5, color = "#2C3E50") +
+  # Zone labels
+  annotate("text", x = 1, y = 45, label = "Design for\nReliability", fontface = "bold",
+           color = "#1E8449", size = 3.5, lineheight = 0.9) +
+  annotate("text", x = 3.5, y = 35, label = "Condition Based\nMaintenance", fontface = "bold",
+           color = "#B7950B", size = 3.5, lineheight = 0.9) +
+  annotate("text", x = 6.2, y = 25, label = "Planned\nPreventative\nMaintenance", fontface = "bold",
+           color = "#CA6F1E", size = 3.5, lineheight = 0.85) +
+  annotate("text", x = 8.8, y = 18, label = "Reactive /\nRun-To-Failure", fontface = "bold",
+           color = "#922B21", size = 3.5, lineheight = 0.9) +
   # P point
-  geom_point(aes(x = 4, y = 75), size = 5, color = "#F39C12") +
-  annotate("text", x = 4, y = 82, label = "P\n(Potential Failure)", fontface = "bold",
-           color = "#F39C12", lineheight = 0.9) +
+  annotate("point", x = p_x, y = pf_data$y[which.min(abs(pf_data$x - p_x))], size = 4, color = "#2C3E50") +
+  annotate("text", x = p_x, y = 100, label = "P", fontface = "bold", color = "#2C3E50", size = 6) +
+  annotate("text", x = p_x, y = 96, label = "oint of failure\ndetection", hjust = 0,
+           color = "#2C3E50", size = 3, lineheight = 0.9) +
   # F point
-  geom_point(aes(x = 9, y = 10), size = 5, color = "#E74C3C") +
-  annotate("text", x = 9, y = 18, label = "F\n(Functional Failure)", fontface = "bold",
-           color = "#E74C3C", lineheight = 0.9) +
-  # P-F interval
-  annotate("segment", x = 4, xend = 9, y = 50, yend = 50,
-           arrow = arrow(length = unit(0.15, "cm"), ends = "both"), color = "#27AE60", linewidth = 1.5) +
-  annotate("text", x = 6.5, y = 55, label = "P-F Interval\n(Time to plan repair)",
-           fontface = "bold", color = "#27AE60", lineheight = 0.9) +
-  # Detection methods
-  annotate("rect", xmin = 1, xmax = 3, ymin = 85, ymax = 95, fill = "#3498DB", alpha = 0.7) +
-  annotate("text", x = 2, y = 90, label = "Vibration\nAnalysis", color = "white", size = 3, lineheight = 0.9) +
-  annotate("rect", xmin = 3.5, xmax = 5.5, ymin = 65, ymax = 75, fill = "#9B59B6", alpha = 0.7) +
-  annotate("text", x = 4.5, y = 70, label = "Thermography", color = "white", size = 3) +
-  annotate("rect", xmin = 6, xmax = 8, ymin = 35, ymax = 45, fill = "#E67E22", alpha = 0.7) +
-  annotate("text", x = 7, y = 40, label = "Audible\nNoise", color = "white", size = 3, lineheight = 0.9) +
-  labs(title = "The P-F Curve: Detecting Potential Failure",
-       subtitle = "Earlier detection = More time to plan = Lower cost repair",
-       x = "Time", y = "Equipment Condition") +
+  annotate("point", x = f_x, y = pf_data$y[which.min(abs(pf_data$x - f_x))], size = 4, color = "#C0392B") +
+  annotate("text", x = f_x, y = 100, label = "F", fontface = "bold", color = "#C0392B", size = 6) +
+  annotate("text", x = f_x, y = 96, label = "unctional failure", hjust = 0,
+           color = "#C0392B", size = 3, lineheight = 0.9) +
+  # Detection methods along curve (angled text)
+  annotate("text", x = 0.3, y = 100, label = "Installation", angle = 55, hjust = 0,
+           color = "#2C3E50", size = 3, fontface = "italic") +
+  annotate("text", x = 4.2, y = 100, label = "Ultrasound", angle = 55, hjust = 0,
+           color = "#2C3E50", size = 3, fontface = "italic") +
+  annotate("text", x = 4.8, y = 100, label = "Vibration Analysis", angle = 55, hjust = 0,
+           color = "#2C3E50", size = 3, fontface = "italic") +
+  annotate("text", x = 5.5, y = 100, label = "Oil Analysis", angle = 55, hjust = 0,
+           color = "#2C3E50", size = 3, fontface = "italic") +
+  annotate("text", x = 6.2, y = 100, label = "Thermography", angle = 55, hjust = 0,
+           color = "#2C3E50", size = 3, fontface = "italic") +
+  annotate("text", x = 7.8, y = 100, label = "Audible Noise", angle = 55, hjust = 0,
+           color = "#2C3E50", size = 3, fontface = "italic") +
+  annotate("text", x = 8.8, y = 100, label = "Hot to touch", angle = 55, hjust = 0,
+           color = "#2C3E50", size = 3, fontface = "italic") +
+  # Failed! label
+  annotate("text", x = 9.7, y = 35, label = "Failed!", fontface = "bold",
+           color = "#C0392B", size = 6) +
+  # P-F interval bracket at bottom
+  annotate("segment", x = p_x, xend = f_x, y = -5, yend = -5,
+           arrow = arrow(length = unit(0.15, "cm"), ends = "both"), color = "#2C3E50", linewidth = 1) +
+  annotate("text", x = (p_x + f_x)/2, y = -10, label = "P to F Interval", fontface = "bold",
+           color = "#2C3E50", size = 4) +
+  # Axis settings
+  scale_y_continuous(limits = c(-15, 115), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(-0.5, 10.5), expand = c(0, 0)) +
+  labs(x = "TIME", y = "Resistance to Failure / Asset Condition") +
   theme_minimal() +
   theme(
-    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
-    plot.subtitle = element_text(hjust = 0.5, size = 10),
-    axis.text.x = element_blank()
+    plot.title = element_blank(),
+    axis.title = element_text(face = "bold", size = 11),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
   )
 ```
 
@@ -17558,23 +17661,23 @@ ggplot() +
   # Steps
   annotate("rect", xmin = 0, xmax = 1.8, ymin = 1, ymax = 2.5, fill = "#3498DB", color = "black") +
   annotate("text", x = 0.9, y = 2.1, label = "1. SELECT", fontface = "bold", color = "white", size = 3.5) +
-  annotate("text", x = 0.9, y = 1.5, label = "Identify\nbiggest loss", color = "white", size = 2.5, lineheight = 0.9) +
+  annotate("text", x = 0.9, y = 1.5, label = "Identify\nbiggest loss", color = "white", size = 3.5, lineheight = 0.9) +
 
   annotate("rect", xmin = 2, xmax = 3.8, ymin = 1, ymax = 2.5, fill = "#27AE60", color = "black") +
   annotate("text", x = 2.9, y = 2.1, label = "2. ANALYZE", fontface = "bold", color = "white", size = 3.5) +
-  annotate("text", x = 2.9, y = 1.5, label = "Root cause\nanalysis", color = "white", size = 2.5, lineheight = 0.9) +
+  annotate("text", x = 2.9, y = 1.5, label = "Root cause\nanalysis", color = "white", size = 3.5, lineheight = 0.9) +
 
   annotate("rect", xmin = 4, xmax = 5.8, ymin = 1, ymax = 2.5, fill = "#F39C12", color = "black") +
   annotate("text", x = 4.9, y = 2.1, label = "3. DEVELOP", fontface = "bold", color = "white", size = 3.5) +
-  annotate("text", x = 4.9, y = 1.5, label = "Counter-\nmeasures", color = "white", size = 2.5, lineheight = 0.9) +
+  annotate("text", x = 4.9, y = 1.5, label = "Counter-\nmeasures", color = "white", size = 3.5, lineheight = 0.9) +
 
   annotate("rect", xmin = 6, xmax = 7.8, ymin = 1, ymax = 2.5, fill = "#E74C3C", color = "black") +
   annotate("text", x = 6.9, y = 2.1, label = "4. IMPLEMENT", fontface = "bold", color = "white", size = 3.5) +
-  annotate("text", x = 6.9, y = 1.5, label = "Execute\nplan", color = "white", size = 2.5, lineheight = 0.9) +
+  annotate("text", x = 6.9, y = 1.5, label = "Execute\nplan", color = "white", size = 3.5, lineheight = 0.9) +
 
   annotate("rect", xmin = 8, xmax = 9.8, ymin = 1, ymax = 2.5, fill = "#9B59B6", color = "black") +
   annotate("text", x = 8.9, y = 2.1, label = "5. SUSTAIN", fontface = "bold", color = "white", size = 3.5) +
-  annotate("text", x = 8.9, y = 1.5, label = "Standardize\n& share", color = "white", size = 2.5, lineheight = 0.9) +
+  annotate("text", x = 8.9, y = 1.5, label = "Standardize\n& share", color = "white", size = 3.5, lineheight = 0.9) +
 
   # Arrows
   annotate("segment", x = 1.8, xend = 2, y = 1.75, yend = 1.75,
@@ -17592,7 +17695,238 @@ ggplot() +
   ylim(0.5, 3)
 ```
 
+#### Understanding Kaizen
+
+**Kaizen** (改善) is a Japanese term meaning "change for better" or **continuous improvement**. Unlike large-scale transformation projects, Kaizen focuses on small, incremental improvements made consistently over time. The philosophy is built on the belief that every process can be improved, and everyone—from operators to managers—should participate in identifying and implementing improvements.
+
+**Core Principles of Kaizen:**
+
+- **Good processes bring good results** — Focus on improving the process, not blaming people
+- **Go see for yourself (Gemba)** — Understand the actual situation at the workplace
+- **Speak with data** — Base decisions on facts and measurements
+- **Take action to contain and correct root causes** — Don't just treat symptoms
+- **Work as a team** — Cross-functional collaboration produces better solutions
+- **Kaizen is everybody's business** — Every employee can contribute improvements
+
+#### The Five Steps in Detail
+
+**Step 1: SELECT — Identify the Biggest Loss**
+
+The first step uses data to identify which loss has the greatest impact on OEE. This typically involves:
+
+- Reviewing OEE data and breakdown logs
+- Creating Pareto charts to visualize loss magnitude
+- Selecting a loss that is significant, measurable, and within the team's ability to address
+- Forming a cross-functional team with members who understand the equipment and process
+
+*Key question: "Which single problem, if solved, would give us the biggest improvement?"*
+
+**Step 2: ANALYZE — Root Cause Analysis**
+
+Once a loss is selected, the team investigates its root cause using structured problem-solving tools:
+
+- **Why-Why Analysis (5 Whys)**: Repeatedly asking "why" to drill down from symptoms to root causes
+- **Fishbone Diagram (Ishikawa)**: Categorizing potential causes by Machine, Method, Material, Man, Measurement, Environment
+- **PM Analysis**: A systematic method for chronic losses that examines physical mechanisms
+- **Data collection**: Gathering facts at the Gemba (actual workplace)
+
+*Key principle: Never assume you know the cause—verify with evidence.*
+
+**Step 3: DEVELOP — Create Countermeasures**
+
+Based on root cause analysis, the team develops countermeasures—actions designed to eliminate or reduce the root cause:
+
+- Brainstorm multiple potential solutions
+- Evaluate options based on effectiveness, cost, and implementation time
+- Create an action plan with clear responsibilities and deadlines
+- Consider both immediate fixes and permanent solutions
+- Apply error-proofing (Poka-Yoke) where possible
+
+*Important: Countermeasures address root causes, not just symptoms.*
+
+**Step 4: IMPLEMENT — Execute the Plan**
+
+The team puts countermeasures into action:
+
+- Follow the action plan systematically
+- Make changes during planned downtime when possible
+- Document all modifications made
+- Train affected personnel on new procedures
+- Monitor results immediately after implementation
+- Be prepared to adjust if initial results are not as expected
+
+*Tip: Start with small-scale trials before full implementation when possible.*
+
+**Step 5: SUSTAIN — Standardize and Share**
+
+The final step ensures improvements are maintained and shared across the organization:
+
+- **Standardize**: Update procedures, checklists, and work instructions to reflect the new method
+- **Visualize**: Create visual controls that make the standard easy to follow
+- **Train**: Ensure all shifts and new employees learn the improved method
+- **Verify**: Include checks in AM routines or audits to confirm the standard is being followed
+- **Share**: Communicate successful improvements to other areas that might benefit (Yokoten—horizontal deployment)
+
+*Kaizen is never finished—today's standard is tomorrow's baseline for further improvement.*
+
+#### Kaizen Event vs. Daily Kaizen
+
+| Aspect | Kaizen Event (Blitz) | Daily Kaizen |
+|--------|---------------------|--------------|
+| **Duration** | 3-5 days intensive | Ongoing, small improvements |
+| **Scope** | Focused on one specific problem | Any improvement opportunity |
+| **Team** | Dedicated cross-functional team | Individual or small group |
+| **Impact** | Significant, measurable improvement | Cumulative effect over time |
+| **Example** | Reduce changeover time by 50% | Reorganize tool storage for easier access |
+
+Both approaches are valuable—Kaizen events tackle significant losses while daily Kaizen builds a culture of continuous improvement.
+
 ### Loss Elimination Tools
+
+Effective loss elimination requires systematic tools that help teams identify problems, find root causes, and implement lasting solutions. The following tools are essential for Focused Improvement activities.
+
+#### Pareto Analysis
+
+**Pareto Analysis** applies the 80/20 rule: roughly 80% of losses come from 20% of causes. By creating a Pareto chart, teams can visualize which losses have the greatest impact and prioritize their improvement efforts accordingly.
+
+**How to use:**
+
+1. Collect data on all losses (downtime events, defects, speed reductions)
+2. Categorize losses by type or cause
+3. Calculate the frequency or duration of each category
+4. Rank categories from highest to lowest
+5. Create a bar chart with a cumulative percentage line
+6. Focus improvement efforts on the "vital few" categories that account for most losses
+
+#### Why-Why Analysis (5 Whys)
+
+**Why-Why Analysis** is a simple but powerful technique for drilling down from a symptom to its root cause by repeatedly asking "Why?" The goal is to go beyond surface-level explanations to find the fundamental cause that, if addressed, will prevent recurrence.
+
+**Example:**
+
+| Level | Question | Answer |
+|-------|----------|--------|
+| Problem | Machine stopped | Overload tripped |
+| Why 1? | Why did the overload trip? | Motor drew excessive current |
+| Why 2? | Why excessive current? | Bearing was seized |
+| Why 3? | Why was bearing seized? | Insufficient lubrication |
+| Why 4? | Why insufficient lubrication? | Lubrication schedule not followed |
+| Why 5? | Why not followed? | No visual indicator when lubrication is due |
+| **Root Cause** | | Missing visual management for lubrication schedule |
+
+**Tips for effective Why-Why Analysis:**
+
+- Stay focused on one causal chain at a time
+- Base answers on facts, not assumptions—verify at the Gemba
+- Don't stop at "human error"—ask why the error was possible
+- The number 5 is a guideline, not a rule—continue until you reach a controllable root cause
+
+#### PM Analysis
+
+**PM Analysis** (Physical Mechanism Analysis or Phenomenon-Mechanism Analysis) is a systematic method for analyzing **chronic losses**—problems that occur repeatedly despite multiple repair attempts. It examines the physical principles behind equipment failures.
+
+**The PM Analysis Process:**
+
+1. **Clarify the phenomenon**: Describe exactly what happens, when, and under what conditions
+2. **Conduct physical analysis**: Understand the physical principles involved (friction, heat, vibration, etc.)
+3. **Identify conditions that produce the phenomenon**: List all conditions required for the problem to occur
+4. **Investigate equipment, materials, and methods**: Examine each condition against the 4Ms (Machine, Material, Method, Man)
+5. **Plan and implement countermeasures**: Address the conditions that allow the problem to occur
+6. **Verify results**: Confirm the chronic loss has been eliminated
+
+*PM Analysis is particularly valuable when Why-Why Analysis doesn't resolve a recurring problem.*
+
+#### SMED (Single-Minute Exchange of Die)
+
+**SMED** is a systematic approach to reducing changeover or setup time—the time between the last good part of one product and the first good part of the next. The goal is to complete changeovers in under 10 minutes (single-digit minutes).
+
+**The SMED Process:**
+
+```{r smed-steps2, echo=FALSE, fig.align="center", fig.cap="SMED Methodology", fig.width=10, fig.height=4}
+ggplot() +
+  # Step boxes
+  annotate("rect", xmin = 0.5, xmax = 2.5, ymin = 1, ymax = 2.5, fill = "#3498DB", color = "black") +
+  annotate("text", x = 1.5, y = 2.1, label = "Step 1", fontface = "bold", color = "white", size = 4) +
+  annotate("text", x = 1.5, y = 1.5, label = "Separate\nInternal & External", color = "white", size = 3, lineheight = 0.9) +
+
+  annotate("rect", xmin = 3, xmax = 5, ymin = 1, ymax = 2.5, fill = "#27AE60", color = "black") +
+  annotate("text", x = 4, y = 2.1, label = "Step 2", fontface = "bold", color = "white", size = 4) +
+  annotate("text", x = 4, y = 1.5, label = "Convert\nInternal to External", color = "white", size = 3, lineheight = 0.9) +
+
+  annotate("rect", xmin = 5.5, xmax = 7.5, ymin = 1, ymax = 2.5, fill = "#F39C12", color = "black") +
+  annotate("text", x = 6.5, y = 2.1, label = "Step 3", fontface = "bold", color = "white", size = 4) +
+  annotate("text", x = 6.5, y = 1.5, label = "Streamline\nAll Elements", color = "white", size = 3, lineheight = 0.9) +
+
+  # Arrows
+  annotate("segment", x = 2.5, xend = 3, y = 1.75, yend = 1.75,
+           arrow = arrow(length = unit(0.15, "cm")), linewidth = 1) +
+  annotate("segment", x = 5, xend = 5.5, y = 1.75, yend = 1.75,
+           arrow = arrow(length = unit(0.15, "cm")), linewidth = 1) +
+
+  theme_void() +
+  labs(title = "SMED: Reducing Changeover Time") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14)) +
+  ylim(0.5, 3)
+```
+
+**Key Concepts:**
+
+- **Internal setup**: Tasks that can only be done when the machine is stopped (changing the die itself)
+- **External setup**: Tasks that can be done while the machine is running (preparing tools, preheating)
+
+**Typical SMED Improvements:**
+
+| Technique | Example |
+|-----------|---------|
+| Prepare in advance | Stage tools and materials before stopping the machine |
+| Use quick-release clamps | Replace bolts with cam locks or hydraulic clamps |
+| Eliminate adjustments | Use fixtures, stops, and standardized settings |
+| Parallel operations | Two people working simultaneously on different tasks |
+| Standardize components | Use common bolt sizes, connection types |
+
+#### Poka-Yoke (Error-Proofing)
+
+**Poka-Yoke** (ポカヨケ) means "mistake-proofing" or "error-proofing." These are devices or methods that either prevent errors from occurring or detect them immediately when they do occur.
+
+**Types of Poka-Yoke:**
+
+| Type | Function | Example |
+|------|----------|---------|
+| **Prevention** | Makes errors impossible | Asymmetric connector that only fits one way |
+| **Detection** | Identifies errors immediately | Sensor that stops the line if a part is missing |
+| **Warning** | Alerts operator to potential error | Light or buzzer when a step is skipped |
+
+**Poka-Yoke Design Principles:**
+
+1. **Design out the possibility of error** — The best Poka-Yoke makes the error impossible
+2. **Detect at the source** — Catch errors where they occur, not downstream
+3. **Stop and fix immediately** — Don't pass defects to the next process
+4. **Keep it simple** — Low-cost, reliable solutions are better than complex ones
+
+**Examples in Manufacturing:**
+
+- **Guide pins** that prevent a part from being loaded incorrectly
+- **Counters** that verify the correct number of components were installed
+- **Checklists with physical verification** (e.g., removing a flag for each completed step)
+- **Limit switches** that confirm proper positioning before the cycle starts
+- **Color coding** to match parts with their correct locations
+
+<details>
+<summary>Question: How do you decide which tool to use?</summary>
+
+**Tool Selection Guide:**
+
+- **Pareto Analysis**: Use first to identify which loss to focus on
+- **Why-Why Analysis**: Use for sporadic failures with clear cause-effect relationships
+- **PM Analysis**: Use for chronic losses that keep recurring despite repairs
+- **SMED**: Use specifically for setup/changeover losses (Loss #2)
+- **Poka-Yoke**: Use to prevent defects and human errors (Losses #5, #6)
+
+Often, multiple tools are used together—Pareto to select the problem, Why-Why or PM Analysis to find the root cause, and Poka-Yoke to prevent recurrence.
+
+</details>
+
+#### Summary of Loss Elimination Tools
 
 ```{r loss-tools, echo=FALSE}
 tools <- tibble(
@@ -18092,11 +18426,12 @@ benefits <- data.frame(
 
 ggplot(benefits, aes(x = reorder(Category, Impact), y = Impact, fill = Category)) +
   geom_bar(stat = "identity", width = 0.7) +
-  geom_text(aes(label = Benefit), hjust = -0.1, size = 3.5, fontface = "bold") +
+  geom_text(aes(label = paste0(Benefit, "\n", Description)),
+            hjust = 0, size = 3, lineheight = 0.9, nudge_y = 2) +
   coord_flip() +
   scale_fill_manual(values = c("#e74c3c", "#3498db", "#27ae60",
                                "#f39c12", "#9b59b6", "#1abc9c"), guide = "none") +
-  scale_y_continuous(limits = c(0, 120)) +
+  scale_y_continuous(limits = c(0, 160), expand = c(0, 0)) +
   labs(title = "Benefits of Implementing a Quality Management System",
        subtitle = "Key drivers for QMS adoption",
        x = "", y = "Relative Impact Score") +
@@ -18158,8 +18493,8 @@ principles <- data.frame(
 
 ggplot(principles, aes(x = x, y = y)) +
   geom_point(size = 22, color = "#3498db") +
-  geom_text(aes(label = number), color = "white", size = 8, fontface = "bold") +
-  geom_text(aes(label = principle, y = y - 0.7), size = 3, fontface = "bold", lineheight = 0.9) +
+  geom_text(aes(label = number), color = "white", size = 10, fontface = "bold") +
+  geom_text(aes(label = principle, y = y - 0.7), size = 5, fontface = "bold", lineheight = 0.9) +
   # Customer focus at top
   annotate("segment", x = 4, xend = 1, y = 3.5, yend = 2.8,
            arrow = arrow(length = unit(0.2, "cm")), color = "gray50") +
@@ -18169,12 +18504,16 @@ ggplot(principles, aes(x = x, y = y)) +
            arrow = arrow(length = unit(0.2, "cm")), color = "gray50") +
   annotate("segment", x = 4, xend = 5.5, y = 3.5, yend = 1.5,
            arrow = arrow(length = unit(0.2, "cm")), color = "gray50") +
+  annotate("segment", x = 4, xend = 2.5, y = 3.5, yend = 0,
+           arrow = arrow(length = unit(0.2, "cm")), color = "gray50") +
+  annotate("segment", x = 4, xend = 5.5, y = 3.5, yend = 0,
+           arrow = arrow(length = unit(0.2, "cm")), color = "gray50") +
   coord_cartesian(xlim = c(0, 8), ylim = c(-1.5, 5)) +
   labs(title = "Seven Quality Management Principles (ISO 9000:2015)",
        subtitle = "Customer Focus is the primary principle; others support it") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
   )
 ```
@@ -18212,16 +18551,16 @@ clauses <- data.frame(
 
 ggplot(clauses, aes(x = 1, y = y)) +
   geom_tile(aes(fill = type), width = 4, height = 0.8, color = "white", linewidth = 1) +
-  geom_text(aes(x = -0.3, label = clause), fontface = "bold", size = 5, color = "#2c3e50") +
-  geom_text(aes(x = 0.3, label = title), fontface = "bold", size = 3.5, hjust = 0, color = "white") +
-  geom_text(aes(x = 2.8, label = description), size = 2.8, hjust = 1, color = "white") +
+  geom_text(aes(x = -0.3, label = clause), fontface = "bold", size = 7, color = "#2c3e50") +
+  geom_text(aes(x = 0.3, label = title), fontface = "bold", size = 5.5, hjust = 0, color = "white") +
+  geom_text(aes(x = 2.8, label = description), size = 4.8, hjust = 1, color = "white") +
   scale_fill_manual(values = c("Intro" = "#95a5a6", "Core" = "#3498db"), guide = "none") +
   coord_cartesian(xlim = c(-1, 3.5)) +
   labs(title = "ISO 9001:2015 Structure - The Ten Clauses",
        subtitle = "Clauses 4-10 contain the auditable requirements") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
   )
 ```
@@ -18230,79 +18569,61 @@ ggplot(clauses, aes(x = 1, y = y)) +
 
 ISO 9001:2015 emphasizes the **process approach** combined with the **Plan-Do-Check-Act (PDCA)** cycle:
 
-```{r pdca-cycle, echo=FALSE, fig.width=11, fig.height=8}
+```{r pdca-cycle, echo=FALSE, fig.width=11, fig.height=9}
+# PDCA positioned clockwise: Plan (top), Do (right), Check (bottom), Act (left)
 ggplot() +
-  # PDCA circle
+  # Circular arrow path (clockwise)
+  geom_curve(aes(x = 5, y = 8, xend = 8, yend = 5), curvature = -0.4,
+             arrow = arrow(length = unit(0.4, "cm"), type = "closed"),
+             size = 1.5, color = "#3498db") +
+  geom_curve(aes(x = 8, y = 5, xend = 5, yend = 2), curvature = -0.4,
+             arrow = arrow(length = unit(0.4, "cm"), type = "closed"),
+             size = 1.5, color = "#27ae60") +
+  geom_curve(aes(x = 5, y = 2, xend = 2, yend = 5), curvature = -0.4,
+             arrow = arrow(length = unit(0.4, "cm"), type = "closed"),
+             size = 1.5, color = "#f39c12") +
+  geom_curve(aes(x = 2, y = 5, xend = 5, yend = 8), curvature = -0.4,
+             arrow = arrow(length = unit(0.4, "cm"), type = "closed"),
+             size = 1.5, color = "#e74c3c") +
 
-  annotate("path",
-           x = 5 + 3 * cos(seq(0, 2*pi, length.out = 100)),
-           y = 5 + 3 * sin(seq(0, 2*pi, length.out = 100)),
-           color = "gray70", size = 2) +
+  # PLAN (top)
+  annotate("point", x = 5, y = 8, size = 28, color = "#3498db") +
+  annotate("text", x = 5, y = 8, label = "PLAN", color = "white",
+           fontface = "bold", size = 7) +
+  annotate("text", x = 5, y = 9.5, label = "Clause 4: Context\nClause 5: Leadership\nClause 6: Planning",
+           size = 4.5, hjust = 0.5, lineheight = 0.9) +
 
-  # Plan quadrant
-  annotate("path",
-           x = 5 + 3 * cos(seq(pi/2, pi, length.out = 50)),
-           y = 5 + 3 * sin(seq(pi/2, pi, length.out = 50)),
-           color = "#3498db", size = 4) +
-  annotate("point", x = 5 - 2.1, y = 5 + 2.1, size = 20, color = "#3498db") +
-  annotate("text", x = 5 - 2.1, y = 5 + 2.1, label = "PLAN", color = "white",
-           fontface = "bold", size = 5) +
-  annotate("text", x = 2.2, y = 7.5, label = "Clause 4: Context\nClause 5: Leadership\nClause 6: Planning",
-           size = 3, hjust = 0, lineheight = 0.9) +
+  # DO (right)
+  annotate("point", x = 8, y = 5, size = 28, color = "#27ae60") +
+  annotate("text", x = 8, y = 5, label = "DO", color = "white",
+           fontface = "bold", size = 7) +
+  annotate("text", x = 9.8, y = 5, label = "Clause 7: Support\nClause 8: Operation",
+           size = 4.5, hjust = 0, lineheight = 0.9) +
 
-  # Do quadrant
-  annotate("path",
-           x = 5 + 3 * cos(seq(0, pi/2, length.out = 50)),
-           y = 5 + 3 * sin(seq(0, pi/2, length.out = 50)),
-           color = "#27ae60", size = 4) +
-  annotate("point", x = 5 + 2.1, y = 5 + 2.1, size = 20, color = "#27ae60") +
-  annotate("text", x = 5 + 2.1, y = 5 + 2.1, label = "DO", color = "white",
-           fontface = "bold", size = 5) +
-  annotate("text", x = 7.8, y = 7.5, label = "Clause 7: Support\nClause 8: Operation",
-           size = 3, hjust = 1, lineheight = 0.9) +
+  # CHECK (bottom)
+  annotate("point", x = 5, y = 2, size = 28, color = "#f39c12") +
+  annotate("text", x = 5, y = 2, label = "CHECK", color = "white",
+           fontface = "bold", size = 6) +
+  annotate("text", x = 5, y = 0.5, label = "Clause 9: Performance Evaluation",
+           size = 4.5, hjust = 0.5, lineheight = 0.9) +
 
-  # Check quadrant
-  annotate("path",
-           x = 5 + 3 * cos(seq(-pi/2, 0, length.out = 50)),
-           y = 5 + 3 * sin(seq(-pi/2, 0, length.out = 50)),
-           color = "#f39c12", size = 4) +
-  annotate("point", x = 5 + 2.1, y = 5 - 2.1, size = 20, color = "#f39c12") +
-  annotate("text", x = 5 + 2.1, y = 5 - 2.1, label = "CHECK", color = "white",
-           fontface = "bold", size = 4.5) +
-  annotate("text", x = 7.8, y = 2.5, label = "Clause 9: Performance\nEvaluation",
-           size = 3, hjust = 1, lineheight = 0.9) +
+  # ACT (left)
+  annotate("point", x = 2, y = 5, size = 28, color = "#e74c3c") +
+  annotate("text", x = 2, y = 5, label = "ACT", color = "white",
+           fontface = "bold", size = 7) +
+  annotate("text", x = 0.2, y = 5, label = "Clause 10:\nImprovement",
+           size = 4.5, hjust = 1, lineheight = 0.9) +
 
-  # Act quadrant
-  annotate("path",
-           x = 5 + 3 * cos(seq(pi, 3*pi/2, length.out = 50)),
-           y = 5 + 3 * sin(seq(pi, 3*pi/2, length.out = 50)),
-           color = "#e74c3c", size = 4) +
-  annotate("point", x = 5 - 2.1, y = 5 - 2.1, size = 20, color = "#e74c3c") +
-  annotate("text", x = 5 - 2.1, y = 5 - 2.1, label = "ACT", color = "white",
-           fontface = "bold", size = 5) +
-  annotate("text", x = 2.2, y = 2.5, label = "Clause 10: Improvement",
-           size = 3, hjust = 0, lineheight = 0.9) +
+  # Center label
+  annotate("text", x = 5, y = 5, label = "QMS", fontface = "bold", size = 8) +
 
-  # Center
-  annotate("text", x = 5, y = 5, label = "QMS", fontface = "bold", size = 6) +
-
-  # Arrows showing cycle direction
-  annotate("segment", x = 3, xend = 2.5, y = 6.5, yend = 5.5,
-           arrow = arrow(length = unit(0.3, "cm")), size = 1.2, color = "gray40") +
-  annotate("segment", x = 7, xend = 7.5, y = 6.5, yend = 5.5,
-           arrow = arrow(length = unit(0.3, "cm")), size = 1.2, color = "gray40") +
-  annotate("segment", x = 7.5, xend = 7, y = 4.5, yend = 3.5,
-           arrow = arrow(length = unit(0.3, "cm")), size = 1.2, color = "gray40") +
-  annotate("segment", x = 2.5, xend = 3, y = 4.5, yend = 3.5,
-           arrow = arrow(length = unit(0.3, "cm")), size = 1.2, color = "gray40") +
-
-  coord_cartesian(xlim = c(1, 9), ylim = c(1, 9)) +
+  coord_cartesian(xlim = c(-1, 11), ylim = c(-0.5, 10.5)) +
   labs(title = "PDCA Cycle and ISO 9001:2015 Clauses",
        subtitle = "The continuous improvement cycle embedded in the standard") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5)
   )
 ```
 
@@ -18375,14 +18696,14 @@ standards <- data.frame(
 ggplot(standards, aes(x = x, y = y)) +
   geom_tile(aes(fill = Standard), width = 0.9, height = 1.5, color = "white", linewidth = 2) +
   geom_text(aes(label = Standard), fontface = "bold", size = 4, color = "white", vjust = -1) +
-  geom_text(aes(label = Industry), size = 3.5, color = "white") +
-  geom_text(aes(label = Base), size = 2.8, color = "white", vjust = 2, lineheight = 0.9) +
+  geom_text(aes(label = Industry), size = 5.5, color = "white") +
+  geom_text(aes(label = Base), size = 4.8, color = "white", vjust = 2, lineheight = 0.9) +
   scale_fill_manual(values = c("#3498db", "#e74c3c", "#2c3e50", "#27ae60"), guide = "none") +
   labs(title = "Major Quality Management System Standards",
        subtitle = "Industry-specific standards build upon ISO 9001") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
   )
 ```
@@ -18439,19 +18760,370 @@ core_tools <- data.frame(
 
 ggplot(core_tools, aes(x = x, y = 1)) +
   geom_tile(aes(fill = tool), width = 0.85, height = 1.5, color = "white", linewidth = 1.5) +
-  geom_text(aes(label = tool), fontface = "bold", size = 5, color = "white", vjust = -1) +
-  geom_text(aes(label = name), size = 3, color = "white", lineheight = 0.9) +
-  geom_text(aes(label = purpose, y = 0.3), size = 2.5, color = "white", lineheight = 0.9) +
+  geom_text(aes(label = tool), fontface = "bold", size = 8, color = "white", vjust = -1) +
+  geom_text(aes(label = name), size = 6, color = "white", lineheight = 0.9) +
+  geom_text(aes(label = purpose, y = 0.3), size = 5, color = "white", lineheight = 0.9) +
   scale_fill_manual(values = c("#e74c3c", "#3498db", "#27ae60", "#f39c12", "#9b59b6"),
                     guide = "none") +
   labs(title = "AIAG Automotive Core Tools",
        subtitle = "Five essential tools required by IATF 16949") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
   )
 ```
+
+#### APQP: Advanced Product Quality Planning
+
+**APQP** is a structured framework for developing products that ensures customer requirements are met through careful planning and defined milestones.
+
+```{r apqp-phases, echo=FALSE, fig.width=12, fig.height=5}
+apqp_phases <- data.frame(
+  phase = c("1", "2", "3", "4", "5"),
+  name = c("Plan & Define", "Product Design", "Process Design",
+           "Product & Process\nValidation", "Feedback &\nCorrective Action"),
+  activities = c("Voice of customer\nBenchmarking\nProduct assumptions",
+                 "Design FMEA\nDVP&R\nPrototype build",
+                 "Process flow\nProcess FMEA\nControl plan",
+                 "Production trial run\nMSA & SPC studies\nPPAP submission",
+                 "Reduced variation\nCustomer satisfaction\nLessons learned"),
+  x = 1:5
+)
+
+ggplot(apqp_phases, aes(x = x, y = 1)) +
+  geom_polygon(data = data.frame(x = c(0.5, 5.5, 5.5, 0.5), y = c(0.3, 0.3, 1.7, 1.7)),
+               aes(x = x, y = y), fill = "#ecf0f1", color = NA) +
+  geom_segment(aes(x = x, xend = x, y = 0.5, yend = 1.5),
+               color = "#bdc3c7", linetype = "dashed") +
+  geom_point(size = 22, color = "#3498db") +
+  geom_text(aes(label = phase), color = "white", fontface = "bold", size = 10) +
+  geom_text(aes(label = name, y = 2.2), fontface = "bold", size = 6, lineheight = 0.85) +
+  geom_text(aes(label = activities, y = -0.2), size = 5, lineheight = 0.85, color = "gray30") +
+  geom_segment(aes(x = 0.6, xend = 5.4, y = 1, yend = 1),
+               arrow = arrow(length = unit(0.3, "cm"), ends = "last"),
+               size = 1.2, color = "#2c3e50") +
+  coord_cartesian(xlim = c(0, 6), ylim = c(-1.2, 3)) +
+  labs(title = "APQP Five Phases",
+       subtitle = "Structured product development from concept to launch") +
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
+  )
+```
+
+::: {.example-box}
+**Example: New Brake Caliper Development**
+
+A Tier 1 supplier developing a new brake caliper for an OEM would follow APQP:
+
+- **Phase 1**: Gather customer requirements (stopping distance, weight limits, environmental conditions), benchmark competitor products
+- **Phase 2**: Design the caliper, create Design FMEA (what if piston seal fails?), build prototypes for testing
+- **Phase 3**: Design manufacturing process, create Process FMEA, develop control plan for machining and assembly
+- **Phase 4**: Run production trial, validate Cpk > 1.67 for critical dimensions, submit PPAP package
+- **Phase 5**: Monitor warranty returns, implement kaizen improvements, document lessons for next program
+:::
+
+#### PPAP: Production Part Approval Process
+
+**PPAP** provides evidence that the supplier understands customer requirements and can consistently produce conforming parts during actual production runs.
+
+```{r ppap-elements, echo=FALSE}
+ppap_elements <- data.frame(
+  Element = c("1. Design Records", "2. Engineering Change Documents",
+              "3. Customer Engineering Approval", "4. Design FMEA",
+              "5. Process Flow Diagram", "6. Process FMEA",
+              "7. Control Plan", "8. MSA Studies",
+              "9. Dimensional Results", "10. Material/Performance Test Results",
+              "11. Initial Process Studies (SPC)", "12. Qualified Lab Documentation",
+              "13. Appearance Approval Report", "14. Sample Production Parts",
+              "15. Master Sample", "16. Checking Aids",
+              "17. Customer-Specific Requirements", "18. Part Submission Warrant (PSW)"),
+  Description = c(
+    "Part drawings, CAD files, specifications",
+    "Documentation of any design changes since original approval",
+    "Evidence of customer sign-off on design",
+    "Risk analysis of product design failure modes",
+    "Visual representation of manufacturing steps",
+    "Risk analysis of process failure modes",
+    "Document describing controls for each process step",
+    "Gage R&R studies proving measurement system adequacy",
+    "Actual measurements vs. specifications for all dimensions",
+    "Test results for material properties and performance requirements",
+    "Cpk/Ppk studies demonstrating process capability",
+    "Scope and accreditation of testing laboratories",
+    "Required for parts with color, grain, or surface requirements",
+    "Parts from production run for customer evaluation",
+    "Retained reference sample for future comparison",
+    "Fixtures, gages, or templates used to inspect parts",
+    "OEM-specific requirements (Ford, GM, Toyota, etc.)",
+    "Summary document with supplier certification"
+  )
+)
+
+kable(ppap_elements, caption = "PPAP 18 Elements Required for Submission") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "30%")
+```
+
+**PPAP Submission Levels:**
+
+| Level | Requirements | When Used |
+|:------|:-------------|:----------|
+| 1 | PSW only | Low-risk parts, trusted suppliers |
+| 2 | PSW + samples + limited data | Standard submission |
+| 3 | PSW + samples + complete data | Default level; new parts/suppliers |
+| 4 | PSW + other per customer direction | Customer-specified requirements |
+| 5 | PSW + samples + complete data at supplier site | Full documentation review on-site |
+
+::: {.example-box}
+**Example: Fuel Injector PPAP Submission**
+
+A supplier submitting PPAP for a new fuel injector would include:
+
+- **Dimensional results**: 100% inspection of 300 parts showing all 47 dimensions in spec
+- **MSA study**: Gage R&R < 10% for critical spray angle measurement
+- **Process capability**: Cpk = 1.89 for nozzle hole diameter (spec requires Cpk ≥ 1.67)
+- **Material certs**: Steel chemistry and hardness test results
+- **Performance tests**: Flow rate, spray pattern, durability (1 million cycles)
+- **PSW**: Signed warrant certifying all requirements met
+:::
+
+#### FMEA: Failure Mode and Effects Analysis
+
+**FMEA** is a systematic method for identifying potential failures, their causes, and effects, then prioritizing actions to reduce risk. Two types are used in automotive:
+
+- **Design FMEA (DFMEA)**: Analyzes potential failures in product design
+- **Process FMEA (PFMEA)**: Analyzes potential failures in manufacturing processes
+
+```{r fmea-structure, echo=FALSE}
+fmea_example <- data.frame(
+  Column = c("Process Step", "Potential Failure Mode", "Potential Effect(s)",
+             "Severity (S)", "Potential Cause(s)", "Occurrence (O)",
+             "Current Controls", "Detection (D)", "RPN", "Recommended Actions"),
+  Description = c(
+    "The operation being analyzed",
+    "How the process could fail to meet requirements",
+    "Impact on customer if failure occurs",
+    "1-10 rating of effect seriousness (10 = safety/regulatory)",
+    "Root cause of the failure mode",
+    "1-10 rating of cause likelihood (10 = very frequent)",
+    "Existing prevention or detection controls",
+    "1-10 rating of detection ability (10 = cannot detect)",
+    "S × O × D = Risk Priority Number",
+    "Actions to reduce S, O, or D"
+  ),
+  Example = c(
+    "Torque fastener to 25 Nm",
+    "Under-torque / Over-torque",
+    "Joint loosens in service; wheel detaches",
+    "10 (safety critical)",
+    "Worn tool, wrong program, operator error",
+    "4 (occasional occurrence)",
+    "Torque monitoring, error-proofing",
+    "3 (high detection capability)",
+    "10 × 4 × 3 = 120",
+    "Add DC torque tool with automatic reject"
+  )
+)
+
+kable(fmea_example, caption = "Process FMEA Structure and Example") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "20%") %>%
+  column_spec(3, width = "30%")
+```
+
+**Action Priority Based on RPN:**
+
+```{r rpn-priority, echo=FALSE, fig.width=10, fig.height=3}
+rpn_data <- data.frame(
+  range = c("1-50", "51-100", "101-200", "201-1000"),
+  priority = c("Low", "Medium", "High", "Critical"),
+  action = c("Monitor", "Schedule improvement", "Priority action required", "Immediate action required"),
+  color = c("#27ae60", "#f1c40f", "#e67e22", "#e74c3c"),
+  x = 1:4
+)
+
+ggplot(rpn_data, aes(x = x, y = 1)) +
+  geom_tile(aes(fill = color), width = 0.9, height = 1) +
+  scale_fill_identity() +
+  geom_text(aes(label = paste0("RPN: ", range)), fontface = "bold",
+            color = "white", size = 6, vjust = -1) +
+  geom_text(aes(label = priority), color = "white", size = 8, fontface = "bold") +
+  geom_text(aes(label = action), color = "white", size = 5, vjust = 2) +
+  coord_cartesian(ylim = c(0.2, 1.8)) +
+  labs(title = "RPN-Based Action Priority") +
+  theme_void() +
+  theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
+```
+
+::: {.example-box}
+**Example: Engine Block Machining PFMEA**
+
+| Step | Failure Mode | Effect | S | Cause | O | Control | D | RPN | Action |
+|:-----|:-------------|:-------|:--|:------|:--|:--------|:--|:----|:-------|
+| Bore cylinder | Oversize bore | Piston slap, oil consumption | 7 | Tool wear | 5 | SPC chart, tool life monitor | 4 | 140 | Add in-process bore gage |
+| Hone surface | Insufficient crosshatch | Poor ring seal, oil burning | 8 | Wrong hone stones | 3 | Visual inspection | 6 | 144 | Add surface roughness measurement |
+| Wash block | Residual chips | Engine seizure | 9 | Blocked nozzle | 4 | Cleanliness spec check | 5 | 180 | Add particle counter, automated flush verification |
+:::
+
+#### MSA: Measurement Systems Analysis
+
+**MSA** ensures that measurement systems provide reliable data for decision-making. Poor measurement systems can cause good parts to be rejected (false rejects) or bad parts to be accepted (false accepts).
+
+```{r msa-components, echo=FALSE, fig.width=12, fig.height=5}
+msa_data <- data.frame(
+  component = c("Bias", "Linearity", "Stability", "Repeatability", "Reproducibility"),
+  definition = c("Difference between\nmeasured and true value",
+                 "Bias change across\nmeasurement range",
+                 "Bias change\nover time",
+                 "Variation when same\noperator re-measures",
+                 "Variation between\ndifferent operators"),
+  icon = c("→|←", "／", "～", "○○○", "👤👤👤"),
+  x = 1:5,
+  y = rep(1, 5)
+)
+
+ggplot(msa_data, aes(x = x, y = y)) +
+  geom_tile(fill = "#3498db", width = 0.85, height = 1.4, color = "white", linewidth = 2) +
+  geom_text(aes(label = component), color = "white", fontface = "bold", size = 7, vjust = -0.5) +
+  geom_text(aes(label = definition), color = "white", size = 5, vjust = 1.2, lineheight = 0.85) +
+  labs(title = "Five Components of Measurement System Variation",
+       subtitle = "All must be assessed for a complete MSA study") +
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
+  )
+```
+
+**Gage R&R Study Acceptance Criteria:**
+
+| %GRR | Interpretation | Action |
+|:-----|:---------------|:-------|
+| < 10% | Excellent | Acceptable for all applications |
+| 10-30% | Acceptable | May be acceptable depending on application, cost of gage, cost of repairs |
+| > 30% | Unacceptable | Measurement system must be improved; cannot make reliable decisions |
+
+**Number of Distinct Categories (ndc):** Should be ≥ 5 to adequately discriminate between parts.
+
+::: {.example-box}
+**Example: Gage R&R Study for Shaft Diameter**
+
+A supplier conducts a Gage R&R study for a micrometer used to measure shaft diameter (spec: 25.00 ± 0.05 mm):
+
+**Study Setup:**
+- 3 operators measure 10 parts, 3 times each = 90 measurements
+- Parts selected to represent the range of production variation
+
+**Results:**
+| Source | Variance | % Contribution |
+|:-------|:---------|:---------------|
+| Part-to-Part | 0.000156 | 87.2% |
+| Repeatability | 0.000018 | 10.1% |
+| Reproducibility | 0.000005 | 2.7% |
+| **Total Gage R&R** | **0.000023** | **12.8%** |
+
+**Conclusion:** %GRR = 12.8% is acceptable (between 10-30%). ndc = 7 (≥5 required). The measurement system is adequate for this application.
+:::
+
+#### SPC: Statistical Process Control
+
+**SPC** uses control charts to monitor process stability and capability, distinguishing between common cause variation (inherent to the process) and special cause variation (assignable causes requiring investigation).
+
+```{r spc-chart-example, echo=FALSE, fig.width=12, fig.height=6}
+set.seed(42)
+n <- 30
+subgroup_size <- 5
+
+# Generate simulated data with one out-of-control point
+xbar_data <- data.frame(
+  subgroup = 1:n,
+  xbar = c(rnorm(15, mean = 50, sd = 0.3),
+           51.2,  # Out of control point
+           rnorm(14, mean = 50, sd = 0.3))
+)
+
+ucl <- 50 + 3 * 0.3 / sqrt(subgroup_size)
+lcl <- 50 - 3 * 0.3 / sqrt(subgroup_size)
+cl <- 50
+
+xbar_data$status <- ifelse(xbar_data$xbar > ucl | xbar_data$xbar < lcl, "Out of Control", "In Control")
+
+ggplot(xbar_data, aes(x = subgroup, y = xbar)) +
+  geom_hline(yintercept = ucl, color = "#e74c3c", linetype = "dashed", size = 1) +
+  geom_hline(yintercept = lcl, color = "#e74c3c", linetype = "dashed", size = 1) +
+  geom_hline(yintercept = cl, color = "#27ae60", size = 1) +
+  geom_line(color = "#3498db", size = 0.8) +
+  geom_point(aes(color = status), size = 4) +
+  scale_color_manual(values = c("In Control" = "#3498db", "Out of Control" = "#e74c3c")) +
+  annotate("text", x = 31, y = ucl, label = paste0("UCL = ", round(ucl, 2)), hjust = 0, size = 5) +
+  annotate("text", x = 31, y = lcl, label = paste0("LCL = ", round(lcl, 2)), hjust = 0, size = 5) +
+  annotate("text", x = 31, y = cl, label = paste0("CL = ", cl), hjust = 0, size = 5) +
+  annotate("text", x = 16, y = 51.5, label = "Special cause!\nInvestigate", color = "#e74c3c",
+           fontface = "bold", size = 6) +
+  scale_x_continuous(breaks = seq(0, 30, 5), limits = c(0, 35)) +
+  labs(title = "X-bar Control Chart Example",
+       subtitle = "Monitoring process mean with subgroups of n=5",
+       x = "Subgroup Number", y = "Subgroup Mean (mm)") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 12),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    legend.position = "bottom",
+    legend.title = element_blank(),
+    legend.text = element_text(size = 11)
+  )
+```
+
+**Common Control Chart Types:**
+
+| Chart | Data Type | Monitors | When to Use |
+|:------|:----------|:---------|:------------|
+| X-bar & R | Variable, subgroups | Mean and range | Most common; subgroups of 2-10 |
+| X-bar & S | Variable, subgroups | Mean and std dev | Subgroups > 10 |
+| I-MR | Variable, individuals | Individual values and moving range | Slow processes, destructive testing |
+| p-chart | Attribute | Proportion defective | Variable sample sizes |
+| np-chart | Attribute | Number defective | Fixed sample sizes |
+| c-chart | Attribute | Count of defects | Fixed opportunity area |
+| u-chart | Attribute | Defects per unit | Variable opportunity area |
+
+**Process Capability Indices:**
+
+$$C_p = \frac{USL - LSL}{6\sigma}$$
+$$C_{pk} = \min\left(\frac{USL - \bar{x}}{3\sigma}, \frac{\bar{x} - LSL}{3\sigma}\right)$$
+
+| Cpk Value | Interpretation | PPM Defective |
+|:----------|:---------------|:--------------|
+| < 1.00 | Not capable | > 2,700 |
+| 1.00 - 1.33 | Marginally capable | 64 - 2,700 |
+| 1.33 - 1.67 | Capable | 0.6 - 64 |
+| ≥ 1.67 | Highly capable (IATF requirement) | < 0.6 |
+
+::: {.example-box}
+**Example: SPC for Injection Molded Connector**
+
+A supplier monitors critical dimensions on an injection molded electrical connector:
+
+**Process Setup:**
+- Critical dimension: Pin spacing = 2.54 ± 0.08 mm
+- Sample 5 parts every 30 minutes
+- X-bar and R charts maintained at the press
+
+**Results over one shift:**
+- Process mean (X-double-bar) = 2.539 mm
+- Average range (R-bar) = 0.024 mm
+- Estimated σ = R-bar / d2 = 0.024 / 2.326 = 0.0103 mm
+
+**Capability:**
+- Cp = (2.62 - 2.46) / (6 × 0.0103) = 2.59
+- Cpk = min[(2.62 - 2.539)/(3 × 0.0103), (2.539 - 2.46)/(3 × 0.0103)] = min[2.62, 2.56] = **2.56**
+
+**Conclusion:** Cpk = 2.56 exceeds IATF requirement of 1.67. Process is highly capable.
+:::
 
 ### AS9100D (Aerospace/Defense)
 
@@ -18518,49 +19190,49 @@ A QMS requires documented information to ensure consistency, provide evidence, a
 
 ### Documentation Hierarchy
 
-```{r doc-hierarchy, echo=FALSE, fig.width=11, fig.height=8}
+```{r doc-hierarchy, echo=FALSE, fig.width=12, fig.height=9}
 ggplot() +
   # Level 1 - Policy
   annotate("polygon", x = c(5, 3, 7), y = c(7, 5.5, 5.5),
            fill = "#e74c3c", color = "black") +
   annotate("text", x = 5, y = 6.2, label = "Level 1\nQuality Policy\n& Objectives",
-           color = "white", fontface = "bold", size = 3.5, lineheight = 0.9) +
+           color = "white", fontface = "bold", size = 6, lineheight = 0.9) +
 
   # Level 2 - Manual/Procedures
   annotate("polygon", x = c(5, 2, 8), y = c(5.3, 3.5, 3.5),
            fill = "#f39c12", color = "black") +
   annotate("text", x = 5, y = 4.3, label = "Level 2\nQuality Manual & Procedures\nWhat we do and who is responsible",
-           color = "white", fontface = "bold", size = 3, lineheight = 0.9) +
+           color = "white", fontface = "bold", size = 5, lineheight = 0.9) +
 
   # Level 3 - Work Instructions
   annotate("polygon", x = c(5, 1, 9), y = c(3.3, 1.5, 1.5),
            fill = "#3498db", color = "black") +
   annotate("text", x = 5, y = 2.3, label = "Level 3\nWork Instructions, SOPs, Specifications\nHow we do it - step by step details",
-           color = "white", fontface = "bold", size = 3, lineheight = 0.9) +
+           color = "white", fontface = "bold", size = 5, lineheight = 0.9) +
 
   # Level 4 - Records
   annotate("rect", xmin = 0.5, xmax = 9.5, ymin = 0.3, ymax = 1.3,
            fill = "#27ae60", color = "black") +
   annotate("text", x = 5, y = 0.8, label = "Level 4: Records & Forms - Evidence that we did it",
-           color = "white", fontface = "bold", size = 3.5) +
+           color = "white", fontface = "bold", size = 5) +
 
   # Examples on the right
   annotate("text", x = 9, y = 6.2, label = "• Quality Policy statement\n• Quality objectives",
-           hjust = 0, size = 2.8, lineheight = 0.9) +
+           hjust = 0, size = 5, lineheight = 0.9) +
   annotate("text", x = 9, y = 4.3, label = "• Document control procedure\n• Corrective action procedure\n• Internal audit procedure",
-           hjust = 0, size = 2.8, lineheight = 0.9) +
+           hjust = 0, size = 5, lineheight = 0.9) +
   annotate("text", x = 9, y = 2.3, label = "• Setup instructions\n• Inspection checklists\n• Calibration procedures",
-           hjust = 0, size = 2.8, lineheight = 0.9) +
+           hjust = 0, size = 5, lineheight = 0.9) +
   annotate("text", x = 9, y = 0.8, label = "• Inspection records • Training records • Audit reports",
-           hjust = 0, size = 2.8) +
+           hjust = 0, size = 5) +
 
-  coord_cartesian(xlim = c(0, 13), ylim = c(0, 7.5)) +
+  coord_cartesian(xlim = c(0, 14), ylim = c(0, 7.5)) +
   labs(title = "Quality Documentation Hierarchy",
        subtitle = "From policy (strategic) to records (evidence)") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
   )
 ```
 
@@ -18661,21 +19333,21 @@ audit_steps <- data.frame(
 )
 
 ggplot(audit_steps, aes(x = x, y = 1)) +
-  geom_point(size = 15, color = "#3498db") +
-  geom_text(aes(label = step), color = "white", fontface = "bold", size = 5) +
-  geom_text(aes(label = name, y = 0.5), size = 3, fontface = "bold", angle = 45, hjust = 1) +
-  geom_text(aes(label = description, y = 1.5), size = 2.5, lineheight = 0.9) +
-  geom_segment(aes(x = x + 0.3, xend = x + 0.7, y = 1, yend = 1),
+  geom_point(size = 20, color = "#3498db") +
+  geom_text(aes(label = step), color = "white", fontface = "bold", size = 8) +
+  geom_text(aes(label = name, y = 0.4), size = 5, fontface = "bold", angle = 45, hjust = 1) +
+  geom_text(aes(label = description, y = 1.6), size = 5, lineheight = 0.9) +
+  geom_segment(aes(x = x + 0.35, xend = x + 0.65, y = 1, yend = 1),
                data = audit_steps[1:6,],
-               arrow = arrow(length = unit(0.2, "cm")), color = "gray50") +
-  scale_x_continuous(limits = c(0.5, 7.5)) +
-  scale_y_continuous(limits = c(0, 2)) +
+               arrow = arrow(length = unit(0.3, "cm")), color = "gray50", size = 1) +
+  scale_x_continuous(limits = c(0.3, 7.7)) +
+  scale_y_continuous(limits = c(-0.1, 2.2)) +
   labs(title = "Internal Audit Process Flow",
        subtitle = "Systematic approach to evaluating QMS effectiveness") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
   )
 ```
 
@@ -18801,34 +19473,34 @@ capa_steps <- data.frame(
 )
 
 ggplot(capa_steps, aes(x = x, y = y)) +
-  geom_tile(aes(fill = step), width = 0.9, height = 1.5, color = "white", linewidth = 1) +
+  geom_tile(aes(fill = step), width = 0.9, height = 1.7, color = "white", linewidth = 1) +
   geom_text(aes(label = paste0(step, ". ", name)), fontface = "bold",
-            size = 3, color = "white", vjust = -0.5) +
-  geom_text(aes(label = description), size = 2.5, color = "white",
+            size = 5, color = "white", vjust = -0.5) +
+  geom_text(aes(label = description), size = 5, color = "white",
             vjust = 1, lineheight = 0.85) +
   # Arrows showing flow
   annotate("segment", x = 1.5, xend = 1.9, y = 4, yend = 4,
-           arrow = arrow(length = unit(0.2, "cm"))) +
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   annotate("segment", x = 2.5, xend = 2.9, y = 4, yend = 4,
-           arrow = arrow(length = unit(0.2, "cm"))) +
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   annotate("segment", x = 3.5, xend = 3.9, y = 4, yend = 4,
-           arrow = arrow(length = unit(0.2, "cm"))) +
-  annotate("segment", x = 4, xend = 4, y = 3.2, yend = 2.8,
-           arrow = arrow(length = unit(0.2, "cm"))) +
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
+  annotate("segment", x = 4, xend = 4, y = 3.1, yend = 2.9,
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   annotate("segment", x = 3.5, xend = 3.1, y = 2, yend = 2,
-           arrow = arrow(length = unit(0.2, "cm"))) +
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   annotate("segment", x = 2.5, xend = 2.1, y = 2, yend = 2,
-           arrow = arrow(length = unit(0.2, "cm"))) +
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   annotate("segment", x = 1.5, xend = 1.1, y = 2, yend = 2,
-           arrow = arrow(length = unit(0.2, "cm"))) +
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   scale_fill_gradient(low = "#27ae60", high = "#3498db", guide = "none") +
-  coord_cartesian(xlim = c(0.3, 4.7), ylim = c(1, 5)) +
+  coord_cartesian(xlim = c(0.3, 4.7), ylim = c(0.8, 5.2)) +
   labs(title = "CAPA Process Flow",
        subtitle = "Eight-step process for effective corrective and preventive action") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
   )
 ```
 
@@ -18874,7 +19546,7 @@ ggplot(capa_long, aes(x = Month, y = Count, fill = Metric)) +
   geom_line(data = capa_data, aes(x = Month, y = Recurrence * 5, group = 1),
             color = "red", size = 1.2, inherit.aes = FALSE) +
   geom_point(data = capa_data, aes(x = Month, y = Recurrence * 5),
-             color = "red", size = 3, inherit.aes = FALSE) +
+             color = "red", size = 4, inherit.aes = FALSE) +
   scale_fill_manual(values = c("#e74c3c", "#f39c12", "#27ae60"),
                     labels = c("Closed On Time", "Verified Effective", "Total CAPAs")) +
   scale_y_continuous(sec.axis = sec_axis(~./5, name = "Recurrences")) +
@@ -18883,8 +19555,12 @@ ggplot(capa_long, aes(x = Month, y = Count, fill = Metric)) +
        x = "", y = "Number of CAPAs", fill = "") +
   theme_minimal() +
   theme(
-    plot.title = element_text(face = "bold", size = 14),
-    legend.position = "bottom"
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 12),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    legend.position = "bottom",
+    legend.text = element_text(size = 11)
   )
 ```
 
@@ -18968,10 +19644,10 @@ objectives <- data.frame(
 p1 <- ggplot(objectives, aes(x = x)) +
   geom_bar(aes(y = Target), stat = "identity", fill = "gray80", width = 0.4, position = position_nudge(x = -0.2)) +
   geom_bar(aes(y = Actual), stat = "identity", fill = "#27ae60", width = 0.4, position = position_nudge(x = 0.2)) +
-  geom_text(aes(y = 0, label = Objective), vjust = 1.5, size = 3, lineheight = 0.8) +
+  geom_text(aes(y = 0, label = Objective), vjust = 1.5, size = 5, lineheight = 0.8) +
   labs(title = "Quality Objectives: Target vs Actual", x = "", y = "") +
   theme_minimal() +
-  theme(axis.text.x = element_blank(), plot.title = element_text(face = "bold", size = 11))
+  theme(axis.text.x = element_blank(), plot.title = element_text(face = "bold", size = 14))
 
 # Customer Satisfaction Trend
 satisfaction <- data.frame(
@@ -18981,13 +19657,15 @@ satisfaction <- data.frame(
 
 p2 <- ggplot(satisfaction, aes(x = Quarter, y = Score, group = 1)) +
   geom_line(color = "#3498db", linewidth = 1.5) +
-  geom_point(color = "#3498db", size = 4) +
+  geom_point(color = "#3498db", size = 5) +
   geom_hline(yintercept = 4.0, linetype = "dashed", color = "red") +
-  annotate("text", x = 4.2, y = 4.0, label = "Target", color = "red", size = 3) +
+  annotate("text", x = 4.2, y = 4.0, label = "Target", color = "red", size = 5) +
   scale_y_continuous(limits = c(3.5, 5)) +
   labs(title = "Customer Satisfaction Trend", x = "", y = "Score (1-5)") +
   theme_minimal() +
-  theme(plot.title = element_text(face = "bold", size = 11))
+  theme(plot.title = element_text(face = "bold", size = 14),
+        axis.title = element_text(size = 11),
+        axis.text = element_text(size = 10))
 
 # Audit Findings
 audit_data <- data.frame(
@@ -18997,13 +19675,15 @@ audit_data <- data.frame(
 
 p3 <- ggplot(audit_data, aes(x = Type, y = Count, fill = Type)) +
   geom_bar(stat = "identity", width = 0.6) +
-  geom_text(aes(label = Count), vjust = -0.5, size = 4) +
+  geom_text(aes(label = Count), vjust = -0.5, size = 6) +
   scale_fill_manual(values = c("Major NC" = "#e74c3c", "Minor NC" = "#f39c12",
                                "Observations" = "#3498db", "OFIs" = "#27ae60"),
                     guide = "none") +
   labs(title = "Internal Audit Findings (YTD)", x = "", y = "Count") +
   theme_minimal() +
-  theme(plot.title = element_text(face = "bold", size = 11))
+  theme(plot.title = element_text(face = "bold", size = 14),
+        axis.title = element_text(size = 11),
+        axis.text = element_text(size = 10))
 
 # CAPA Status
 capa_status <- data.frame(

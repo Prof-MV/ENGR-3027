@@ -46,11 +46,12 @@ benefits <- data.frame(
 
 ggplot(benefits, aes(x = reorder(Category, Impact), y = Impact, fill = Category)) +
   geom_bar(stat = "identity", width = 0.7) +
-  geom_text(aes(label = Benefit), hjust = -0.1, size = 3.5, fontface = "bold") +
+  geom_text(aes(label = paste0(Benefit, "\n", Description)),
+            hjust = 0, size = 3, lineheight = 0.9, nudge_y = 2) +
   coord_flip() +
   scale_fill_manual(values = c("#e74c3c", "#3498db", "#27ae60",
                                "#f39c12", "#9b59b6", "#1abc9c"), guide = "none") +
-  scale_y_continuous(limits = c(0, 120)) +
+  scale_y_continuous(limits = c(0, 160), expand = c(0, 0)) +
   labs(title = "Benefits of Implementing a Quality Management System",
        subtitle = "Key drivers for QMS adoption",
        x = "", y = "Relative Impact Score") +
@@ -112,8 +113,8 @@ principles <- data.frame(
 
 ggplot(principles, aes(x = x, y = y)) +
   geom_point(size = 22, color = "#3498db") +
-  geom_text(aes(label = number), color = "white", size = 8, fontface = "bold") +
-  geom_text(aes(label = principle, y = y - 0.7), size = 3, fontface = "bold", lineheight = 0.9) +
+  geom_text(aes(label = number), color = "white", size = 10, fontface = "bold") +
+  geom_text(aes(label = principle, y = y - 0.7), size = 5, fontface = "bold", lineheight = 0.9) +
   # Customer focus at top
   annotate("segment", x = 4, xend = 1, y = 3.5, yend = 2.8,
            arrow = arrow(length = unit(0.2, "cm")), color = "gray50") +
@@ -123,12 +124,16 @@ ggplot(principles, aes(x = x, y = y)) +
            arrow = arrow(length = unit(0.2, "cm")), color = "gray50") +
   annotate("segment", x = 4, xend = 5.5, y = 3.5, yend = 1.5,
            arrow = arrow(length = unit(0.2, "cm")), color = "gray50") +
+  annotate("segment", x = 4, xend = 2.5, y = 3.5, yend = 0,
+           arrow = arrow(length = unit(0.2, "cm")), color = "gray50") +
+  annotate("segment", x = 4, xend = 5.5, y = 3.5, yend = 0,
+           arrow = arrow(length = unit(0.2, "cm")), color = "gray50") +
   coord_cartesian(xlim = c(0, 8), ylim = c(-1.5, 5)) +
   labs(title = "Seven Quality Management Principles (ISO 9000:2015)",
        subtitle = "Customer Focus is the primary principle; others support it") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
   )
 ```
@@ -166,16 +171,16 @@ clauses <- data.frame(
 
 ggplot(clauses, aes(x = 1, y = y)) +
   geom_tile(aes(fill = type), width = 4, height = 0.8, color = "white", linewidth = 1) +
-  geom_text(aes(x = -0.3, label = clause), fontface = "bold", size = 5, color = "#2c3e50") +
-  geom_text(aes(x = 0.3, label = title), fontface = "bold", size = 3.5, hjust = 0, color = "white") +
-  geom_text(aes(x = 2.8, label = description), size = 2.8, hjust = 1, color = "white") +
+  geom_text(aes(x = -0.3, label = clause), fontface = "bold", size = 7, color = "#2c3e50") +
+  geom_text(aes(x = 0.3, label = title), fontface = "bold", size = 5.5, hjust = 0, color = "white") +
+  geom_text(aes(x = 2.8, label = description), size = 4.8, hjust = 1, color = "white") +
   scale_fill_manual(values = c("Intro" = "#95a5a6", "Core" = "#3498db"), guide = "none") +
   coord_cartesian(xlim = c(-1, 3.5)) +
   labs(title = "ISO 9001:2015 Structure - The Ten Clauses",
        subtitle = "Clauses 4-10 contain the auditable requirements") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
   )
 ```
@@ -184,79 +189,61 @@ ggplot(clauses, aes(x = 1, y = y)) +
 
 ISO 9001:2015 emphasizes the **process approach** combined with the **Plan-Do-Check-Act (PDCA)** cycle:
 
-```{r pdca-cycle, echo=FALSE, fig.width=11, fig.height=8}
+```{r pdca-cycle, echo=FALSE, fig.width=11, fig.height=9}
+# PDCA positioned clockwise: Plan (top), Do (right), Check (bottom), Act (left)
 ggplot() +
-  # PDCA circle
+  # Circular arrow path (clockwise)
+  geom_curve(aes(x = 5, y = 8, xend = 8, yend = 5), curvature = -0.4,
+             arrow = arrow(length = unit(0.4, "cm"), type = "closed"),
+             size = 1.5, color = "#3498db") +
+  geom_curve(aes(x = 8, y = 5, xend = 5, yend = 2), curvature = -0.4,
+             arrow = arrow(length = unit(0.4, "cm"), type = "closed"),
+             size = 1.5, color = "#27ae60") +
+  geom_curve(aes(x = 5, y = 2, xend = 2, yend = 5), curvature = -0.4,
+             arrow = arrow(length = unit(0.4, "cm"), type = "closed"),
+             size = 1.5, color = "#f39c12") +
+  geom_curve(aes(x = 2, y = 5, xend = 5, yend = 8), curvature = -0.4,
+             arrow = arrow(length = unit(0.4, "cm"), type = "closed"),
+             size = 1.5, color = "#e74c3c") +
 
-  annotate("path",
-           x = 5 + 3 * cos(seq(0, 2*pi, length.out = 100)),
-           y = 5 + 3 * sin(seq(0, 2*pi, length.out = 100)),
-           color = "gray70", size = 2) +
+  # PLAN (top)
+  annotate("point", x = 5, y = 8, size = 28, color = "#3498db") +
+  annotate("text", x = 5, y = 8, label = "PLAN", color = "white",
+           fontface = "bold", size = 7) +
+  annotate("text", x = 5, y = 9.5, label = "Clause 4: Context\nClause 5: Leadership\nClause 6: Planning",
+           size = 4.5, hjust = 0.5, lineheight = 0.9) +
 
-  # Plan quadrant
-  annotate("path",
-           x = 5 + 3 * cos(seq(pi/2, pi, length.out = 50)),
-           y = 5 + 3 * sin(seq(pi/2, pi, length.out = 50)),
-           color = "#3498db", size = 4) +
-  annotate("point", x = 5 - 2.1, y = 5 + 2.1, size = 20, color = "#3498db") +
-  annotate("text", x = 5 - 2.1, y = 5 + 2.1, label = "PLAN", color = "white",
-           fontface = "bold", size = 5) +
-  annotate("text", x = 2.2, y = 7.5, label = "Clause 4: Context\nClause 5: Leadership\nClause 6: Planning",
-           size = 3, hjust = 0, lineheight = 0.9) +
+  # DO (right)
+  annotate("point", x = 8, y = 5, size = 28, color = "#27ae60") +
+  annotate("text", x = 8, y = 5, label = "DO", color = "white",
+           fontface = "bold", size = 7) +
+  annotate("text", x = 9.8, y = 5, label = "Clause 7: Support\nClause 8: Operation",
+           size = 4.5, hjust = 0, lineheight = 0.9) +
 
-  # Do quadrant
-  annotate("path",
-           x = 5 + 3 * cos(seq(0, pi/2, length.out = 50)),
-           y = 5 + 3 * sin(seq(0, pi/2, length.out = 50)),
-           color = "#27ae60", size = 4) +
-  annotate("point", x = 5 + 2.1, y = 5 + 2.1, size = 20, color = "#27ae60") +
-  annotate("text", x = 5 + 2.1, y = 5 + 2.1, label = "DO", color = "white",
-           fontface = "bold", size = 5) +
-  annotate("text", x = 7.8, y = 7.5, label = "Clause 7: Support\nClause 8: Operation",
-           size = 3, hjust = 1, lineheight = 0.9) +
+  # CHECK (bottom)
+  annotate("point", x = 5, y = 2, size = 28, color = "#f39c12") +
+  annotate("text", x = 5, y = 2, label = "CHECK", color = "white",
+           fontface = "bold", size = 6) +
+  annotate("text", x = 5, y = 0.5, label = "Clause 9: Performance Evaluation",
+           size = 4.5, hjust = 0.5, lineheight = 0.9) +
 
-  # Check quadrant
-  annotate("path",
-           x = 5 + 3 * cos(seq(-pi/2, 0, length.out = 50)),
-           y = 5 + 3 * sin(seq(-pi/2, 0, length.out = 50)),
-           color = "#f39c12", size = 4) +
-  annotate("point", x = 5 + 2.1, y = 5 - 2.1, size = 20, color = "#f39c12") +
-  annotate("text", x = 5 + 2.1, y = 5 - 2.1, label = "CHECK", color = "white",
-           fontface = "bold", size = 4.5) +
-  annotate("text", x = 7.8, y = 2.5, label = "Clause 9: Performance\nEvaluation",
-           size = 3, hjust = 1, lineheight = 0.9) +
+  # ACT (left)
+  annotate("point", x = 2, y = 5, size = 28, color = "#e74c3c") +
+  annotate("text", x = 2, y = 5, label = "ACT", color = "white",
+           fontface = "bold", size = 7) +
+  annotate("text", x = 0.2, y = 5, label = "Clause 10:\nImprovement",
+           size = 4.5, hjust = 1, lineheight = 0.9) +
 
-  # Act quadrant
-  annotate("path",
-           x = 5 + 3 * cos(seq(pi, 3*pi/2, length.out = 50)),
-           y = 5 + 3 * sin(seq(pi, 3*pi/2, length.out = 50)),
-           color = "#e74c3c", size = 4) +
-  annotate("point", x = 5 - 2.1, y = 5 - 2.1, size = 20, color = "#e74c3c") +
-  annotate("text", x = 5 - 2.1, y = 5 - 2.1, label = "ACT", color = "white",
-           fontface = "bold", size = 5) +
-  annotate("text", x = 2.2, y = 2.5, label = "Clause 10: Improvement",
-           size = 3, hjust = 0, lineheight = 0.9) +
+  # Center label
+  annotate("text", x = 5, y = 5, label = "QMS", fontface = "bold", size = 8) +
 
-  # Center
-  annotate("text", x = 5, y = 5, label = "QMS", fontface = "bold", size = 6) +
-
-  # Arrows showing cycle direction
-  annotate("segment", x = 3, xend = 2.5, y = 6.5, yend = 5.5,
-           arrow = arrow(length = unit(0.3, "cm")), size = 1.2, color = "gray40") +
-  annotate("segment", x = 7, xend = 7.5, y = 6.5, yend = 5.5,
-           arrow = arrow(length = unit(0.3, "cm")), size = 1.2, color = "gray40") +
-  annotate("segment", x = 7.5, xend = 7, y = 4.5, yend = 3.5,
-           arrow = arrow(length = unit(0.3, "cm")), size = 1.2, color = "gray40") +
-  annotate("segment", x = 2.5, xend = 3, y = 4.5, yend = 3.5,
-           arrow = arrow(length = unit(0.3, "cm")), size = 1.2, color = "gray40") +
-
-  coord_cartesian(xlim = c(1, 9), ylim = c(1, 9)) +
+  coord_cartesian(xlim = c(-1, 11), ylim = c(-0.5, 10.5)) +
   labs(title = "PDCA Cycle and ISO 9001:2015 Clauses",
        subtitle = "The continuous improvement cycle embedded in the standard") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5)
   )
 ```
 
@@ -329,14 +316,14 @@ standards <- data.frame(
 ggplot(standards, aes(x = x, y = y)) +
   geom_tile(aes(fill = Standard), width = 0.9, height = 1.5, color = "white", linewidth = 2) +
   geom_text(aes(label = Standard), fontface = "bold", size = 4, color = "white", vjust = -1) +
-  geom_text(aes(label = Industry), size = 3.5, color = "white") +
-  geom_text(aes(label = Base), size = 2.8, color = "white", vjust = 2, lineheight = 0.9) +
+  geom_text(aes(label = Industry), size = 5.5, color = "white") +
+  geom_text(aes(label = Base), size = 4.8, color = "white", vjust = 2, lineheight = 0.9) +
   scale_fill_manual(values = c("#3498db", "#e74c3c", "#2c3e50", "#27ae60"), guide = "none") +
   labs(title = "Major Quality Management System Standards",
        subtitle = "Industry-specific standards build upon ISO 9001") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
     plot.subtitle = element_text(hjust = 0.5)
   )
 ```
@@ -393,19 +380,370 @@ core_tools <- data.frame(
 
 ggplot(core_tools, aes(x = x, y = 1)) +
   geom_tile(aes(fill = tool), width = 0.85, height = 1.5, color = "white", linewidth = 1.5) +
-  geom_text(aes(label = tool), fontface = "bold", size = 5, color = "white", vjust = -1) +
-  geom_text(aes(label = name), size = 3, color = "white", lineheight = 0.9) +
-  geom_text(aes(label = purpose, y = 0.3), size = 2.5, color = "white", lineheight = 0.9) +
+  geom_text(aes(label = tool), fontface = "bold", size = 8, color = "white", vjust = -1) +
+  geom_text(aes(label = name), size = 6, color = "white", lineheight = 0.9) +
+  geom_text(aes(label = purpose, y = 0.3), size = 5, color = "white", lineheight = 0.9) +
   scale_fill_manual(values = c("#e74c3c", "#3498db", "#27ae60", "#f39c12", "#9b59b6"),
                     guide = "none") +
   labs(title = "AIAG Automotive Core Tools",
        subtitle = "Five essential tools required by IATF 16949") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
   )
 ```
+
+#### APQP: Advanced Product Quality Planning
+
+**APQP** is a structured framework for developing products that ensures customer requirements are met through careful planning and defined milestones.
+
+```{r apqp-phases, echo=FALSE, fig.width=12, fig.height=5}
+apqp_phases <- data.frame(
+  phase = c("1", "2", "3", "4", "5"),
+  name = c("Plan & Define", "Product Design", "Process Design",
+           "Product & Process\nValidation", "Feedback &\nCorrective Action"),
+  activities = c("Voice of customer\nBenchmarking\nProduct assumptions",
+                 "Design FMEA\nDVP&R\nPrototype build",
+                 "Process flow\nProcess FMEA\nControl plan",
+                 "Production trial run\nMSA & SPC studies\nPPAP submission",
+                 "Reduced variation\nCustomer satisfaction\nLessons learned"),
+  x = 1:5
+)
+
+ggplot(apqp_phases, aes(x = x, y = 1)) +
+  geom_polygon(data = data.frame(x = c(0.5, 5.5, 5.5, 0.5), y = c(0.3, 0.3, 1.7, 1.7)),
+               aes(x = x, y = y), fill = "#ecf0f1", color = NA) +
+  geom_segment(aes(x = x, xend = x, y = 0.5, yend = 1.5),
+               color = "#bdc3c7", linetype = "dashed") +
+  geom_point(size = 22, color = "#3498db") +
+  geom_text(aes(label = phase), color = "white", fontface = "bold", size = 10) +
+  geom_text(aes(label = name, y = 2.2), fontface = "bold", size = 6, lineheight = 0.85) +
+  geom_text(aes(label = activities, y = -0.2), size = 5, lineheight = 0.85, color = "gray30") +
+  geom_segment(aes(x = 0.6, xend = 5.4, y = 1, yend = 1),
+               arrow = arrow(length = unit(0.3, "cm"), ends = "last"),
+               size = 1.2, color = "#2c3e50") +
+  coord_cartesian(xlim = c(0, 6), ylim = c(-1.2, 3)) +
+  labs(title = "APQP Five Phases",
+       subtitle = "Structured product development from concept to launch") +
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
+  )
+```
+
+::: {.example-box}
+**Example: New Brake Caliper Development**
+
+A Tier 1 supplier developing a new brake caliper for an OEM would follow APQP:
+
+- **Phase 1**: Gather customer requirements (stopping distance, weight limits, environmental conditions), benchmark competitor products
+- **Phase 2**: Design the caliper, create Design FMEA (what if piston seal fails?), build prototypes for testing
+- **Phase 3**: Design manufacturing process, create Process FMEA, develop control plan for machining and assembly
+- **Phase 4**: Run production trial, validate Cpk > 1.67 for critical dimensions, submit PPAP package
+- **Phase 5**: Monitor warranty returns, implement kaizen improvements, document lessons for next program
+:::
+
+#### PPAP: Production Part Approval Process
+
+**PPAP** provides evidence that the supplier understands customer requirements and can consistently produce conforming parts during actual production runs.
+
+```{r ppap-elements, echo=FALSE}
+ppap_elements <- data.frame(
+  Element = c("1. Design Records", "2. Engineering Change Documents",
+              "3. Customer Engineering Approval", "4. Design FMEA",
+              "5. Process Flow Diagram", "6. Process FMEA",
+              "7. Control Plan", "8. MSA Studies",
+              "9. Dimensional Results", "10. Material/Performance Test Results",
+              "11. Initial Process Studies (SPC)", "12. Qualified Lab Documentation",
+              "13. Appearance Approval Report", "14. Sample Production Parts",
+              "15. Master Sample", "16. Checking Aids",
+              "17. Customer-Specific Requirements", "18. Part Submission Warrant (PSW)"),
+  Description = c(
+    "Part drawings, CAD files, specifications",
+    "Documentation of any design changes since original approval",
+    "Evidence of customer sign-off on design",
+    "Risk analysis of product design failure modes",
+    "Visual representation of manufacturing steps",
+    "Risk analysis of process failure modes",
+    "Document describing controls for each process step",
+    "Gage R&R studies proving measurement system adequacy",
+    "Actual measurements vs. specifications for all dimensions",
+    "Test results for material properties and performance requirements",
+    "Cpk/Ppk studies demonstrating process capability",
+    "Scope and accreditation of testing laboratories",
+    "Required for parts with color, grain, or surface requirements",
+    "Parts from production run for customer evaluation",
+    "Retained reference sample for future comparison",
+    "Fixtures, gages, or templates used to inspect parts",
+    "OEM-specific requirements (Ford, GM, Toyota, etc.)",
+    "Summary document with supplier certification"
+  )
+)
+
+kable(ppap_elements, caption = "PPAP 18 Elements Required for Submission") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "30%")
+```
+
+**PPAP Submission Levels:**
+
+| Level | Requirements | When Used |
+|:------|:-------------|:----------|
+| 1 | PSW only | Low-risk parts, trusted suppliers |
+| 2 | PSW + samples + limited data | Standard submission |
+| 3 | PSW + samples + complete data | Default level; new parts/suppliers |
+| 4 | PSW + other per customer direction | Customer-specified requirements |
+| 5 | PSW + samples + complete data at supplier site | Full documentation review on-site |
+
+::: {.example-box}
+**Example: Fuel Injector PPAP Submission**
+
+A supplier submitting PPAP for a new fuel injector would include:
+
+- **Dimensional results**: 100% inspection of 300 parts showing all 47 dimensions in spec
+- **MSA study**: Gage R&R < 10% for critical spray angle measurement
+- **Process capability**: Cpk = 1.89 for nozzle hole diameter (spec requires Cpk ≥ 1.67)
+- **Material certs**: Steel chemistry and hardness test results
+- **Performance tests**: Flow rate, spray pattern, durability (1 million cycles)
+- **PSW**: Signed warrant certifying all requirements met
+:::
+
+#### FMEA: Failure Mode and Effects Analysis
+
+**FMEA** is a systematic method for identifying potential failures, their causes, and effects, then prioritizing actions to reduce risk. Two types are used in automotive:
+
+- **Design FMEA (DFMEA)**: Analyzes potential failures in product design
+- **Process FMEA (PFMEA)**: Analyzes potential failures in manufacturing processes
+
+```{r fmea-structure, echo=FALSE}
+fmea_example <- data.frame(
+  Column = c("Process Step", "Potential Failure Mode", "Potential Effect(s)",
+             "Severity (S)", "Potential Cause(s)", "Occurrence (O)",
+             "Current Controls", "Detection (D)", "RPN", "Recommended Actions"),
+  Description = c(
+    "The operation being analyzed",
+    "How the process could fail to meet requirements",
+    "Impact on customer if failure occurs",
+    "1-10 rating of effect seriousness (10 = safety/regulatory)",
+    "Root cause of the failure mode",
+    "1-10 rating of cause likelihood (10 = very frequent)",
+    "Existing prevention or detection controls",
+    "1-10 rating of detection ability (10 = cannot detect)",
+    "S × O × D = Risk Priority Number",
+    "Actions to reduce S, O, or D"
+  ),
+  Example = c(
+    "Torque fastener to 25 Nm",
+    "Under-torque / Over-torque",
+    "Joint loosens in service; wheel detaches",
+    "10 (safety critical)",
+    "Worn tool, wrong program, operator error",
+    "4 (occasional occurrence)",
+    "Torque monitoring, error-proofing",
+    "3 (high detection capability)",
+    "10 × 4 × 3 = 120",
+    "Add DC torque tool with automatic reject"
+  )
+)
+
+kable(fmea_example, caption = "Process FMEA Structure and Example") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "20%") %>%
+  column_spec(3, width = "30%")
+```
+
+**Action Priority Based on RPN:**
+
+```{r rpn-priority, echo=FALSE, fig.width=10, fig.height=3}
+rpn_data <- data.frame(
+  range = c("1-50", "51-100", "101-200", "201-1000"),
+  priority = c("Low", "Medium", "High", "Critical"),
+  action = c("Monitor", "Schedule improvement", "Priority action required", "Immediate action required"),
+  color = c("#27ae60", "#f1c40f", "#e67e22", "#e74c3c"),
+  x = 1:4
+)
+
+ggplot(rpn_data, aes(x = x, y = 1)) +
+  geom_tile(aes(fill = color), width = 0.9, height = 1) +
+  scale_fill_identity() +
+  geom_text(aes(label = paste0("RPN: ", range)), fontface = "bold",
+            color = "white", size = 6, vjust = -1) +
+  geom_text(aes(label = priority), color = "white", size = 8, fontface = "bold") +
+  geom_text(aes(label = action), color = "white", size = 5, vjust = 2) +
+  coord_cartesian(ylim = c(0.2, 1.8)) +
+  labs(title = "RPN-Based Action Priority") +
+  theme_void() +
+  theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
+```
+
+::: {.example-box}
+**Example: Engine Block Machining PFMEA**
+
+| Step | Failure Mode | Effect | S | Cause | O | Control | D | RPN | Action |
+|:-----|:-------------|:-------|:--|:------|:--|:--------|:--|:----|:-------|
+| Bore cylinder | Oversize bore | Piston slap, oil consumption | 7 | Tool wear | 5 | SPC chart, tool life monitor | 4 | 140 | Add in-process bore gage |
+| Hone surface | Insufficient crosshatch | Poor ring seal, oil burning | 8 | Wrong hone stones | 3 | Visual inspection | 6 | 144 | Add surface roughness measurement |
+| Wash block | Residual chips | Engine seizure | 9 | Blocked nozzle | 4 | Cleanliness spec check | 5 | 180 | Add particle counter, automated flush verification |
+:::
+
+#### MSA: Measurement Systems Analysis
+
+**MSA** ensures that measurement systems provide reliable data for decision-making. Poor measurement systems can cause good parts to be rejected (false rejects) or bad parts to be accepted (false accepts).
+
+```{r msa-components, echo=FALSE, fig.width=12, fig.height=5}
+msa_data <- data.frame(
+  component = c("Bias", "Linearity", "Stability", "Repeatability", "Reproducibility"),
+  definition = c("Difference between\nmeasured and true value",
+                 "Bias change across\nmeasurement range",
+                 "Bias change\nover time",
+                 "Variation when same\noperator re-measures",
+                 "Variation between\ndifferent operators"),
+  icon = c("→|←", "／", "～", "○○○", "👤👤👤"),
+  x = 1:5,
+  y = rep(1, 5)
+)
+
+ggplot(msa_data, aes(x = x, y = y)) +
+  geom_tile(fill = "#3498db", width = 0.85, height = 1.4, color = "white", linewidth = 2) +
+  geom_text(aes(label = component), color = "white", fontface = "bold", size = 7, vjust = -0.5) +
+  geom_text(aes(label = definition), color = "white", size = 5, vjust = 1.2, lineheight = 0.85) +
+  labs(title = "Five Components of Measurement System Variation",
+       subtitle = "All must be assessed for a complete MSA study") +
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
+  )
+```
+
+**Gage R&R Study Acceptance Criteria:**
+
+| %GRR | Interpretation | Action |
+|:-----|:---------------|:-------|
+| < 10% | Excellent | Acceptable for all applications |
+| 10-30% | Acceptable | May be acceptable depending on application, cost of gage, cost of repairs |
+| > 30% | Unacceptable | Measurement system must be improved; cannot make reliable decisions |
+
+**Number of Distinct Categories (ndc):** Should be ≥ 5 to adequately discriminate between parts.
+
+::: {.example-box}
+**Example: Gage R&R Study for Shaft Diameter**
+
+A supplier conducts a Gage R&R study for a micrometer used to measure shaft diameter (spec: 25.00 ± 0.05 mm):
+
+**Study Setup:**
+- 3 operators measure 10 parts, 3 times each = 90 measurements
+- Parts selected to represent the range of production variation
+
+**Results:**
+| Source | Variance | % Contribution |
+|:-------|:---------|:---------------|
+| Part-to-Part | 0.000156 | 87.2% |
+| Repeatability | 0.000018 | 10.1% |
+| Reproducibility | 0.000005 | 2.7% |
+| **Total Gage R&R** | **0.000023** | **12.8%** |
+
+**Conclusion:** %GRR = 12.8% is acceptable (between 10-30%). ndc = 7 (≥5 required). The measurement system is adequate for this application.
+:::
+
+#### SPC: Statistical Process Control
+
+**SPC** uses control charts to monitor process stability and capability, distinguishing between common cause variation (inherent to the process) and special cause variation (assignable causes requiring investigation).
+
+```{r spc-chart-example, echo=FALSE, fig.width=12, fig.height=6}
+set.seed(42)
+n <- 30
+subgroup_size <- 5
+
+# Generate simulated data with one out-of-control point
+xbar_data <- data.frame(
+  subgroup = 1:n,
+  xbar = c(rnorm(15, mean = 50, sd = 0.3),
+           51.2,  # Out of control point
+           rnorm(14, mean = 50, sd = 0.3))
+)
+
+ucl <- 50 + 3 * 0.3 / sqrt(subgroup_size)
+lcl <- 50 - 3 * 0.3 / sqrt(subgroup_size)
+cl <- 50
+
+xbar_data$status <- ifelse(xbar_data$xbar > ucl | xbar_data$xbar < lcl, "Out of Control", "In Control")
+
+ggplot(xbar_data, aes(x = subgroup, y = xbar)) +
+  geom_hline(yintercept = ucl, color = "#e74c3c", linetype = "dashed", size = 1) +
+  geom_hline(yintercept = lcl, color = "#e74c3c", linetype = "dashed", size = 1) +
+  geom_hline(yintercept = cl, color = "#27ae60", size = 1) +
+  geom_line(color = "#3498db", size = 0.8) +
+  geom_point(aes(color = status), size = 4) +
+  scale_color_manual(values = c("In Control" = "#3498db", "Out of Control" = "#e74c3c")) +
+  annotate("text", x = 31, y = ucl, label = paste0("UCL = ", round(ucl, 2)), hjust = 0, size = 5) +
+  annotate("text", x = 31, y = lcl, label = paste0("LCL = ", round(lcl, 2)), hjust = 0, size = 5) +
+  annotate("text", x = 31, y = cl, label = paste0("CL = ", cl), hjust = 0, size = 5) +
+  annotate("text", x = 16, y = 51.5, label = "Special cause!\nInvestigate", color = "#e74c3c",
+           fontface = "bold", size = 6) +
+  scale_x_continuous(breaks = seq(0, 30, 5), limits = c(0, 35)) +
+  labs(title = "X-bar Control Chart Example",
+       subtitle = "Monitoring process mean with subgroups of n=5",
+       x = "Subgroup Number", y = "Subgroup Mean (mm)") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 12),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    legend.position = "bottom",
+    legend.title = element_blank(),
+    legend.text = element_text(size = 11)
+  )
+```
+
+**Common Control Chart Types:**
+
+| Chart | Data Type | Monitors | When to Use |
+|:------|:----------|:---------|:------------|
+| X-bar & R | Variable, subgroups | Mean and range | Most common; subgroups of 2-10 |
+| X-bar & S | Variable, subgroups | Mean and std dev | Subgroups > 10 |
+| I-MR | Variable, individuals | Individual values and moving range | Slow processes, destructive testing |
+| p-chart | Attribute | Proportion defective | Variable sample sizes |
+| np-chart | Attribute | Number defective | Fixed sample sizes |
+| c-chart | Attribute | Count of defects | Fixed opportunity area |
+| u-chart | Attribute | Defects per unit | Variable opportunity area |
+
+**Process Capability Indices:**
+
+$$C_p = \frac{USL - LSL}{6\sigma}$$
+$$C_{pk} = \min\left(\frac{USL - \bar{x}}{3\sigma}, \frac{\bar{x} - LSL}{3\sigma}\right)$$
+
+| Cpk Value | Interpretation | PPM Defective |
+|:----------|:---------------|:--------------|
+| < 1.00 | Not capable | > 2,700 |
+| 1.00 - 1.33 | Marginally capable | 64 - 2,700 |
+| 1.33 - 1.67 | Capable | 0.6 - 64 |
+| ≥ 1.67 | Highly capable (IATF requirement) | < 0.6 |
+
+::: {.example-box}
+**Example: SPC for Injection Molded Connector**
+
+A supplier monitors critical dimensions on an injection molded electrical connector:
+
+**Process Setup:**
+- Critical dimension: Pin spacing = 2.54 ± 0.08 mm
+- Sample 5 parts every 30 minutes
+- X-bar and R charts maintained at the press
+
+**Results over one shift:**
+- Process mean (X-double-bar) = 2.539 mm
+- Average range (R-bar) = 0.024 mm
+- Estimated σ = R-bar / d2 = 0.024 / 2.326 = 0.0103 mm
+
+**Capability:**
+- Cp = (2.62 - 2.46) / (6 × 0.0103) = 2.59
+- Cpk = min[(2.62 - 2.539)/(3 × 0.0103), (2.539 - 2.46)/(3 × 0.0103)] = min[2.62, 2.56] = **2.56**
+
+**Conclusion:** Cpk = 2.56 exceeds IATF requirement of 1.67. Process is highly capable.
+:::
 
 ### AS9100D (Aerospace/Defense)
 
@@ -472,49 +810,49 @@ A QMS requires documented information to ensure consistency, provide evidence, a
 
 ### Documentation Hierarchy
 
-```{r doc-hierarchy, echo=FALSE, fig.width=11, fig.height=8}
+```{r doc-hierarchy, echo=FALSE, fig.width=12, fig.height=9}
 ggplot() +
   # Level 1 - Policy
   annotate("polygon", x = c(5, 3, 7), y = c(7, 5.5, 5.5),
            fill = "#e74c3c", color = "black") +
   annotate("text", x = 5, y = 6.2, label = "Level 1\nQuality Policy\n& Objectives",
-           color = "white", fontface = "bold", size = 3.5, lineheight = 0.9) +
+           color = "white", fontface = "bold", size = 6, lineheight = 0.9) +
 
   # Level 2 - Manual/Procedures
   annotate("polygon", x = c(5, 2, 8), y = c(5.3, 3.5, 3.5),
            fill = "#f39c12", color = "black") +
   annotate("text", x = 5, y = 4.3, label = "Level 2\nQuality Manual & Procedures\nWhat we do and who is responsible",
-           color = "white", fontface = "bold", size = 3, lineheight = 0.9) +
+           color = "white", fontface = "bold", size = 5, lineheight = 0.9) +
 
   # Level 3 - Work Instructions
   annotate("polygon", x = c(5, 1, 9), y = c(3.3, 1.5, 1.5),
            fill = "#3498db", color = "black") +
   annotate("text", x = 5, y = 2.3, label = "Level 3\nWork Instructions, SOPs, Specifications\nHow we do it - step by step details",
-           color = "white", fontface = "bold", size = 3, lineheight = 0.9) +
+           color = "white", fontface = "bold", size = 5, lineheight = 0.9) +
 
   # Level 4 - Records
   annotate("rect", xmin = 0.5, xmax = 9.5, ymin = 0.3, ymax = 1.3,
            fill = "#27ae60", color = "black") +
   annotate("text", x = 5, y = 0.8, label = "Level 4: Records & Forms - Evidence that we did it",
-           color = "white", fontface = "bold", size = 3.5) +
+           color = "white", fontface = "bold", size = 5) +
 
   # Examples on the right
   annotate("text", x = 9, y = 6.2, label = "• Quality Policy statement\n• Quality objectives",
-           hjust = 0, size = 2.8, lineheight = 0.9) +
+           hjust = 0, size = 5, lineheight = 0.9) +
   annotate("text", x = 9, y = 4.3, label = "• Document control procedure\n• Corrective action procedure\n• Internal audit procedure",
-           hjust = 0, size = 2.8, lineheight = 0.9) +
+           hjust = 0, size = 5, lineheight = 0.9) +
   annotate("text", x = 9, y = 2.3, label = "• Setup instructions\n• Inspection checklists\n• Calibration procedures",
-           hjust = 0, size = 2.8, lineheight = 0.9) +
+           hjust = 0, size = 5, lineheight = 0.9) +
   annotate("text", x = 9, y = 0.8, label = "• Inspection records • Training records • Audit reports",
-           hjust = 0, size = 2.8) +
+           hjust = 0, size = 5) +
 
-  coord_cartesian(xlim = c(0, 13), ylim = c(0, 7.5)) +
+  coord_cartesian(xlim = c(0, 14), ylim = c(0, 7.5)) +
   labs(title = "Quality Documentation Hierarchy",
        subtitle = "From policy (strategic) to records (evidence)") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
   )
 ```
 
@@ -615,21 +953,21 @@ audit_steps <- data.frame(
 )
 
 ggplot(audit_steps, aes(x = x, y = 1)) +
-  geom_point(size = 15, color = "#3498db") +
-  geom_text(aes(label = step), color = "white", fontface = "bold", size = 5) +
-  geom_text(aes(label = name, y = 0.5), size = 3, fontface = "bold", angle = 45, hjust = 1) +
-  geom_text(aes(label = description, y = 1.5), size = 2.5, lineheight = 0.9) +
-  geom_segment(aes(x = x + 0.3, xend = x + 0.7, y = 1, yend = 1),
+  geom_point(size = 20, color = "#3498db") +
+  geom_text(aes(label = step), color = "white", fontface = "bold", size = 8) +
+  geom_text(aes(label = name, y = 0.4), size = 5, fontface = "bold", angle = 45, hjust = 1) +
+  geom_text(aes(label = description, y = 1.6), size = 5, lineheight = 0.9) +
+  geom_segment(aes(x = x + 0.35, xend = x + 0.65, y = 1, yend = 1),
                data = audit_steps[1:6,],
-               arrow = arrow(length = unit(0.2, "cm")), color = "gray50") +
-  scale_x_continuous(limits = c(0.5, 7.5)) +
-  scale_y_continuous(limits = c(0, 2)) +
+               arrow = arrow(length = unit(0.3, "cm")), color = "gray50", size = 1) +
+  scale_x_continuous(limits = c(0.3, 7.7)) +
+  scale_y_continuous(limits = c(-0.1, 2.2)) +
   labs(title = "Internal Audit Process Flow",
        subtitle = "Systematic approach to evaluating QMS effectiveness") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
   )
 ```
 
@@ -755,36 +1093,324 @@ capa_steps <- data.frame(
 )
 
 ggplot(capa_steps, aes(x = x, y = y)) +
-  geom_tile(aes(fill = step), width = 0.9, height = 1.5, color = "white", linewidth = 1) +
+  geom_tile(aes(fill = step), width = 0.9, height = 1.7, color = "white", linewidth = 1) +
   geom_text(aes(label = paste0(step, ". ", name)), fontface = "bold",
-            size = 3, color = "white", vjust = -0.5) +
-  geom_text(aes(label = description), size = 2.5, color = "white",
+            size = 5, color = "white", vjust = -0.5) +
+  geom_text(aes(label = description), size = 5, color = "white",
             vjust = 1, lineheight = 0.85) +
   # Arrows showing flow
   annotate("segment", x = 1.5, xend = 1.9, y = 4, yend = 4,
-           arrow = arrow(length = unit(0.2, "cm"))) +
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   annotate("segment", x = 2.5, xend = 2.9, y = 4, yend = 4,
-           arrow = arrow(length = unit(0.2, "cm"))) +
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   annotate("segment", x = 3.5, xend = 3.9, y = 4, yend = 4,
-           arrow = arrow(length = unit(0.2, "cm"))) +
-  annotate("segment", x = 4, xend = 4, y = 3.2, yend = 2.8,
-           arrow = arrow(length = unit(0.2, "cm"))) +
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
+  annotate("segment", x = 4, xend = 4, y = 3.1, yend = 2.9,
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   annotate("segment", x = 3.5, xend = 3.1, y = 2, yend = 2,
-           arrow = arrow(length = unit(0.2, "cm"))) +
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   annotate("segment", x = 2.5, xend = 2.1, y = 2, yend = 2,
-           arrow = arrow(length = unit(0.2, "cm"))) +
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   annotate("segment", x = 1.5, xend = 1.1, y = 2, yend = 2,
-           arrow = arrow(length = unit(0.2, "cm"))) +
+           arrow = arrow(length = unit(0.3, "cm")), size = 1) +
   scale_fill_gradient(low = "#27ae60", high = "#3498db", guide = "none") +
-  coord_cartesian(xlim = c(0.3, 4.7), ylim = c(1, 5)) +
+  coord_cartesian(xlim = c(0.3, 4.7), ylim = c(0.8, 5.2)) +
   labs(title = "CAPA Process Flow",
        subtitle = "Eight-step process for effective corrective and preventive action") +
   theme_void() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
   )
 ```
+
+#### Step 1: Identification
+
+The CAPA process begins when a nonconformity or potential problem is identified. Sources include:
+
+```{r capa-sources, echo=FALSE}
+capa_sources <- data.frame(
+  Source = c("Customer Complaints", "Internal Audits", "Process Monitoring",
+             "Inspection/Testing", "Supplier Issues", "Employee Reports",
+             "Management Review", "External Audits"),
+  Description = c(
+    "Product returns, warranty claims, customer feedback",
+    "Nonconformities found during scheduled internal audits",
+    "SPC out-of-control conditions, trend analysis",
+    "Failed inspections, test failures, rejected lots",
+    "Incoming inspection failures, supplier audit findings",
+    "Near-misses, safety concerns, improvement suggestions",
+    "Issues identified during management review meetings",
+    "Findings from certification body or customer audits"
+  ),
+  Priority = c("High", "Medium", "Medium", "High", "Medium", "Low-Medium", "Medium", "High")
+)
+
+kable(capa_sources, caption = "Common CAPA Initiation Sources") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "20%") %>%
+  column_spec(3, width = "12%")
+```
+
+#### Step 2: Evaluation
+
+Evaluate the significance of the issue to determine the appropriate response level:
+
+**Evaluation Criteria:**
+
+| Factor | Questions to Consider |
+|:-------|:----------------------|
+| **Safety** | Could this harm people or the environment? |
+| **Customer Impact** | How many customers affected? Severity of impact? |
+| **Regulatory** | Does this violate regulations or standards? |
+| **Financial** | What is the cost of the problem? Potential liability? |
+| **Frequency** | Is this a one-time event or recurring pattern? |
+| **Detection** | How was it found? Could others exist undetected? |
+
+**Containment Actions** - Immediate actions to limit the impact while the investigation proceeds:
+
+- Quarantine suspect product
+- Sort and inspect inventory
+- Notify affected customers
+- Implement temporary controls
+- Stop shipments if necessary
+
+::: {.example-box}
+**Example: Evaluation of Dimensional Nonconformity**
+
+A batch of machined shafts is found with diameter 0.02 mm oversize:
+
+- **Safety**: Low - not a safety-critical dimension
+- **Customer Impact**: Medium - may cause assembly issues
+- **Regulatory**: None
+- **Financial**: 500 parts × $15/part = $7,500 potential scrap
+- **Containment**: Quarantine batch, 100% inspection of last 3 lots, notify customer
+
+**Decision**: Proceed with formal CAPA (cost exceeds $5,000 threshold)
+:::
+
+#### Step 3: Investigation
+
+Gather all relevant data and evidence to understand what happened:
+
+**Investigation Activities:**
+
+- **Review documentation**: Work instructions, control plans, inspection records
+- **Examine physical evidence**: Failed parts, raw materials, tooling
+- **Interview personnel**: Operators, inspectors, supervisors
+- **Analyze data**: SPC charts, measurement data, process parameters
+- **Timeline reconstruction**: When did the problem start? What changed?
+
+```{r investigation-data, echo=FALSE}
+investigation <- data.frame(
+  Data_Type = c("Process Data", "Material Data", "Equipment Data",
+                "Personnel Data", "Environmental Data"),
+  Examples = c(
+    "Temperatures, pressures, speeds, feeds, cycle times",
+    "Lot numbers, certificates, incoming inspection results",
+    "Maintenance records, calibration status, tool wear",
+    "Training records, shift assignments, experience level",
+    "Temperature, humidity, contamination levels"
+  ),
+  Collection_Method = c(
+    "Data historians, SPC software, log sheets",
+    "Traceability system, supplier records",
+    "CMMS, calibration database",
+    "HR system, training matrix",
+    "Environmental monitoring system"
+  )
+)
+
+kable(investigation, col.names = c("Data Type", "Examples", "Collection Method"),
+      caption = "Data Collection for CAPA Investigation") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "18%")
+```
+
+#### Step 4: Root Cause Analysis
+
+Determine the fundamental cause(s) of the problem using structured analysis tools:
+
+```{r rca-tools, echo=FALSE, fig.width=12, fig.height=6}
+rca_tools <- data.frame(
+  tool = c("5 Whys", "Fishbone\n(Ishikawa)", "Fault Tree\nAnalysis", "Is/Is Not\nAnalysis", "Pareto\nAnalysis"),
+  best_for = c("Simple problems;\nquick analysis",
+               "Brainstorming;\nteam analysis",
+               "Complex systems;\nsafety issues",
+               "Narrowing focus;\ndefining scope",
+               "Prioritizing;\nmultiple causes"),
+  approach = c("Ask 'Why?' 5 times\nto drill down",
+               "Categorize causes:\n6Ms framework",
+               "Top-down logic\ndiagram",
+               "Compare what is\nvs. what isn't",
+               "80/20 rule:\nfocus on vital few"),
+  x = 1:5
+)
+
+ggplot(rca_tools, aes(x = x, y = 1)) +
+  geom_tile(fill = "#9b59b6", width = 0.9, height = 1.6, color = "white", linewidth = 2) +
+  geom_text(aes(label = tool), color = "white", fontface = "bold", size = 6, vjust = -0.6, lineheight = 0.85) +
+  geom_text(aes(label = best_for), color = "white", size = 5, vjust = 0.8, lineheight = 0.85) +
+  labs(title = "Root Cause Analysis Tools",
+       subtitle = "Select the appropriate tool based on problem complexity") +
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
+  )
+```
+
+**The 5 Whys Example:**
+
+| Level | Question | Answer |
+|:------|:---------|:-------|
+| Problem | Shaft diameter is oversize | - |
+| Why 1? | Why is the diameter oversize? | Tool is worn |
+| Why 2? | Why is the tool worn? | Tool wasn't changed at scheduled interval |
+| Why 3? | Why wasn't it changed? | Operator didn't know it was due |
+| Why 4? | Why didn't operator know? | Tool life counter was reset incorrectly |
+| Why 5? | Why was it reset incorrectly? | No verification step in setup procedure |
+| **Root Cause** | **Setup procedure lacks tool counter verification step** | |
+
+**The 6M Categories (Fishbone Diagram):**
+
+- **Man** (People): Training, skills, fatigue, attention
+- **Machine**: Equipment condition, capability, maintenance
+- **Material**: Raw material quality, specifications, storage
+- **Method**: Procedures, work instructions, standards
+- **Measurement**: Gages, calibration, measurement technique
+- **Mother Nature** (Environment): Temperature, humidity, contamination
+
+#### Step 5: Action Plan
+
+Define specific corrective and/or preventive actions to address the root cause:
+
+```{r action-types, echo=FALSE}
+action_types <- data.frame(
+  Action_Type = c("Correction", "Corrective Action", "Preventive Action"),
+  Definition = c(
+    "Fix the immediate problem (symptom treatment)",
+    "Eliminate the root cause to prevent recurrence",
+    "Eliminate potential causes before problems occur"
+  ),
+  Example = c(
+    "Rework or scrap the nonconforming parts",
+    "Revise setup procedure to include tool counter verification",
+    "Add tool counter verification to ALL machine setup procedures"
+  ),
+  Timeframe = c("Immediate", "30-90 days typical", "Ongoing improvement")
+)
+
+kable(action_types, caption = "Types of CAPA Actions") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "18%")
+```
+
+**SMART Action Planning:**
+
+- **S**pecific: Clearly defined action (not vague)
+- **M**easurable: Can verify completion and effectiveness
+- **A**ssignable: Single owner responsible
+- **R**ealistic: Achievable with available resources
+- **T**ime-bound: Due date specified
+
+::: {.example-box}
+**Example: SMART Corrective Action**
+
+**Poor**: "Improve the setup procedure"
+
+**SMART**: "Quality Engineer (J. Smith) will revise Work Instruction WI-2345 to add Step 4.7: 'Verify tool life counter matches Tool Setup Sheet before starting production. Record counter reading on Setup Checklist Form F-102.' Revision to be completed by April 15, training completed by April 22."
+:::
+
+#### Step 6: Implementation
+
+Execute the action plan with clear ownership and tracking:
+
+**Implementation Requirements:**
+
+- Assign responsible person for each action
+- Provide necessary resources (time, budget, authority)
+- Communicate changes to affected personnel
+- Update documentation (procedures, work instructions, forms)
+- Train personnel on new requirements
+- Implement changes in a controlled manner
+
+**Change Control Considerations:**
+
+| Change Type | Approval Required | Documentation |
+|:------------|:------------------|:--------------|
+| Document revision | Document owner, Quality | Revision history, training records |
+| Process change | Process owner, Engineering, Quality | Change request, validation if needed |
+| Equipment change | Maintenance, Engineering, Quality | Equipment qualification, capability study |
+| Product change | Engineering, Quality, Customer (if required) | ECN, customer approval, PPAP if applicable |
+
+#### Step 7: Verification
+
+Verify that actions were completed AND effective:
+
+**Completion Verification:**
+- Was the action actually implemented?
+- Is documentation updated and approved?
+- Are personnel trained?
+- Is the change being followed?
+
+**Effectiveness Verification:**
+- Has the problem stopped recurring?
+- Do metrics show improvement?
+- Are there any unintended consequences?
+
+```{r verification-methods, echo=FALSE}
+verification <- data.frame(
+  Method = c("Monitoring Period", "Statistical Analysis", "Audit Verification",
+             "Customer Feedback", "Process Capability"),
+  Description = c(
+    "Track for recurrence over defined period (e.g., 90 days, 3 production runs)",
+    "Compare defect rates before/after; statistical significance testing",
+    "Include in next internal audit; verify implementation",
+    "Monitor complaints related to this issue",
+    "Cpk study to confirm process improvement"
+  ),
+  When_to_Use = c(
+    "All CAPAs - minimum requirement",
+    "When baseline data exists",
+    "Process/documentation changes",
+    "Customer-reported issues",
+    "Manufacturing process changes"
+  )
+)
+
+kable(verification, caption = "CAPA Effectiveness Verification Methods") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "20%")
+```
+
+#### Step 8: Closure
+
+Complete documentation and share lessons learned:
+
+**Closure Requirements:**
+
+- All actions verified complete
+- Effectiveness confirmed (no recurrence)
+- Documentation updated and approved
+- CAPA record completed with all evidence
+- Management approval for closure
+
+**Lessons Learned:**
+
+- What was the root cause?
+- Could this happen elsewhere? (Horizontal deployment)
+- Should procedures/training be updated system-wide?
+- Are there similar products/processes at risk?
+- What can we do to prevent similar issues?
+
+::: {.example-box}
+**Example: Horizontal Deployment**
+
+The shaft diameter CAPA revealed that setup procedures lacked tool counter verification.
+
+**Horizontal deployment**: Quality reviewed ALL 47 CNC machine setup procedures and found 12 others with the same gap. All procedures were revised, and the finding was shared at the monthly quality meeting as a lesson learned.
+:::
 
 ### CAPA Effectiveness Criteria
 
@@ -828,7 +1454,7 @@ ggplot(capa_long, aes(x = Month, y = Count, fill = Metric)) +
   geom_line(data = capa_data, aes(x = Month, y = Recurrence * 5, group = 1),
             color = "red", size = 1.2, inherit.aes = FALSE) +
   geom_point(data = capa_data, aes(x = Month, y = Recurrence * 5),
-             color = "red", size = 3, inherit.aes = FALSE) +
+             color = "red", size = 4, inherit.aes = FALSE) +
   scale_fill_manual(values = c("#e74c3c", "#f39c12", "#27ae60"),
                     labels = c("Closed On Time", "Verified Effective", "Total CAPAs")) +
   scale_y_continuous(sec.axis = sec_axis(~./5, name = "Recurrences")) +
@@ -837,8 +1463,12 @@ ggplot(capa_long, aes(x = Month, y = Count, fill = Metric)) +
        x = "", y = "Number of CAPAs", fill = "") +
   theme_minimal() +
   theme(
-    plot.title = element_text(face = "bold", size = 14),
-    legend.position = "bottom"
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 12),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11),
+    legend.position = "bottom",
+    legend.text = element_text(size = 11)
   )
 ```
 
@@ -922,10 +1552,10 @@ objectives <- data.frame(
 p1 <- ggplot(objectives, aes(x = x)) +
   geom_bar(aes(y = Target), stat = "identity", fill = "gray80", width = 0.4, position = position_nudge(x = -0.2)) +
   geom_bar(aes(y = Actual), stat = "identity", fill = "#27ae60", width = 0.4, position = position_nudge(x = 0.2)) +
-  geom_text(aes(y = 0, label = Objective), vjust = 1.5, size = 3, lineheight = 0.8) +
+  geom_text(aes(y = 0, label = Objective), vjust = 1.5, size = 5, lineheight = 0.8) +
   labs(title = "Quality Objectives: Target vs Actual", x = "", y = "") +
   theme_minimal() +
-  theme(axis.text.x = element_blank(), plot.title = element_text(face = "bold", size = 11))
+  theme(axis.text.x = element_blank(), plot.title = element_text(face = "bold", size = 14))
 
 # Customer Satisfaction Trend
 satisfaction <- data.frame(
@@ -935,13 +1565,15 @@ satisfaction <- data.frame(
 
 p2 <- ggplot(satisfaction, aes(x = Quarter, y = Score, group = 1)) +
   geom_line(color = "#3498db", linewidth = 1.5) +
-  geom_point(color = "#3498db", size = 4) +
+  geom_point(color = "#3498db", size = 5) +
   geom_hline(yintercept = 4.0, linetype = "dashed", color = "red") +
-  annotate("text", x = 4.2, y = 4.0, label = "Target", color = "red", size = 3) +
+  annotate("text", x = 4.2, y = 4.0, label = "Target", color = "red", size = 5) +
   scale_y_continuous(limits = c(3.5, 5)) +
   labs(title = "Customer Satisfaction Trend", x = "", y = "Score (1-5)") +
   theme_minimal() +
-  theme(plot.title = element_text(face = "bold", size = 11))
+  theme(plot.title = element_text(face = "bold", size = 14),
+        axis.title = element_text(size = 11),
+        axis.text = element_text(size = 10))
 
 # Audit Findings
 audit_data <- data.frame(
@@ -951,13 +1583,15 @@ audit_data <- data.frame(
 
 p3 <- ggplot(audit_data, aes(x = Type, y = Count, fill = Type)) +
   geom_bar(stat = "identity", width = 0.6) +
-  geom_text(aes(label = Count), vjust = -0.5, size = 4) +
+  geom_text(aes(label = Count), vjust = -0.5, size = 6) +
   scale_fill_manual(values = c("Major NC" = "#e74c3c", "Minor NC" = "#f39c12",
                                "Observations" = "#3498db", "OFIs" = "#27ae60"),
                     guide = "none") +
   labs(title = "Internal Audit Findings (YTD)", x = "", y = "Count") +
   theme_minimal() +
-  theme(plot.title = element_text(face = "bold", size = 11))
+  theme(plot.title = element_text(face = "bold", size = 14),
+        axis.title = element_text(size = 11),
+        axis.text = element_text(size = 10))
 
 # CAPA Status
 capa_status <- data.frame(
