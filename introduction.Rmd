@@ -14954,7 +14954,7 @@ LSL        Target        USL
 
 ------------------------------------------------------------------------
 
-<!--chapter:end:11-SPC.Rmd-->
+<!--chapter:end:10-SPC.Rmd-->
 
 # Measurement Systems Analysis
 
@@ -15141,15 +15141,19 @@ scenarios$Scenario <- factor(scenarios$Scenario,
                                         "Precise but Inaccurate\n(Biased)",
                                         "Inaccurate & Imprecise\n(WORST)"))
 
+# Circle data for target rings
+circle_data <- data.frame(x0 = 0, y0 = 0, r = c(0.5, 1, 1.5),
+                          color = c("red", "orange", "gold"))
+
 ggplot(scenarios, aes(x = x, y = y)) +
+  geom_circle(data = circle_data[1,], aes(x0 = x0, y0 = y0, r = r),
+              inherit.aes = FALSE, color = "red", linetype = "dashed") +
+  geom_circle(data = circle_data[2,], aes(x0 = x0, y0 = y0, r = r),
+              inherit.aes = FALSE, color = "orange", linetype = "dashed") +
+  geom_circle(data = circle_data[3,], aes(x0 = x0, y0 = y0, r = r),
+              inherit.aes = FALSE, color = "gold", linetype = "dashed") +
   geom_point(color = "steelblue", size = 2, alpha = 0.7) +
   annotate("point", x = 0, y = 0, color = "red", size = 4, shape = 3, stroke = 2) +
-  geom_circle(aes(x0 = 0, y0 = 0, r = 0.5), inherit.aes = FALSE,
-              color = "red", linetype = "dashed") +
-  geom_circle(aes(x0 = 0, y0 = 0, r = 1), inherit.aes = FALSE,
-              color = "orange", linetype = "dashed") +
-  geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), inherit.aes = FALSE,
-              color = "gold", linetype = "dashed") +
   facet_wrap(~Scenario, nrow = 1) +
   coord_fixed(xlim = c(-3, 3), ylim = c(-3, 3)) +
   labs(title = "Accuracy vs. Precision: The Target Analogy",
@@ -16733,7 +16737,7 @@ When **repeatability is high** (main contributor to GRR) but **reproducibility i
 
 10. Dietrich, E., & Schulze, A. (2011). *Statistical Procedures for Machine and Process Qualification* (6th ed.). Hanser.
 
-<!--chapter:end:12-MSA.Rmd-->
+<!--chapter:end:11-MSA.Rmd-->
 
 # Total Productive Maintenance (TPM)
 
@@ -18376,7 +18380,7 @@ If we improve each equally, we need:
 
 ------------------------------------------------------------------------
 
-<!--chapter:end:13-TPM.Rmd-->
+<!--chapter:end:12-TPM.Rmd-->
 
 # Quality Management Systems
 ```{r setup-14, include=FALSE}
@@ -19504,6 +19508,294 @@ ggplot(capa_steps, aes(x = x, y = y)) +
   )
 ```
 
+#### Step 1: Identification
+
+The CAPA process begins when a nonconformity or potential problem is identified. Sources include:
+
+```{r capa-sources, echo=FALSE}
+capa_sources <- data.frame(
+  Source = c("Customer Complaints", "Internal Audits", "Process Monitoring",
+             "Inspection/Testing", "Supplier Issues", "Employee Reports",
+             "Management Review", "External Audits"),
+  Description = c(
+    "Product returns, warranty claims, customer feedback",
+    "Nonconformities found during scheduled internal audits",
+    "SPC out-of-control conditions, trend analysis",
+    "Failed inspections, test failures, rejected lots",
+    "Incoming inspection failures, supplier audit findings",
+    "Near-misses, safety concerns, improvement suggestions",
+    "Issues identified during management review meetings",
+    "Findings from certification body or customer audits"
+  ),
+  Priority = c("High", "Medium", "Medium", "High", "Medium", "Low-Medium", "Medium", "High")
+)
+
+kable(capa_sources, caption = "Common CAPA Initiation Sources") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "20%") %>%
+  column_spec(3, width = "12%")
+```
+
+#### Step 2: Evaluation
+
+Evaluate the significance of the issue to determine the appropriate response level:
+
+**Evaluation Criteria:**
+
+| Factor | Questions to Consider |
+|:-------|:----------------------|
+| **Safety** | Could this harm people or the environment? |
+| **Customer Impact** | How many customers affected? Severity of impact? |
+| **Regulatory** | Does this violate regulations or standards? |
+| **Financial** | What is the cost of the problem? Potential liability? |
+| **Frequency** | Is this a one-time event or recurring pattern? |
+| **Detection** | How was it found? Could others exist undetected? |
+
+**Containment Actions** - Immediate actions to limit the impact while the investigation proceeds:
+
+- Quarantine suspect product
+- Sort and inspect inventory
+- Notify affected customers
+- Implement temporary controls
+- Stop shipments if necessary
+
+::: {.example-box}
+**Example: Evaluation of Dimensional Nonconformity**
+
+A batch of machined shafts is found with diameter 0.02 mm oversize:
+
+- **Safety**: Low - not a safety-critical dimension
+- **Customer Impact**: Medium - may cause assembly issues
+- **Regulatory**: None
+- **Financial**: 500 parts × $15/part = $7,500 potential scrap
+- **Containment**: Quarantine batch, 100% inspection of last 3 lots, notify customer
+
+**Decision**: Proceed with formal CAPA (cost exceeds $5,000 threshold)
+:::
+
+#### Step 3: Investigation
+
+Gather all relevant data and evidence to understand what happened:
+
+**Investigation Activities:**
+
+- **Review documentation**: Work instructions, control plans, inspection records
+- **Examine physical evidence**: Failed parts, raw materials, tooling
+- **Interview personnel**: Operators, inspectors, supervisors
+- **Analyze data**: SPC charts, measurement data, process parameters
+- **Timeline reconstruction**: When did the problem start? What changed?
+
+```{r investigation-data, echo=FALSE}
+investigation <- data.frame(
+  Data_Type = c("Process Data", "Material Data", "Equipment Data",
+                "Personnel Data", "Environmental Data"),
+  Examples = c(
+    "Temperatures, pressures, speeds, feeds, cycle times",
+    "Lot numbers, certificates, incoming inspection results",
+    "Maintenance records, calibration status, tool wear",
+    "Training records, shift assignments, experience level",
+    "Temperature, humidity, contamination levels"
+  ),
+  Collection_Method = c(
+    "Data historians, SPC software, log sheets",
+    "Traceability system, supplier records",
+    "CMMS, calibration database",
+    "HR system, training matrix",
+    "Environmental monitoring system"
+  )
+)
+
+kable(investigation, col.names = c("Data Type", "Examples", "Collection Method"),
+      caption = "Data Collection for CAPA Investigation") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "18%")
+```
+
+#### Step 4: Root Cause Analysis
+
+Determine the fundamental cause(s) of the problem using structured analysis tools:
+
+```{r rca-tools, echo=FALSE, fig.width=12, fig.height=6}
+rca_tools <- data.frame(
+  tool = c("5 Whys", "Fishbone\n(Ishikawa)", "Fault Tree\nAnalysis", "Is/Is Not\nAnalysis", "Pareto\nAnalysis"),
+  best_for = c("Simple problems;\nquick analysis",
+               "Brainstorming;\nteam analysis",
+               "Complex systems;\nsafety issues",
+               "Narrowing focus;\ndefining scope",
+               "Prioritizing;\nmultiple causes"),
+  approach = c("Ask 'Why?' 5 times\nto drill down",
+               "Categorize causes:\n6Ms framework",
+               "Top-down logic\ndiagram",
+               "Compare what is\nvs. what isn't",
+               "80/20 rule:\nfocus on vital few"),
+  x = 1:5
+)
+
+ggplot(rca_tools, aes(x = x, y = 1)) +
+  geom_tile(fill = "#9b59b6", width = 0.9, height = 1.6, color = "white", linewidth = 2) +
+  geom_text(aes(label = tool), color = "white", fontface = "bold", size = 6, vjust = -0.6, lineheight = 0.85) +
+  geom_text(aes(label = best_for), color = "white", size = 5, vjust = 0.8, lineheight = 0.85) +
+  labs(title = "Root Cause Analysis Tools",
+       subtitle = "Select the appropriate tool based on problem complexity") +
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 12)
+  )
+```
+
+**The 5 Whys Example:**
+
+| Level | Question | Answer |
+|:------|:---------|:-------|
+| Problem | Shaft diameter is oversize | - |
+| Why 1? | Why is the diameter oversize? | Tool is worn |
+| Why 2? | Why is the tool worn? | Tool wasn't changed at scheduled interval |
+| Why 3? | Why wasn't it changed? | Operator didn't know it was due |
+| Why 4? | Why didn't operator know? | Tool life counter was reset incorrectly |
+| Why 5? | Why was it reset incorrectly? | No verification step in setup procedure |
+| **Root Cause** | **Setup procedure lacks tool counter verification step** | |
+
+**The 6M Categories (Fishbone Diagram):**
+
+- **Man** (People): Training, skills, fatigue, attention
+- **Machine**: Equipment condition, capability, maintenance
+- **Material**: Raw material quality, specifications, storage
+- **Method**: Procedures, work instructions, standards
+- **Measurement**: Gages, calibration, measurement technique
+- **Mother Nature** (Environment): Temperature, humidity, contamination
+
+#### Step 5: Action Plan
+
+Define specific corrective and/or preventive actions to address the root cause:
+
+```{r action-types, echo=FALSE}
+action_types <- data.frame(
+  Action_Type = c("Correction", "Corrective Action", "Preventive Action"),
+  Definition = c(
+    "Fix the immediate problem (symptom treatment)",
+    "Eliminate the root cause to prevent recurrence",
+    "Eliminate potential causes before problems occur"
+  ),
+  Example = c(
+    "Rework or scrap the nonconforming parts",
+    "Revise setup procedure to include tool counter verification",
+    "Add tool counter verification to ALL machine setup procedures"
+  ),
+  Timeframe = c("Immediate", "30-90 days typical", "Ongoing improvement")
+)
+
+kable(action_types, caption = "Types of CAPA Actions") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "18%")
+```
+
+**SMART Action Planning:**
+
+- **S**pecific: Clearly defined action (not vague)
+- **M**easurable: Can verify completion and effectiveness
+- **A**ssignable: Single owner responsible
+- **R**ealistic: Achievable with available resources
+- **T**ime-bound: Due date specified
+
+::: {.example-box}
+**Example: SMART Corrective Action**
+
+**Poor**: "Improve the setup procedure"
+
+**SMART**: "Quality Engineer (J. Smith) will revise Work Instruction WI-2345 to add Step 4.7: 'Verify tool life counter matches Tool Setup Sheet before starting production. Record counter reading on Setup Checklist Form F-102.' Revision to be completed by April 15, training completed by April 22."
+:::
+
+#### Step 6: Implementation
+
+Execute the action plan with clear ownership and tracking:
+
+**Implementation Requirements:**
+
+- Assign responsible person for each action
+- Provide necessary resources (time, budget, authority)
+- Communicate changes to affected personnel
+- Update documentation (procedures, work instructions, forms)
+- Train personnel on new requirements
+- Implement changes in a controlled manner
+
+**Change Control Considerations:**
+
+| Change Type | Approval Required | Documentation |
+|:------------|:------------------|:--------------|
+| Document revision | Document owner, Quality | Revision history, training records |
+| Process change | Process owner, Engineering, Quality | Change request, validation if needed |
+| Equipment change | Maintenance, Engineering, Quality | Equipment qualification, capability study |
+| Product change | Engineering, Quality, Customer (if required) | ECN, customer approval, PPAP if applicable |
+
+#### Step 7: Verification
+
+Verify that actions were completed AND effective:
+
+**Completion Verification:**
+- Was the action actually implemented?
+- Is documentation updated and approved?
+- Are personnel trained?
+- Is the change being followed?
+
+**Effectiveness Verification:**
+- Has the problem stopped recurring?
+- Do metrics show improvement?
+- Are there any unintended consequences?
+
+```{r verification-methods, echo=FALSE}
+verification <- data.frame(
+  Method = c("Monitoring Period", "Statistical Analysis", "Audit Verification",
+             "Customer Feedback", "Process Capability"),
+  Description = c(
+    "Track for recurrence over defined period (e.g., 90 days, 3 production runs)",
+    "Compare defect rates before/after; statistical significance testing",
+    "Include in next internal audit; verify implementation",
+    "Monitor complaints related to this issue",
+    "Cpk study to confirm process improvement"
+  ),
+  When_to_Use = c(
+    "All CAPAs - minimum requirement",
+    "When baseline data exists",
+    "Process/documentation changes",
+    "Customer-reported issues",
+    "Manufacturing process changes"
+  )
+)
+
+kable(verification, caption = "CAPA Effectiveness Verification Methods") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE) %>%
+  column_spec(1, bold = TRUE, width = "20%")
+```
+
+#### Step 8: Closure
+
+Complete documentation and share lessons learned:
+
+**Closure Requirements:**
+
+- All actions verified complete
+- Effectiveness confirmed (no recurrence)
+- Documentation updated and approved
+- CAPA record completed with all evidence
+- Management approval for closure
+
+**Lessons Learned:**
+
+- What was the root cause?
+- Could this happen elsewhere? (Horizontal deployment)
+- Should procedures/training be updated system-wide?
+- Are there similar products/processes at risk?
+- What can we do to prevent similar issues?
+
+::: {.example-box}
+**Example: Horizontal Deployment**
+
+The shaft diameter CAPA revealed that setup procedures lacked tool counter verification.
+
+**Horizontal deployment**: Quality reviewed ALL 47 CNC machine setup procedures and found 12 others with the same gap. All procedures were revised, and the finding was shared at the monthly quality meeting as a lesson learned.
+:::
+
 ### CAPA Effectiveness Criteria
 
 ```{r capa-effectiveness, echo=TRUE}
@@ -20442,7 +20734,7 @@ Management review is a formal, periodic evaluation of the QMS by top management 
 
 10. Juran, J.M., & De Feo, J.A. (2010). *Juran's Quality Handbook* (6th ed.). McGraw-Hill.
 
-<!--chapter:end:14-Quality-Systems.Rmd-->
+<!--chapter:end:13-Quality-Systems.Rmd-->
 
 # Process Failure Mode and Effects Analysis (PFMEA)
 ```{r setup-08, include=FALSE}
@@ -22090,7 +22382,7 @@ New RPN = 8 × 6 × 2 = 96
 
 ------------------------------------------------------------------------
 
-<!--chapter:end:15-PFMEA.Rmd-->
+<!--chapter:end:14-PFMEA.Rmd-->
 
 # Troubleshooting and Root Cause Analysis
 ```{r setup-11, include=FALSE}
@@ -23876,7 +24168,7 @@ The stratified approach efficiently narrows focus from "we have a scrap problem"
 
 10. Wilson, P.F., Dell, L.D., & Anderson, G.F. (1993). *Root Cause Analysis: A Tool for Total Quality Management*. ASQ Quality Press.
 
-<!--chapter:end:16-Troubleshooting-RCA.Rmd-->
+<!--chapter:end:15-Troubleshooting-RCA.Rmd-->
 
 # Simulation Modeling with AnyLogic {#chap-17-anylogic}
 
@@ -24978,7 +25270,7 @@ c) If each AMR costs $50,000 and operates for 5 years, what is the daily cost pe
 **Getting Started:** Download the free Personal Learning Edition of AnyLogic from anylogic.com. It includes all features and example models—the only limitation is model size.
 :::
 
-<!--chapter:end:17-AnyLogic-Simulation.Rmd-->
+<!--chapter:end:16-AnyLogic-Simulation.Rmd-->
 
 # Working Effectively with AI
 ```{r setup-16, include=FALSE}

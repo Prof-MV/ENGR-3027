@@ -285,6 +285,10 @@ tab:mandatory-docs
 tab:audit-checklist
 tab:finding-types
 tab:auditor-competence
+tab:capa-sources
+tab:investigation-data
+tab:action-types
+tab:verification-methods
 tab:mgmt-review-inputs
 tab:mgmt-review-outputs
 tab:improvement-methods
@@ -904,6 +908,14 @@ types-of-audit-findings
 auditor-competence
 corrective-and-preventive-action-capa
 the-capa-process
+step-1-identification
+step-2-evaluation
+step-3-investigation
+step-4-root-cause-analysis
+step-5-action-plan
+step-6-implementation
+step-7-verification
+step-8-closure
 capa-effectiveness-criteria
 management-review
 management-review-inputs

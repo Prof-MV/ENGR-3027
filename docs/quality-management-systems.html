@@ -1657,8 +1657,7 @@ Documented manufacturing feasibility review
 <h4><span class="header-section-number">13.4.3.1</span> APQP: Advanced Product Quality Planning<a href="quality-management-systems.html#apqp-advanced-product-quality-planning" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>APQP</strong> is a structured framework for developing products that ensures customer requirements are met through careful planning and defined milestones.</p>
 <pre><code>## Warning in geom_segment(aes(x = 0.6, xend = 5.4, y = 1, yend = 1), arrow = arrow(length = unit(0.3, : All aesthetics have length 1, but the data has 5 rows.
-## ℹ Please consider using `annotate()` or provide this layer with
-##   data containing a single row.</code></pre>
+## ℹ Please consider using `annotate()` or provide this layer with data containing a single row.</code></pre>
 <p><img src="introduction_files/figure-html/apqp-phases-1.png" alt="" width="1152" /></p>
 <div class="example-box">
 <p><strong>Example: New Brake Caliper Development</strong></p>
@@ -3097,41 +3096,614 @@ Experience; mentoring; calibration with other auditors
 <div id="the-capa-process" class="section level3 hasAnchor" number="13.7.1">
 <h3><span class="header-section-number">13.7.1</span> The CAPA Process<a href="quality-management-systems.html#the-capa-process" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="introduction_files/figure-html/capa-process-1.png" alt="" width="1152" /></p>
+<div id="step-1-identification" class="section level4 hasAnchor" number="13.7.1.1">
+<h4><span class="header-section-number">13.7.1.1</span> Step 1: Identification<a href="quality-management-systems.html#step-1-identification" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The CAPA process begins when a nonconformity or potential problem is identified. Sources include:</p>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:capa-sources">Table 13.25: </span><span id="tab:capa-sources">Table 13.26: </span>Common CAPA Initiation Sources
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Source
+</th>
+<th style="text-align:left;">
+Description
+</th>
+<th style="text-align:left;">
+Priority
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Customer Complaints
+</td>
+<td style="text-align:left;">
+Product returns, warranty claims, customer feedback
+</td>
+<td style="text-align:left;width: 12%; ">
+High
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Internal Audits
+</td>
+<td style="text-align:left;">
+Nonconformities found during scheduled internal audits
+</td>
+<td style="text-align:left;width: 12%; ">
+Medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Process Monitoring
+</td>
+<td style="text-align:left;">
+SPC out-of-control conditions, trend analysis
+</td>
+<td style="text-align:left;width: 12%; ">
+Medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Inspection/Testing
+</td>
+<td style="text-align:left;">
+Failed inspections, test failures, rejected lots
+</td>
+<td style="text-align:left;width: 12%; ">
+High
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Supplier Issues
+</td>
+<td style="text-align:left;">
+Incoming inspection failures, supplier audit findings
+</td>
+<td style="text-align:left;width: 12%; ">
+Medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Employee Reports
+</td>
+<td style="text-align:left;">
+Near-misses, safety concerns, improvement suggestions
+</td>
+<td style="text-align:left;width: 12%; ">
+Low-Medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Management Review
+</td>
+<td style="text-align:left;">
+Issues identified during management review meetings
+</td>
+<td style="text-align:left;width: 12%; ">
+Medium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+External Audits
+</td>
+<td style="text-align:left;">
+Findings from certification body or customer audits
+</td>
+<td style="text-align:left;width: 12%; ">
+High
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="step-2-evaluation" class="section level4 hasAnchor" number="13.7.1.2">
+<h4><span class="header-section-number">13.7.1.2</span> Step 2: Evaluation<a href="quality-management-systems.html#step-2-evaluation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Evaluate the significance of the issue to determine the appropriate response level:</p>
+<p><strong>Evaluation Criteria:</strong></p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="74%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Factor</th>
+<th align="left">Questions to Consider</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Safety</strong></td>
+<td align="left">Could this harm people or the environment?</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Customer Impact</strong></td>
+<td align="left">How many customers affected? Severity of impact?</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Regulatory</strong></td>
+<td align="left">Does this violate regulations or standards?</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Financial</strong></td>
+<td align="left">What is the cost of the problem? Potential liability?</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Frequency</strong></td>
+<td align="left">Is this a one-time event or recurring pattern?</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Detection</strong></td>
+<td align="left">How was it found? Could others exist undetected?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Containment Actions</strong> - Immediate actions to limit the impact while the investigation proceeds:</p>
+<ul>
+<li>Quarantine suspect product</li>
+<li>Sort and inspect inventory</li>
+<li>Notify affected customers</li>
+<li>Implement temporary controls</li>
+<li>Stop shipments if necessary</li>
+</ul>
+<div class="example-box">
+<p><strong>Example: Evaluation of Dimensional Nonconformity</strong></p>
+<p>A batch of machined shafts is found with diameter 0.02 mm oversize:</p>
+<ul>
+<li><strong>Safety</strong>: Low - not a safety-critical dimension</li>
+<li><strong>Customer Impact</strong>: Medium - may cause assembly issues</li>
+<li><strong>Regulatory</strong>: None</li>
+<li><strong>Financial</strong>: 500 parts × $15/part = $7,500 potential scrap</li>
+<li><strong>Containment</strong>: Quarantine batch, 100% inspection of last 3 lots, notify customer</li>
+</ul>
+<p><strong>Decision</strong>: Proceed with formal CAPA (cost exceeds $5,000 threshold)</p>
+</div>
+</div>
+<div id="step-3-investigation" class="section level4 hasAnchor" number="13.7.1.3">
+<h4><span class="header-section-number">13.7.1.3</span> Step 3: Investigation<a href="quality-management-systems.html#step-3-investigation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Gather all relevant data and evidence to understand what happened:</p>
+<p><strong>Investigation Activities:</strong></p>
+<ul>
+<li><strong>Review documentation</strong>: Work instructions, control plans, inspection records</li>
+<li><strong>Examine physical evidence</strong>: Failed parts, raw materials, tooling</li>
+<li><strong>Interview personnel</strong>: Operators, inspectors, supervisors</li>
+<li><strong>Analyze data</strong>: SPC charts, measurement data, process parameters</li>
+<li><strong>Timeline reconstruction</strong>: When did the problem start? What changed?</li>
+</ul>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:investigation-data">Table 13.27: </span><span id="tab:investigation-data">Table 13.28: </span>Data Collection for CAPA Investigation
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Data Type
+</th>
+<th style="text-align:left;">
+Examples
+</th>
+<th style="text-align:left;">
+Collection Method
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 18%; font-weight: bold;">
+Process Data
+</td>
+<td style="text-align:left;">
+Temperatures, pressures, speeds, feeds, cycle times
+</td>
+<td style="text-align:left;">
+Data historians, SPC software, log sheets
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 18%; font-weight: bold;">
+Material Data
+</td>
+<td style="text-align:left;">
+Lot numbers, certificates, incoming inspection results
+</td>
+<td style="text-align:left;">
+Traceability system, supplier records
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 18%; font-weight: bold;">
+Equipment Data
+</td>
+<td style="text-align:left;">
+Maintenance records, calibration status, tool wear
+</td>
+<td style="text-align:left;">
+CMMS, calibration database
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 18%; font-weight: bold;">
+Personnel Data
+</td>
+<td style="text-align:left;">
+Training records, shift assignments, experience level
+</td>
+<td style="text-align:left;">
+HR system, training matrix
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 18%; font-weight: bold;">
+Environmental Data
+</td>
+<td style="text-align:left;">
+Temperature, humidity, contamination levels
+</td>
+<td style="text-align:left;">
+Environmental monitoring system
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="step-4-root-cause-analysis" class="section level4 hasAnchor" number="13.7.1.4">
+<h4><span class="header-section-number">13.7.1.4</span> Step 4: Root Cause Analysis<a href="quality-management-systems.html#step-4-root-cause-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Determine the fundamental cause(s) of the problem using structured analysis tools:</p>
+<p><img src="introduction_files/figure-html/rca-tools-1.png" alt="" width="1152" /></p>
+<p><strong>The 5 Whys Example:</strong></p>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="40%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Level</th>
+<th align="left">Question</th>
+<th align="left">Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Problem</td>
+<td align="left">Shaft diameter is oversize</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">Why 1?</td>
+<td align="left">Why is the diameter oversize?</td>
+<td align="left">Tool is worn</td>
+</tr>
+<tr class="odd">
+<td align="left">Why 2?</td>
+<td align="left">Why is the tool worn?</td>
+<td align="left">Tool wasn’t changed at scheduled interval</td>
+</tr>
+<tr class="even">
+<td align="left">Why 3?</td>
+<td align="left">Why wasn’t it changed?</td>
+<td align="left">Operator didn’t know it was due</td>
+</tr>
+<tr class="odd">
+<td align="left">Why 4?</td>
+<td align="left">Why didn’t operator know?</td>
+<td align="left">Tool life counter was reset incorrectly</td>
+</tr>
+<tr class="even">
+<td align="left">Why 5?</td>
+<td align="left">Why was it reset incorrectly?</td>
+<td align="left">No verification step in setup procedure</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Root Cause</strong></td>
+<td align="left"><strong>Setup procedure lacks tool counter verification step</strong></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>The 6M Categories (Fishbone Diagram):</strong></p>
+<ul>
+<li><strong>Man</strong> (People): Training, skills, fatigue, attention</li>
+<li><strong>Machine</strong>: Equipment condition, capability, maintenance</li>
+<li><strong>Material</strong>: Raw material quality, specifications, storage</li>
+<li><strong>Method</strong>: Procedures, work instructions, standards</li>
+<li><strong>Measurement</strong>: Gages, calibration, measurement technique</li>
+<li><strong>Mother Nature</strong> (Environment): Temperature, humidity, contamination</li>
+</ul>
+</div>
+<div id="step-5-action-plan" class="section level4 hasAnchor" number="13.7.1.5">
+<h4><span class="header-section-number">13.7.1.5</span> Step 5: Action Plan<a href="quality-management-systems.html#step-5-action-plan" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Define specific corrective and/or preventive actions to address the root cause:</p>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:action-types">Table 13.29: </span><span id="tab:action-types">Table 13.30: </span>Types of CAPA Actions
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Action_Type
+</th>
+<th style="text-align:left;">
+Definition
+</th>
+<th style="text-align:left;">
+Example
+</th>
+<th style="text-align:left;">
+Timeframe
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 18%; font-weight: bold;">
+Correction
+</td>
+<td style="text-align:left;">
+Fix the immediate problem (symptom treatment)
+</td>
+<td style="text-align:left;">
+Rework or scrap the nonconforming parts
+</td>
+<td style="text-align:left;">
+Immediate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 18%; font-weight: bold;">
+Corrective Action
+</td>
+<td style="text-align:left;">
+Eliminate the root cause to prevent recurrence
+</td>
+<td style="text-align:left;">
+Revise setup procedure to include tool counter verification
+</td>
+<td style="text-align:left;">
+30-90 days typical
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 18%; font-weight: bold;">
+Preventive Action
+</td>
+<td style="text-align:left;">
+Eliminate potential causes before problems occur
+</td>
+<td style="text-align:left;">
+Add tool counter verification to ALL machine setup procedures
+</td>
+<td style="text-align:left;">
+Ongoing improvement
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SMART Action Planning:</strong></p>
+<ul>
+<li><strong>S</strong>pecific: Clearly defined action (not vague)</li>
+<li><strong>M</strong>easurable: Can verify completion and effectiveness</li>
+<li><strong>A</strong>ssignable: Single owner responsible</li>
+<li><strong>R</strong>ealistic: Achievable with available resources</li>
+<li><strong>T</strong>ime-bound: Due date specified</li>
+</ul>
+<div class="example-box">
+<p><strong>Example: SMART Corrective Action</strong></p>
+<p><strong>Poor</strong>: “Improve the setup procedure”</p>
+<p><strong>SMART</strong>: “Quality Engineer (J. Smith) will revise Work Instruction WI-2345 to add Step 4.7: ‘Verify tool life counter matches Tool Setup Sheet before starting production. Record counter reading on Setup Checklist Form F-102.’ Revision to be completed by April 15, training completed by April 22.”</p>
+</div>
+</div>
+<div id="step-6-implementation" class="section level4 hasAnchor" number="13.7.1.6">
+<h4><span class="header-section-number">13.7.1.6</span> Step 6: Implementation<a href="quality-management-systems.html#step-6-implementation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Execute the action plan with clear ownership and tracking:</p>
+<p><strong>Implementation Requirements:</strong></p>
+<ul>
+<li>Assign responsible person for each action</li>
+<li>Provide necessary resources (time, budget, authority)</li>
+<li>Communicate changes to affected personnel</li>
+<li>Update documentation (procedures, work instructions, forms)</li>
+<li>Train personnel on new requirements</li>
+<li>Implement changes in a controlled manner</li>
+</ul>
+<p><strong>Change Control Considerations:</strong></p>
+<table>
+<colgroup>
+<col width="27%" />
+<col width="40%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Change Type</th>
+<th align="left">Approval Required</th>
+<th align="left">Documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Document revision</td>
+<td align="left">Document owner, Quality</td>
+<td align="left">Revision history, training records</td>
+</tr>
+<tr class="even">
+<td align="left">Process change</td>
+<td align="left">Process owner, Engineering, Quality</td>
+<td align="left">Change request, validation if needed</td>
+</tr>
+<tr class="odd">
+<td align="left">Equipment change</td>
+<td align="left">Maintenance, Engineering, Quality</td>
+<td align="left">Equipment qualification, capability study</td>
+</tr>
+<tr class="even">
+<td align="left">Product change</td>
+<td align="left">Engineering, Quality, Customer (if required)</td>
+<td align="left">ECN, customer approval, PPAP if applicable</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="step-7-verification" class="section level4 hasAnchor" number="13.7.1.7">
+<h4><span class="header-section-number">13.7.1.7</span> Step 7: Verification<a href="quality-management-systems.html#step-7-verification" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Verify that actions were completed AND effective:</p>
+<p><strong>Completion Verification:</strong>
+- Was the action actually implemented?
+- Is documentation updated and approved?
+- Are personnel trained?
+- Is the change being followed?</p>
+<p><strong>Effectiveness Verification:</strong>
+- Has the problem stopped recurring?
+- Do metrics show improvement?
+- Are there any unintended consequences?</p>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:verification-methods">Table 13.31: </span><span id="tab:verification-methods">Table 13.32: </span>CAPA Effectiveness Verification Methods
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Method
+</th>
+<th style="text-align:left;">
+Description
+</th>
+<th style="text-align:left;">
+When_to_Use
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Monitoring Period
+</td>
+<td style="text-align:left;">
+Track for recurrence over defined period (e.g., 90 days, 3 production runs)
+</td>
+<td style="text-align:left;">
+All CAPAs - minimum requirement
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Statistical Analysis
+</td>
+<td style="text-align:left;">
+Compare defect rates before/after; statistical significance testing
+</td>
+<td style="text-align:left;">
+When baseline data exists
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Audit Verification
+</td>
+<td style="text-align:left;">
+Include in next internal audit; verify implementation
+</td>
+<td style="text-align:left;">
+Process/documentation changes
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Customer Feedback
+</td>
+<td style="text-align:left;">
+Monitor complaints related to this issue
+</td>
+<td style="text-align:left;">
+Customer-reported issues
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20%; font-weight: bold;">
+Process Capability
+</td>
+<td style="text-align:left;">
+Cpk study to confirm process improvement
+</td>
+<td style="text-align:left;">
+Manufacturing process changes
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="step-8-closure" class="section level4 hasAnchor" number="13.7.1.8">
+<h4><span class="header-section-number">13.7.1.8</span> Step 8: Closure<a href="quality-management-systems.html#step-8-closure" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Complete documentation and share lessons learned:</p>
+<p><strong>Closure Requirements:</strong></p>
+<ul>
+<li>All actions verified complete</li>
+<li>Effectiveness confirmed (no recurrence)</li>
+<li>Documentation updated and approved</li>
+<li>CAPA record completed with all evidence</li>
+<li>Management approval for closure</li>
+</ul>
+<p><strong>Lessons Learned:</strong></p>
+<ul>
+<li>What was the root cause?</li>
+<li>Could this happen elsewhere? (Horizontal deployment)</li>
+<li>Should procedures/training be updated system-wide?</li>
+<li>Are there similar products/processes at risk?</li>
+<li>What can we do to prevent similar issues?</li>
+</ul>
+<div class="example-box">
+<p><strong>Example: Horizontal Deployment</strong></p>
+<p>The shaft diameter CAPA revealed that setup procedures lacked tool counter verification.</p>
+<p><strong>Horizontal deployment</strong>: Quality reviewed ALL 47 CNC machine setup procedures and found 12 others with the same gap. All procedures were revised, and the finding was shared at the monthly quality meeting as a lesson learned.</p>
+</div>
+</div>
 </div>
 <div id="capa-effectiveness-criteria" class="section level3 hasAnchor" number="13.7.2">
 <h3><span class="header-section-number">13.7.2</span> CAPA Effectiveness Criteria<a href="quality-management-systems.html#capa-effectiveness-criteria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb886"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb886-1"><a href="quality-management-systems.html#cb886-1" tabindex="-1"></a><span class="co"># CAPA Effectiveness Tracking</span></span>
-<span id="cb886-2"><a href="quality-management-systems.html#cb886-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb886-3"><a href="quality-management-systems.html#cb886-3" tabindex="-1"></a></span>
-<span id="cb886-4"><a href="quality-management-systems.html#cb886-4" tabindex="-1"></a><span class="co"># Simulate CAPA data for a year</span></span>
-<span id="cb886-5"><a href="quality-management-systems.html#cb886-5" tabindex="-1"></a>months <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Apr&quot;</span>, <span class="st">&quot;May&quot;</span>, <span class="st">&quot;Jun&quot;</span>,</span>
-<span id="cb886-6"><a href="quality-management-systems.html#cb886-6" tabindex="-1"></a>            <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Aug&quot;</span>, <span class="st">&quot;Sep&quot;</span>, <span class="st">&quot;Oct&quot;</span>, <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dec&quot;</span>)</span>
-<span id="cb886-7"><a href="quality-management-systems.html#cb886-7" tabindex="-1"></a></span>
-<span id="cb886-8"><a href="quality-management-systems.html#cb886-8" tabindex="-1"></a>capa_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb886-9"><a href="quality-management-systems.html#cb886-9" tabindex="-1"></a>  <span class="at">Month =</span> <span class="fu">factor</span>(months, <span class="at">levels =</span> months),</span>
-<span id="cb886-10"><a href="quality-management-systems.html#cb886-10" tabindex="-1"></a>  <span class="at">Total_CAPAs =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">14</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">6</span>),</span>
-<span id="cb886-11"><a href="quality-management-systems.html#cb886-11" tabindex="-1"></a>  <span class="at">Closed_On_Time =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">5</span>),</span>
-<span id="cb886-12"><a href="quality-management-systems.html#cb886-12" tabindex="-1"></a>  <span class="at">Effective =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">5</span>),</span>
-<span id="cb886-13"><a href="quality-management-systems.html#cb886-13" tabindex="-1"></a>  <span class="at">Recurrence =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb886-14"><a href="quality-management-systems.html#cb886-14" tabindex="-1"></a>)</span>
-<span id="cb886-15"><a href="quality-management-systems.html#cb886-15" tabindex="-1"></a></span>
-<span id="cb886-16"><a href="quality-management-systems.html#cb886-16" tabindex="-1"></a><span class="co"># Calculate metrics</span></span>
-<span id="cb886-17"><a href="quality-management-systems.html#cb886-17" tabindex="-1"></a>capa_data<span class="sc">$</span>On_Time_Rate <span class="ot">&lt;-</span> <span class="fu">round</span>(capa_data<span class="sc">$</span>Closed_On_Time <span class="sc">/</span> capa_data<span class="sc">$</span>Total_CAPAs <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
-<span id="cb886-18"><a href="quality-management-systems.html#cb886-18" tabindex="-1"></a>capa_data<span class="sc">$</span>Effectiveness_Rate <span class="ot">&lt;-</span> <span class="fu">round</span>(capa_data<span class="sc">$</span>Effective <span class="sc">/</span> capa_data<span class="sc">$</span>Closed_On_Time <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
-<span id="cb886-19"><a href="quality-management-systems.html#cb886-19" tabindex="-1"></a></span>
-<span id="cb886-20"><a href="quality-management-systems.html#cb886-20" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;CAPA Performance Metrics Summary:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb883"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb883-1"><a href="quality-management-systems.html#cb883-1" tabindex="-1"></a><span class="co"># CAPA Effectiveness Tracking</span></span>
+<span id="cb883-2"><a href="quality-management-systems.html#cb883-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb883-3"><a href="quality-management-systems.html#cb883-3" tabindex="-1"></a></span>
+<span id="cb883-4"><a href="quality-management-systems.html#cb883-4" tabindex="-1"></a><span class="co"># Simulate CAPA data for a year</span></span>
+<span id="cb883-5"><a href="quality-management-systems.html#cb883-5" tabindex="-1"></a>months <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Apr&quot;</span>, <span class="st">&quot;May&quot;</span>, <span class="st">&quot;Jun&quot;</span>,</span>
+<span id="cb883-6"><a href="quality-management-systems.html#cb883-6" tabindex="-1"></a>            <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Aug&quot;</span>, <span class="st">&quot;Sep&quot;</span>, <span class="st">&quot;Oct&quot;</span>, <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dec&quot;</span>)</span>
+<span id="cb883-7"><a href="quality-management-systems.html#cb883-7" tabindex="-1"></a></span>
+<span id="cb883-8"><a href="quality-management-systems.html#cb883-8" tabindex="-1"></a>capa_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb883-9"><a href="quality-management-systems.html#cb883-9" tabindex="-1"></a>  <span class="at">Month =</span> <span class="fu">factor</span>(months, <span class="at">levels =</span> months),</span>
+<span id="cb883-10"><a href="quality-management-systems.html#cb883-10" tabindex="-1"></a>  <span class="at">Total_CAPAs =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">14</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">6</span>),</span>
+<span id="cb883-11"><a href="quality-management-systems.html#cb883-11" tabindex="-1"></a>  <span class="at">Closed_On_Time =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">5</span>),</span>
+<span id="cb883-12"><a href="quality-management-systems.html#cb883-12" tabindex="-1"></a>  <span class="at">Effective =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">5</span>),</span>
+<span id="cb883-13"><a href="quality-management-systems.html#cb883-13" tabindex="-1"></a>  <span class="at">Recurrence =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb883-14"><a href="quality-management-systems.html#cb883-14" tabindex="-1"></a>)</span>
+<span id="cb883-15"><a href="quality-management-systems.html#cb883-15" tabindex="-1"></a></span>
+<span id="cb883-16"><a href="quality-management-systems.html#cb883-16" tabindex="-1"></a><span class="co"># Calculate metrics</span></span>
+<span id="cb883-17"><a href="quality-management-systems.html#cb883-17" tabindex="-1"></a>capa_data<span class="sc">$</span>On_Time_Rate <span class="ot">&lt;-</span> <span class="fu">round</span>(capa_data<span class="sc">$</span>Closed_On_Time <span class="sc">/</span> capa_data<span class="sc">$</span>Total_CAPAs <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb883-18"><a href="quality-management-systems.html#cb883-18" tabindex="-1"></a>capa_data<span class="sc">$</span>Effectiveness_Rate <span class="ot">&lt;-</span> <span class="fu">round</span>(capa_data<span class="sc">$</span>Effective <span class="sc">/</span> capa_data<span class="sc">$</span>Closed_On_Time <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb883-19"><a href="quality-management-systems.html#cb883-19" tabindex="-1"></a></span>
+<span id="cb883-20"><a href="quality-management-systems.html#cb883-20" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;CAPA Performance Metrics Summary:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## CAPA Performance Metrics Summary:</code></pre>
-<div class="sourceCode" id="cb888"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb888-1"><a href="quality-management-systems.html#cb888-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;─────────────────────────────────</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb885"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb885-1"><a href="quality-management-systems.html#cb885-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;─────────────────────────────────</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## ─────────────────────────────────</code></pre>
-<div class="sourceCode" id="cb890"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb890-1"><a href="quality-management-systems.html#cb890-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Total CAPAs initiated:&quot;</span>, <span class="fu">sum</span>(capa_data<span class="sc">$</span>Total_CAPAs), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb887"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb887-1"><a href="quality-management-systems.html#cb887-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Total CAPAs initiated:&quot;</span>, <span class="fu">sum</span>(capa_data<span class="sc">$</span>Total_CAPAs), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Total CAPAs initiated: 132</code></pre>
-<div class="sourceCode" id="cb892"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb892-1"><a href="quality-management-systems.html#cb892-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Closed on time:&quot;</span>, <span class="fu">sum</span>(capa_data<span class="sc">$</span>Closed_On_Time), <span class="st">&quot;(&quot;</span>,</span>
-<span id="cb892-2"><a href="quality-management-systems.html#cb892-2" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">sum</span>(capa_data<span class="sc">$</span>Closed_On_Time)<span class="sc">/</span><span class="fu">sum</span>(capa_data<span class="sc">$</span>Total_CAPAs)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb889"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb889-1"><a href="quality-management-systems.html#cb889-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Closed on time:&quot;</span>, <span class="fu">sum</span>(capa_data<span class="sc">$</span>Closed_On_Time), <span class="st">&quot;(&quot;</span>,</span>
+<span id="cb889-2"><a href="quality-management-systems.html#cb889-2" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">sum</span>(capa_data<span class="sc">$</span>Closed_On_Time)<span class="sc">/</span><span class="fu">sum</span>(capa_data<span class="sc">$</span>Total_CAPAs)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Closed on time: 104 ( 78.8 %)</code></pre>
-<div class="sourceCode" id="cb894"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb894-1"><a href="quality-management-systems.html#cb894-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Verified effective:&quot;</span>, <span class="fu">sum</span>(capa_data<span class="sc">$</span>Effective), <span class="st">&quot;(&quot;</span>,</span>
-<span id="cb894-2"><a href="quality-management-systems.html#cb894-2" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">sum</span>(capa_data<span class="sc">$</span>Effective)<span class="sc">/</span><span class="fu">sum</span>(capa_data<span class="sc">$</span>Closed_On_Time)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb891"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb891-1"><a href="quality-management-systems.html#cb891-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Verified effective:&quot;</span>, <span class="fu">sum</span>(capa_data<span class="sc">$</span>Effective), <span class="st">&quot;(&quot;</span>,</span>
+<span id="cb891-2"><a href="quality-management-systems.html#cb891-2" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">sum</span>(capa_data<span class="sc">$</span>Effective)<span class="sc">/</span><span class="fu">sum</span>(capa_data<span class="sc">$</span>Closed_On_Time)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Verified effective: 96 ( 92.3 %)</code></pre>
-<div class="sourceCode" id="cb896"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb896-1"><a href="quality-management-systems.html#cb896-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Recurrences:&quot;</span>, <span class="fu">sum</span>(capa_data<span class="sc">$</span>Recurrence), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb893"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb893-1"><a href="quality-management-systems.html#cb893-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Recurrences:&quot;</span>, <span class="fu">sum</span>(capa_data<span class="sc">$</span>Recurrence), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Recurrences: 9</code></pre>
 <p><img src="introduction_files/figure-html/capa-chart-1.png" alt="" width="1056" /></p>
 <hr />
@@ -3144,7 +3716,7 @@ Experience; mentoring; calibration with other auditors
 <h3><span class="header-section-number">13.8.1</span> Management Review Inputs<a href="quality-management-systems.html#management-review-inputs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:mgmt-review-inputs">Table 13.25: </span><span id="tab:mgmt-review-inputs">Table 13.26: </span>Management Review Inputs (ISO 9001 Clause 9.3.2)
+<span id="tab:mgmt-review-inputs">Table 13.33: </span><span id="tab:mgmt-review-inputs">Table 13.34: </span>Management Review Inputs (ISO 9001 Clause 9.3.2)
 </caption>
 <thead>
 <tr>
@@ -3233,7 +3805,7 @@ Employee suggestions; benchmarking; industry developments
 <h3><span class="header-section-number">13.8.2</span> Management Review Outputs<a href="quality-management-systems.html#management-review-outputs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:mgmt-review-outputs">Table 13.27: </span><span id="tab:mgmt-review-outputs">Table 13.28: </span>Management Review Outputs (ISO 9001 Clause 9.3.3)
+<span id="tab:mgmt-review-outputs">Table 13.35: </span><span id="tab:mgmt-review-outputs">Table 13.36: </span>Management Review Outputs (ISO 9001 Clause 9.3.3)
 </caption>
 <thead>
 <tr>
@@ -3298,7 +3870,7 @@ Hire additional quality technician; purchase new CMM; upgrade software
 <h3><span class="header-section-number">13.9.1</span> Improvement Methodologies<a href="quality-management-systems.html#improvement-methodologies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:improvement-methods">Table 13.29: </span><span id="tab:improvement-methods">Table 13.30: </span>Continuous Improvement Methodologies
+<span id="tab:improvement-methods">Table 13.37: </span><span id="tab:improvement-methods">Table 13.38: </span>Continuous Improvement Methodologies
 </caption>
 <thead>
 <tr>
@@ -3394,7 +3966,7 @@ D0-D8 (Team, Problem, Containment, Root Cause, Actions, Verify, Prevent, Close)
 <h3><span class="header-section-number">13.9.2</span> Key Performance Indicators (KPIs)<a href="quality-management-systems.html#key-performance-indicators-kpis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:kpi-examples">Table 13.31: </span><span id="tab:kpi-examples">Table 13.32: </span>Common Quality Management KPIs
+<span id="tab:kpi-examples">Table 13.39: </span><span id="tab:kpi-examples">Table 13.40: </span>Common Quality Management KPIs
 </caption>
 <thead>
 <tr>
@@ -3606,55 +4178,53 @@ Encourage reporting
 </div>
 <div id="cost-of-quality-coq" class="section level3 hasAnchor" number="13.9.3">
 <h3><span class="header-section-number">13.9.3</span> Cost of Quality (COQ)<a href="quality-management-systems.html#cost-of-quality-coq" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb898"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb898-1"><a href="quality-management-systems.html#cb898-1" tabindex="-1"></a><span class="co"># Cost of Quality Analysis</span></span>
-<span id="cb898-2"><a href="quality-management-systems.html#cb898-2" tabindex="-1"></a>coq_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb898-3"><a href="quality-management-systems.html#cb898-3" tabindex="-1"></a>  <span class="at">Category =</span> <span class="fu">c</span>(<span class="st">&quot;Prevention&quot;</span>, <span class="st">&quot;Appraisal&quot;</span>, <span class="st">&quot;Internal Failure&quot;</span>, <span class="st">&quot;External Failure&quot;</span>),</span>
-<span id="cb898-4"><a href="quality-management-systems.html#cb898-4" tabindex="-1"></a>  <span class="at">Description =</span> <span class="fu">c</span>(<span class="st">&quot;Quality planning, training, process control&quot;</span>,</span>
-<span id="cb898-5"><a href="quality-management-systems.html#cb898-5" tabindex="-1"></a>                  <span class="st">&quot;Inspection, testing, audits, calibration&quot;</span>,</span>
-<span id="cb898-6"><a href="quality-management-systems.html#cb898-6" tabindex="-1"></a>                  <span class="st">&quot;Scrap, rework, reinspection, downtime&quot;</span>,</span>
-<span id="cb898-7"><a href="quality-management-systems.html#cb898-7" tabindex="-1"></a>                  <span class="st">&quot;Warranty, returns, complaints, recalls&quot;</span>),</span>
-<span id="cb898-8"><a href="quality-management-systems.html#cb898-8" tabindex="-1"></a>  <span class="at">Cost =</span> <span class="fu">c</span>(<span class="dv">50000</span>, <span class="dv">75000</span>, <span class="dv">120000</span>, <span class="dv">180000</span>)</span>
-<span id="cb898-9"><a href="quality-management-systems.html#cb898-9" tabindex="-1"></a>)</span>
-<span id="cb898-10"><a href="quality-management-systems.html#cb898-10" tabindex="-1"></a></span>
-<span id="cb898-11"><a href="quality-management-systems.html#cb898-11" tabindex="-1"></a>total_coq <span class="ot">&lt;-</span> <span class="fu">sum</span>(coq_data<span class="sc">$</span>Cost)</span>
-<span id="cb898-12"><a href="quality-management-systems.html#cb898-12" tabindex="-1"></a>revenue <span class="ot">&lt;-</span> <span class="dv">10000000</span>  <span class="co"># $10M revenue</span></span>
-<span id="cb898-13"><a href="quality-management-systems.html#cb898-13" tabindex="-1"></a></span>
-<span id="cb898-14"><a href="quality-management-systems.html#cb898-14" tabindex="-1"></a>coq_data<span class="sc">$</span>Percent_of_COQ <span class="ot">&lt;-</span> <span class="fu">round</span>(coq_data<span class="sc">$</span>Cost <span class="sc">/</span> total_coq <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
-<span id="cb898-15"><a href="quality-management-systems.html#cb898-15" tabindex="-1"></a>coq_data<span class="sc">$</span>Percent_of_Revenue <span class="ot">&lt;-</span> <span class="fu">round</span>(coq_data<span class="sc">$</span>Cost <span class="sc">/</span> revenue <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span>
-<span id="cb898-16"><a href="quality-management-systems.html#cb898-16" tabindex="-1"></a></span>
-<span id="cb898-17"><a href="quality-management-systems.html#cb898-17" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Cost of Quality Analysis:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb895"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb895-1"><a href="quality-management-systems.html#cb895-1" tabindex="-1"></a><span class="co"># Cost of Quality Analysis</span></span>
+<span id="cb895-2"><a href="quality-management-systems.html#cb895-2" tabindex="-1"></a>coq_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb895-3"><a href="quality-management-systems.html#cb895-3" tabindex="-1"></a>  <span class="at">Category =</span> <span class="fu">c</span>(<span class="st">&quot;Prevention&quot;</span>, <span class="st">&quot;Appraisal&quot;</span>, <span class="st">&quot;Internal Failure&quot;</span>, <span class="st">&quot;External Failure&quot;</span>),</span>
+<span id="cb895-4"><a href="quality-management-systems.html#cb895-4" tabindex="-1"></a>  <span class="at">Description =</span> <span class="fu">c</span>(<span class="st">&quot;Quality planning, training, process control&quot;</span>,</span>
+<span id="cb895-5"><a href="quality-management-systems.html#cb895-5" tabindex="-1"></a>                  <span class="st">&quot;Inspection, testing, audits, calibration&quot;</span>,</span>
+<span id="cb895-6"><a href="quality-management-systems.html#cb895-6" tabindex="-1"></a>                  <span class="st">&quot;Scrap, rework, reinspection, downtime&quot;</span>,</span>
+<span id="cb895-7"><a href="quality-management-systems.html#cb895-7" tabindex="-1"></a>                  <span class="st">&quot;Warranty, returns, complaints, recalls&quot;</span>),</span>
+<span id="cb895-8"><a href="quality-management-systems.html#cb895-8" tabindex="-1"></a>  <span class="at">Cost =</span> <span class="fu">c</span>(<span class="dv">50000</span>, <span class="dv">75000</span>, <span class="dv">120000</span>, <span class="dv">180000</span>)</span>
+<span id="cb895-9"><a href="quality-management-systems.html#cb895-9" tabindex="-1"></a>)</span>
+<span id="cb895-10"><a href="quality-management-systems.html#cb895-10" tabindex="-1"></a></span>
+<span id="cb895-11"><a href="quality-management-systems.html#cb895-11" tabindex="-1"></a>total_coq <span class="ot">&lt;-</span> <span class="fu">sum</span>(coq_data<span class="sc">$</span>Cost)</span>
+<span id="cb895-12"><a href="quality-management-systems.html#cb895-12" tabindex="-1"></a>revenue <span class="ot">&lt;-</span> <span class="dv">10000000</span>  <span class="co"># $10M revenue</span></span>
+<span id="cb895-13"><a href="quality-management-systems.html#cb895-13" tabindex="-1"></a></span>
+<span id="cb895-14"><a href="quality-management-systems.html#cb895-14" tabindex="-1"></a>coq_data<span class="sc">$</span>Percent_of_COQ <span class="ot">&lt;-</span> <span class="fu">round</span>(coq_data<span class="sc">$</span>Cost <span class="sc">/</span> total_coq <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb895-15"><a href="quality-management-systems.html#cb895-15" tabindex="-1"></a>coq_data<span class="sc">$</span>Percent_of_Revenue <span class="ot">&lt;-</span> <span class="fu">round</span>(coq_data<span class="sc">$</span>Cost <span class="sc">/</span> revenue <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb895-16"><a href="quality-management-systems.html#cb895-16" tabindex="-1"></a></span>
+<span id="cb895-17"><a href="quality-management-systems.html#cb895-17" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Cost of Quality Analysis:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Cost of Quality Analysis:</code></pre>
-<div class="sourceCode" id="cb900"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb900-1"><a href="quality-management-systems.html#cb900-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;─────────────────────────────</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb897"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb897-1"><a href="quality-management-systems.html#cb897-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;─────────────────────────────</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## ─────────────────────────────</code></pre>
-<div class="sourceCode" id="cb902"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb902-1"><a href="quality-management-systems.html#cb902-1" tabindex="-1"></a><span class="fu">print</span>(coq_data[, <span class="fu">c</span>(<span class="st">&quot;Category&quot;</span>, <span class="st">&quot;Cost&quot;</span>, <span class="st">&quot;Percent_of_COQ&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb899"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb899-1"><a href="quality-management-systems.html#cb899-1" tabindex="-1"></a><span class="fu">print</span>(coq_data[, <span class="fu">c</span>(<span class="st">&quot;Category&quot;</span>, <span class="st">&quot;Cost&quot;</span>, <span class="st">&quot;Percent_of_COQ&quot;</span>)])</span></code></pre></div>
 <pre><code>##           Category   Cost Percent_of_COQ
 ## 1       Prevention  50000           11.8
 ## 2        Appraisal  75000           17.6
 ## 3 Internal Failure 120000           28.2
 ## 4 External Failure 180000           42.4</code></pre>
-<div class="sourceCode" id="cb904"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb904-1"><a href="quality-management-systems.html#cb904-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;─────────────────────────────</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb901"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb901-1"><a href="quality-management-systems.html#cb901-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;─────────────────────────────</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## ─────────────────────────────</code></pre>
-<div class="sourceCode" id="cb906"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb906-1"><a href="quality-management-systems.html#cb906-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Total Cost of Quality: $&quot;</span>, <span class="fu">format</span>(total_coq, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb903"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb903-1"><a href="quality-management-systems.html#cb903-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Total Cost of Quality: $&quot;</span>, <span class="fu">format</span>(total_coq, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Total Cost of Quality: $ 425,000</code></pre>
-<div class="sourceCode" id="cb908"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb908-1"><a href="quality-management-systems.html#cb908-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;COQ as % of Revenue:&quot;</span>, <span class="fu">round</span>(total_coq<span class="sc">/</span>revenue<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb905"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb905-1"><a href="quality-management-systems.html#cb905-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;COQ as % of Revenue:&quot;</span>, <span class="fu">round</span>(total_coq<span class="sc">/</span>revenue<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## COQ as % of Revenue: 4.2 %</code></pre>
-<div class="sourceCode" id="cb910"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb910-1"><a href="quality-management-systems.html#cb910-1" tabindex="-1"></a><span class="co"># Analysis</span></span>
-<span id="cb910-2"><a href="quality-management-systems.html#cb910-2" tabindex="-1"></a>conformance <span class="ot">&lt;-</span> coq_data<span class="sc">$</span>Cost[<span class="dv">1</span>] <span class="sc">+</span> coq_data<span class="sc">$</span>Cost[<span class="dv">2</span>]</span>
-<span id="cb910-3"><a href="quality-management-systems.html#cb910-3" tabindex="-1"></a>nonconformance <span class="ot">&lt;-</span> coq_data<span class="sc">$</span>Cost[<span class="dv">3</span>] <span class="sc">+</span> coq_data<span class="sc">$</span>Cost[<span class="dv">4</span>]</span>
-<span id="cb910-4"><a href="quality-management-systems.html#cb910-4" tabindex="-1"></a></span>
-<span id="cb910-5"><a href="quality-management-systems.html#cb910-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Conformance Costs (Prevention + Appraisal): $&quot;</span>, <span class="fu">format</span>(conformance, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
-<span id="cb910-6"><a href="quality-management-systems.html#cb910-6" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(conformance<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb907"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb907-1"><a href="quality-management-systems.html#cb907-1" tabindex="-1"></a><span class="co"># Analysis</span></span>
+<span id="cb907-2"><a href="quality-management-systems.html#cb907-2" tabindex="-1"></a>conformance <span class="ot">&lt;-</span> coq_data<span class="sc">$</span>Cost[<span class="dv">1</span>] <span class="sc">+</span> coq_data<span class="sc">$</span>Cost[<span class="dv">2</span>]</span>
+<span id="cb907-3"><a href="quality-management-systems.html#cb907-3" tabindex="-1"></a>nonconformance <span class="ot">&lt;-</span> coq_data<span class="sc">$</span>Cost[<span class="dv">3</span>] <span class="sc">+</span> coq_data<span class="sc">$</span>Cost[<span class="dv">4</span>]</span>
+<span id="cb907-4"><a href="quality-management-systems.html#cb907-4" tabindex="-1"></a></span>
+<span id="cb907-5"><a href="quality-management-systems.html#cb907-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Conformance Costs (Prevention + Appraisal): $&quot;</span>, <span class="fu">format</span>(conformance, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
+<span id="cb907-6"><a href="quality-management-systems.html#cb907-6" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(conformance<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Conformance Costs (Prevention + Appraisal): $ 125,000 ( 29.4 %)</code></pre>
-<div class="sourceCode" id="cb912"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb912-1"><a href="quality-management-systems.html#cb912-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Nonconformance Costs (Failures): $&quot;</span>, <span class="fu">format</span>(nonconformance, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
-<span id="cb912-2"><a href="quality-management-systems.html#cb912-2" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(nonconformance<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb909"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb909-1"><a href="quality-management-systems.html#cb909-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Nonconformance Costs (Failures): $&quot;</span>, <span class="fu">format</span>(nonconformance, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
+<span id="cb909-2"><a href="quality-management-systems.html#cb909-2" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(nonconformance<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Nonconformance Costs (Failures): $ 3e+05 ( 70.6 %)</code></pre>
-<div class="sourceCode" id="cb914"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb914-1"><a href="quality-management-systems.html#cb914-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Recommendation: Increase prevention spending to reduce failure costs</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb911"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb911-1"><a href="quality-management-systems.html#cb911-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Recommendation: Increase prevention spending to reduce failure costs</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Recommendation: Increase prevention spending to reduce failure costs</code></pre>
-<pre><code>## Warning: Removed 1 row containing missing values or values outside the
-## scale range (`geom_text()`).
-## Removed 1 row containing missing values or values outside the
-## scale range (`geom_text()`).</code></pre>
+<pre><code>## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_text()`).
+## Removed 1 row containing missing values or values outside the scale range (`geom_text()`).</code></pre>
 <p><img src="introduction_files/figure-html/coq-chart-1.png" alt="" width="960" /></p>
 <hr />
 </div>
@@ -3670,7 +4240,7 @@ Encourage reporting
 <h3><span class="header-section-number">13.10.2</span> Linking Tools to QMS Requirements<a href="quality-management-systems.html#linking-tools-to-qms-requirements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:tools-qms-link">Table 13.33: </span><span id="tab:tools-qms-link">Table 13.34: </span>Quality Tools and QMS Integration
+<span id="tab:tools-qms-link">Table 13.41: </span><span id="tab:tools-qms-link">Table 13.42: </span>Quality Tools and QMS Integration
 </caption>
 <thead>
 <tr>
@@ -3798,15 +4368,14 @@ Strategic decisions, Resource allocation
 <div id="the-certification-journey" class="section level3 hasAnchor" number="13.11.1">
 <h3><span class="header-section-number">13.11.1</span> The Certification Journey<a href="quality-management-systems.html#the-certification-journey" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>## Warning in geom_segment(aes(x = 1, xend = 8, y = 1, yend = 1), color = &quot;gray70&quot;, : All aesthetics have length 1, but the data has 8 rows.
-## ℹ Please consider using `annotate()` or provide this layer with
-##   data containing a single row.</code></pre>
+## ℹ Please consider using `annotate()` or provide this layer with data containing a single row.</code></pre>
 <p><img src="introduction_files/figure-html/certification-process-1.png" alt="" width="1152" /></p>
 </div>
 <div id="certification-audit-types" class="section level3 hasAnchor" number="13.11.2">
 <h3><span class="header-section-number">13.11.2</span> Certification Audit Types<a href="quality-management-systems.html#certification-audit-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:audit-types">Table 13.35: </span><span id="tab:audit-types">Table 13.36: </span>Third-Party Certification Audit Types
+<span id="tab:audit-types">Table 13.43: </span><span id="tab:audit-types">Table 13.44: </span>Third-Party Certification Audit Types
 </caption>
 <thead>
 <tr>
@@ -4196,45 +4765,45 @@ Complete review similar to Stage 2
 </table>
 <p>Annual revenue: $8,000,000</p>
 <p><strong>Answer:</strong></p>
-<div class="sourceCode" id="cb918"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb918-1"><a href="quality-management-systems.html#cb918-1" tabindex="-1"></a><span class="co"># Cost of Quality Analysis</span></span>
-<span id="cb918-2"><a href="quality-management-systems.html#cb918-2" tabindex="-1"></a>prevention <span class="ot">&lt;-</span> <span class="dv">35000</span> <span class="sc">+</span> <span class="dv">25000</span>  <span class="co"># Planning + Training</span></span>
-<span id="cb918-3"><a href="quality-management-systems.html#cb918-3" tabindex="-1"></a>appraisal <span class="ot">&lt;-</span> <span class="dv">40000</span> <span class="sc">+</span> <span class="dv">55000</span> <span class="sc">+</span> <span class="dv">30000</span>  <span class="co"># Inspections</span></span>
-<span id="cb918-4"><a href="quality-management-systems.html#cb918-4" tabindex="-1"></a>internal_failure <span class="ot">&lt;-</span> <span class="dv">85000</span> <span class="sc">+</span> <span class="dv">65000</span>  <span class="co"># Scrap + Rework</span></span>
-<span id="cb918-5"><a href="quality-management-systems.html#cb918-5" tabindex="-1"></a>external_failure <span class="ot">&lt;-</span> <span class="dv">120000</span> <span class="sc">+</span> <span class="dv">45000</span>  <span class="co"># Warranty + Returns</span></span>
-<span id="cb918-6"><a href="quality-management-systems.html#cb918-6" tabindex="-1"></a></span>
-<span id="cb918-7"><a href="quality-management-systems.html#cb918-7" tabindex="-1"></a>total_coq <span class="ot">&lt;-</span> prevention <span class="sc">+</span> appraisal <span class="sc">+</span> internal_failure <span class="sc">+</span> external_failure</span>
-<span id="cb918-8"><a href="quality-management-systems.html#cb918-8" tabindex="-1"></a>revenue <span class="ot">&lt;-</span> <span class="dv">8000000</span></span>
-<span id="cb918-9"><a href="quality-management-systems.html#cb918-9" tabindex="-1"></a></span>
-<span id="cb918-10"><a href="quality-management-systems.html#cb918-10" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Cost of Quality Breakdown:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb915"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb915-1"><a href="quality-management-systems.html#cb915-1" tabindex="-1"></a><span class="co"># Cost of Quality Analysis</span></span>
+<span id="cb915-2"><a href="quality-management-systems.html#cb915-2" tabindex="-1"></a>prevention <span class="ot">&lt;-</span> <span class="dv">35000</span> <span class="sc">+</span> <span class="dv">25000</span>  <span class="co"># Planning + Training</span></span>
+<span id="cb915-3"><a href="quality-management-systems.html#cb915-3" tabindex="-1"></a>appraisal <span class="ot">&lt;-</span> <span class="dv">40000</span> <span class="sc">+</span> <span class="dv">55000</span> <span class="sc">+</span> <span class="dv">30000</span>  <span class="co"># Inspections</span></span>
+<span id="cb915-4"><a href="quality-management-systems.html#cb915-4" tabindex="-1"></a>internal_failure <span class="ot">&lt;-</span> <span class="dv">85000</span> <span class="sc">+</span> <span class="dv">65000</span>  <span class="co"># Scrap + Rework</span></span>
+<span id="cb915-5"><a href="quality-management-systems.html#cb915-5" tabindex="-1"></a>external_failure <span class="ot">&lt;-</span> <span class="dv">120000</span> <span class="sc">+</span> <span class="dv">45000</span>  <span class="co"># Warranty + Returns</span></span>
+<span id="cb915-6"><a href="quality-management-systems.html#cb915-6" tabindex="-1"></a></span>
+<span id="cb915-7"><a href="quality-management-systems.html#cb915-7" tabindex="-1"></a>total_coq <span class="ot">&lt;-</span> prevention <span class="sc">+</span> appraisal <span class="sc">+</span> internal_failure <span class="sc">+</span> external_failure</span>
+<span id="cb915-8"><a href="quality-management-systems.html#cb915-8" tabindex="-1"></a>revenue <span class="ot">&lt;-</span> <span class="dv">8000000</span></span>
+<span id="cb915-9"><a href="quality-management-systems.html#cb915-9" tabindex="-1"></a></span>
+<span id="cb915-10"><a href="quality-management-systems.html#cb915-10" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Cost of Quality Breakdown:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Cost of Quality Breakdown:</code></pre>
-<div class="sourceCode" id="cb920"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb920-1"><a href="quality-management-systems.html#cb920-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;─────────────────────────────</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb917"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb917-1"><a href="quality-management-systems.html#cb917-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;─────────────────────────────</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## ─────────────────────────────</code></pre>
-<div class="sourceCode" id="cb922"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb922-1"><a href="quality-management-systems.html#cb922-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Prevention:       $&quot;</span>, <span class="fu">format</span>(prevention, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
-<span id="cb922-2"><a href="quality-management-systems.html#cb922-2" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(prevention<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb919"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb919-1"><a href="quality-management-systems.html#cb919-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Prevention:       $&quot;</span>, <span class="fu">format</span>(prevention, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
+<span id="cb919-2"><a href="quality-management-systems.html#cb919-2" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(prevention<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Prevention:       $ 60,000 ( 12 %)</code></pre>
-<div class="sourceCode" id="cb924"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb924-1"><a href="quality-management-systems.html#cb924-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Appraisal:        $&quot;</span>, <span class="fu">format</span>(appraisal, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
-<span id="cb924-2"><a href="quality-management-systems.html#cb924-2" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(appraisal<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb921"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb921-1"><a href="quality-management-systems.html#cb921-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Appraisal:        $&quot;</span>, <span class="fu">format</span>(appraisal, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
+<span id="cb921-2"><a href="quality-management-systems.html#cb921-2" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(appraisal<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Appraisal:        $ 125,000 ( 25 %)</code></pre>
-<div class="sourceCode" id="cb926"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb926-1"><a href="quality-management-systems.html#cb926-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Internal Failure: $&quot;</span>, <span class="fu">format</span>(internal_failure, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
-<span id="cb926-2"><a href="quality-management-systems.html#cb926-2" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(internal_failure<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb923"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb923-1"><a href="quality-management-systems.html#cb923-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Internal Failure: $&quot;</span>, <span class="fu">format</span>(internal_failure, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
+<span id="cb923-2"><a href="quality-management-systems.html#cb923-2" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(internal_failure<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Internal Failure: $ 150,000 ( 30 %)</code></pre>
-<div class="sourceCode" id="cb928"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb928-1"><a href="quality-management-systems.html#cb928-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;External Failure: $&quot;</span>, <span class="fu">format</span>(external_failure, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
-<span id="cb928-2"><a href="quality-management-systems.html#cb928-2" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(external_failure<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb925"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb925-1"><a href="quality-management-systems.html#cb925-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;External Failure: $&quot;</span>, <span class="fu">format</span>(external_failure, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
+<span id="cb925-2"><a href="quality-management-systems.html#cb925-2" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(external_failure<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## External Failure: $ 165,000 ( 33 %)</code></pre>
-<div class="sourceCode" id="cb930"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb930-1"><a href="quality-management-systems.html#cb930-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;─────────────────────────────</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb927"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb927-1"><a href="quality-management-systems.html#cb927-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;─────────────────────────────</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## ─────────────────────────────</code></pre>
-<div class="sourceCode" id="cb932"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb932-1"><a href="quality-management-systems.html#cb932-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Total COQ:        $&quot;</span>, <span class="fu">format</span>(total_coq, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb929"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb929-1"><a href="quality-management-systems.html#cb929-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Total COQ:        $&quot;</span>, <span class="fu">format</span>(total_coq, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Total COQ:        $ 5e+05</code></pre>
-<div class="sourceCode" id="cb934"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb934-1"><a href="quality-management-systems.html#cb934-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;COQ % of Revenue:&quot;</span>, <span class="fu">round</span>(total_coq<span class="sc">/</span>revenue<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb931"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb931-1"><a href="quality-management-systems.html#cb931-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;COQ % of Revenue:&quot;</span>, <span class="fu">round</span>(total_coq<span class="sc">/</span>revenue<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## COQ % of Revenue: 6.2 %</code></pre>
-<div class="sourceCode" id="cb936"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb936-1"><a href="quality-management-systems.html#cb936-1" tabindex="-1"></a>conformance <span class="ot">&lt;-</span> prevention <span class="sc">+</span> appraisal</span>
-<span id="cb936-2"><a href="quality-management-systems.html#cb936-2" tabindex="-1"></a>nonconformance <span class="ot">&lt;-</span> internal_failure <span class="sc">+</span> external_failure</span>
-<span id="cb936-3"><a href="quality-management-systems.html#cb936-3" tabindex="-1"></a></span>
-<span id="cb936-4"><a href="quality-management-systems.html#cb936-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Conformance Costs:    $&quot;</span>, <span class="fu">format</span>(conformance, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
-<span id="cb936-5"><a href="quality-management-systems.html#cb936-5" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(conformance<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb933"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb933-1"><a href="quality-management-systems.html#cb933-1" tabindex="-1"></a>conformance <span class="ot">&lt;-</span> prevention <span class="sc">+</span> appraisal</span>
+<span id="cb933-2"><a href="quality-management-systems.html#cb933-2" tabindex="-1"></a>nonconformance <span class="ot">&lt;-</span> internal_failure <span class="sc">+</span> external_failure</span>
+<span id="cb933-3"><a href="quality-management-systems.html#cb933-3" tabindex="-1"></a></span>
+<span id="cb933-4"><a href="quality-management-systems.html#cb933-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Conformance Costs:    $&quot;</span>, <span class="fu">format</span>(conformance, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
+<span id="cb933-5"><a href="quality-management-systems.html#cb933-5" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(conformance<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Conformance Costs:    $ 185,000 ( 37 %)</code></pre>
-<div class="sourceCode" id="cb938"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb938-1"><a href="quality-management-systems.html#cb938-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Nonconformance Costs: $&quot;</span>, <span class="fu">format</span>(nonconformance, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
-<span id="cb938-2"><a href="quality-management-systems.html#cb938-2" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(nonconformance<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb935"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb935-1"><a href="quality-management-systems.html#cb935-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Nonconformance Costs: $&quot;</span>, <span class="fu">format</span>(nonconformance, <span class="at">big.mark =</span> <span class="st">&quot;,&quot;</span>),</span>
+<span id="cb935-2"><a href="quality-management-systems.html#cb935-2" tabindex="-1"></a>    <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(nonconformance<span class="sc">/</span>total_coq<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Nonconformance Costs: $ 315,000 ( 63 %)</code></pre>
 <p><strong>Analysis:</strong>
 - COQ at 7.5% of revenue is HIGH (target &lt;3%)
@@ -4520,7 +5089,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/Prof-MV/ENGR-3027/blob/master/14-Quality-Systems.Rmd",
+    "link": "https://github.com/Prof-MV/ENGR-3027/blob/master/13-Quality-Systems.Rmd",
     "text": "Edit"
   },
   "history": {
